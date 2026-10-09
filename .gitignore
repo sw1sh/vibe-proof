@@ -1,0 +1,17 @@
+# Track only VibeProof/HofstadterQ (and this file); ignore everything else.
+/*
+!/.gitignore
+!/VibeProof/
+/VibeProof/*
+!/VibeProof/HofstadterQ/
+
+# Build and scratch artifacts inside the tracked folder
+.lake/
+build/
+__pycache__/
+*.pyc
+.DS_Store
+*.mx
+*.tmp
+*.swp
+*~
