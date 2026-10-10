@@ -243,6 +243,72 @@ theorem isP312_unique {g h : Int → Nat} (hg : IsP312 g) (hh : IsP312 h) :
     have ej : g (n - g (n - 2)) = h (n - g (n - 2)) := ih _ hgn.1 (by omega)
     rw [hgn.2, hhn.2, ← e₂, ej]
 
+/-! ### A fast table for cross-validation
+
+The compiled `f` recomputes subterms, so its running time grows exponentially. `fList n`
+computes `[f 1, …, f n]` bottom-up in `O(n²)`, and `fList_getD` proves that it agrees with `f`. -/
+
+/-- Read `f m` from a table `t = [f 1, …, f t.length]`, with the padding value `1` for `m ≤ 0`. -/
+def lookup (t : List Nat) (m : Int) : Nat := if m ≤ 0 then 1 else t.getD (m.toNat - 1) 1
+
+/-- The next value `f (t.length + 1)`, computed from the table `t`. -/
+def nextVal (t : List Nat) : Nat :=
+  let m : Int := t.length + 1
+  3 + lookup t (m - lookup t (m - 2))
+
+/-- `fList n = [f 1, …, f n]`. -/
+def fList : Nat → List Nat
+  | 0 => []
+  | n + 1 => let t := fList n; t ++ [nextVal t]
+
+theorem length_fList (n : Nat) : (fList n).length = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih => simp [fList, ih]
+
+theorem lookup_eq {t : List Nat} (ht : ∀ k, k < t.length → t.getD k 1 = f (k + 1)) {m : Int}
+    (hm : m ≤ t.length) : lookup t m = f m := by
+  unfold lookup
+  by_cases h₀ : m ≤ 0
+  · rw [if_pos h₀, f_eq_one_of_nonpos h₀]
+  · rw [if_neg h₀, ht _ (by omega)]
+    congr 1
+    omega
+
+theorem nextVal_eq {t : List Nat} (ht : ∀ k, k < t.length → t.getD k 1 = f (k + 1)) :
+    nextVal t = f (t.length + 1) := by
+  unfold nextVal
+  simp only
+  rw [lookup_eq ht (m := (t.length : Int) + 1 - 2) (by omega)]
+  have hpos := one_le_f ((t.length : Int) + 1 - 2)
+  rw [lookup_eq ht (by omega), f_eq_of_pos (n := (t.length : Int) + 1) (by omega)]
+
+/-- **Table correctness.** Entry `k` of `fList n` is `f (k + 1)`. -/
+theorem fList_getD (n : Nat) : ∀ k, k < n → (fList n).getD k 1 = f (k + 1) := by
+  induction n with
+  | zero => intro k hk; omega
+  | succ n ih =>
+    intro k hk
+    have ht : ∀ k, k < (fList n).length → (fList n).getD k 1 = f (k + 1) := by
+      rw [length_fList]; exact ih
+    show (fList n ++ [nextVal (fList n)]).getD k 1 = f (k + 1)
+    rw [List.getD_eq_getElem?_getD]
+    by_cases hkn : k < n
+    · rw [List.getElem?_append_left (by rw [length_fList]; exact hkn),
+        ← List.getD_eq_getElem?_getD]
+      exact ih k hkn
+    · have hk' : k = n := by omega
+      subst hk'
+      have h := @List.getElem?_concat_length _ (fList k) (nextVal (fList k))
+      rw [length_fList] at h
+      rw [h, Option.getD_some, nextVal_eq ht, length_fList]
+
+theorem fList_getElem (n k : Nat) (h : k < (fList n).length) : (fList n)[k] = f (k + 1) := by
+  rw [← fList_getD n k (by rw [length_fList] at h; exact h)]
+  simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem h]
+
+example : fList 19 = [4, 7, 4, 4, 7, 10, 4, 4, 10, 13, 7, 4, 13, 16, 10, 4, 7, 19, 7] := by decide
+
 /-! Cross-validation vectors: `f[n]` for `n = 1, …, 19` (the WL table). -/
 
 example : [f 1, f 2, f 3, f 4, f 5, f 6, f 7, f 8, f 9, f 10] =
