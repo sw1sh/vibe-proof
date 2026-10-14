@@ -1,0 +1,6 @@
+name = "qtilde"
+version = "0.1.0"
+defaultTargets = ["QTilde"]
+
+[[lean_lib]]
+name = "QTilde"
