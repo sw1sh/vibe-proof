@@ -1,0 +1,14 @@
+import Ruliology.CellularAutomata.Rule30DrivenLeft
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.edge
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_adjacent
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.col_neg_one_not_periodic
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_column
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L_effective
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.light_cone
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.permutive
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.exists_prefix
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_exists
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_unique
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.alt_fixed
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.ones_fails

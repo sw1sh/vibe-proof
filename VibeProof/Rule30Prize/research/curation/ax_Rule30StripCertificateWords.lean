@@ -1,0 +1,4 @@
+import Ruliology.CellularAutomata.Rule30StripCertificateWords
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificateWords.C_c000000000101_check
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificateWords.C_c000000000101_checkG
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificateWords.not_eventually_000000000101

@@ -1,0 +1,15 @@
+import Ruliology.CellularAutomata.Rule30Realization
+#print axioms Ruliology.CellularAutomata.Rule30Realization.evol_conf
+#print axioms Ruliology.CellularAutomata.Rule30Realization.realize
+#print axioms Ruliology.CellularAutomata.Rule30Realization.unique
+#print axioms Ruliology.CellularAutomata.Rule30Realization.column_realizable_unique
+#print axioms Ruliology.CellularAutomata.Rule30Realization.lc_congr
+#print axioms Ruliology.CellularAutomata.Rule30Realization.evol_seed
+#print axioms Ruliology.CellularAutomata.Rule30Realization.seed_perturbation
+#print axioms Ruliology.CellularAutomata.Rule30Realization.run_not_adjacent
+#print axioms Ruliology.CellularAutomata.Rule30Realization.run30_eq_cell
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center90
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center150
+#print axioms Ruliology.CellularAutomata.Rule30Realization.run210_eq
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center210
+#print axioms Ruliology.CellularAutomata.Rule30Realization.barrier

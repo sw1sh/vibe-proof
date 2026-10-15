@@ -1,0 +1,14 @@
+import Ruliology.CellularAutomata.Rule30MaskedJen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen_center
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.center_masked_not_eventually_periodic
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.orCol_not_eventuallyPeriodic
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.effective_boundary
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.effective_step
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.window_jen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.window_jen_col
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.periodic_window
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.finitary_jen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.left_of_black
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.left_of_white
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.determine

@@ -1,0 +1,66 @@
+import Ruliology.CellularAutomata.Rule30MaskedJen
+import Ruliology.CellularAutomata.Rule30BlackRuns
+import Ruliology.CellularAutomata.Rule30BlackRunBlocks
+import Ruliology.CellularAutomata.Rule30StripCertificates
+import Ruliology.CellularAutomata.Rule30StripCertificateTable
+import Ruliology.CellularAutomata.Rule30DrivenLeft
+import Ruliology.CellularAutomata.Rule30RightPeriods
+import Ruliology.CellularAutomata.Rule30WhiteSeed
+import Ruliology.CellularAutomata.Rule30Realization
+import Ruliology.CellularAutomata.Rule30FactorWindow
+import Ruliology.CellularAutomata.Rule30PeriodTwo
+open Ruliology.CellularAutomata
+#print axioms Rule30MaskedJen.masked_jen
+#print axioms Rule30MaskedJen.masked_jen_center
+#print axioms Rule30MaskedJen.orCol_not_eventuallyPeriodic
+#print axioms Rule30MaskedJen.effective_step
+#print axioms Rule30MaskedJen.window_jen
+#print axioms Rule30MaskedJen.periodic_window
+#print axioms Rule30MaskedJen.finitary_jen
+#print axioms Rule30BlackRuns.nine_black
+#print axioms Rule30BlackRuns.black_shield
+#print axioms Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs_col
+#print axioms Rule30BlackRuns.finitary_long_runs
+#print axioms Rule30BlackRuns.not_eventually_zero_ones
+#print axioms Rule30BlackRuns.no_long_black_run
+#print axioms Rule30BlackRuns.no_black_white_run
+#print axioms Rule30BlackRuns.no_white_run_11
+#print axioms Rule30BlackRunBlocks.no_black_run_block
+#print axioms Rule30BlackRunBlocks.no_period_black_run_then_white
+#print axioms Rule30BlackRunBlocks.det_0110
+#print axioms Rule30StripCertificates.problem1_iff_no_word
+#print axioms Rule30StripCertificates.not_eventually_word_strip
+#print axioms Rule30StripCertificates.Cert.sound
+#print axioms Rule30StripCertificates.Cert.iterG_period
+#print axioms Rule30StripCertificates.not_eventually_01111111
+#print axioms Rule30StripCertificates.not_eventually_00000011
+#print axioms Rule30StripCertificates.not_eventually_000000000101
+#print axioms Rule30StripCertificateTable.not_eventually_certTable
+#print axioms Rule30DrivenLeft.no_periodic_column
+#print axioms Rule30DrivenLeft.cell_eq_L_effective
+#print axioms Rule30DrivenLeft.barrier_exists
+#print axioms Rule30DrivenLeft.barrier_unique
+#print axioms Rule30DrivenLeft.ones_fails
+#print axioms Rule30RightPeriods.per_mono_all
+#print axioms Rule30RightPeriods.e_step
+#print axioms Rule30RightPeriods.S_rule
+#print axioms Rule30RightPeriods.no_three
+#print axioms Rule30RightPeriods.per_bound
+#print axioms Rule30RightPeriods.per_upper
+#print axioms Rule30RightPeriods.rows_at_powers_of_two
+#print axioms Rule30RightPeriods.center_black_lt
+#print axioms Rule30RightPeriods.not_half_lower
+#print axioms Rule30RightPeriods.row_restart
+#print axioms Rule30WhiteSeed.problem1_black_or_white
+#print axioms Rule30WhiteSeed.problem1_30_or_135
+#print axioms Rule30Realization.column_realizable_unique
+#print axioms Rule30Realization.seed_perturbation
+#print axioms Rule30Realization.run_not_adjacent
+#print axioms Rule30Realization.barrier
+#print axioms Rule30FactorWindow.transient_add_period_ge
+#print axioms Rule30PeriodTwo.normalize
+#print axioms Rule30PeriodTwo.golden
+#print axioms Rule30PeriodTwo.no_ABAB
+#print axioms Rule30PeriodTwo.left_half_zero_driven
+#print axioms Rule30PeriodTwo.not_eventually_period_two_of_Q01
+#print axioms Rule30PeriodTwo.stripe_col

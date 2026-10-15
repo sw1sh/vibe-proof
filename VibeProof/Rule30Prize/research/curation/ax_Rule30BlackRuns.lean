@@ -1,0 +1,13 @@
+import Ruliology.CellularAutomata.Rule30BlackRuns
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.nine_black_core
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.eight_black_not_enough
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.nine_black
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.black_shield
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.cone_agree
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs_col
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.finitary_long_runs
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventually_zero_ones
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_long_black_run
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_black_white_run
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_white_run_11

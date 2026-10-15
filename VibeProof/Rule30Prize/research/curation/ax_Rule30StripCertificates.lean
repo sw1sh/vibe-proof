@@ -1,0 +1,11 @@
+import Ruliology.CellularAutomata.Rule30StripCertificates
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.problem1_iff_no_word
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_word_strip
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_01111111
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.iterG_period
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.sound
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.not_eventuallyWord
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_00000011
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_000000000101
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.C_c000000000101_check
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.C_c000000000101_checkG
