@@ -1,0 +1,1 @@
+01 stab=92 zdet=0 pat=**

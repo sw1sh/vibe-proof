@@ -1,0 +1,11 @@
+'AbsorbRight.no_long_black_run' depends on axioms: [propext, Quot.sound]
+def Ruliology.CellularAutomata.Rule30Jen.cell : Nat → Int → Bool :=
+fun x x_1 => Nat.brecOn (motive := fun x => Int → Bool) x Ruliology.CellularAutomata.Rule30Jen.cell._f x_1
+def Ruliology.CellularAutomata.Rule30Jen.rule : Bool → Bool → Bool → Bool :=
+fun a b c => a ^^ (b || c)
+def Ruliology.CellularAutomata.Rule30Prize.center : Nat → Bool :=
+fun t => Ruliology.CellularAutomata.Rule30Jen.cell t 0
+def Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic : (Nat → Bool) → Prop :=
+fun f => ∃ T P, 0 < P ∧ ∀ (t : Nat), T ≤ t → f (t + P) = f t
+timeout 60 lake env lean $D/Standalone.lean  27.36s user 1.70s system 111% cpu 25.967 total
+exit: 0

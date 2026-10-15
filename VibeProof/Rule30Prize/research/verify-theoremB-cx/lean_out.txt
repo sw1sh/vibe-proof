@@ -1,0 +1,13 @@
+'AbsorbRight.no_long_black_run' depends on axioms: [propext, Quot.sound]
+'AbsorbRight.nine_black' depends on axioms: [propext, Quot.sound]
+'AbsorbRight.black_shield' depends on axioms: [propext, Quot.sound]
+'AbsorbRight.cone_agree' depends on axioms: [propext, Quot.sound]
+AbsorbRight.no_long_black_run : ∀ (T P r t1 : Nat),
+  (∀ (t : Nat),
+      T ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + P) = Ruliology.CellularAutomata.Rule30Prize.center t) →
+    T ≤ t1 →
+      r ≤ P →
+        (∀ (s : Nat), s < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s) = true) →
+          9 * ((P - r + 10) / 2) ≤ r → False
+timeout 60 lake env lean $D/AbsorbRightCopy.lean  26.00s user 0.84s system 108% cpu 24.743 total
+exit: 0

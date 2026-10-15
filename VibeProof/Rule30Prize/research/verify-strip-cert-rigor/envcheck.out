@@ -1,0 +1,16 @@
+def Ruliology.CellularAutomata.Rule30Jen.rule : Bool → Bool → Bool → Bool :=
+fun a b c => a ^^ (b || c)
+def Ruliology.CellularAutomata.Rule30Jen.cell : Nat → Int → Bool :=
+fun x x_1 => Nat.brecOn (motive := fun x => Int → Bool) x cell._f x_1
+not_adjacent : ∀ (i : Int),
+  (EventuallyPeriodic fun t => cell t i) → (EventuallyPeriodic fun t => cell t (i + 1)) → False
+cell_left : ∀ (t : Nat) (i : Int), cell t (i - 1) = (cell (t + 1) i ^^ (cell t i || cell t (i + 1)))
+def Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic : (Nat → Bool) → Prop :=
+fun f => ∃ T P, 0 < P ∧ ∀ (t : Nat), T ≤ t → f (t + P) = f t
+'Ruliology.CellularAutomata.Rule30Jen.not_adjacent' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.cell_left' does not depend on any axioms
+def Ruliology.CellularAutomata.Rule30Prize.Problem1 : Prop :=
+¬EventuallyPeriodic Ruliology.CellularAutomata.Rule30Prize.center
+def Ruliology.CellularAutomata.Rule30Prize.center : Nat → Bool :=
+fun t => cell t 0
+[1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0]

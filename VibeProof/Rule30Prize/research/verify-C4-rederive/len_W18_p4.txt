@@ -1,0 +1,4 @@
+0001 W=18 stab=73 colA=**** colB=**** A==B:yes -
+0011 W=18 stab=78 colA=**** colB=**** A==B:yes -
+0111 W=18 stab=85 colA=**** colB=**** A==B:yes -
+SUMMARY W=18 p=4 necklaces=3 certified=0

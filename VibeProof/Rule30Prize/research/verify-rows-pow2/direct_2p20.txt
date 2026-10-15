@@ -1,0 +1,43 @@
+row 2^0-1: black run from edge B=1 (next cell white), J+1 expected
+t=2^0 G=0
+row 2^1-1: black run from edge B=3 (next cell white), J+1 expected
+t=2^1 G=2
+row 2^2-1: black run from edge B=4 (next cell white), J+1 expected
+t=2^2 G=3
+row 2^3-1: black run from edge B=6 (next cell white), J+1 expected
+t=2^3 G=5
+row 2^4-1: black run from edge B=7 (next cell white), J+1 expected
+t=2^4 G=6
+row 2^5-1: black run from edge B=9 (next cell white), J+1 expected
+t=2^5 G=8
+row 2^6-1: black run from edge B=15 (next cell white), J+1 expected
+t=2^6 G=14
+row 2^7-1: black run from edge B=16 (next cell white), J+1 expected
+t=2^7 G=15
+row 2^8-1: black run from edge B=24 (next cell white), J+1 expected
+t=2^8 G=23
+row 2^9-1: black run from edge B=25 (next cell white), J+1 expected
+t=2^9 G=24
+row 2^10-1: black run from edge B=27 (next cell white), J+1 expected
+t=2^10 G=26
+row 2^11-1: black run from edge B=29 (next cell white), J+1 expected
+t=2^11 G=28
+row 2^12-1: black run from edge B=34 (next cell white), J+1 expected
+t=2^12 G=33
+row 2^13-1: black run from edge B=36 (next cell white), J+1 expected
+t=2^13 G=35
+row 2^14-1: black run from edge B=37 (next cell white), J+1 expected
+t=2^14 G=36
+row 2^15-1: black run from edge B=39 (next cell white), J+1 expected
+t=2^15 G=38
+row 2^16-1: black run from edge B=41 (next cell white), J+1 expected
+t=2^16 G=40
+row 2^17-1: black run from edge B=43 (next cell white), J+1 expected
+t=2^17 G=42
+row 2^18-1: black run from edge B=48 (next cell white), J+1 expected
+t=2^18 G=47
+row 2^19-1: black run from edge B=49 (next cell white), J+1 expected
+t=2^19 G=48
+row 2^20-1: black run from edge B=51 (next cell white), J+1 expected
+t=2^20 G=50
+T=1048576 mismatches=0

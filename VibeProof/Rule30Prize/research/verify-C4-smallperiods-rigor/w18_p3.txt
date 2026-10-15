@@ -1,0 +1,2 @@
+001 stab=70 zdet=0 pat=0**
+011 stab=137 zdet=0 pat=***

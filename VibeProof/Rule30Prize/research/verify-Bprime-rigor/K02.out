@@ -1,0 +1,5 @@
+'AbsorbRightV.det_01010' depends on axioms: [propext]
+'AbsorbRightV.det_01100' depends on axioms: [propext]
+real 24.78
+user 24.07
+sys 0.59

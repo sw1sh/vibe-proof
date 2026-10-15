@@ -1,0 +1,3 @@
+0001 stab=98 zdet=0 pat=****
+0011 stab=93 zdet=0 pat=****
+0111 stab=103 zdet=0 pat=****

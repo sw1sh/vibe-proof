@@ -1,0 +1,15 @@
+'AbsorbRightV.det_011000' depends on axioms: [propext]
+'AbsorbRightV.det_00000' depends on axioms: [propext]
+'AbsorbRightV.det_00010' depends on axioms: [propext]
+'AbsorbRightV.det_00100' depends on axioms: [propext]
+'AbsorbRightV.det_00110' depends on axioms: [propext]
+'AbsorbRightV.det_01000' depends on axioms: [propext]
+'AbsorbRightV.det_0001000' depends on axioms: [propext]
+'AbsorbRightV.det_0111000' depends on axioms: [propext]
+'AbsorbRightV.det_000000' depends on axioms: [propext]
+'AbsorbRightV.det_000010' depends on axioms: [propext]
+'AbsorbRightV.det_000100' depends on axioms: [propext]
+'AbsorbRightV.det_000110' depends on axioms: [propext]
+real 52.65
+user 51.84
+sys 0.69

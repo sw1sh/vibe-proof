@@ -1,0 +1,6 @@
+'R30SmallPeriods2.mirror_of_alt' depends on axioms: [propext, Quot.sound]
+'R30SmallPeriods2.no_ACBACA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'R30SmallPeriods2.no_CACBAC' depends on axioms: [propext, Classical.choice, Quot.sound]
+real 11.11
+user 11.18
+sys 0.44

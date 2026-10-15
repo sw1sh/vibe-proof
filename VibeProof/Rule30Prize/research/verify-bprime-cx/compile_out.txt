@@ -1,0 +1,32 @@
+'AbsorbRight.no_black_run_block' depends on axioms: [propext, Quot.sound]
+'AbsorbRight.no_period_black_run_then_white' depends on axioms: [propext, Quot.sound]
+'AbsorbRight.det_0' depends on axioms: [propext]
+'AbsorbRight.det_00' depends on axioms: [propext]
+'AbsorbRight.det_000' depends on axioms: [propext]
+'AbsorbRight.det_010' depends on axioms: [propext]
+'AbsorbRight.det_0000' depends on axioms: [propext]
+'AbsorbRight.det_0010' depends on axioms: [propext]
+'AbsorbRight.det_0100' depends on axioms: [propext]
+'AbsorbRight.det_0110' depends on axioms: [propext]
+'AbsorbRight.nine_black_core' depends on axioms: [propext]
+'AbsorbRight.black_shield' depends on axioms: [propext, Quot.sound]
+AbsorbRight.no_black_run_block : ∀ (u : List Bool) (j0 : Nat),
+  AbsorbRight.Determined u j0 = true →
+    2 * j0 ≤ u.length + 10 →
+      ∀ (T r t1 : Nat),
+        (∀ (t : Nat),
+            T ≤ t →
+              Ruliology.CellularAutomata.Rule30Prize.center (t + (r + u.length)) =
+                Ruliology.CellularAutomata.Rule30Prize.center t) →
+          T ≤ t1 →
+            9 ≤ r →
+              9 * j0 ≤ r →
+                (∀ (s : Nat), s < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s) = true) →
+                  (∀ (i : Nat),
+                      i < u.length → Ruliology.CellularAutomata.Rule30Prize.center (t1 + r + i) = u.getD i false) →
+                    False
+Ruliology.CellularAutomata.Rule30Jen.not_adjacent : ∀ (i : Int),
+  (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun t => Ruliology.CellularAutomata.Rule30Jen.cell t i) →
+    (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun t =>
+        Ruliology.CellularAutomata.Rule30Jen.cell t (i + 1)) →
+      False

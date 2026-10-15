@@ -1,0 +1,8 @@
+'AbsorbRightV.det_0000100' depends on axioms: [propext]
+'AbsorbRightV.det_0010010' depends on axioms: [propext]
+'AbsorbRightV.det_0010110' depends on axioms: [propext]
+'AbsorbRightV.det_0100100' depends on axioms: [propext]
+'AbsorbRightV.det_0101000' depends on axioms: [propext]
+'AbsorbRightV.det_0110000' depends on axioms: [propext]
+'AbsorbRightV.det_0110010' depends on axioms: [propext]
+'AbsorbRightV.det_0110110' depends on axioms: [propext]
