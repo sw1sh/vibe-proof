@@ -1,0 +1,1 @@
+Rule30ZeroBoundaryStripe: elapsed 17.1 s, rc=0

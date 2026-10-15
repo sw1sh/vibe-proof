@@ -1,0 +1,6 @@
+'ZBLBarrier.stripe_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.trunc_survives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.finite_abstraction_has_lasso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.z_width' depends on axioms: [propext, Quot.sound]
+'ZBLBarrier.z_shift' depends on axioms: [propext, Quot.sound]
+'ZBLBarrier.no_local_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]

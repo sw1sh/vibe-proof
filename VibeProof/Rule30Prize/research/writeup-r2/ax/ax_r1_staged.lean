@@ -1,0 +1,156 @@
+import Ruliology.CellularAutomata.Rule30Diagonals
+import Ruliology.CellularAutomata.Rule30Window
+import Ruliology.CellularAutomata.Rule30MaskedJen
+import Ruliology.CellularAutomata.Rule30BlackRuns
+import Ruliology.CellularAutomata.Rule30BlackRunBlocks
+import Ruliology.CellularAutomata.Rule30StripCertificates
+import Ruliology.CellularAutomata.Rule30StripCertificateTable
+import Ruliology.CellularAutomata.Rule30DrivenLeft
+import Ruliology.CellularAutomata.Rule30RightPeriods
+import Ruliology.CellularAutomata.Rule30WhiteSeed
+import Ruliology.CellularAutomata.Rule30Realization
+import Ruliology.CellularAutomata.Rule30FactorWindow
+import Ruliology.CellularAutomata.Rule30PeriodTwo
+
+#print axioms Ruliology.CellularAutomata.Rule30Jen.cell_left_edge
+#print axioms Ruliology.CellularAutomata.Rule30Jen.cell_eq_false_of_lt
+#print axioms Ruliology.CellularAutomata.Rule30Jen.cell_left
+#print axioms Ruliology.CellularAutomata.Rule30Jen.periodic_left_all
+#print axioms Ruliology.CellularAutomata.Rule30Jen.no_left_periodic
+#print axioms Ruliology.CellularAutomata.Rule30Jen.not_adjacent
+#print axioms Ruliology.CellularAutomata.Rule30Jen.between_periodic
+#print axioms Ruliology.CellularAutomata.Rule30Jen.jen
+#print axioms Ruliology.CellularAutomata.Rule30Jen.periodic_column_unique
+#print axioms Ruliology.CellularAutomata.Rule30Prize.no_column_eventually_constant
+#print axioms Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_constant
+#print axioms Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_period_one
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.center_eq_R
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.center_eq_D
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.R_zero
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.R_step
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.D_step
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.R_periodic
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.D_periodic
+#print axioms Ruliology.CellularAutomata.Rule30Diagonals.center_eq_parity
+#print axioms Ruliology.CellularAutomata.Rule30Window.row_testBit
+#print axioms Ruliology.CellularAutomata.Rule30Window.centerLoop_spec
+#print axioms Ruliology.CellularAutomata.Rule30Window.center_eq_bit
+#print axioms Ruliology.CellularAutomata.Rule30Window.witnessCheck_true
+#print axioms Ruliology.CellularAutomata.Rule30Window.no_small_eventual_period
+#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.win_inj
+#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.left_of_black
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.left_of_white
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen_center
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.center_masked_not_eventually_periodic
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.orCol_not_eventuallyPeriodic
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.effective_boundary
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.effective_step
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.determine
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.window_jen
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.window_jen_col
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.periodic_window
+#print axioms Ruliology.CellularAutomata.Rule30MaskedJen.finitary_jen
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.nine_black_core
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.eight_black_not_enough
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.nine_black
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.black_shield
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs_col
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.finitary_long_runs
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.not_eventually_zero_ones
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_long_black_run
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_black_white_run
+#print axioms Ruliology.CellularAutomata.Rule30BlackRuns.no_white_run_11
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_black_run_block
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_00
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_000
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_010
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0000
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0010
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0100
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0110
+#print axioms Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_period_black_run_then_white
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.problem1_iff_no_word
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_word_strip
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_01111111
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.iterG_period
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.sound
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.Cert.not_eventuallyWord
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_00000011
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_000000000101
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificateTable.certTable_ok
+#print axioms Ruliology.CellularAutomata.Rule30StripCertificateTable.not_eventually_certTable
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.edge
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_adjacent
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.col_neg_one_not_periodic
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_column
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L_effective
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.light_cone
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.permutive
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_exists
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_unique
+#print axioms Ruliology.CellularAutomata.Rule30DrivenLeft.ones_fails
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_mono_all
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.e_mono
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.shift_formula
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_succ_iff
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.antiperiod
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.half_black
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.e_step
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.S_rule
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.inp_least_period
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.no_three
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.period_gt
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.not_per_small
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_bound
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_upper
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_14
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_23
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.not_half_lower
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.per_iff_gap
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.rows_at_powers_of_two
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.zero_gap_cell
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.last_one
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.last_white
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.restart
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.row_restart
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.center_restart
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.column_continuity
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.center_black_lt
+#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.exists_IsE
+#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.cellW_succ
+#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.cell135_succ
+#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_black_or_white
+#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_30_or_135
+#print axioms Ruliology.CellularAutomata.Rule30Realization.realize
+#print axioms Ruliology.CellularAutomata.Rule30Realization.unique
+#print axioms Ruliology.CellularAutomata.Rule30Realization.column_realizable_unique
+#print axioms Ruliology.CellularAutomata.Rule30Realization.seed_perturbation
+#print axioms Ruliology.CellularAutomata.Rule30Realization.run_not_adjacent
+#print axioms Ruliology.CellularAutomata.Rule30Realization.run30_eq_cell
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center90
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center150
+#print axioms Ruliology.CellularAutomata.Rule30Realization.center210
+#print axioms Ruliology.CellularAutomata.Rule30Realization.barrier
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.normalize
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.no_AA
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.no_BB
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.no_ABAB
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.col4_white_of_alt
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m1_even
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.p1_odd
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m2_even
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m2_odd
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m3_even
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m3_odd
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.golden
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.m4_odd
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.effective_white
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.left_half_zero_driven
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.not_eventually_period_two_of_Q01
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_fixed
+#print axioms Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_col

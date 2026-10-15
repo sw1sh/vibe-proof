@@ -1,0 +1,7 @@
+temporal period 4: True  period 2? False
+columns of c7 (p=0..6, phases 0..3): ['0101', '0011', '0001', '0001', '0011', '0110', '1101']
+c7 == ether up to (space shift, time shift): [(4, 0)]
+center B4: [0, 1, 0, 1]  effective boundary c'(t)=c(t)&c(t+1): [0, 0, 0, 0]
+left half of ether evolves as ZBL with white wall: True
+col -1 at black-center phases [1, 1] (must be all 1)
+free bits f (col -1 at white-center phases) [1, 0]  col +1 at white phases [0, 1]  f == not col1: True

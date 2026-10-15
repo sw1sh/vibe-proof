@@ -1,0 +1,232 @@
+
+/-- Skeleton predicate for `w = 0011` (phases `0..3` = `0, 0, 1, 1`): column `1` is black at phases
+`1, 2` and white at phase `3`. -/
+def skel0011 (φ : Nat) (s : List Bool) : Bool :=
+  if φ = 1 then s.getD 0 false else if φ = 2 then s.getD 0 false else if φ = 3 then !(s.getD 0 false) else true
+
+theorem K0011_checkb : Cert.checkb K0011 k0011_bad = true := by decide +kernel
+theorem K0011_checkGb : Cert.checkGb K0011 k0011_bad = true := by decide +kernel
+theorem K0011_badImp : Cert.badImp K0011 k0011_bad skel0011 = true := by decide +kernel
+
+/-- **Skeleton for `0011`.** If the center column is `0011`-periodic from time `T` (phase
+`(t - T) % 4`), then eventually column `1` is black at phases `1, 2` and white at phase `3`. -/
+theorem skeleton_0011 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = K0011.wAt ((t - T) % 4)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 1 → cell t 1 = true) ∧ ((t - T) % 4 = 2 → cell t 1 = true) ∧
+      ((t - T) % 4 = 3 → cell t 1 = false) := by
+  have hP : K0011.P = 4 := by decide
+  obtain ⟨T', hT', hp⟩ := Cert.eventually_pred K0011 k0011_bad skel0011 K0011_checkb K0011_checkGb
+    K0011_badImp (by decide) (by decide) T (by rw [hP]; exact h)
+  refine ⟨T', hT', fun t ht => ?_⟩
+  have e := hp t ht
+  rw [hP] at e
+  have h0 : (rowR t K0011.b).getD 0 false = cell t 1 := rowR_getD t K0011.b 0 (by decide)
+  refine ⟨fun h1 => ?_, fun h2 => ?_, fun h3 => ?_⟩
+  · rw [h1] at e; simp only [skel0011] at e; simp at e; rw [← h0]; exact e
+  · rw [h2] at e; simp only [skel0011] at e; simp at e; rw [← h0]; exact e
+  · rw [h3] at e; simp only [skel0011] at e; simp at e; rw [← h0]; simpa using e
+
+theorem wAt_0011 (φ : Nat) (hφ : φ < 4) : K0011.wAt φ = decide (2 ≤ φ) := by
+  have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+  rcases this with h | h | h | h <;> subst h <;> decide
+
+/-- **Skeleton for `0011`, explicit form.** If `c(t) = [ (t - T) % 4 ≥ 2 ]` for `t ≥ T`, then
+eventually column `1` is black at phases `1, 2` and white at phase `3`, and column `-1` is
+(= column `1`, white, white, black) at phases (`0, 1, 2, 3`). -/
+theorem skeleton_0011_explicit (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide (2 ≤ (t - T) % 4)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 0 → cell t (-1) = cell t 1) ∧
+      ((t - T) % 4 = 1 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 2 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t 1 = false ∧ cell t (-1) = true) := by
+  have h' : ∀ t, T ≤ t → cell t 0 = K0011.wAt ((t - T) % 4) := by
+    intro t ht; rw [h t ht, wAt_0011 _ (Nat.mod_lt _ (by decide))]
+  obtain ⟨T', hT', hs⟩ := skeleton_0011 T h'
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨s1, s2, s3⟩ := hs t ht
+  have c0 := h t (by omega)
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T (by omega)] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩
+  · rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s1 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · have a := s2 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s3 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+
+/-- **Column `-1` for `0111` (no skeleton needed).** If `c(t) = [ (t - T) % 4 ≥ 1 ]` for `t ≥ T`, then
+for all `t ≥ T` column `-1` is (= not column `1`, white, white, black) at phases (`0, 1, 2, 3`). -/
+theorem column_m1_0111 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide (1 ≤ (t - T) % 4)) :
+    ∀ t, T ≤ t →
+      ((t - T) % 4 = 0 → cell t (-1) = !cell t 1) ∧
+      ((t - T) % 4 = 1 → cell t (-1) = false) ∧
+      ((t - T) % 4 = 2 → cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t (-1) = true) := by
+  intro t ht
+  have c0 := h t ht
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T ht] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩ <;>
+    (rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide)
+
+/-! ### Least period 4 from left-half statements -/
+
+open Rule30Ether (wordAt w0001 w0011 w0111)
+
+/-- The 4-periodic effective boundary `c'_w(φ) = w(φ) && w(φ + 1)` of a 4-periodic center word. -/
+def effWord (w : List Bool) : List Bool :=
+  (List.range 4).map fun φ => wordAt w φ && wordAt w (φ + 1)
+
+theorem effWord_0001 : effWord w0001 = [false, false, false, false] := by decide
+theorem effWord_0011 : effWord w0011 = [false, false, true, false] := by decide
+theorem effWord_0111 : effWord w0111 = [false, true, true, false] := by decide
+
+theorem wordAt_effWord (w : List Bool) (k : Nat) :
+    wordAt (effWord w) k = (wordAt w k && wordAt w (k + 1)) := by
+  show ((List.range 4).map fun φ => wordAt w φ && wordAt w (φ + 1)).getD (k % 4) false = _
+  rw [List.getD_eq_getElem?_getD, List.getElem?_map, List.getElem?_range (Nat.mod_lt _ (by decide))]
+  simp only [Option.map_some, Option.getD_some]
+  unfold wordAt
+  rw [Nat.mod_mod, show (k % 4 + 1) % 4 = (k + 1) % 4 by omega]
+
+/-- Whether `b` fits the pattern `P` at phase `φ` (`none` = unconstrained). -/
+def fits (P : List (Option Bool)) (φ : Nat) (b : Bool) : Bool :=
+  match P.getD φ none with
+  | none => true
+  | some v => b == v
+
+/-- `P_w`: the values of column `-1` fixed by the skeletons at three of the four phases. -/
+def colPattern : List Bool → List (Option Bool)
+  | [false, false, false, true] => [some false, none, some false, some true]
+  | [false, false, true, true] => [none, some false, some false, some true]
+  | [false, true, true, true] => [none, some false, some false, some true]
+  | _ => [none, none, none, none]
+
+/-- **`C3 w`** (open). No finitely supported left configuration, run as rule 30 on the positions
+`p ≤ -1` with column `0` replaced by the 4-periodic effective boundary `c'_w`, keeps column `-1`
+equal to `P_w` at its fixed phases for all large times. -/
+def C3 (w : List Bool) : Prop :=
+  ∀ s : Int → Bool, (∃ M : Nat, ∀ p : Int, p < -(M : Int) → s p = false) →
+    ¬ ∃ K, ∀ k, K ≤ k →
+      fits (colPattern w) (k % 4) (Rule30DrivenLeft.L (fun k => wordAt (effWord w) k) s k (-1)) = true
+
+/-- The common step: a `w`-periodic tail whose column `-1` eventually fits `P_w` contradicts
+`C3 w`. -/
+theorem not_tail_of_C3 (w : List Bool) (hC : C3 w) (T : Nat)
+    (hT : ∀ t, T ≤ t → cell t 0 = wordAt w (t - T))
+    (hskel : ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → fits (colPattern w) ((t - T) % 4) (cell t (-1)) = true) :
+    False := by
+  obtain ⟨T', hT', hP⟩ := hskel
+  have hdrv : (fun k => Rule30Prize.center (T + k) && Rule30Prize.center (T + k + 1)) =
+      fun k => wordAt (effWord w) k := by
+    funext k
+    rw [wordAt_effWord]
+    show (cell (T + k) 0 && cell (T + k + 1) 0) = _
+    rw [hT (T + k) (by omega), hT (T + k + 1) (by omega), show T + k - T = k by omega,
+      show T + k + 1 - T = k + 1 by omega]
+  refine hC (fun p => cell T p) ⟨T, fun p hp => cell_eq_false_of_lt T p hp⟩ ⟨T' - T, fun k hk => ?_⟩
+  have e := Rule30DrivenLeft.cell_eq_L_effective T k (-1) (by omega)
+  rw [hdrv] at e
+  rw [e]
+  have := hP (T + k) (by omega)
+  rwa [show T + k - T = k by omega] at this
+
+theorem fits_0001 (φ : Nat) (b : Bool) :
+    fits (colPattern w0001) φ b = (if φ = 0 then b == false else if φ = 2 then b == false
+      else if φ = 3 then b == true else true) := by
+  rcases Nat.lt_or_ge φ 4 with h | h
+  · have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+    rcases this with rfl | rfl | rfl | rfl <;> rfl
+  · unfold fits
+    rw [List.getD_eq_getElem?_getD, List.getElem?_eq_none (by simp [colPattern, w0001]; omega)]
+    simp [show φ ≠ 0 by omega, show φ ≠ 2 by omega, show φ ≠ 3 by omega]
+
+theorem fits_0011 (w : List Bool) (hw : w = w0011 ∨ w = w0111) (φ : Nat) (b : Bool) :
+    fits (colPattern w) φ b = (if φ = 1 then b == false else if φ = 2 then b == false
+      else if φ = 3 then b == true else true) := by
+  have hp : colPattern w = [none, some false, some false, some true] := by
+    rcases hw with rfl | rfl <;> rfl
+  rw [hp]
+  rcases Nat.lt_or_ge φ 4 with h | h
+  · have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+    rcases this with rfl | rfl | rfl | rfl <;> rfl
+  · unfold fits
+    rw [List.getD_eq_getElem?_getD, List.getElem?_eq_none (by simp; omega)]
+    simp [show φ ≠ 1 by omega, show φ ≠ 2 by omega, show φ ≠ 3 by omega]
+
+theorem wordAt_0001 (x : Nat) : wordAt w0001 x = decide (x % 4 = 3) := by
+  unfold wordAt
+  have : x % 4 = 0 ∨ x % 4 = 1 ∨ x % 4 = 2 ∨ x % 4 = 3 := by omega
+  rcases this with h | h | h | h <;> rw [h] <;> rfl
+
+theorem wordAt_0011 (x : Nat) : wordAt w0011 x = decide (2 ≤ x % 4) := by
+  unfold wordAt
+  have : x % 4 = 0 ∨ x % 4 = 1 ∨ x % 4 = 2 ∨ x % 4 = 3 := by omega
+  rcases this with h | h | h | h <;> rw [h] <;> rfl
+
+theorem wordAt_0111 (x : Nat) : wordAt w0111 x = decide (1 ≤ x % 4) := by
+  unfold wordAt
+  have : x % 4 = 0 ∨ x % 4 = 1 ∨ x % 4 = 2 ∨ x % 4 = 3 := by omega
+  rcases this with h | h | h | h <;> rw [h] <;> rfl
+
+/-- **`C3` excludes `0001`.** -/
+theorem not_eventually_0001_of_C3 (hC : C3 w0001) :
+    ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0001 (t - T) := by
+  rintro ⟨T, hT⟩
+  refine not_tail_of_C3 w0001 hC T hT ?_
+  obtain ⟨T', hT', hs⟩ := skeleton_0001_explicit T (fun t ht => by rw [hT t ht, wordAt_0001])
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨s0, -, s2, s3⟩ := hs t ht
+  rw [fits_0001]
+  have : (t - T) % 4 = 0 ∨ (t - T) % 4 = 1 ∨ (t - T) % 4 = 2 ∨ (t - T) % 4 = 3 := by omega
+  rcases this with h | h | h | h
+  · rw [if_pos h, (s0 h).2.2]; rfl
+  · rw [if_neg (by omega), if_neg (by omega), if_neg (by omega)]
+  · rw [if_neg (by omega), if_pos h, (s2 h).2]; rfl
+  · rw [if_neg (by omega), if_neg (by omega), if_pos h, (s3 h).2.2]; rfl
+
+/-- **`C3` excludes `0011`.** -/
+theorem not_eventually_0011_of_C3 (hC : C3 w0011) :
+    ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0011 (t - T) := by
+  rintro ⟨T, hT⟩
+  refine not_tail_of_C3 w0011 hC T hT ?_
+  obtain ⟨T', hT', hs⟩ := skeleton_0011_explicit T (fun t ht => by rw [hT t ht, wordAt_0011])
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨-, s1, s2, s3⟩ := hs t ht
+  rw [fits_0011 w0011 (Or.inl rfl)]
+  have : (t - T) % 4 = 0 ∨ (t - T) % 4 = 1 ∨ (t - T) % 4 = 2 ∨ (t - T) % 4 = 3 := by omega
+  rcases this with h | h | h | h
+  · rw [if_neg (by omega), if_neg (by omega), if_neg (by omega)]
+  · rw [if_pos h, (s1 h).2]; rfl
+  · rw [if_neg (by omega), if_pos h, (s2 h).2]; rfl
+  · rw [if_neg (by omega), if_neg (by omega), if_pos h, (s3 h).2]; rfl
+
+/-- **`C3` excludes `0111`.** -/
+theorem not_eventually_0111_of_C3 (hC : C3 w0111) :
+    ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0111 (t - T) := by
+  rintro ⟨T, hT⟩
+  refine not_tail_of_C3 w0111 hC T hT ⟨T, Nat.le_refl T, fun t ht => ?_⟩
+  obtain ⟨-, s1, s2, s3⟩ := column_m1_0111 T (fun t ht => by rw [hT t ht, wordAt_0111]) t ht
+  rw [fits_0011 w0111 (Or.inr rfl)]
+  have : (t - T) % 4 = 0 ∨ (t - T) % 4 = 1 ∨ (t - T) % 4 = 2 ∨ (t - T) % 4 = 3 := by omega
+  rcases this with h | h | h | h
+  · rw [if_neg (by omega), if_neg (by omega), if_neg (by omega)]
+  · rw [if_pos h, s1 h]; rfl
+  · rw [if_neg (by omega), if_pos h, s2 h]; rfl
+  · rw [if_neg (by omega), if_neg (by omega), if_pos h, s3 h]; rfl
+
+/-- **Least period 4 from `C3`.** If `C3` holds for `0001`, `0011` and `0111`, the center column is
+not eventually equal to any of these words, with any transient. -/
+theorem least_period_four_of_C3 (h1 : C3 w0001) (h2 : C3 w0011) (h3 : C3 w0111) :
+    (¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0001 (t - T)) ∧
+    (¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0011 (t - T)) ∧
+    (¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt w0111 (t - T)) :=
+  ⟨not_eventually_0001_of_C3 h1, not_eventually_0011_of_C3 h2, not_eventually_0111_of_C3 h3⟩
+
+end Rule30PeriodFourSkeleton
+end Ruliology.CellularAutomata

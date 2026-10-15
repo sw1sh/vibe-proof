@@ -1,0 +1,7 @@
+'R30ZBL.stripe_absorb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'R30ZBL.stripe_tail_free_eventually_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'R30ZBL.stripe2_absorb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'R30ZBL.stripe2_tail_free_eventually_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'R30ZBL.free_not_eventuallyPeriodic' depends on axioms: [propext, Quot.sound]
+'R30ZBL.small_identities' does not depend on any axioms
+'R30ZBL.Q01_iff_Phi' depends on axioms: [propext, Quot.sound]

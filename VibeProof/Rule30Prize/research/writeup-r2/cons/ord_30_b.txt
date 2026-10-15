@@ -1,0 +1,3 @@
+rule 30^1 ordinary densities, range r=8: rank_p=128 of 128 (cols 512) -> NO nontrivial law
+rule 30^1 ordinary densities, range r=9: rank_p=256 of 256 (cols 956) -> NO nontrivial law
+rule 30^1 ordinary densities, range r=10: rank_p=512 of 512 (cols 1212) -> NO nontrivial law

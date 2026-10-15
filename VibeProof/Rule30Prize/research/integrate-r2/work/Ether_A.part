@@ -1,0 +1,76 @@
+import Ruliology.CellularAutomata.Rule30StripCertificates
+import Ruliology.CellularAutomata.Rule30Diagonals
+
+/-!
+# Rule 30, least period 4: the ether and the wall traps of the right half
+
+The *ether* is a spatio-temporally periodic rule-30 pattern of spatial period `7` and temporal
+period `4`. Its columns at the phases `0, 1, 2, 3` are
+
+    B1 = 0011, B2 = 0110, B3 = 1101, B4 = 0101, B5 = 0011, c = 0001, c = 0001.
+
+Each of the words `0001`, `0011`, `0111` (and `0101`) is, up to a time shift, an ether column
+(`aligned_*`). The *wall* is a set of `109` states of a `13`-cell strip whose left neighbour is a
+B3 column; it is closed under every value of the cell to its right, and whenever B3 is white the
+first wall cell carries the ether value B4 (`wallOK_true`, a kernel check). So "ether columns
+ending in a B3 column, followed by a wall state" is a trap for the right half: once entered, every
+ether column keeps its periodic values forever (`trap_invariant`).
+
+* `ether_rule`: the ether is a rule-30 orbit.
+* `trap_invariant`: the trap is invariant for every rule-30 evolution on the columns `p ≥ 0`
+  whose column `0` is the ether column.
+* `ether_wall_trap`, `no_ether_wall_entry`: if the center column is `w^∞` from time `T` and at some
+  `t1 ≥ T` columns `1..k` carry the ether (column `k` a B3) and columns `k+1..k+13` a wall state,
+  contradiction (masked Jen, `Rule30MaskedJen.masked_jen`). An infinite family of traps.
+* `drv`: the right half driven by a prescribed column `0`; `cell_eq_drv`: the true right half
+  from time `T` is the half driven by the true center column.
+* `never_enters_S0001`, `never_enters_S0011`, `never_enters_S0111`: explicit finitely supported
+  right halves that never enter the round-1 certified traps `S_w`; they stay in deeper members of
+  the family forever (`config_pure_ether`).
+* `Absorption` (an open conjecture, stated as a `Prop`), `absorption_excludes` and
+  `least_period_four_of_absorption`: absorption into the family for every finite right half
+  excludes `w^∞` as a tail of the center column, for every transient.
+
+Sources: the Rule 30 Prize project (2026), least-period-4 program, round 2 (edge-trap study).
+-/
+
+namespace Ruliology.CellularAutomata
+namespace Rule30Ether
+
+open Rule30Jen Rule30StripCertificates
+
+/-! ### The ether -/
+
+/-- Ether columns `B1 B2 B3 B4 B5 c c` at the phases `0, 1, 2, 3`. -/
+def etherTable : List (List Bool) :=
+  [[false, false, true, true],
+   [false, true, true, false],
+   [true, true, false, true],
+   [false, true, false, true],
+   [false, false, true, true],
+   [false, false, false, true],
+   [false, false, false, true]]
+
+/-- Ether column `j mod 7` at phase `φ mod 4`. -/
+def ether (j φ : Nat) : Bool := (etherTable.getD (j % 7) []).getD (φ % 4) false
+
+theorem ether_congr {j j' φ φ' : Nat} (hj : j % 7 = j' % 7) (hφ : φ % 4 = φ' % 4) :
+    ether j φ = ether j' φ' := by
+  unfold ether; rw [hj, hφ]
+
+theorem ether_rule_small : ∀ j, j < 7 → ∀ φ, φ < 4 →
+    ether j (φ + 1) = rule (ether (j + 6) φ) (ether j φ) (ether (j + 1) φ) := by decide
+
+/-- **The ether is a rule-30 orbit.** -/
+theorem ether_rule (j φ : Nat) :
+    ether j (φ + 1) = rule (ether (j + 6) φ) (ether j φ) (ether (j + 1) φ) := by
+  have h := ether_rule_small (j % 7) (Nat.mod_lt _ (by decide)) (φ % 4) (Nat.mod_lt _ (by decide))
+  rw [ether_congr (j := j % 7) (j' := j) (φ := φ % 4 + 1) (φ' := φ + 1) (by omega) (by omega),
+    ether_congr (j := j % 7 + 6) (j' := j + 6) (φ := φ % 4) (φ' := φ) (by omega) (by omega),
+    ether_congr (j := j % 7) (j' := j) (φ := φ % 4) (φ' := φ) (by omega) (by omega),
+    ether_congr (j := j % 7 + 1) (j' := j + 1) (φ := φ % 4) (φ' := φ) (by omega) (by omega)] at h
+  exact h
+
+theorem ether_period (j φ : Nat) : ether j (φ + 4) = ether j φ :=
+  ether_congr rfl (by omega)
+

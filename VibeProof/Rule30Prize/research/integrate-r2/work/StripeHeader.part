@@ -1,0 +1,43 @@
+import Ruliology.CellularAutomata.Rule30ZeroBoundary
+
+/-!
+# Rule 30, zero-boundary left half: epochs, stripe stability and stripe absorption
+
+The ZBL (`Rule30ZeroBoundary.zrow`) has the stripe `…10101` (black exactly at the odd depths) as a
+fixed point, and a constrained history (column `-1` black at the even steps) is organized by its
+deviations from the stripe.
+
+**Epochs: the first deviation.**
+* `first_defect_step`, `first_defect_run`, `first_defect_hits`: the first deviation from the
+  stripe moves one depth toward the wall per step; a deviation at depth `d` turns depth `1` white
+  at time `d - 1`.
+* `first_defect_even`, `first_defect_parity`: in a constrained history the first deviation of the
+  row at time `t` is at a depth `d` with `t + d` even.
+* `free_bit`, `free_bit_iff`, `reset_config`, `epoch_col1`, `epoch_survives_iff`, `after_reset`: the
+  free bit after a black depth-`1` cell is white exactly when the first deviation is at depth `2`;
+  an epoch of even length `d` produces free bits `1, …, 1, 0`.
+* `first_defect_phase`: **for rule 30 itself**, under an alternating center (black first from `T`),
+  at every time `u ≥ T` the first deviation of the left half from `…10101` is at an even depth
+  exactly when the center is black at `u` (phase-free form).
+
+**Stripe stability: the last deviation.**
+* `agrees_step`, `agrees_step_odd`, `agrees_two_steps`, `agrees_run_even`: a row equal to the stripe
+  from depth `L` on stays so at the even times (the last deviation never moves outward over two
+  steps), and from an odd depth on at all times (`stripe_confined`).
+* `agrees_pre`, `agrees_pre_run`: a preimage of a stripe-tailed row is stripe-tailed (from depth
+  `L + 4`), so backward orbits stay stripe-tailed; `finite_never_stripe`, `col1_true_stripe`,
+  `col1_not_eventually_true`.
+
+**Stripe absorption.**
+* `stripe_absorb`: a row that agrees with the stripe from an odd depth on becomes exactly the
+  stripe after finitely many steps (the front moves in by two depths within `9` steps, a kernel
+  check over `2 ^ 12` contents, `front_check`; short strips by `small_check`). Hence
+  `stripe_tail_free_eventually_one`.
+* `stripe2_absorb`, `stripe2_tail_free_eventually_zero`: the even-phase stripe absorbs everything
+  except depth `1`, which ends up alternating.
+* `Theta_eventually_stripe_iff`: **the constrained start `Theta f` is eventually the stripe iff the
+  free bits `f` are eventually `1`.**
+
+Sources: the Rule 30 Prize project (2026), period-2 program, round 2 (epoch, monovariant and
+reconstruction-map studies, consolidated here).
+-/

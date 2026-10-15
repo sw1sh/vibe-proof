@@ -1,0 +1,3 @@
+'R30EtherWall.never_enters_S0011' depends on axioms: [propext, Quot.sound]
+'R30EtherWall.never_enters_S0111' depends on axioms: [propext, Quot.sound]
+'R30EtherWall.least_period_four_of_absorption' depends on axioms: [propext, Quot.sound]

@@ -1,0 +1,1 @@
+a=2 d0=1 states=1 chunk 0/1 (1 states) nodes=3 deepest surviving depth=2 => all die by depth 3

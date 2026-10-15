@@ -1,0 +1,12 @@
+rule 30^2 ordinary densities, range r=1: rank_p=1 of 1 (cols 16) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=2: rank_p=2 of 2 (cols 32) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=3: rank_p=4 of 4 (cols 64) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=4: rank_p=8 of 8 (cols 72) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=5: rank_p=16 of 16 (cols 80) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=6: rank_p=32 of 32 (cols 96) -> NO nontrivial law
+rule 30^2 ordinary densities, range r=7: rank_p=63 of 64 (cols 128) -> undecided/possible law
+rule 30^2 ordinary densities, range r=8: rank_p=127 of 128 (cols 192) -> undecided/possible law
+rule 30^2 ordinary densities, range r=9: rank_p=249 of 256 (cols 320) -> undecided/possible law
+rule 30^2 ordinary densities, range r=10: rank_p=477 of 512 (cols 576) -> undecided/possible law
+rule 30^2 ordinary densities, range r=11: rank_p=901 of 1024 (cols 1088) -> undecided/possible law
+rule 30^2 ordinary densities, range r=12: rank_p=1791 of 2048 (cols 2112) -> undecided/possible law

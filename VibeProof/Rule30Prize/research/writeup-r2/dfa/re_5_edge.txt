@@ -1,0 +1,1 @@
+n=5 dir=edge: 28 pairs, all genuine surviving pairs: True; z3 says unsat (4.5s)

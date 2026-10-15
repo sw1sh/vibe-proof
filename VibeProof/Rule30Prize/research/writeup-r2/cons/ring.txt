@@ -1,0 +1,5 @@
+r=1: ordinary law-space dim = 1, alternating law-space dim = 1, trivial = 1
+r=2: ordinary law-space dim = 2, alternating law-space dim = 2, trivial = 2
+r=3: ordinary law-space dim = 4, alternating law-space dim = 4, trivial = 4
+r=4: ordinary law-space dim = 8, alternating law-space dim = 8, trivial = 8
+r=5: ordinary law-space dim = 16, alternating law-space dim = 16, trivial = 16

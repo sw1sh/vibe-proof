@@ -1,0 +1,799 @@
+
+Abstract
+Problem 1 of the Rule 30 Prize asks whether the center column c of rule 30 started from a single black cell is never eventually periodic; it remains open after two rounds. What is proved in Lean 4 (every cited theorem's axioms re-printed in this pass; only propext, Classical.choice and Quot.sound occur) is a ring of unconditional partial results: Jen's theorem, no eventually constant column, masked and effective-boundary forms of Jen, the periods of the diagonals, the nine-black shield with Theorems B, B′ and D, three individually certified repeating words plus a table of thirty and several infinite word families, the kernel-checked bound T + P ≥ 16359 on any eventual period P with transient T, and the statement that the black-seed and white-seed centers are not both eventually periodic. Eventual period 2 is reduced to Q01, a statement about the zero-boundary left half (ZBL) that is proved equivalent to three other forms (LR, bounded white runs, and “Φ(f) is never finitely supported”), and to a weaker coupled condition CQ01 that also uses the right half; least period 4 is reduced to the Lean propositions Absorption(w) and C3(w), the second built on Lean skeleton theorems for the right half. The constrained ZBL is proved conjugate to the full shift on its free bits, its histories split into epochs, and stripe tails are absorbed. Barrier theorems in Lean show that finite abstractions, local rankings and edge automata cannot prove Q01 (their truncated-stripe witnesses violate the right-half constraint), that two-sided local rankings fail on truncations of the period-4 ether, and that windows near the edge carry no information; computation finds no additive conservation law of small range. Computations, cross-validated where stated, support the open hypotheses: every ZBL start of width W ≤ 71 dies by time 2W + 8, every finite right half tested enters the ether-and-wall family, and the right half driven by an alternating center emits column-1 values in blocks 100 and 10000 with density 3/14. The round-1 single-trap claim, low-complexity certificates and simple monovariants are refuted. The gap is now sharply located: a global argument that a finitely supported configuration cannot sustain the coupled period-2 (or period-4) constraints forever.
+
+proved Lean, axioms re-printed hereimplication Lean theorem with an open hypothesispaper argument from Lean lemmas, not formalizedcomputed finite computation, program namedopenrefutedthird-party not verified unless stated
+
+  openProblem 1. No eventual period P ≥ 2 is excluded
+  for all repeating words of that period. Period 1 is excluded (Rule30Prize.no_column_eventually_constant).
+
+  provedUnconditional. T + P ≥ 16359 (Rule30FactorWindow.transient_add_period_ge);
+  32 certified words, the families 0 1k (k ≥ 9), 0r11 (r ≥ 10), 1ru (Theorem B′), and every
+  period with a long black run (Theorems B, D).
+
+  implicationPeriod 2 ⟸ CQ01 ⟸ Q01 ⟺ LR ⟺ BWR ⟺ “Φ(f) never
+  finite”. Least period 4 ⟸ Absorption(w), and ⟸ C3(w). All hypotheses open.
+
+  provedBarriers. Finite abstractions, local and edge-DFA
+  rankings cannot prove Q01; two-sided local rankings cannot exclude period 2; short near-edge windows carry nothing.
+
+  computedEvidence. D(W) ≤ 2W + 8 for W ≤ 71 (four codes);
+  absorption in 282,144 runs per word; block law 100/10000 with density 3/14.
+
+  refutedDead ends. One fixed trap per word; low-complexity
+  descriptions of the right half; 15 simple monovariants; additive conservation laws of range ≤ 8.
+
+1 Problem 1, its Lean statement and the definitions
+
+1.1 The statement
+
+Rule 30 updates a cell from its left neighbour l, itself c and its right neighbour r as
+l ⊕ (c ∨ r). Started from one black cell at position 0, the pattern is cell t p; the center
+column is c(t) = cell t 0 = 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, … (OEIS A051023).
+Problem 1 asks that c never becomes periodic, whatever the transient. In Lean
+(ruliology-lean/Ruliology/CellularAutomata/Rule30Jen.lean and Rule30Prize.lean):
+
+def rule (a b c : Bool) : Bool := xor a (b || c)
+
+def cell : Nat → Int → Bool
+  | 0, p => decide (p = 0)
+  | t + 1, p => rule (cell t (p - 1)) (cell t p) (cell t (p + 1))
+
+def EventuallyPeriodic (f : Nat → Bool) : Prop :=
+  ∃ T P : Nat, 0 < P ∧ ∀ t, T ≤ t → f (t + P) = f t
+
+def center (t : Nat) : Bool := cell t 0
+
+/-- Problem 1: the center column is not eventually periodic. -/
+def Problem1 : Prop := ¬ EventuallyPeriodic center   -- Rule30Prize.Problem1
+
+The module docstring states that this matches Rule30.centerColumn_not_eventually_periodic in
+google-deepmind/formal-conjectures; that correspondence was not re-checked in this pass. Problem 1 is open.
+Rule30StripCertificates.problem1_iff_no_word restates it as the exclusion of every nonempty repeating word: c = w∞
+from some time on (EventuallyWord w) is impossible for every w ≠ [] . Each word exclusion below is
+therefore one piece of Problem 1, valid for every transient and every phase.
+
+1.2 Objects used throughout
+
+ObjectDefinitionLean
+
+DiagonalsRj(t) = cell t (t − j) from the right edge, Dj(t) = cell t (j − t) from the left edge; c(t) = Rt(t) = Dt(t).Rule30Diagonals.R, .D
+
+orColorCol i (t) = cell t i ∨ cell t (i+1); column i−1 is rebuilt from column i and orCol i.Rule30MaskedJen.orCol
+
+Effective boundaryc′(t) = c(t) ∧ c(t+1). The left half sees the center only through c′ (Rule30MaskedJen.effective_boundary).Rule30MaskedJen.effective_step
+
+Driven halvesL c s: rule 30 on p < 0 with column 0 prescribed as c, started from s. drv c x: rule 30 on p ≥ 1 with column 0 prescribed.Rule30DrivenLeft.L, R30EtherWall.drv
+
+ZBLZero-boundary left half: L with c ≡ 0. If c alternates, c′ ≡ 0 and the real left half is a ZBL orbit (Rule30PeriodTwo.left_half_zero_driven).three encodings, below
+
+Constraint, free bitsPeriod 2, phase 0: column −1 black at every even step. Free bits fs = column −1 at step 2s+1.R30ProgA.alt f
+
+Forced row Φ(f)The unique ZBL row whose column −1 is 1, f0, 1, f1, … (sideways reconstruction). Also written lam (alt f) and Θ(f).R30ZBL.Phi, R30ProgA.lam, A1ReformCheck.Theta
+
+Stripe…10101 (black at odd depths): a ZBL fixed point that satisfies the constraint forever, with f = 1∞.Rule30PeriodTwo.stripe
+
+EtherThe spatial-period-7, temporal-period-4 rule-30 orbit with columns B1…B5, c, c = 0011, 0110, 1101, 0101, 0011, 0001, 0001 (phases 0–3).R30EtherWall.ether
+
+W109 wall109 states (phase, 13-cell strip) to the right of a B3 ether column, closed under every input from the right.R30EtherWall.wallStates
+
+Strip relaxationColumns 1..b updated exactly, column b+1 arbitrary at every step. Every true right half is a path in it.Rule30StripCertificates
+
+D(W)The largest first-violation time (first even step with column −1 white) over ZBL rows supported on depths 1..W.computed, §6.1
+
+Three encodings of the ZBL appear in the round-2 files. They describe the same system and their Q01 statements
+are the same mathematical statement. In the round-2 files only the bridge from R30ProgA.Q01 to the
+staged Rule30PeriodTwo.Q01 is formalized (R30ProgA.Q01_iff_staged). The integration task has since merged
+the three into one staged module, Rule30ZeroBoundary, in the zrow encoding, whose Q01 is proved to be the
+staged one (Rule30ZeroBoundary.Q01_iff_staged). This report cites the round-2 originals together with the new glue theorems
+of the staged modules (§C).
+
+Namespace (file)Index conventionQ01
+
+R30ProgA (progA-backdet/lean/ZBLCore.lean)zorb x t i: index i is position −(i+1); the wall is implicit.∀ x finite, ¬ ∀ s, zorb x (2s) 0 = 1
+
+ZBL (A-monovariant/lean/ZBL.lean)run x t k: depth k ≥ 1 is position −k; x 0 is the white wall.stated as q01_width_le_16 for width ≤ 16
+
+R30ZBL (A-reconmap/lean/ZBL.lean)zrow L t k: depth k, k = 0 the wall.∀ L, FinSupp L → ¬ InX L
+
+2 Unconditional results about the single-seed pattern
+
+Everything in this section is proved in Lean and holds for every transient. File paths and
+axiom lists are in the theorem index.
+
+2.1 Jen’s theorem and constant columns
+
+Rule 30 is left-permutive (Rule30Jen.cell_left), so two adjacent columns that are periodic from a common time
+force every column to their left to be periodic (T4), which the left edge forbids
+(T1, T5). Between two non-adjacent periodic columns the strip is finite-state,
+and pigeonhole makes the next column periodic (T6). Hence Rule30Jen.jen (Jen 1986): two different
+columns are never both eventually periodic, and at most one column is (T9).
+
+Rule30Prize.no_column_eventually_constant: no column is eventually constant. An eventually black column makes its left neighbour
+eventually white; an eventually white column makes its right neighbour monotone, hence eventually constant; both
+contradict Jen. This is Problem 1 for period 1 (T12).
+
+2.2 Diagonal periods
+
+The diagonals obey Rj+2(t+1) = Rj+2(t) ⊕ (Rj+1(t) ∨ Rj(t)) and
+Dj+2(t+1) = Dj(t) ⊕ (Dj+1(t) ∨ Dj+2(t)) (T16, T17).
+Every right diagonal is periodic from time 0 with period 2j (Rule30Diagonals.R_periodic) and every left diagonal is
+eventually periodic with period 2j (Rule30Diagonals.D_periodic). The center is the diagonal of diagonals,
+c(t) = Rt(t) = Dt(t), and for t ≥ 2 it is a parity:
+c(t) = #{s < t : cell s (s−t+1) ∨ cell s (s−t+2)} mod 2 (T20). Since 2j > j these
+facts say nothing about c directly; the finer right-diagonal theory is in §4.9.
+
+2.3 Kernel-checked windows
+
+The first 16384 center bits are computed inside the Lean kernel on packed rows (T21,
+T23). Two consequences:
+
+Rule30Window.no_small_eventual_period: no eventual period P ≤ 4096 with transient T ≤ 8192.
+
+Rule30FactorWindow.transient_add_period_ge: if c(t+P) = c(t) for all t ≥ T and P > 0, then T + P ≥ 16359. The 16359
+factors of length 26 starting at 0, …, 16358 are pairwise distinct (T26, a kernel-checked sorted
+certificate), and an eventual period would repeat the factor at T at T + P.
+
+Round 1 also recorded T + P ≥ 9,999,957, conditional on the external center-column data. That bound depends on
+data outside Lean and is computed only.
+
+2.4 Masked Jen and the effective boundary
+
+Column i+1 enters the reconstruction of column i−1 only through orCol i, that is, only at the white times of
+column i (T28, T29). Hence Rule30MaskedJen.masked_jen: if column i has period P from T,
+column i+1 is not P-periodic from T on the white times of column i. Equivalent forms:
+T31, T32, T33. The same observation gives the effective boundary
+Rule30MaskedJen.effective_boundary: cell t (−1) ∨ c(t) = cell t (−1) ∨ (c(t) ∧ c(t+1)), so column −1 evolves with
+c(t) ∧ c(t+1) in place of c(t) (T35). Without any periodicity assumption, two times
+t₁ < t₂ never carry the same (center, orCol 0) window of length t₂ (T37, T38);
+under period P from T every doubling interval [n, 2n) with n ≥ T+P contains a white center time where column 1
+breaks period P (T39); and a finitary version holds on [n−P, 2n] (T40).
+Masked Jen is the contradiction used by every right-half argument in this report.
+
+2.5 The nine-black shield and black runs
+
+Rule30BlackRuns.nine_black (Lemma A): if column m is black at times t, …, t+8, then at time t+9 column m+1 is white and
+column m+2 black, whatever lies to the right. The proof is a kernel check over the 211 contents of
+columns m+1..m+11 (T41); eight steps do not suffice (T42).
+Iterating, a black run of length 9j forces (white black)j in the next 2j columns (Rule30BlackRuns.black_shield).
+Consequences, all for every transient:
+
+A column whose black runs followed by white all have length ≥ 9 is not eventually periodic
+(T45, T46, finitary form T47). In particular
+c ≠ (0 1k)∞ eventually for k ≥ 9 (T48).
+
+Theorem B (Rule30BlackRuns.no_long_black_run): a period of length P cannot contain a black run of length r with
+9⌈(P−r+9)/2⌉ ≤ r (roughly r ≥ 0.82P + 8.2).
+
+Theorem B′ (Rule30BlackRunBlocks.no_black_run_block): if the finite check Determined u j0 holds, c is never eventually
+(1ru)∞ with r ≥ max(9, 9j0). Kernel instances exclude u ∈ {0, 00, 000, 0000, 0100} for
+r ≥ 18 and u ∈ {010, 0010, 0110} for r ≥ 27 (T53–T60); for example (1r0)∞,
+r ≥ 18 (T61).
+
+Theorem D (Rule30BlackRuns.no_black_white_run): a period cannot contain a black run s ≥ 9 immediately followed by a white run
+r ≥ 1 + 9⌈(k+8)/2⌉, where k = P − s − r.
+
+(0r11)∞ is excluded for r ≥ 10 (Rule30BlackRuns.no_white_run_11).
+
+2.6 Strip-certificate word exclusions
+
+If c = w∞, the cells right of the center evolve in the strip relaxation. A finite certificate showing
+that column 1 is eventually periodic at the white phases of w then contradicts masked Jen. Two certificate
+kinds are proved sound: bitmask certificates (Rule30StripCertificates.not_eventually_word_strip) and rank certificates, whose counter returns
+after m·|w| steps (T65) and whose soundness is Rule30StripCertificates.Cert.sound. Kernel-checked instances:
+
+0 17 (T64, bitmask, width 5); 0611 (T68, rank, width 6, 379 ranks);
+09101 (T69, rank, width 7, 1309 ranks).
+
+Thirty words of lengths 8–13 (T70, Rule30StripCertificateTable.not_eventually_certTable), each written as its least rotation:
+01111111; 0000000011, 0011111111, 0111111111; 00000000001, 00000000011, 00111111111,
+01011111111, 01111111111; 000000000001, 000000000011, 000111111111, 001111111111, 010111111111, 011111111111;
+0000000000001, 0000000000011, 0000000000101, 0000000001011, 0000000010011, 0000000101111, 0000111111111,
+0001011111111, 0001111111111, 0010111111111, 0011111111101, 0011111111111, 0101111111111, 0110111111111,
+0111111111111. Only the certificates are checked, not the completeness of the search that found them.
+
+2.7 White seed and rule 135
+
+Rule 30 from one white cell on black becomes, after one step, the usual pattern shifted by one cell
+(T72); rule 135 from one black cell is the usual pattern shifted and complemented (T73).
+With Jen applied to columns 0 and −1: the black-seed and white-seed centers of rule 30 are not both eventually
+periodic (Rule30WhiteSeed.problem1_black_or_white), and likewise rules 30 and 135 (T75). Which one is aperiodic is left
+open.
+
+3 Reductions
+
+Each reduction is stated with its hypothesis. implication marks a proved Lean theorem whose
+hypothesis is open; paper marks an argument assembled from Lean lemmas but not itself formalized.
+
+3.1 Period 2 ⟸ Q01 ⟺ LR ⟺ BWR ⟺ “Φ(f) never finitely supported”
+
+What a period 2 would force. If c(t+2) = c(t) for t ≥ T₀ then, since c is not eventually constant, c
+alternates from some T, black at T+2k (Rule30PeriodTwo.normalize). Then column −1 is black at every black step
+(T77); at the white steps column 1 is the complement of column −1 (T78, T103);
+the free bits fk = cell (T+2k+1) (−1) never contain 00 (Rule30PeriodTwo.golden); column −4 is white at every white
+step (T84); where the center reads 0101 on [t, t+3], column 1 never reads 0000 or 0101 there, and
+where it reads 01010101 it never reads 00010001 (T85, T86, T87). The effective boundary is white (T89), so the left half from T on is the
+zero-boundary left half started from the finite row at T (Rule30PeriodTwo.left_half_zero_driven; second and third proofs
+T94, T105).
+
+Q01 open
+
+No finitely supported row of the zero-boundary left half keeps column −1 black at every even step.
+
+def Q01 : Prop :=                                   -- Rule30PeriodTwo.Q01
+  ∀ (m : Nat) (s : Int → Bool), 0 < m → (∀ p : Int, p < -(m : Int) → s p = false) →
+    s (-(m : Int)) = true → ¬ ∀ k, L (fun _ => false) s (2 * k) (-1) = true
+
+implication Q01 ⇒ c is not eventually 2-periodic, for every transient: Rule30PeriodTwo.not_eventually_period_two_of_Q01, with
+independent proofs in the other two encodings, T102 and T107.
+
+proved Equivalent forms of Q01.
+
+LR: for every free-bit sequence f the forced row lam (alt f) is infinite (R30ProgA.Q01_iff_LR).
+
+BWR, bounded white runs: for every depth d there is B such that for every f the forced row has a black cell
+in [d, d+B) (R30ProgA.Q01_iff_bounded, through compactness, T101). As its docstring notes, the
+optimal B is the largest survival time over supports ≤ d, minus d, plus one, which links BWR to D(W) of §6.1.
+
+Φ(f) is never finitely supported (R30ZBL.Q01_iff_Phi, zrow encoding).
+
+The general reading (either phase, constraint from any start time) is equivalent to “Θ(f) is never finite”
+(T109); compactness (T110, T111) makes each width a finite search.
+
+Q01 also gives the phase-1 version (T100), and R30ProgA.Q01 is the staged statement
+(T99). In the unified staged encoding: T112, T113,
+T114.
+
+Finiteness is essential. The infinite stripe satisfies the constraint forever (T92,
+Rule30PeriodTwo.stripe_col), and so does the left half of the ether, whose free bits alternate (T254); the
+ether even satisfies every coupled condition below except finite support (Rule30PeriodTwoCoupled.ether_coupled_witness).
+
+The coupled variant CQ01 open
+
+Fix column 0 to alternate, black at even steps. CQ01 says there is no pair (L, R) of a finitely supported
+ZBL row L and a finitely supported right half R such that (i) R evolves as the right half driven by the
+alternating column (R30EtherWall.drv); (ii) column −1 of L is black at every black step; and
+(iii) at every white step, column −1 of L is the complement of column 1 of R.
+
+implication Q01 ⇒ CQ01 ⇒ no eventual period 2, for every transient: Rule30PeriodTwoCoupled.CQ01_of_Q01 and
+Rule30PeriodTwoCoupled.no_eventual_period_two_of_CQ01, in the staged module Rule30PeriodTwoCoupled (compiled and checked in this pass). The
+first arrow holds because a counterexample to CQ01 is, after forgetting R, a counterexample to Q01. For the second,
+normalize (T76) to alternation from T; the row at T on p ≤ −1 is finite with its edge at −T
+(T2, T1) and evolves as the ZBL (T90); the row at T on p ≥ 1 is
+finite by the right edge and evolves as the driven right half (T119); (ii) is T77 and
+(iii) is T78.
+
+Right-half laws available to CQ01. Under alternation the right half alone already constrains f:
+
+proved f has no 00 (T83).
+
+proved f has no 11111: column 1 is black at some white step among any five consecutive white steps
+(Rule30ZeroBoundary.col1_black_among_five, a kernel check over the light cone of columns 1..11; with golden,
+T116). Two independent programs agree that a width-4 strip relaxation already forces it while widths
+1–3 do not (C5).
+
+computed Observed but unproved: after a transient, the output of every finite right half tested is a
+concatenation of 100 and 10000, so f would be a concatenation of 011 and 01111 (C4, §6.4).
+
+With the epoch theorem ZBL.after_reset (§4.3), the runs of 1s in f are the lengths d/2 − 1 of the
+successive epochs, so golden and no-11111 together say every epoch depth d lies in {4, 6, 8, 10}, and the block
+law would leave {6, 10}. The truncated stripes that witness the Q01-only barriers of §5.1 have f = 1 for about
+n/2 consecutive white steps and therefore violate no-11111.
+
+3.2 Least period 4 ⟸ Absorption(w)
+
+A word of length 4 with least period 4 is a rotation of 0001, 0011 or 0111; a rotation from time T is the word
+itself from a later time, so it suffices to exclude c = w∞ for these three words. Each of them is a
+column of the ether up to a time shift (§4.6). The ether-and-wall family for an alignment (j0, s) consists of the
+rows whose columns 1..k carry the ether (column k a B3, k ≡ 2 − j0 mod 7) and whose columns k+1..k+13 form one of
+the 109 wall states.
+
+Absorption(w, A) open
+
+def InFamily (F : Nat → Nat → Bool) (j0 s t1 : Nat) : Prop :=
+  ∃ k, (j0 + k) % 7 = 2 ∧ (∀ p, 1 ≤ p → p ≤ k → F t1 p = ether (j0 + p) (t1 + s)) ∧
+    ((t1 + s) % 4, rowOf F t1 k 13) ∈ wallStates
+
+def Absorption (w : List Bool) (A : List (Nat × Nat)) : Prop :=
+  ∀ (x : Nat → Bool) (n : Nat), (∀ p, n < p → x p = false) → ∀ φ : Nat,
+    ∃ a ∈ A, ∃ t1, InFamily (drv (fun t => wordAt w (t + φ)) x) a.1 (a.2 + φ) t1
+Every finitely supported right half driven by w∞, in every phase, eventually enters the family for one
+of the listed alignments (A0001 = [(5,0), (6,0)], A0011 = [(0,0), (1,3), (4,0)], A0111 = [(2,2)]).
+
+implication R30EtherWall.least_period_four_of_absorption: Absorption for 0001, 0011 and 0111 implies that c is not eventually
+any rotation of these words, for every transient, i.e. c has no least period 4. The single-word form is
+T120. Inside the family the trap theorem T236 applies: the ether columns
+then stay periodic forever, so column 1 at the white times is periodic, against masked Jen. The hypothesis
+quantifies over all finite right halves because a proof cannot know the true one. Evidence: §6.3 (C3).
+
+3.3 Least period 4 ⟸ C3(w), a paper reduction from Lean skeletons, now formalized
+
+The skeleton theorems (§4.7) say that if c = w∞ from T (phase (t−T) mod 4), column −1 is eventually fixed
+at three of the four phases. The effective boundary c′w(φ) = w(φ) ∧ w(φ+1) is 4-periodic:
+
+wc′wPw = column −1 at phases 0, 1, 2, 3source
+
+000100000, *, 0, 1R30Skel.skeleton_0001_explicit (eventually)
+
+00110010*, 0, 0, 1R30Skel.skeleton_0011_explicit (eventually)
+
+01110110*, 0, 0, 1R30Skel.column_m1_0111 (for all t ≥ T)
+
+C3(w) open
+
+No finitely supported left configuration, evolving by rule 30 on p ≤ −1 with column 0 replaced by the
+4-periodic boundary c′w, keeps column −1 equal to Pw at the three fixed phases for all
+large t.
+
+def C3 (w : List Bool) : Prop :=                 -- Rule30PeriodFourSkeleton.C3
+  ∀ s : Int → Bool, (∃ M : Nat, ∀ p : Int, p < -(M : Int) → s p = false) →
+    ¬ ∃ K, ∀ k, K ≤ k →
+      fits (colPattern w) (k % 4) (Rule30DrivenLeft.L (fun k => wordAt (effWord w) k) s k (-1)) = true
+
+implication C3(w) ⇒ c is never eventually w∞, for every transient: Rule30PeriodFourSkeleton.not_eventually_0001_of_C3,
+Rule30PeriodFourSkeleton.not_eventually_0011_of_C3, Rule30PeriodFourSkeleton.not_eventually_0111_of_C3, combined in Rule30PeriodFourSkeleton.least_period_four_of_C3 (staged module Rule30PeriodFourSkeleton,
+compiled and checked in this pass). The argument is the round-2 paper reduction: suppose c = w∞ from T. The
+skeleton theorem gives T′ ≥ T after which column −1 matches Pw; pick T″ ≥ T′ with T″ ≡ T mod 4. By
+Rule30DrivenLeft.cell_eq_L_effective the left half from T″ is the half driven by c(T″+k) ∧ c(T″+k+1) = c′w(k mod 4)
+from the row at T″, which is finite with its edge at −T″ (T2, T1), and that row
+violates C3(w) (T125). The phase conventions in the table were checked against the three skeleton
+statements and agree with the Lean definitions effWord and colPattern.
+
+C3(w) is not trivially false: for each w, neither the empty start nor any start with its leftmost black cell
+at depth ≤ 14 keeps the pattern Pw on the window [150, 300) (computed C13).
+
+For w = 0001 the boundary c′ is identically white, so C3(0001) is a question about the same ZBL as Q01,
+with the period-4 pattern 0, *, 0, 1 in place of the period-2 constraint. The right half again restricts the
+free phase: the free bits of 0001 never contain 11 eventually (R30Skel.no11_0001).
+
+4 Structural theorems about the auxiliary systems
+
+All proved in Lean. Most concern the ZBL under the period-2 constraint; §4.6–4.7 concern the right
+half under period 4; §4.8–4.9 are round-1 results on the driven left half and the right diagonals.
+
+4.1 ZBL realization and conjugacy to the full shift
+
+Realization. Column −1 determines the row: for every sequence a there is exactly one ZBL row whose column
+−1 is a, namely lam a (R30ProgA.realization; also T145, T148). The dependence is triangular:
+row cell k+1 is the k-th column value plus a function of the earlier ones (T146, T136). For
+constrained rows: Φ(f)(2s+2) = fs ⊕ gs(f0..s−1), Φ(f)(2s+3) depends only on
+f0..s, and flipping fs flips Φ(f)(2s+2) (T153, T154, T155;
+also T159, T160). The first cells are L2 = ¬f₀, L3 = f₀, L4 = ¬f₁, L5 = f₀
+(T151). A row is constrained iff it is Θ(f) for some f (A1ReformCheck.part_a, T152).
+
+Conjugacy. Two ZBL steps of the forced row of f give the forced row of the shifted sequence:
+Z² ∘ Φ = Φ ∘ σ (R30ProgA.two_step_shift, T156, T161). Θ is injective with a continuous
+inverse on its closed image (T158, T163, T162), and each coordinate of Θ(f)
+depends on finitely many fs. So the constrained two-step ZBL is topologically conjugate to the
+one-sided full 2-shift on the free bits, and Q01 asks whether this conjugacy ever reaches a finitely supported row.
+Counting: exactly 2⌊W/2⌋ of the 2W rows of width ≤ W satisfy the constraint at every even
+t ≤ W − 1 (A1ReformCheck.part_d), so before time W each even step halves the count, as the triangular structure predicts.
+
+Determinism and locality. Backward determinism at forced steps (T130, T131), a
+finite-preimage criterion (T132), light cones (T134, T135),
+zero-run localization (T137), and the one-step forced skeleton: at a forced black step the next one
+is black iff cells 2 and 3 differ (T141, T142, T143,
+T144).
+
+4.2 Jen with a clock
+
+R30ProgA.jen_clock: if column −1 of a finite ZBL row with edge at depth m is P-periodic on [T, T+L], then
+L + 2 ≤ T + m + 2P. Jen’s theorem is the limit L → ∞ (T169; other proofs T174,
+T178). Under the constraint, a p-periodic stretch of free bits starting at s₀ has length ℓ with
+2ℓ + 2 ≤ 2s₀ + m + 4p (T170); the free bits of a finite constrained row are never eventually
+periodic (T175, T179) and never eventually 1 (T176).
+For rule 30 itself, under alternation from T, column −1 and column 1 at the white times cannot be p-periodic on a
+window [k₀, k₀+ℓ] with 2ℓ + 2 > 2k₀ + T + 1 + 4p (R30ProgA.alternating_free_bits_clock, R30ProgA.alternating_right_col1_clock). The second is the
+interface for right-half arguments: a long periodic window of column 1 at white times would exclude period 2.
+
+4.3 Epochs
+
+Compare a constrained history with the stripe. The first deviation from the stripe moves one cell toward the wall
+per step and turns depth 1 white when it arrives (T183, T184); in a constrained
+history it sits at an even depth at even times (T185, T186). With depth 1
+black, a free bit is 0 exactly when the first deviation is at depth 2 (T187, T192), and at
+such a reset the row is 0, 1, s₃, …, sd followed by a deviation at depth d+1 (T188). An
+epoch that starts at an even time survives exactly when its depth d is even (ZBL.epoch_survives_iff,
+T193). After a reset the free bits are 1 for d/2 − 1 white steps and then 0 (ZBL.after_reset). So a
+constrained history is a sequence of epochs, and f records their depths. For rule 30 under alternation the bridge
+is phase-free: at every time u ≥ T+1 the first deviation depth is even exactly when c(u) = 1
+(ZBL.alt_first_defect_phase; unified staged form T198). The earlier one-phase statement T191 is correct for its
+phase, and T197 shows that its prose, read for the other phase, is false.
+
+4.4 Stripe stability and absorption
+
+Stripe tails never recede over two steps (ZBL.agrees_two_steps), and a preimage of a row that is the stripe
+from depth L is the stripe from L + 4 (T201, T202); so a finite row never becomes
+stripe-tailed (T203). Conversely a row that agrees with the stripe from an odd position stays
+so (T205), its front advances by two cells within 9 steps (kernel check over 212 contents,
+T207, T209), and it becomes exactly the stripe (R30ZBL.stripe_absorb); its free bits are
+then eventually 1 (T211). The even-phase stripe behaves the same on depths ≥ 2 with depth 1
+alternating, giving free bits eventually 0 (T217, T218). Stripe backgrounds
+absorb; the white background of a finite row is what lets the edge escape. Consequently Θ(f) is eventually the
+stripe iff f is eventually 1 (Rule30ZeroBoundaryStripe.Theta_eventually_stripe_iff, staged; it combines T140,
+T202 and T211, and settles conjecture A8 of the round-2 monovariant study).
+
+4.5 Kernel width checks
+
+ZBL.q01_width_le_16: every row of width ≤ 16 has column −1 white at some even time < 34 (packed exhaustive
+search, T220); the odd phase holds for width ≤ 15 (T222). Transported to rule 30,
+the center cannot alternate from any T ≤ 15 (T223), a consistency check far weaker than §2.3.
+
+4.6 The ether and the W109 wall
+
+The ether: twelve steps of rule 30 on a 7-periodic row with one black cell per period (three periods
+shown). The highlighted column (B4) alternates 0, 1, 0, 1, so the ether is a two-sided, spatially periodic
+solution of the period-2 constraints.
+The ether is a rule-30 orbit with temporal period 4 (T224, T225). The words 0001,
+0011, 0111 and 0101 are ether columns up to a time shift (T226–T232). The wall is a
+set of 109 states of a 13-cell strip next to a B3 column, closed under every value of the cell to its right and
+carrying B4 next to a white B3 (R30EtherWall.wallOK_true, a decide check; T234). Ether on columns 1..k
+followed by a wall state persists forever (R30EtherWall.trap_invariant); if c is an ether column, the true row can never
+enter this family (T236, T237), which is what Absorption exploits. The
+configurations of T239 stay pure ether forever and avoid the round-1 traps (§7.1).
+
+The period-7 row c7 (black at p ≡ 6 mod 7) returns after four steps and its column 0 alternates
+(T244, T245); its truncations to [−(7N+1), 7N+6] agree with it inside a shrinking cone
+(T246). In the staged module Rule30PeriodTwoCoupled: c7 is the ether shifted by 4 cells
+(Rule30PeriodTwoCoupled.c7_eq_ether, T247); since B3 is black wherever B4 is (T250), the ether’s left
+half is a ZBL orbit (T252) satisfying the period-2 constraint with alternating free bits
+(T253, T254, T255); its right half is the half driven by the
+alternating column (T256); and the free bits are the complements of column 1 at the white steps
+(Rule30PeriodTwoCoupled.ether_coupled_witness). The synthesis script ether_check.py (C9, re-run) gives the same facts
+numerically.
+
+4.7 Skeletons
+
+Rank certificates with a designated bad class give eventual statements: if c = w∞, the true strip
+eventually stays in the bad class (T259), so every predicate checked on that class holds eventually
+(T260). With kernel-checked certificates (T261–T272):
+
+R30Skel.skeleton_0001, R30Skel.skeleton_0001_explicit: under 0001, eventually column 1 = 0 and column 3 = 1 at
+phase 0, column 2 = 1 at phase 1, column 1 = 1 at phase 2, column 1 = 1 and column 2 = 0 at phase 3; column −1 is
+(0, = column 1, 0, 1).
+
+R30Skel.no11_0001: under 0001, eventually a black column-1 cell at phase 1 is followed four steps later by a white
+one.
+
+R30Skel.skeleton_0011, R30Skel.skeleton_0011_explicit: under 0011, eventually column 1 is black at phases 1, 2 and
+white at phase 3; column −1 is (= column 1, 0, 0, 1). An independent hand proof without certificates gives the same
+statement (VerifyB2.skel).
+
+R30Skel.column_m1_0111: under 0111, for all t ≥ T, column −1 is (= ¬column 1, 0, 0, 1); no skeleton is needed.
+
+4.8 The driven left half
+
+For any driver, the edge of a finite nonzero left start moves left one cell per step (T277), so Jen’s
+argument runs inside the half-line: two adjacent columns are never both eventually periodic
+(T278), and with an eventually periodic driver no column q < 0 is eventually periodic
+(Rule30DrivenLeft.no_periodic_column). The left half therefore has no absorbing words; the absorbing-word route works only on
+the right. The real left half is the driven half from any time T, with the real center or with the effective
+boundary (T281, Rule30DrivenLeft.cell_eq_L_effective).
+
+4.9 Right-diagonal period theory
+
+Write ej for the least e with Rj of period 2e (T313). Periods are
+monotone (T286) and obey the doubling rule ej+1 = ej + [Rj+1(2ej) = 1]
+(Rule30RightPeriods.e_step); when the period doubles, a half-period shift complements the diagonal and every period window
+is exactly half black (T290, T291); ej − ej−1 is the parity of the
+input over one period (T293); the period never doubles three times in a row (T295).
+Bounds: every period of Rj exceeds ⌈j/2⌉ (T296); j ≤ 2ej+1 − 2
+(T298); ej ≤ ⌊(2j+1)/3⌋ (Rule30RightPeriods.per_upper); the guess ej ≥ ⌊j/2⌋ is false
+(T302). Rows at powers of two restart the pattern at the right edge (Rule30RightPeriods.rows_at_powers_of_two,
+T309, T310, T311). A black center cell lies inside the
+first period of its diagonal (T312). None of this reaches c(t) = Rt(t) directly.
+
+5 Barrier theorems and their exact scope
+
+A barrier says that a class of arguments cannot succeed. Each one below is proved in Lean except
+§5.4, and each is stated with the class it rules out and the witnesses it uses.
+
+5.1 Q01-only barriers
+
+Setting: the ZBL z, a double step G = Z², and a surviving double step of a finite start (depth 1
+black at times 0 and 2). The truncated stripe trunc n (black at odd depths ≤ n) keeps depth 1 black at every
+t ≤ n and dies at n + 1 (ZBLBarrier.trunc_survives), so constrained runs from finite starts are arbitrarily long.
+
+B1 (ZBLBarrier.finite_abstraction_has_lasso, T320): every abstraction of states into a finite set repeats a value along one
+surviving truncated-stripe run; hence every sound finite abstract transition relation has a reachable cycle
+(T321), and no ranking through a finite abstraction decreases along all surviving double steps
+(ZBLBarrier.no_finite_abstract_ranking).
+
+B2 (ZBLBarrier.no_local_ranking): no function of (width, wall window of any fixed size, edge window of any fixed
+size) into ℕ decreases strictly along every surviving double step of every finite start.
+
+B6 (ZBLEdgeDFA.no_edge_dfa_ranking): no finite automaton, of any size, reading the row from its edge defines such a ranking
+through its longest accepted prefix.
+
+computed Reading from the wall instead: no automaton with ≤ 5 states works on 28 recorded surviving pairs
+(z3 UNSAT, re-checked in this pass, C8).
+
+Scope. These theorems rule out proofs of Q01 by these methods, that is, proofs that use the left half
+alone with unconstrained free bits. Every witness is a truncated stripe, whose free bits are 1 for about n/2
+consecutive white steps. A real period-2 history also satisfies the right-half law “no 11111”
+(proved Rule30ZeroBoundary.col1_black_among_five), which these witnesses violate, so the barriers do not apply to arguments for CQ01 or for period 2 that
+use the right half. Whether analogous barriers hold for CQ01 is open; §5.2 is the two-sided result available now.
+
+5.2 The two-sided JointBarrier
+
+JointBarrier.no_joint_local_ranking: there is no R(lo, hi, center window, left-edge window, right-edge window) ∈ ℕ,
+for any fixed window sizes, that strictly decreases at every step where the center flips, over all finite
+configurations of the full line (lo and hi are the leftmost and rightmost black cells). The witnesses are the
+truncations of c7 (§4.6): genuine finite rule-30 configurations, both halves included, whose center alternates for
+about 7N steps. Scope. It rules out ranking functions that see only the two widths and bounded windows at the
+center and the two edges, uniformly over all finite configurations. It does not rule out arguments that use
+unbounded or global information (whole rows, counts over the row, diagonal periods) or that use the exact single
+seed rather than every finite configuration.
+
+5.3 The edge-region barrier
+
+R30ProgA.edge_region_barrier: for any far part z (edge at depth m − 1), any prescribed values c of column −1 and any
+d ≤ m, some row agrees with z from depth d on, has the same edge region as z at every time, and has column −1 equal
+to c up to time d − 1 (T326, T327). So the left-edge structure, including all
+eventually periodic left diagonals there, together with the wall constraint on a window shorter than the distance to
+the edge, yields no contradiction. The round-1 versions: on the driven left half, for every driver, n ≥ 1 and target
+b, exactly one start with edge at −n has column −1 = b at steps 0..n−2 (Rule30DrivenLeft.barrier_exists, T330);
+for an arbitrary configuration, every column is realizable with any right half, uniquely
+(Rule30Realization.column_realizable_unique); and agreeing with the seed on p ≥ −n does not prevent an eventually white center
+(Rule30Realization.seed_perturbation). Finally rules 90, 150 and 210 satisfy the generalized Jen theorem
+(T335) but have eventually periodic single-seed centers (Rule30Realization.barrier). Scope. A proof of
+Problem 1 must use rule 30’s ∨ and the finiteness of the far left of the seed, and a window argument must look past
+time 2T − 1 when the onset is T.
+
+5.4 The additive / conservation-law barrier
+
+paper An additive quantity Φ(x) = Σk h(xk … xk+r−1) of range r is conserved by a
+cellular automaton F on all finite (equivalently, all spatially periodic) configurations exactly when
+h ∘ F − h ∘ mid is a coboundary on the de Bruijn graph of words of length r + 2·radius; the trivial laws (constants
+and coboundaries) form a space of dimension 2r−1. This standard criterion (Hattori and Takesue 1991) turns
+the existence of a nontrivial law of range r into a finite rank computation. The round-2 write-up of the paper
+argument is not stored in the shared directory; the criterion is stated here as it is used by the programs.
+
+computed Result (C6, three independent methods, re-run in this pass): rule 30 has no nontrivial additive
+conservation law of range r ≤ 10; rule 30² has none of range r ≤ 8; and rule 30² has no nontrivial period-2
+alternating law Σ (−1)k h(…) of range r ≤ 9. Full rank modulo a prime certifies full rank over ℚ.
+Scope. This excludes proofs based on an exactly conserved additive quantity of these ranges. It says nothing
+about larger ranges, inequalities (monovariants, §7.3) or non-additive invariants.
+
+6 Computational facts
+
+Nothing in this section is a proof. Each fact names its program, says whether it was cross-validated
+by an independent code, and says what was re-run in this pass. The full list is the computation
+index.
+
+6.1 D(W) ≤ 2W + 8 for W ≤ 71
+
+D(W) is the largest first-violation time over ZBL rows supported on depths 1..W (§1.2). Every such row dies
+(Q01 holds for them), and the bound D(W) ≤ 2W + 8 holds for every W ≤ 71, with equality only at W = 11
+(D = 30). D(71) = 128. This is the quantitative side of BWR: the optimal bound in T98 is
+governed by the largest survival time over supports ≤ d. For W ≤ 16 the statement is a Lean theorem
+(T221: death before time 34).
+
+[chart]
+D(W), widths 1–71bound 2W + 8
+
+[table view]
+Programs and cross-validation (C1). Four codes written independently by four round-2 agents:
+A-reconmap/c/zt2.c (breadth-first frontier with deduplication, then depth-first; all W ≤ 71, re-run in
+this pass with up to 64 chunks), progA-backdet/dfs.c (stored table, W ≤ 58),
+A-invsearch/maxdeath2.c (stored table, W ≤ 40) and A-monovariant/dfs.c (re-run in this pass for
+W ≤ 40 and W = 50, 56, 58). They agree at every overlapping width. Widths 59–71 rest on zt2 alone. Restricted variants
+(free bits constrained by golden, no-11111 or the block law) were also computed by two codes, but with different
+conventions for the initial run; their tables disagree at several widths and are not used here.
+
+6.2 Stripe-prefix families
+
+The family S[1..m] · v · 0∞ (the stripe on depths 1..m, then a word v, then white) is infinite in m.
+Ahead of the first deviation the row is the stripe, so a window of K cells behind the front evolves autonomously
+while the front walks to the wall; its orbit is eventually periodic, so every m is covered by finitely many arrival
+states. Result (C2): for every v of length ≤ 7 and every m, the run dies within at most 45 steps after
+the front arrives, so by time m + |v| + O(1). For length 8, four words (least significant bit first: 11000001,
+11110001, 10010011, 10111101) are inconclusive in at least one certifier at the window sizes tried; front_cert
+certifies 10111101 with a 64-cell window. Programs:
+A-invsearch/front_cert.c (Brent cycle detection on the front window) and A-monovariant/family.c
+(moving-frame bijection), two independent certifiers that agree; each checked against direct simulation
+(front_validate.py: 300 random (m, v), all agree; family_validate.py: 0 mismatches). Re-run in
+this pass: family.c for tails ≤ 8 and both validators.
+
+6.3 Absorption evidence for period 4
+
+Result (C3): for each of 0001, 0011, 0111, with the 109-state wall exactly as in Lean
+(B-edge-trap/wallmin_13.bin equals wallStates; checked in this pass), every one of the following
+right halves enters the ether-and-wall family within 20000 steps:
+
+wtrue right halves, T = 1..5000, 4 phasesmax entry delayall 216 center prefixes, 4 phasesmax entry delay
+
+000120,000 / 20,000 enter825262,144 / 262,144 enter792
+
+001120,000 / 20,000 enter1,434262,144 / 262,144 enter1,627
+
+011120,000 / 20,000 enter525262,144 / 262,144 enter547
+
+Programs: B-edge-trap/entry2.c; cross-checked by an independent Python implementation of Lean’s
+InFamily (writeup-r2/absorb/infamily_check.py), which reproduces entry2’s entry delays exactly on
+nine (w, T) cases. Two further observations: configurations built to stay 1000 steps in the bad strongly connected
+component of the width-11 to 13 strip relaxation are absorbed by consistent closures of width 24–28 within 175–400
+steps (progB-avoid/check_surv.py, re-run); and for the period-2 word 0101 the same family is not
+absorbing (11,630 of 12,000 true right halves fail to enter, stored result B-edge-trap/p2_true.txt, not
+re-run). Absorption is not forced at any fixed width: the strip relaxations have bad components at every width
+tried (b ≤ 22 for 0001, b ≤ 18 for 0011 and 0111, growth 1.48–1.58 per step; progB-avoid/scc_an.c,
+stored, not cross-validated), so a proof must use that the true right half is finitely supported.
+
+6.4 The period-2 right-half block law and the density 3/14
+
+Drive the right half by an alternating center and record column 1 at the white steps; under a real period 2
+these values are the complements of the free bits. Result (C4): after a transient of at most 27
+samples in every run tried, every gap between consecutive 1s is 3 or 5, so the output is a concatenation of the
+blocks 100 and 10000. In the synthesis run (true right half at T₀ = 2000, phase 0, 98,000 samples) there are 3,509 gaps of 3 and
+17,493 of 5, and 21,003 ones against 3n/14 = 21,000. Every window of 14 consecutive samples holds 3 ± 1 ones, every
+window of 140 holds 30 ± 2, and the prefix discrepancy stays in [−7.6, 14.4]; a random finite right half gives
+[−11.0, 21.8]. The 3-blocks are not periodically placed: the number of 5-gaps between consecutive 3-gaps ranges from
+1 to 31. Factor complexity: p(8) = 10, p(16) = 23, p(32) = 92, p(64) = 702, p(128) = 15,960, p(192) = 72,852,
+p(256) = 95,451, and from length 384 on every factor occurs only once in the sample.
+
+Programs: synth-r2/rc3.c, rc4.c, rc5.c; synth-r2/y_out.txt is
+reproduced byte for byte by rc5 2000 200000 0 0 in this pass. Cross-validated by
+writeup-r2/yindep.py, an independent Python implementation: six runs (true right halves at T₀ = 777, 2000,
+3000 in both phases, and two random right halves) show only gaps 3 and 5 and densities 0.2136–0.2149. If the law holds
+for every finite right half, f eventually lies in {011, 01111}∞ and every epoch depth in {6, 10} (§3.1).
+The law is not a consequence of a narrow strip: in the strip relaxation (column b+1 arbitrary), the limit set of
+reachable states still admits gaps 2 and 4 for every width b ≤ 12, while gap 1 is never possible and gaps ≥ 6 are
+impossible from b = 4 on (writeup-r2/blocklaw_strip.py, single code). Like absorption, it depends on the
+right half not being adversarial.
+The third-party notes of §8 describe this column differently, as a coded rotation with kicks; the two descriptions
+were not compared quantitatively.
+
+6.5 Other computations used in this report
+
+No 11111 (C5): A-invsearch/rightstrip.c and writeup-r2/five_white.py agree that the width-4
+strip relaxation allows at most 4 consecutive white column-1 values at white steps, while widths 1–3 allow more. The
+statement is now also a Lean theorem (T115).
+
+Conservation laws (C6), monovariants (C7), automaton rankings (C8), ether and relay checks
+(C9, C10): see §5.4, §7.
+
+7 Refuted claims
+
+7.1 The round-1 single-trap claim: two refutations, one phenomenon
+
+Round 1 certified, for each w ∈ {0001, 0011, 0111}, a trap Sw of the strip relaxation (width 16, 16, 14)
+inside which column 1 at the white phases is periodic, and observed that random finite right halves always enter it.
+The claim that every finite right half enters Sw would have excluded least period 4. It is false.
+
+proved R30EtherWall.never_enters_S0001, T342, T343: explicit finite right halves (ether on columns
+1..k, a wall state on the next 13 columns, white beyond) never enter Sw; they stay pure ether forever
+(T239).
+
+computed The relay configuration of progB-avoid (columns 4 and 7 black, driver 0001, phase 1) never enters
+S0001: at t = 300 its width-24 strip state has a closed forward closure of 188 states, consistently
+labelled (column 1 at white phases periodic, word 010) and disjoint from S0001 after projection, and the run
+never visited S0001 before (C10, progB-avoid/verify_relay.py, re-run).
+
+One phenomenon. synth-r2/relay_family.py (re-run) shows that the relay configuration enters the
+ether-and-wall family at t₁ = 159 (alignment j0 = 6, k = 10), while the Lean counterexamples are family members from
+the start. Both are absorbed, into deeper members of the infinite family rather than into a fixed-width trap. This is
+why Absorption(w) is stated over the whole family.
+
+7.2 Low-complexity certificates
+
+computed The right-half output beside an alternating center is not a low-complexity sequence: p(64) = 702
+where a Sturmian or rotation coding has 65, and every factor of length 384 or more occurs only once in the
+98,000-sample run (C4). Certificates that need column 1 to be a rotation coding or the output of a small automaton cannot
+apply to it as such. This is a finite-sample measurement, not a proof of positive entropy.
+
+proved Finite-state ranking certificates for Q01 do not exist (B1, B6 in §5.1); computed none with ≤ 5
+states reads from the wall (C8).
+
+computed Fixed-width strip certificates of the round-1 kind cannot exclude 0001, 0011 or 0111: at every width
+tried the relaxation has a bad component that adversarial inputs never leave (§6.3).
+
+7.3 Simple monovariants
+
+computed A-monovariant/mono.c (C7, re-run) follows every surviving double step of every finite
+start of width ≤ 22 (2,097,275 transitions) and records the change of 15 quantities: weight, walls (all, 00, 11, by
+parity class), first defect position, defects against the stripe, runs of ones, weights at odd and even positions,
+first class-1 wall, class-1 defects, zero runs and 11 pairs. Every one of them both increases and decreases, so none is
+a monovariant. Exact additive conservation laws of range ≤ 8–10 do not exist either (§5.4). Not cross-validated by a
+second code.
+
+7.4 Corrected statements
+
+The prose of ZBL.alt_first_defect_parity holds for the phase c(T) = 0 only;
+T197 proves the other-phase reading false and T196 is the phase-free form.
+
+The B1 prose bound j ≤ 2w + 1 was off by one (T323); the Lean proof uses j ≤ 2w.
+
+8 Relation to prior and third-party work
+
+third-party marks a claim from outside this project. Unless a row says it was re-checked, it was not
+verified here. Summaries come from lit-recent/NOTES.txt and lit-oss/; downloaded files were read
+as text only.
+
+WorkClaimRelation to this projectStatus here
+
+Jen 1986, J. Stat. Phys. 43No two columns of the single-seed pattern are both eventually periodic.Proved in Lean (T8); masked, window, clock and driven-half forms are new refinements.proved
+
+Jen 1990, Physica D 45, Prop. 3For left-injective rules with 001 ↦ 1 (30, 86, 90, 150, 210, …), at most one eventually periodic column from any finite initial condition.Single-seed case in Lean; the driven-left-half version (T278) covers finite left starts; the general finite-configuration statement is not formalized.third-party beyond the single seed
+
+Rowland 2006, Complex Systems 16Right diagonals purely periodic with 2-power periods; left-diagonal doubling criterion.Right side reproved and extended (T18, §4.9); the left criterion is not formalized.right side proved
+
+Kopra 2023, TCS 946Rapid left expansivity: width-2 traces of number-like configurations are not eventually periodic; rule 90 shows width 1 cannot follow.Consistent with T340, proved here for rules 90, 150, 210.third-party
+
+Condrey, arXiv 2609.09431No column of a nonzero finite configuration is eventually constant; sharp constant-prefix horizon w + 2; period 2 named as the next open case; no bounded-horizon law at period 2.Our Lean period-1 result covers only the single seed (T10). The fibre theorems were spot-checked on 300 random right halves in round 1 (lit-recent/scripts/check_condrey.py). The horizon remark parallels §5.3.third-party, spot-checked
+
+Nersissian, arXiv 2609.25077Newton supports of the diagonals; first contact ⌊m/2⌋; Fibonacci ceiling; right-diagonal least period ≥ ⌊m/2⌋ + 1; left profile bound m + 2 ≤ 4Qm.Same flavour as T296, T298. Recurrences and bounds checked numerically for m ≤ 24 in round 1.third-party, spot-checked
+
+Nersissian, arXiv 2609.25078Integer lift with deg Dk = Fk+2 − 1, so right-diagonal periods divide 2⌈log₂ Fk+2⌉ ≈ 20.694k.The Lean bound ej ≤ ⌊(2j+1)/3⌋ (T299) is asymptotically sharper (indices differ by one).third-party
+
+ghywel/placego notes (to 2026-10-14)Period-by-period programme for all finite configurations; chain period 2 ⟸ B ⟸ LRm ⟸ LR ⟺ “R(d) finite for all d” (König); doubling conjecture R(d) ≤ d + 4, reported exact to depth 89; “Theorem A, Jen with a clock”; Theorem E (a Sturmian column 1 never gives a finite forced left half); column 1 beside 0101… described as a rotation by 17/56 kicked in notches of 1/28 turn; a joint halt of the project on 2026-10-14.LR is our LR (T97); their R(d) finiteness has the shape of BWR (T98); our Lean T168 is a clock form of Jen derived independently; §6.4 measures the same column at the white steps (gaps 3 and 5, density 3/14). Index conventions were not reconciled, and their numbers were not re-run.third-party
+
+Other repositories (Patto1155/rule30-foundry, nateberzai, cochon123, Dibujaron)Word-specific exclusions and SAT horizons.None excludes period 2 (round-1 survey).third-party
+
+Claimed solutions (Das 2022, others)Heuristic or claimed proofs of Problem 1.None found rigorous in round 1.not accepted
+
+9 The open frontier and an honest assessment
+
+9.1 Where things stand
+
+Problem 1 is open. The only period excluded for all its words is 1. The other unconditional exclusions are
+specific: 32 certified words, families defined by long black runs (Theorems B, B′, D, the long-runs theorem, 0 1k,
+0r11), and T + P ≥ 16359.
+
+Period 2 is reduced to Q01 and to the weaker CQ01; neither reduction is an equivalence. Q01 is a clean
+statement about a deterministic system that is conjugate to the full shift on its free bits; it is supported by D(W) ≤ 2W + 8 up to W = 71 and by the
+epoch structure, and it is open. CQ01 is weaker and therefore easier in principle; the right-half laws (no 00 and no
+11111 proved, block law observed) are the extra structure it offers.
+
+Least period 4 reduces to Absorption(w) and to C3(w), both in Lean. Absorption is supported by every run
+tried; no fixed-width argument can prove it, because adversarial strips avoid every trap.
+
+Least period 3 (001, 011) has no reduction recorded in the round-2 sources. For 001 the effective boundary
+is identically white, so the left half is again the ZBL; for 011 it is 010; synth-lead/p3_affine.py checks a
+hand-derived affine structure of the left columns numerically, while a simple reachability check
+(synth-lead/c8check.py) does not force column 1 at widths 6–10.
+
+9.2 Conditional results, with hypotheses
+
+Hypothesis (open)ConclusionStatus of the implication
+
+Q01 (any of its four forms)c is not eventually 2-periodicimplication T91, T102, T107
+
+CQ01 (implied by Q01, T117)c is not eventually 2-periodicimplication T118
+
+Absorption(0001), Absorption(0011), Absorption(0111)c has no least period 4implication T124
+
+C3(0001), C3(0011), C3(0111)c has no least period 4implication T129
+
+Q01uniform death time for each width; phase-1 versionimplication T101, T100
+
+9.3 The most promising next steps
+
+Add the seven staged modules to the catalog. The integration task has formalized C3(w) ⇒ exclusion, CQ01 and
+both of its implications, no-11111 and the stripe corollary; this pass compiled the modules from source and printed
+the axioms of all their theorems (§C). What remains is the import into Ruliology.lean.
+
+Prove the right-half block law, or any law that bounds the epoch depths, for every finite right half driven by an
+alternating center. Combined with §4.3 it would confine a period-2 history to epochs of depth 6 and 10.
+
+Attack CQ01 with global information on both sides. §5 shows that local data at the wall, the center and the edges
+cannot suffice; the right edge carries rigid global structure (§4.9) that no barrier excludes.
+
+Prove Absorption for one word. 0111 has a single alignment, needs no skeleton (T275) and has the
+shortest observed entry delays.
+
+Re-check or formalize the most useful third-party statements: Condrey’s fibre theorem would extend the period-1
+exclusion to all finite configurations, a natural base for the all-finite-configuration versions of CQ01.
+
+9.4 Assessment
+
+The work so far has turned Problem 1 into precise, checkable sub-questions and has shown where several natural
+methods must fail. It has not produced a method that excludes any period ≥ 2 outright. Every reduction ends in a
+statement of the same kind as the original: a finitely supported configuration cannot sustain a shift-invariant
+constraint forever. The evidence for Q01 and Absorption is strong and consistent across independent codes, but
+round 1 already found that survival in the ZBL behaves like a random-constraint model, so the evidence does not point
+to a short proof. The barrier theorems narrow the search: a proof of period-2 exclusion must use both halves and
+non-local information, and a proof of period-4 exclusion must use the finite support of the right half rather than
+any fixed-width trap. Progress on period 2 or period 4 alone would be a genuine partial result toward Problem 1; it
+would not by itself settle it.
+
+

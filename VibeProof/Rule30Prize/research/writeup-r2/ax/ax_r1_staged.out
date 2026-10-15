@@ -1,0 +1,186 @@
+'Ruliology.CellularAutomata.Rule30Jen.cell_left_edge' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.cell_eq_false_of_lt' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.cell_left' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30Jen.periodic_left_all' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.no_left_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.not_adjacent' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.between_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.jen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.periodic_column_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Prize.no_column_eventually_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_period_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.center_eq_R' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30Diagonals.center_eq_D' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30Diagonals.R_zero' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.R_step' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.D_step' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.R_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.D_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.center_eq_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.row_testBit' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.centerLoop_spec' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.center_eq_bit' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.witnessCheck_true' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30Window.no_small_eventual_period' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30FactorWindow.win_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.left_of_black' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30MaskedJen.left_of_white' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen_center' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.center_masked_not_eventually_periodic' depends on axioms: [propext,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.orCol_not_eventuallyPeriodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.effective_boundary' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30MaskedJen.effective_step' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30MaskedJen.determine' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.window_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.window_jen_col' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.periodic_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.finitary_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.nine_black_core' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRuns.eight_black_not_enough' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.nine_black' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.black_shield' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs_col' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.not_eventuallyPeriodic_of_long_one_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.finitary_long_runs' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.not_eventually_zero_ones' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_long_black_run' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_black_white_run' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_white_run_11' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_black_run_block' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_00' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_000' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_010' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0000' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0010' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0100' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.det_0110' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_period_black_run_then_white' depends on axioms: [propext,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.problem1_iff_no_word' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_word_strip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_01111111' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.Cert.iterG_period' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.Cert.sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.Cert.not_eventuallyWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_00000011' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_000000000101' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificateTable.certTable_ok' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30StripCertificateTable.not_eventually_certTable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.edge' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_adjacent' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.col_neg_one_not_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_column' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.cell_eq_L_effective' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.light_cone' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.permutive' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_exists' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_unique' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.ones_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_mono_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.e_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.shift_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_succ_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.antiperiod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.half_black' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.e_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.S_rule' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.inp_least_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.no_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.period_gt' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.not_per_small' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_23' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.not_half_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_iff_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.rows_at_powers_of_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.zero_gap_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.last_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.last_white' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.restart' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.row_restart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.center_restart' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.column_continuity' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.center_black_lt' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.exists_IsE' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.cellW_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.cell135_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_black_or_white' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_30_or_135' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.realize' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.unique' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.column_realizable_unique' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.seed_perturbation' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.run_not_adjacent' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.run30_eq_cell' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30Realization.center90' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.center150' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.center210' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.barrier' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.no_AA' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.no_BB' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.no_ABAB' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.col4_white_of_alt' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m1_even' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.p1_odd' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m2_even' depends on axioms: [propext]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m2_odd' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m3_even' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m3_odd' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.golden' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.m4_odd' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.effective_white' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.left_half_zero_driven' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.not_eventually_period_two_of_Q01' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_fixed' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_col' depends on axioms: [propext, Quot.sound]

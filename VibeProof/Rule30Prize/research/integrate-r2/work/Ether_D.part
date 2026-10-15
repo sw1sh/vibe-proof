@@ -1,0 +1,79 @@
+
+/-! ### The driven right half: explicit finite configurations that never enter `S_w` -/
+
+/-- Rule 30 on the columns `p ≥ 1` with column `0` prescribed by `c` and initial right half `x`. -/
+def drv (c x : Nat → Bool) : Nat → Nat → Bool
+  | 0, p => if p = 0 then c 0 else x p
+  | t + 1, 0 => c (t + 1)
+  | t + 1, p + 1 => rule (drv c x t p) (drv c x t (p + 1)) (drv c x t (p + 2))
+
+theorem drv_isR30 (c x : Nat → Bool) : IsR30 (drv c x) := fun _ _ => rfl
+
+theorem drv_col0 (c x : Nat → Bool) : ∀ t, drv c x t 0 = c t
+  | 0 => by simp [drv]
+  | _ + 1 => rfl
+
+theorem drv_init (c x : Nat → Bool) (p : Nat) (hp : 1 ≤ p) : drv c x 0 p = x p := by
+  obtain ⟨q, rfl⟩ : ∃ q, p = q + 1 := ⟨p - 1, by omega⟩
+  simp [drv]
+
+theorem seg_congr : ∀ (n : Nat) (f g : Nat → Bool), (∀ i, i < n → f i = g i) → seg f n = seg g n
+  | 0, _, _, _ => rfl
+  | n + 1, f, g, h => by
+    show f 0 :: seg (fun i => f (i + 1)) n = g 0 :: seg (fun i => g (i + 1)) n
+    rw [h 0 (by omega), seg_congr n _ _ (fun i hi => h (i + 1) (by omega))]
+
+theorem seg_getD_self : ∀ (l : List Bool), seg (fun i => l.getD i false) l.length = l
+  | [] => rfl
+  | a :: l => by
+    show a :: seg (fun i => (a :: l).getD (i + 1) false) l.length = a :: l
+    congr 1
+    exact seg_getD_self l
+
+/-- A finite right half: ether columns `1..k` at phase `φ`, a 13-cell state `ws`, white beyond. -/
+def config (j0 φ k : Nat) (ws : List Bool) (p : Nat) : Bool :=
+  if 1 ≤ p ∧ p ≤ k then ether (j0 + p) φ
+  else if k < p ∧ p ≤ k + 13 then ws.getD (p - k - 1) false else false
+
+theorem config_finite (j0 φ k : Nat) (ws : List Bool) (p : Nat) (hp : k + 13 < p) :
+    config j0 φ k ws p = false := by
+  unfold config
+  rw [if_neg (by omega), if_neg (by omega)]
+
+/-- Columns `1..b` of the ether at phase `φ`, when column `0` is the ether column `j0`. -/
+def etherRow (j0 φ b : Nat) : List Bool := seg (fun i => ether (j0 + (i + 1)) φ) b
+
+/-- **The configuration stays in the ether-and-wall trap forever**, so its columns `1..b`
+(`b ≤ k`) are the pure ether at every time. -/
+theorem config_pure_ether (w : List Bool) (j0 s k b : Nat) (hal : aligned w j0 s = true)
+    (hk : (j0 + k) % 7 = 2) (hb : b ≤ k) (ws : List Bool) (hws : (s % 4, ws) ∈ wallStates)
+    (hlen : ws.length = 13) (t : Nat) :
+    rowOf (drv (wordAt w) (config j0 s k ws)) t 0 b = etherRow j0 ((t + s) % 4) b := by
+  have hF := drv_isR30 (wordAt w) (config j0 s k ws)
+  have h0 : ∀ t, 0 ≤ t → drv (wordAt w) (config j0 s k ws) t 0 = ether j0 (t + s) := by
+    intro t _; rw [drv_col0, aligned_spec hal]
+  have hE : ∀ p, 1 ≤ p → p ≤ k → drv (wordAt w) (config j0 s k ws) 0 p = ether (j0 + p) (0 + s) := by
+    intro p hp1 hpk
+    rw [drv_init _ _ p hp1, Nat.zero_add]
+    unfold config; rw [if_pos ⟨hp1, hpk⟩]
+  have hW : ((0 + s) % 4, rowOf (drv (wordAt w) (config j0 s k ws)) 0 k 13) ∈ wallStates := by
+    have e : rowOf (drv (wordAt w) (config j0 s k ws)) 0 k 13 = ws := by
+      unfold rowOf
+      rw [← hlen]
+      conv => rhs; rw [← seg_getD_self ws]
+      apply seg_congr
+      intro i hi
+      rw [drv_init _ _ _ (by omega)]
+      unfold config
+      rw [if_neg (by omega), if_pos ⟨by omega, by omega⟩]
+      congr 1
+      omega
+    rw [e, Nat.zero_add]; exact hws
+  obtain ⟨hE', _⟩ := trap_invariant hF j0 s k 0 hk h0 hE hW t
+  simp only [Nat.zero_add] at hE'
+  unfold rowOf etherRow
+  apply seg_congr
+  intro i hi
+  rw [Nat.zero_add, hE' (i + 1) (by omega)]
+  exact ether_congr rfl (by omega)
+

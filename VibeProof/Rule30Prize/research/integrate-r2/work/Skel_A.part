@@ -1,0 +1,213 @@
+import Ruliology.CellularAutomata.Rule30StripCertificates
+import Ruliology.CellularAutomata.Rule30DrivenLeft
+import Ruliology.CellularAutomata.Rule30Ether
+
+/-!
+# Rule 30, least period 4: forced skeletons of the right half, and a left-half reduction
+
+If the center column is eventually 4-periodic with least period `4`, its tail is a rotation of
+`0001`, `0011` or `0111` (or a complement-free variant thereof). For these words the right half
+near the center is forced into a skeleton, proved with the rank certificates of
+`Rule30StripCertificates` extended by an exempt ("bad") rank class.
+
+**Certificates with a bad class.** `Cert.checkb`, `Cert.checkGb`, `Cert.badImp`;
+`Cert.sound_bad`: along the true history the strip of columns `1..b` eventually stays in the bad
+class (otherwise column `1` at the white times would be periodic, against masked Jen);
+`Cert.eventually_pred`: every predicate checked on the bad class holds eventually.
+
+**Skeletons.**
+* `skeleton_0001`, `skeleton_0001_explicit`: if `c(t) = [ (t - T) % 4 = 3 ]` from `T`, then
+  eventually column `1` is white at phase `0` and black at phases `2, 3`, column `2` is black at
+  phase `1` and white at phase `3`, column `3` is black at phase `0`, and column `-1` is
+  (white, = column `1`, white, black) at phases (`0, 1, 2, 3`). `no11_0001`: the free bits of
+  column `1` at phase `1` never repeat a black cell.
+* `skeleton_0011`, `skeleton_0011_explicit`: for `0011`, eventually column `1` is black at phases
+  `1, 2` and white at phase `3`, and column `-1` is (= column `1`, white, white, black).
+* `column_m1_0111`: for `0111`, column `-1` is (= not column `1`, white, white, black) from `T` on.
+
+**Reduction to the left half (`C3`).** `C3 w` says that no finitely supported left configuration,
+run as rule 30 on `p ≤ -1` with column `0` replaced by the 4-periodic effective boundary
+`c'_w(t) = w(t) && w(t + 1)` (`0000`, `0010`, `0110` for `0001`, `0011`, `0111`), keeps column `-1`
+equal to the skeleton pattern `P_w` (`(0, *, 0, 1)`, `(*, 0, 0, 1)`, `(*, 0, 0, 1)`) for all large
+times. `not_eventually_0001_of_C3`, `not_eventually_0011_of_C3`, `not_eventually_0111_of_C3`,
+`least_period_four_of_C3`: `C3 w` excludes `w^∞` as a tail of the center column, for every
+transient. The statements `C3 w` are open.
+
+Sources: the Rule 30 Prize project (2026), least-period-4 program, round 2 (skeleton study); the
+left-half reduction uses `Rule30MaskedJen.effective_step` through
+`Rule30DrivenLeft.cell_eq_L_effective`.
+-/
+
+namespace Ruliology.CellularAutomata
+namespace Rule30PeriodFourSkeleton
+
+open Rule30Jen Rule30StripCertificates
+
+/-! ### Certificates with an exempt ("bad") rank class -/
+
+namespace Cert
+variable (C : Cert)
+
+/-- Edge condition with the rank class `bad` exempt from the labelling requirement. -/
+def edgeOKb (bad φ : Nat) (s s' : List Bool) : Bool :=
+  let φ' := (φ + 1) % C.P
+  let r := C.rk φ s
+  decide (C.rk φ' s' ≤ r) &&
+  (!(C.rk φ' s' == r) || (r == bad) ||
+    ((C.ps φ' s' == C.nextPos r (C.ps φ s) φ) && (C.wAt φ || (s.headD false == C.u r (C.ps φ s)))))
+
+def checkb (bad : Nat) : Bool :=
+  (List.range C.P).all fun φ => (allLists C.b).all fun s =>
+    [false, true].all fun x => Cert.edgeOKb C bad φ s (lin3 (C.wAt φ :: (s ++ [x])))
+
+/-- Every node outside the bad class has its position below the counter period of its rank. -/
+def checkGb (bad : Nat) : Bool :=
+  (List.range C.P).all fun φ => (allLists C.b).all fun s =>
+    (C.rk φ s == bad) || decide (C.ps φ s < C.m (C.rk φ s))
+
+/-- Every node of the bad class satisfies `pred`. -/
+def badImp (bad : Nat) (pred : Nat → List Bool → Bool) : Bool :=
+  (List.range C.P).all fun φ => (allLists C.b).all fun s => !(C.rk φ s == bad) || pred φ s
+
+end Cert
+
+/-- **Soundness with a bad class.** If the center column is `w`-periodic from `T`, the strip of
+the true right half eventually stays in the bad class. -/
+theorem Cert.sound_bad (C : Cert) (bad : Nat) (hC : Cert.checkb C bad = true) (hG : Cert.checkGb C bad = true)
+    (hP : 0 < C.P) (hb : 0 < C.b)
+    (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = C.wAt ((t - T) % C.P)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → C.rk ((t - T) % C.P) (rowR t C.b) = bad := by
+  let ph : Nat → Nat := fun t => (t - T) % C.P
+  let st : Nat → List Bool := fun t => rowR t C.b
+  have hph : ∀ t, T ≤ t → ph (t + 1) = (ph t + 1) % C.P := by
+    intro t ht
+    show (t + 1 - T) % C.P = ((t - T) % C.P + 1) % C.P
+    rw [show t + 1 - T = (t - T) + 1 by omega]
+    exact (Nat.mod_add_mod (t - T) C.P 1).symm
+  have hphlt : ∀ t, ph t < C.P := fun t => Nat.mod_lt _ hP
+  have hedge : ∀ t, T ≤ t → Cert.edgeOKb C bad (ph t) (st t) (st (t + 1)) = true := by
+    intro t ht
+    have hall := hC
+    unfold Cert.checkb at hall
+    have h1 := List.all_eq_true.1 hall (ph t) (List.mem_range.2 (hphlt t))
+    have h2 := List.all_eq_true.1 h1 (st t) (allLists_mem _ _ (rowR_length t C.b))
+    have h3 := List.all_eq_true.1 h2 (cell t ((C.b : Int) + 1)) (by cases cell t ((C.b : Int) + 1) <;> simp)
+    have hs : st (t + 1) = lin3 (C.wAt (ph t) :: (st t ++ [cell t ((C.b : Int) + 1)])) := by
+      show rowR (t + 1) C.b = _
+      rw [rowR_succ, h t ht]
+    rw [hs]; exact h3
+  let R : Nat → Nat := fun t => C.rk (ph t) (st t)
+  have hRle : ∀ t, T ≤ t → R (t + 1) ≤ R t := by
+    intro t ht
+    have e := hedge t ht
+    unfold Cert.edgeOKb at e
+    simp only [Bool.and_eq_true, decide_eq_true_eq] at e
+    show C.rk (ph (t + 1)) (st (t + 1)) ≤ C.rk (ph t) (st t)
+    rw [hph t ht]; exact e.1
+  obtain ⟨T', hT', hconst⟩ := antitone_eventually_const R T hRle
+  refine ⟨T', hT', fun t₀ ht₀ => ?_⟩
+  show R t₀ = bad
+  rw [hconst t₀ ht₀]
+  refine Classical.byContradiction fun hne => ?_
+  let r := R T'
+  have hrne : r ≠ bad := hne
+  have hrb : (r == bad) = false := by
+    cases hq : (r == bad) with
+    | false => rfl
+    | true => exact absurd (beq_iff_eq.1 hq) hne
+  have hstep : ∀ t, T' ≤ t →
+      C.ps (ph (t + 1)) (st (t + 1)) = C.nextPos r (C.ps (ph t) (st t)) (ph t) ∧
+      (C.wAt (ph t) = false → cell t 1 = C.u r (C.ps (ph t) (st t))) := by
+    intro t ht
+    have e := hedge t (by omega)
+    have hRt : R t = r := hconst t ht
+    have hRt1 : R (t + 1) = r := hconst (t + 1) (by omega)
+    unfold Cert.edgeOKb at e
+    rw [← hph t (by omega)] at e
+    have hr1 : C.rk (ph (t + 1)) (st (t + 1)) = C.rk (ph t) (st t) := by
+      show R (t + 1) = R t; rw [hRt, hRt1]
+    have hrt : C.rk (ph t) (st t) = r := hRt
+    simp only [hr1, hrt, hrb, beq_self_eq_true, Bool.not_true, Bool.false_or, Bool.and_eq_true, beq_iff_eq,
+      decide_eq_true_eq] at e
+    refine ⟨e.2.1, fun hw => ?_⟩
+    have e2 := e.2.2
+    rw [hw, Bool.false_or, beq_iff_eq] at e2
+    rw [← rowR_head t C.b hb]; exact e2
+  let q : Nat → Nat × Nat := fun t => (C.ps (ph t) (st t), ph t)
+  have hq : ∀ t, T' ≤ t → q (t + 1) = C.G r (q t) := by
+    intro t ht
+    show (C.ps (ph (t + 1)) (st (t + 1)), ph (t + 1)) = (C.nextPos r (C.ps (ph t) (st t)) (ph t), (ph t + 1) % C.P)
+    rw [(hstep t ht).1, hph t (by omega)]
+  have hqiter : ∀ t, T' ≤ t → ∀ n, q (t + n) = C.iterG r n (q t) := by
+    intro t ht n
+    induction n with
+    | zero => rfl
+    | succ n ih =>
+      rw [show t + (n + 1) = (t + n) + 1 by omega, hq (t + n) (by omega), ih,
+        show n + 1 = n + 1 from rfl, iterG_add C r n 1 (q t)]
+      rfl
+  have hGn : ∀ φ, φ < C.P → ∀ s, s ∈ allLists C.b → C.rk φ s = bad ∨ C.ps φ s < C.m (C.rk φ s) := by
+    have hG' := hG
+    unfold Cert.checkGb at hG'
+    simp only [List.all_eq_true, List.mem_range, Bool.or_eq_true, beq_iff_eq, decide_eq_true_eq] at hG'
+    exact hG'
+  have hposr : ∀ t, T' ≤ t → C.ps (ph t) (st t) < C.m r := by
+    intro t ht
+    have hrt : C.rk (ph t) (st t) = r := hconst t ht
+    rcases hGn (ph t) (hphlt t) (st t) (allLists_mem _ _ (rowR_length t C.b)) with h' | h'
+    · rw [hrt] at h'; exact absurd h' hrne
+    · rw [hrt] at h'; exact h'
+  have hm : 0 < C.m r := by have := hposr T' (Nat.le_refl _); omega
+  have hper : ∀ t, T' ≤ t → q (t + C.m r * C.P) = q t := by
+    intro t ht
+    rw [hqiter t ht]
+    exact C.iterG_period r hm hP _ _ (hposr t ht) (hphlt t)
+  refine Rule30MaskedJen.masked_jen 0 (P := C.m r * C.P) (Nat.mul_pos hm hP) (T := T') ?_ ?_
+  · intro t ht
+    rw [h (t + C.m r * C.P) (by omega), h t (by omega)]
+    congr 1
+    rw [show t + C.m r * C.P - T = (t - T) + C.P * C.m r by rw [Nat.mul_comm]; omega, Nat.add_mul_mod_self_left]
+  · intro t ht hw
+    rw [show (0 : Int) + 1 = 1 by rfl]
+    have hwt : C.wAt (ph t) = false := by rw [← h t (by omega)]; exact hw
+    have hqe := hper t ht
+    have hph' : ph (t + C.m r * C.P) = ph t := congrArg Prod.snd hqe
+    have hps' : C.ps (ph (t + C.m r * C.P)) (st (t + C.m r * C.P)) = C.ps (ph t) (st t) := congrArg Prod.fst hqe
+    have hwt' : C.wAt (ph (t + C.m r * C.P)) = false := by rw [hph']; exact hwt
+    rw [(hstep (t + C.m r * C.P) (by omega)).2 hwt', (hstep t ht).2 hwt, hps']
+
+/-- Every predicate checked on the bad class holds eventually along the true history. -/
+theorem Cert.eventually_pred (C : Cert) (bad : Nat) (pred : Nat → List Bool → Bool)
+    (hC : Cert.checkb C bad = true) (hG : Cert.checkGb C bad = true) (hI : Cert.badImp C bad pred = true)
+    (hP : 0 < C.P) (hb : 0 < C.b)
+    (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = C.wAt ((t - T) % C.P)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → pred ((t - T) % C.P) (rowR t C.b) = true := by
+  obtain ⟨T', hT', hbad⟩ := Cert.sound_bad C bad hC hG hP hb T h
+  refine ⟨T', hT', fun t ht => ?_⟩
+  have hall := hI
+  unfold Cert.badImp at hall
+  have h1 := List.all_eq_true.1 hall ((t - T) % C.P) (List.mem_range.2 (Nat.mod_lt _ hP))
+  have h2 := List.all_eq_true.1 h1 (rowR t C.b) (allLists_mem _ _ (rowR_length t C.b))
+  rw [hbad t ht] at h2
+  simpa using h2
+
+theorem seg_getD (f : Nat → Bool) : ∀ (n i : Nat), i < n → (seg f n).getD i false = f i
+  | 0, i, h => absurd h (Nat.not_lt_zero _)
+  | n + 1, 0, _ => rfl
+  | n + 1, i + 1, h => by
+    show (seg (fun j => f (j + 1)) n).getD i false = f (i + 1)
+    exact seg_getD (fun j => f (j + 1)) n i (by omega)
+
+theorem rowR_getD (t m i : Nat) (h : i < m) : (rowR t m).getD i false = cell t ((i : Int) + 1) :=
+  seg_getD _ m i h
+
+theorem col_m1 (t : Nat) : cell t (-1) = xor (cell (t + 1) 0) (cell t 0 || cell t 1) := by
+  have := cell_left t 0
+  rw [show (0 : Int) - 1 = -1 by rfl, show (0 : Int) + 1 = 1 by rfl] at this
+  exact this
+
+theorem phase_succ (t T : Nat) (ht : T ≤ t) : (t + 1 - T) % 4 = ((t - T) % 4 + 1) % 4 := by
+  rw [show t + 1 - T = (t - T) + 1 by omega]; omega
+
+/-! ### The word `0001` -/
+

@@ -1,0 +1,144 @@
+
+/-- Skeleton predicate for `w = 0001` (phases `0..3` = `0, 0, 0, 1`) on the strip `s` = columns
+`1..9`. -/
+def skel0001 (φ : Nat) (s : List Bool) : Bool :=
+  if φ = 0 then !(s.getD 0 false) && s.getD 2 false
+  else if φ = 1 then s.getD 1 false
+  else if φ = 2 then s.getD 0 false
+  else if φ = 3 then s.getD 0 false && !(s.getD 1 false)
+  else true
+
+theorem K0001_checkb : Cert.checkb K0001 k0001_bad = true := by decide +kernel
+theorem K0001_checkGb : Cert.checkGb K0001 k0001_bad = true := by decide +kernel
+theorem K0001_badImp : Cert.badImp K0001 k0001_bad skel0001 = true := by decide +kernel
+
+/-- **Skeleton for `0001`.** If the center column is `0001`-periodic from time `T` (phase
+`(t - T) % 4`), then eventually: at phase `0` column `1` is white and column `3` black; at phase `1`
+column `2` is black; at phase `2` column `1` is black; at phase `3` column `1` is black and column
+`2` white. -/
+theorem skeleton_0001 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = K0001.wAt ((t - T) % 4)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 0 → cell t 1 = false ∧ cell t 3 = true) ∧
+      ((t - T) % 4 = 1 → cell t 2 = true) ∧
+      ((t - T) % 4 = 2 → cell t 1 = true) ∧
+      ((t - T) % 4 = 3 → cell t 1 = true ∧ cell t 2 = false) := by
+  have hP : K0001.P = 4 := by decide
+  obtain ⟨T', hT', hp⟩ := Cert.eventually_pred K0001 k0001_bad skel0001 K0001_checkb K0001_checkGb
+    K0001_badImp (by decide) (by decide) T (by rw [hP]; exact h)
+  refine ⟨T', hT', fun t ht => ?_⟩
+  have e := hp t ht
+  rw [hP] at e
+  have h0 : (rowR t K0001.b).getD 0 false = cell t 1 := rowR_getD t K0001.b 0 (by decide)
+  have h1 : (rowR t K0001.b).getD 1 false = cell t 2 := rowR_getD t K0001.b 1 (by decide)
+  have h2 : (rowR t K0001.b).getD 2 false = cell t 3 := rowR_getD t K0001.b 2 (by decide)
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩
+  · rw [hφ] at e; simp only [skel0001] at e
+    simp only [h0, h2, ite_true, Bool.and_eq_true, Bool.not_eq_true'] at e
+    exact ⟨e.1, e.2⟩
+  · rw [hφ] at e; simp only [skel0001] at e; simp only [h1] at e; simpa using e
+  · rw [hφ] at e; simp only [skel0001] at e; simp only [h0] at e; simpa using e
+  · rw [hφ] at e; simp only [skel0001] at e; simp only [h0, h1] at e; simpa using e
+
+theorem wAt_0001 (φ : Nat) (hφ : φ < 4) : K0001.wAt φ = decide (φ = 3) := by
+  have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+  rcases this with h | h | h | h <;> subst h <;> decide
+
+/-- **Skeleton for `0001`, explicit form.** If `c(t) = [ (t - T) % 4 = 3 ]` for `t ≥ T`, then
+eventually column `1` is white at phase `0` and black at phases `2, 3`; column `2` is black at
+phase `1` and white at phase `3`; column `3` is black at phase `0`; and column `-1` is
+(white, = column `1`, white, black) at phases (`0, 1, 2, 3`). -/
+theorem skeleton_0001_explicit (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide ((t - T) % 4 = 3)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 0 → cell t 1 = false ∧ cell t 3 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 1 → cell t 2 = true ∧ cell t (-1) = cell t 1) ∧
+      ((t - T) % 4 = 2 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t 1 = true ∧ cell t 2 = false ∧ cell t (-1) = true) := by
+  have h' : ∀ t, T ≤ t → cell t 0 = K0001.wAt ((t - T) % 4) := by
+    intro t ht; rw [h t ht, wAt_0001 _ (Nat.mod_lt _ (by decide))]
+  obtain ⟨T', hT', hs⟩ := skeleton_0001 T h'
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨s0, s1, s2, s3⟩ := hs t ht
+  have c0 := h t (by omega)
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T (by omega)] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩
+  · obtain ⟨a, b⟩ := s0 hφ
+    refine ⟨a, b, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · refine ⟨s1 hφ, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s2 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · obtain ⟨a, b⟩ := s3 hφ
+    refine ⟨a, b, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+
+/-- One strip step at phase `φ` with input `x` at column `b + 1`. -/
+def stepS (C : Cert) (φ : Nat) (s : List Bool) (x : Bool) : List Bool := lin3 (C.wAt φ :: (s ++ [x]))
+
+/-- In the bad class of `K0001`, a black column-`1` cell at phase `1` is followed four steps later
+(phase `1` again) by a white one, whatever the inputs at column `10`. -/
+def no11check : Bool :=
+  (allLists 9).all fun s => !(K0001.rk 1 s == k0001_bad) || !(s.headD false) ||
+    ([false, true].all fun x0 => [false, true].all fun x1 => [false, true].all fun x2 =>
+      [false, true].all fun x3 =>
+        let s4 := stepS K0001 0 (stepS K0001 3 (stepS K0001 2 (stepS K0001 1 s x0) x1) x2) x3
+        !(K0001.rk 1 s4 == k0001_bad) || !(s4.headD false))
+
+theorem no11check_true : no11check = true := by decide +kernel
+
+theorem step_true (T t : Nat) (ht : T ≤ t) (h : ∀ t, T ≤ t → cell t 0 = K0001.wAt ((t - T) % 4)) :
+    rowR (t + 1) K0001.b = stepS K0001 ((t - T) % 4) (rowR t K0001.b) (cell t ((K0001.b : Int) + 1)) := by
+  rw [rowR_succ, h t ht]; rfl
+
+/-- **The free bits of `0001` never repeat a black cell.** If the center column is
+`0001`-periodic from `T`, then eventually, at phase `1`, a black cell in column `1` is followed
+four steps later by a white one. -/
+theorem no11_0001 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = K0001.wAt ((t - T) % 4)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → (t - T) % 4 = 1 → cell t 1 = true → cell (t + 4) 1 = false := by
+  have hP : K0001.P = 4 := by decide
+  obtain ⟨T', hT', hbad⟩ := Cert.sound_bad K0001 k0001_bad K0001_checkb K0001_checkGb (by decide)
+    (by decide) T (by rw [hP]; exact h)
+  rw [hP] at hbad
+  refine ⟨T', hT', fun t ht hφ h1 => ?_⟩
+  have p1 : (t + 1 - T) % 4 = 2 := by omega
+  have p2 : (t + 2 - T) % 4 = 3 := by omega
+  have p3 : (t + 3 - T) % 4 = 0 := by omega
+  have p4 : (t + 4 - T) % 4 = 1 := by omega
+  have e1 : rowR (t + 1) K0001.b = stepS K0001 1 (rowR t K0001.b) (cell t ((K0001.b : Int) + 1)) := by
+    have := step_true T t (by omega) h; rw [hφ] at this; exact this
+  have e2 : rowR (t + 2) K0001.b =
+      stepS K0001 2 (rowR (t + 1) K0001.b) (cell (t + 1) ((K0001.b : Int) + 1)) := by
+    have := step_true T (t + 1) (by omega) h; rw [p1] at this; exact this
+  have e3 : rowR (t + 3) K0001.b =
+      stepS K0001 3 (rowR (t + 2) K0001.b) (cell (t + 2) ((K0001.b : Int) + 1)) := by
+    have := step_true T (t + 2) (by omega) h; rw [p2] at this; exact this
+  have e4 : rowR (t + 4) K0001.b =
+      stepS K0001 0 (rowR (t + 3) K0001.b) (cell (t + 3) ((K0001.b : Int) + 1)) := by
+    have := step_true T (t + 3) (by omega) h; rw [p3] at this; exact this
+  have hb0 := hbad t ht
+  rw [hφ] at hb0
+  have hb4 := hbad (t + 4) (by omega)
+  rw [p4] at hb4
+  have hc := no11check_true
+  unfold no11check at hc
+  have hs := List.all_eq_true.1 hc (rowR t K0001.b) (allLists_mem _ _ (rowR_length t K0001.b))
+  have hhead : (rowR t K0001.b).headD false = true := by rw [rowR_head t K0001.b (by decide)]; exact h1
+  rw [hb0, hhead] at hs
+  simp only [beq_self_eq_true, Bool.not_true, Bool.false_or] at hs
+  have hx := List.all_eq_true.1 hs (cell t ((K0001.b : Int) + 1))
+    (by cases cell t ((K0001.b : Int) + 1) <;> simp)
+  have hx1 := List.all_eq_true.1 hx (cell (t + 1) ((K0001.b : Int) + 1))
+    (by cases cell (t + 1) ((K0001.b : Int) + 1) <;> simp)
+  have hx2 := List.all_eq_true.1 hx1 (cell (t + 2) ((K0001.b : Int) + 1))
+    (by cases cell (t + 2) ((K0001.b : Int) + 1) <;> simp)
+  have hx3 := List.all_eq_true.1 hx2 (cell (t + 3) ((K0001.b : Int) + 1))
+    (by cases cell (t + 3) ((K0001.b : Int) + 1) <;> simp)
+  rw [← e1, ← e2, ← e3, ← e4, hb4] at hx3
+  simp only [beq_self_eq_true, Bool.not_true, Bool.false_or, Bool.not_eq_true'] at hx3
+  rw [← rowR_head (t + 4) K0001.b (by decide)]
+  exact hx3
+
+/-! ### The words `0011` and `0111` -/
+

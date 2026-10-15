@@ -1,0 +1,1 @@
+n=4 dir=wall: 28 pairs, all genuine surviving pairs: True; z3 says unsat (1.4s)

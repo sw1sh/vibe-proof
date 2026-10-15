@@ -1,0 +1,16 @@
+rule30^1 r=1: unknowns 1, rank found 1 (max possible 1) after 1 random configs -> nontrivial conserved dim 0
+rule30^1 r=2: unknowns 3, rank found 2 (max possible 2) after 2 random configs -> nontrivial conserved dim 0
+rule30^1 r=3: unknowns 7, rank found 4 (max possible 4) after 4 random configs -> nontrivial conserved dim 0
+rule30^1 r=4: unknowns 15, rank found 8 (max possible 8) after 8 random configs -> nontrivial conserved dim 0
+rule30^1 r=5: unknowns 31, rank found 16 (max possible 16) after 16 random configs -> nontrivial conserved dim 0
+rule30^1 r=6: unknowns 63, rank found 32 (max possible 32) after 35 random configs -> nontrivial conserved dim 0
+rule30^1 r=7: unknowns 127, rank found 64 (max possible 64) after 73 random configs -> nontrivial conserved dim 0
+rule30^1 r=8: unknowns 255, rank found 128 (max possible 128) after 154 random configs -> nontrivial conserved dim 0
+rule30^2 r=1: unknowns 1, rank found 1 (max possible 1) after 1 random configs -> nontrivial conserved dim 0
+rule30^2 r=2: unknowns 3, rank found 2 (max possible 2) after 2 random configs -> nontrivial conserved dim 0
+rule30^2 r=3: unknowns 7, rank found 4 (max possible 4) after 4 random configs -> nontrivial conserved dim 0
+rule30^2 r=4: unknowns 15, rank found 8 (max possible 8) after 12 random configs -> nontrivial conserved dim 0
+rule30^2 r=5: unknowns 31, rank found 16 (max possible 16) after 18 random configs -> nontrivial conserved dim 0
+rule30^2 r=6: unknowns 63, rank found 32 (max possible 32) after 36 random configs -> nontrivial conserved dim 0
+rule30^2 r=7: unknowns 127, rank found 64 (max possible 64) after 74 random configs -> nontrivial conserved dim 0
+rule30^2 r=8: unknowns 255, rank found 128 (max possible 128) after 155 random configs -> nontrivial conserved dim 0

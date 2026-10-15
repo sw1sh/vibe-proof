@@ -1,0 +1,171 @@
+
+/-! ### The trap invariant for any rule-30 evolution on the columns `p ≥ 0` -/
+
+/-- `F t p` (columns `p ≥ 0`, column `0` arbitrary) evolves by rule 30 on the columns `p ≥ 1`. -/
+def IsR30 (F : Nat → Nat → Bool) : Prop :=
+  ∀ t p, F (t + 1) (p + 1) = rule (F t p) (F t (p + 1)) (F t (p + 2))
+
+/-- Columns `k + 1, …, k + m` of `F` at time `t`. -/
+def rowOf (F : Nat → Nat → Bool) (t k m : Nat) : List Bool := seg (fun i => F t (k + i + 1)) m
+
+theorem rowOf_succ {F : Nat → Nat → Bool} (hF : IsR30 F) (t k b : Nat) :
+    rowOf F (t + 1) k b = lin3 (F t k :: (rowOf F t k b ++ [F t (k + b + 1)])) := by
+  have e1 : rowOf F t k b ++ [F t (k + b + 1)] = rowOf F t k (b + 1) := by
+    unfold rowOf; rw [seg_succ]
+  have e2 : F t k :: rowOf F t k (b + 1) = seg (fun i => F t (k + i)) (b + 2) := rfl
+  rw [e1, e2, lin3_seg]
+  unfold rowOf
+  congr 1
+  funext i
+  exact hF t (k + i)
+
+theorem rowOf_head (F : Nat → Nat → Bool) (t k b : Nat) :
+    (rowOf F t k (b + 1)).headD false = F t (k + 1) := rfl
+
+/-- **Trap invariant.** If column `0` is the ether column `j0` from time `t1` on, and at time `t1`
+columns `1..k` carry the ether (column `k` a B3) and columns `k+1..k+13` form a wall state, then
+this stays true forever. -/
+theorem trap_invariant {F : Nat → Nat → Bool} (hF : IsR30 F) (j0 s k t1 : Nat)
+    (hk : (j0 + k) % 7 = 2)
+    (h0 : ∀ t, t1 ≤ t → F t 0 = ether j0 (t + s))
+    (hE : ∀ p, 1 ≤ p → p ≤ k → F t1 p = ether (j0 + p) (t1 + s))
+    (hW : ((t1 + s) % 4, rowOf F t1 k 13) ∈ wallStates) :
+    ∀ n, (∀ p, p ≤ k → F (t1 + n) p = ether (j0 + p) (t1 + n + s)) ∧
+      ((t1 + n + s) % 4, rowOf F (t1 + n) k 13) ∈ wallStates := by
+  intro n
+  induction n with
+  | zero =>
+    refine ⟨fun p hp => ?_, by simpa using hW⟩
+    rcases Nat.eq_zero_or_pos p with hp0 | hp0
+    · subst hp0; simpa using h0 t1 (Nat.le_refl _)
+    · simpa using hE p hp0 hp
+  | succ n ih =>
+    obtain ⟨hE', hW'⟩ := ih
+    have hph : t1 + n + 1 + s = (t1 + n + s) + 1 := by omega
+    have htt : t1 + (n + 1) = (t1 + n) + 1 := by omega
+    refine ⟨fun p hp => ?_, ?_⟩
+    · rcases Nat.eq_zero_or_pos p with hp0 | hp0
+      · subst hp0; exact h0 (t1 + (n + 1)) (by omega)
+      · obtain ⟨q, rfl⟩ : ∃ q, p = q + 1 := ⟨p - 1, by omega⟩
+        rw [htt, hF, hph, ether_rule (j0 + (q + 1)) (t1 + n + s)]
+        have hl : F (t1 + n) q = ether (j0 + (q + 1) + 6) (t1 + n + s) := by
+          rw [hE' q (by omega)]; exact ether_congr (by omega) rfl
+        rw [hl, hE' (q + 1) hp]
+        by_cases hpk : q + 1 < k
+        · rw [hE' (q + 2) (by omega), show j0 + (q + 2) = j0 + (q + 1) + 1 by omega]
+        · have hpk' : q + 1 = k := by omega
+          cases hb : ether (j0 + (q + 1)) (t1 + n + s) with
+          | true => rfl
+          | false =>
+            have hw2 : ether 2 ((t1 + n + s) % 4) = false := by
+              rw [← hb]; exact ether_congr (by omega) (by omega)
+            have hhead := (wall_facts hW').1 hw2
+            rw [rowOf_head, ← hpk'] at hhead
+            rw [hhead]
+            congr 1
+            exact ether_congr (by omega) (by omega)
+    · rw [htt, rowOf_succ hF, hph]
+      have hck : F (t1 + n) k = ether 2 ((t1 + n + s) % 4) := by
+        rw [hE' k (Nat.le_refl k)]; exact ether_congr (by omega) (by omega)
+      rw [hck]
+      have e := (wall_facts hW').2 (F (t1 + n) (k + 13 + 1))
+      rwa [show ((t1 + n + s) % 4 + 1) % 4 = (t1 + n + s + 1) % 4 by omega] at e
+
+/-! ### The trap theorem for the true pattern -/
+
+/-- The true right half as an evolution on the columns `p ≥ 0`. -/
+def trueRight (t p : Nat) : Bool := cell t (p : Int)
+
+theorem trueRight_isR30 : IsR30 trueRight := by
+  intro t p
+  show rule (cell t (((p + 1 : Nat) : Int) - 1)) (cell t ((p + 1 : Nat) : Int))
+      (cell t (((p + 1 : Nat) : Int) + 1)) =
+    rule (cell t (p : Int)) (cell t ((p + 1 : Nat) : Int)) (cell t ((p + 2 : Nat) : Int))
+  rw [show ((p + 1 : Nat) : Int) - 1 = (p : Int) by omega,
+    show ((p + 1 : Nat) : Int) + 1 = ((p + 2 : Nat) : Int) by omega]
+
+/-- **Ether-and-wall trap.** Suppose the center column is the ether column `j0` (with phase offset
+`s`) from time `T` on. If at some time `t1 ≥ T` columns `1..k` carry the ether, column `k` is a B3
+(`(j0 + k) % 7 = 2`), and columns `k+1..k+13` form a wall state, we get a contradiction. -/
+theorem ether_wall_trap (T t1 j0 s k : Nat) (hk : (j0 + k) % 7 = 2)
+    (h0 : ∀ t, T ≤ t → cell t 0 = ether j0 (t - T + s))
+    (ht1 : T ≤ t1)
+    (hE : ∀ p : Nat, 1 ≤ p → p ≤ k → cell t1 (p : Int) = ether (j0 + p) (t1 - T + s))
+    (hW : ((t1 - T + s) % 4, rowOf trueRight t1 k 13) ∈ wallStates) : False := by
+  have hph : ∀ t, T ≤ t → (t + (s + 3 * T)) % 4 = (t - T + s) % 4 := by intro t ht; omega
+  have inv := trap_invariant trueRight_isR30 j0 (s + 3 * T) k t1 hk
+    (fun t ht => by
+      show cell t ((0 : Nat) : Int) = _
+      rw [show ((0 : Nat) : Int) = 0 by rfl, h0 t (by omega)]
+      exact ether_congr rfl (hph t (by omega)).symm)
+    (fun p hp1 hpk => by
+      show cell t1 (p : Int) = _
+      rw [hE p hp1 hpk]
+      exact ether_congr rfl (hph t1 ht1).symm)
+    (by rw [hph t1 ht1]; exact hW)
+  -- column `1` at the white times of column `0` is the ether column `j0 + 1`
+  have key : ∀ t, t1 ≤ t → cell t 0 = false → cell t 1 = ether (j0 + 1) (t + (s + 3 * T)) := by
+    intro t ht hw
+    obtain ⟨hE', hW'⟩ := inv (t - t1)
+    rw [show t1 + (t - t1) = t by omega] at hE' hW'
+    rcases Nat.eq_zero_or_pos k with hk0 | hk0
+    · subst hk0
+      have hw2 : ether 2 ((t + (s + 3 * T)) % 4) = false := by
+        have e : cell t 0 = ether (j0 + 0) (t + (s + 3 * T)) := hE' 0 (Nat.le_refl 0)
+        rw [hw] at e
+        rw [e]; exact ether_congr (by omega) (by omega)
+      have hhead := (wall_facts hW').1 hw2
+      rw [rowOf_head] at hhead
+      have e1 : cell t 1 = ether 3 ((t + (s + 3 * T)) % 4) := hhead
+      rw [e1]; exact ether_congr (by omega) (by omega)
+    · exact hE' 1 hk0
+  refine Rule30MaskedJen.masked_jen 0 (P := 4) (T := t1) (by decide) ?_ ?_
+  · intro t ht
+    rw [h0 (t + 4) (by omega), h0 t (by omega)]
+    exact ether_congr rfl (by omega)
+  · intro t ht hw
+    have hw4 : cell (t + 4) 0 = false := by
+      rw [h0 (t + 4) (by omega), ← hw, h0 t (by omega)]
+      exact ether_congr rfl (by omega)
+    rw [show (0 : Int) + 1 = 1 by rfl, key (t + 4) (by omega) hw4, key t ht hw]
+    exact ether_congr rfl (by omega)
+
+/-! ### The words `0001`, `0011`, `0111`, `0101` as ether columns -/
+
+/-- The letter of the 4-periodic word `w` at phase `ψ`. -/
+def wordAt (w : List Bool) (ψ : Nat) : Bool := w.getD (ψ % 4) false
+
+def w0001 : List Bool := [false, false, false, true]
+def w0011 : List Bool := [false, false, true, true]
+def w0111 : List Bool := [false, true, true, true]
+def w0101 : List Bool := [false, true, false, true]
+
+/-- `w` is the ether column `j0` shifted by `s` in time: `ether j0 (ψ + s) = w[ψ mod 4]`. -/
+def aligned (w : List Bool) (j0 s : Nat) : Bool :=
+  (List.range 4).all fun ψ => ether j0 (ψ + s) == wordAt w ψ
+
+theorem aligned_spec {w : List Bool} {j0 s : Nat} (h : aligned w j0 s = true) (ψ : Nat) :
+    ether j0 (ψ + s) = wordAt w ψ := by
+  have h1 := List.all_eq_true.1 h (ψ % 4) (List.mem_range.2 (Nat.mod_lt _ (by decide)))
+  have e1 : ether j0 (ψ + s) = ether j0 (ψ % 4 + s) := ether_congr rfl (by omega)
+  have e2 : wordAt w ψ = wordAt w (ψ % 4) := by unfold wordAt; rw [Nat.mod_mod]
+  rw [e1, e2]; exact beq_iff_eq.1 h1
+
+theorem aligned_0001_5 : aligned w0001 5 0 = true := by decide
+theorem aligned_0001_6 : aligned w0001 6 0 = true := by decide
+theorem aligned_0011_0 : aligned w0011 0 0 = true := by decide
+theorem aligned_0011_1 : aligned w0011 1 3 = true := by decide
+theorem aligned_0011_4 : aligned w0011 4 0 = true := by decide
+theorem aligned_0111_2 : aligned w0111 2 2 = true := by decide
+theorem aligned_0101_3 : aligned w0101 3 0 = true := by decide
+
+/-- **No entry into the ether-and-wall family.** If the center column equals `w^∞` from time `T`
+(phase `(t - T) % 4`) and `w` is the ether column `j0` shifted by `s`, then at no time `t1 ≥ T` do
+columns `1..k` carry the ether while columns `k+1..k+13` form a wall state (`(j0 + k) % 7 = 2`). -/
+theorem no_ether_wall_entry (w : List Bool) (j0 s : Nat) (hal : aligned w j0 s = true)
+    (T : Nat) (hc : ∀ t, T ≤ t → cell t 0 = wordAt w (t - T))
+    (t1 k : Nat) (ht1 : T ≤ t1) (hk : (j0 + k) % 7 = 2)
+    (hE : ∀ p : Nat, 1 ≤ p → p ≤ k → cell t1 (p : Int) = ether (j0 + p) (t1 - T + s))
+    (hW : ((t1 - T + s) % 4, rowOf trueRight t1 k 13) ∈ wallStates) : False :=
+  ether_wall_trap T t1 j0 s k hk (fun t ht => by rw [hc t ht, aligned_spec hal]) ht1 hE hW
+

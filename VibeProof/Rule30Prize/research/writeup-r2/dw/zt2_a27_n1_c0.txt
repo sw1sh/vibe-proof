@@ -1,0 +1,1 @@
+a=27 d0=26 states=2514 chunk 0/1 (2514 states) nodes=10047 deepest surviving depth=44 => all die by depth 45

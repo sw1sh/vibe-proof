@@ -1,0 +1,7 @@
+/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/synth-r2/axZBLEdgeDFA.lean:146:4: warning: unused variable `q`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/synth-r2/axZBLEdgeDFA.lean:146:11: warning: unused variable `v`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'ZBLEdgeDFA.no_edge_dfa_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]

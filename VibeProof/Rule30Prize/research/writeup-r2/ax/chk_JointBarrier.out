@@ -1,0 +1,5 @@
+'JointBarrier.evol_c7_four' depends on axioms: [propext, Quot.sound]
+'JointBarrier.evol_c7_period' depends on axioms: [propext, Quot.sound]
+'JointBarrier.c7_center' depends on axioms: [propext, Quot.sound]
+'JointBarrier.tr_agree' depends on axioms: [propext, Quot.sound]
+'JointBarrier.no_joint_local_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]

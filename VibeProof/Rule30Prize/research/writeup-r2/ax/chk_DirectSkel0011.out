@@ -1,0 +1,3 @@
+'VerifyB2.skel' depends on axioms: [propext, Classical.choice, Quot.sound]
+[1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]
+'VerifyB2.skel' depends on axioms: [propext, Classical.choice, Quot.sound]
