@@ -3,3 +3,5 @@ import Rule30Equivalents.BinaryIrrational
 import Rule30Equivalents.ShiftOrbit
 import Rule30Equivalents.NumberTheory
 import Rule30Equivalents.TwoAdic
+import Rule30Equivalents.PowerSeriesF2
+import Rule30Equivalents.LinearRelations
