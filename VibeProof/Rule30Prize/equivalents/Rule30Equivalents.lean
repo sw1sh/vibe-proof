@@ -2,3 +2,4 @@ import Rule30Equivalents.Basic
 import Rule30Equivalents.BinaryIrrational
 import Rule30Equivalents.ShiftOrbit
 import Rule30Equivalents.NumberTheory
+import Rule30Equivalents.TwoAdic
