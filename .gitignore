@@ -1,9 +1,10 @@
-# Track only VibeProof/HofstadterQ (and this file); ignore everything else.
+# Track only VibeProof/HofstadterQ, VibeProof/Rule30Prize and this file; ignore everything else.
 /*
 !/.gitignore
 !/VibeProof/
 /VibeProof/*
 !/VibeProof/HofstadterQ/
+!/VibeProof/Rule30Prize/
 
 # Build and scratch artifacts inside the tracked folder
 .lake/

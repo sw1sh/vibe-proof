@@ -1,0 +1,31 @@
+# Third-party text: plain-text extracts of papers, OCR of Jen's 1990 report,
+# and a theorem list copied from another repository. Kept locally, not committed.
+research/literature/*.txt
+research/jen-lit/ocr1990/
+research/lit-oss/condrey_2609.09431v1.txt
+research/lit-oss/das_2207.13237.txt
+research/lit-oss/dibujaron_thms.txt
+
+# Failed GitHub code-search log: rate-limit errors carrying an account ID, no results.
+research/lit-oss/codesearch2.tsv
+
+# Bulk generated data over 250 KB; README.md says how to regenerate it.
+research/progB-avoid/bad_0001_19.txt
+research/progB-avoid/bad_0001_20.txt
+research/progB-avoid/bad_0001_21.txt
+research/progB-avoid/bad_0001_22.txt
+research/progB-avoid/bad_0011_18.txt
+research/progB-avoid/bad_0011_19.txt
+research/progB-avoid/bad_0011_20.txt
+research/progB-avoid/bad_0111_17.txt
+research/progB-avoid/bad_0111_18.txt
+research/progB-avoid/bad_0111_19.txt
+research/progB-avoid/bad_0111_20.txt
+research/progB-avoid/bad_01_20.txt
+research/gf2-algebra/cols200k.txt
+research/integrate-final/verify/all_names.txt
+
+# Empty captures of aborted runs.
+research/window/C_65536.txt
+research/integrate-r2/o_core.txt
+research/p3-ether/c/nowall_*_12.txt
