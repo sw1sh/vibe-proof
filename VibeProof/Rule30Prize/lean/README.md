@@ -2,7 +2,7 @@
 
 This folder holds the Lean results of the 2026-10-15 attempt on the Rule 30 Prize as a standalone Lake project. It is a snapshot of the `ruliology-lean` catalog (`vibe-proof/ruliology-lean`, which git does not track), taken on 2026-10-15.
 
-**Problem 1 is still open.** These are partial results. [`../README.md`](../README.md) gives the status by period, and [`../writeup/rule30-state.html`](../writeup/rule30-state.html) is the full write-up.
+**Problem 1 is still open.** These are partial results. [`../README.md`](../README.md) gives the status by period, and The full write-up is at <https://sw1sh.github.io/vibe-proof/rule30-prize/> (source: [`../writeup/rule30-state.html`](../writeup/rule30-state.html)).
 
 - **Copied modules (54):** the 40 `Rule30*` modules that the catalog root imports, plus their import closure. The closure adds the 13 data modules in `Rule30Certificates/` and `BusyBeaverLifetimes`, which `Rule30Blocks` imports.
   - All 54 are byte-identical copies, at their catalog paths.

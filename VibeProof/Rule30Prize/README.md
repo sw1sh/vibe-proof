@@ -4,6 +4,8 @@ Problem 1 asks whether the center column of rule 30, started from a single black
 
 The Lean statement is `Ruliology.CellularAutomata.Rule30Prize.Problem1` in [`lean/Ruliology/CellularAutomata/Rule30Prize.lean`](lean/Ruliology/CellularAutomata/Rule30Prize.lean). It matches formal-conjectures' `Other/Rule30.lean`.
 
+**Write-up:** <https://sw1sh.github.io/vibe-proof/rule30-prize/>. It is published with GitHub Pages from the `gh-pages` branch; the source is [`writeup/rule30-state.html`](writeup/rule30-state.html).
+
 **Outcome: Problem 1 is still open.** A coordinator and about 100 subagents ran two research rounds, a final batch and a consolidation. Each round had adversarial verification. This folder holds:
 
 - the Lean results, which build on their own;
@@ -31,7 +33,7 @@ Barriers are also proved:
 ## Layout
 
 - **[`lean/`](lean/README.md):** a standalone Lake project. It holds byte-identical copies of the 54 Rule 30 modules of the `ruliology-lean` catalog, which git does not track, with SHA-256 sums and a module guide.
-- **[`writeup/rule30-state.html`](writeup/rule30-state.html):** the full write-up, self-contained; open it in a browser.
+- **[`writeup/rule30-state.html`](writeup/rule30-state.html):** the full write-up, a self-contained page. Read it at <https://sw1sh.github.io/vibe-proof/rule30-prize/>.
   - Section 9 covers the final batch.
   - Appendix A is the table of 393 theorems with their axioms.
   - Appendix B lists the computational claims.
