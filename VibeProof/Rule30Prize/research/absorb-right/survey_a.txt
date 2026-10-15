@@ -1,0 +1,60 @@
+0             10/ 10 periodic periods: 1 maxT 3
+1             10/ 10 periodic periods: 1 maxT 6
+01             0/ 20 periodic
+001           23/ 30 periodic periods: 21 maxT 14966
+011            0/ 30 periodic
+0001          40/ 40 periodic periods: 4 maxT 253
+0011          40/ 40 periodic periods: 4 maxT 345
+0111          40/ 40 periodic periods: 2 8 maxT 276
+00001          0/ 50 periodic
+00011          0/ 50 periodic
+00101          0/ 50 periodic
+00111          0/ 50 periodic
+01011          0/ 50 periodic
+01111          2/ 50 periodic periods: 10 maxT 12835
+000001         0/ 60 periodic
+000011         0/ 60 periodic
+000101         0/ 60 periodic
+000111         0/ 60 periodic
+001011         0/ 60 periodic
+001101         0/ 60 periodic
+001111         0/ 60 periodic
+010111         0/ 60 periodic
+011111         0/ 60 periodic
+0000001        0/ 70 periodic
+0000011        0/ 70 periodic
+0000101        0/ 70 periodic
+0000111        0/ 70 periodic
+0001001        0/ 70 periodic
+0001011        0/ 70 periodic
+0001101        0/ 70 periodic
+0001111        0/ 70 periodic
+0010011        0/ 70 periodic
+0010101        0/ 70 periodic
+0010111        0/ 70 periodic
+0011011        0/ 70 periodic
+0011101        0/ 70 periodic
+0011111        0/ 70 periodic
+0101011        0/ 70 periodic
+0101111        0/ 70 periodic
+0110111        0/ 70 periodic
+0111111        0/ 70 periodic
+00000001      80/ 80 periodic periods: 8 maxT 69
+00000011      80/ 80 periodic periods: 8 maxT 31
+00000101      80/ 80 periodic periods: 8 maxT 1791
+00000111       0/ 80 periodic
+00001001       0/ 80 periodic
+00001011       0/ 80 periodic
+00001101       0/ 80 periodic
+00001111       0/ 80 periodic
+00010011       0/ 80 periodic
+00010101       0/ 80 periodic
+00010111       0/ 80 periodic
+00011001       0/ 80 periodic
+00011011       0/ 80 periodic
+00011101      80/ 80 periodic periods: 8 maxT 1034
+00011111      80/ 80 periodic periods: 8 maxT 330
+00100101       0/ 80 periodic
+00100111       0/ 80 periodic
+00101011       0/ 80 periodic
+00101101       0/ 80 periodic

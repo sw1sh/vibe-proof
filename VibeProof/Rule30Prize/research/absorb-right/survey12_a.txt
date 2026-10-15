@@ -1,0 +1,90 @@
+000000000001  60/ 60 periodic periods: 12 maxT 14
+000000000011  60/ 60 periodic periods: 12 maxT 13
+000000000101  60/ 60 periodic periods: 12 maxT 18
+000000000111  17/ 60 periodic periods: 12 maxT 3869
+000000001001   0/ 60 periodic
+000000001011  60/ 60 periodic periods: 12 maxT 37
+000000001101   0/ 60 periodic
+000000001111  60/ 60 periodic periods: 12 maxT 29
+000000010001  60/ 60 periodic periods: 12 maxT 319
+000000010011   0/ 60 periodic
+000000010101   0/ 60 periodic
+000000010111   0/ 60 periodic
+000000011001   0/ 60 periodic
+000000011011   6/ 60 periodic periods: 12 maxT 2916
+000000011101  60/ 60 periodic periods: 12 maxT 50
+000000011111   0/ 60 periodic
+000000100001   0/ 60 periodic
+000000100011  10/ 60 periodic periods: 12 maxT 3940
+000000100101   0/ 60 periodic
+000000100111   0/ 60 periodic
+000000101001   0/ 60 periodic
+000000101011   0/ 60 periodic
+000000101101  44/ 60 periodic periods: 12 maxT 3846
+000000101111   0/ 60 periodic
+000000110001   0/ 60 periodic
+000000110011  60/ 60 periodic periods: 12 maxT 433
+000000110101   0/ 60 periodic
+000000110111   0/ 60 periodic
+000000111001   0/ 60 periodic
+000000111011  20/ 60 periodic periods: 12 maxT 3597
+000000111101   0/ 60 periodic
+000000111111   0/ 60 periodic
+000001000011  58/ 60 periodic periods: 12 maxT 3158
+000001000101   0/ 60 periodic
+000001000111   0/ 60 periodic
+000001001001   0/ 60 periodic
+000001001011   0/ 60 periodic
+000001001101  60/ 60 periodic periods: 12 maxT 1042
+000001001111   0/ 60 periodic
+000001010001   0/ 60 periodic
+000001010011   0/ 60 periodic
+000001010101   0/ 60 periodic
+000001010111  60/ 60 periodic periods: 12 maxT 433
+000001011001   0/ 60 periodic
+000001011011   0/ 60 periodic
+000001011101   0/ 60 periodic
+000001011111   0/ 60 periodic
+000001100001   7/ 60 periodic periods: 12 maxT 3631
+000001100011  60/ 60 periodic periods: 12 maxT 2348
+000001100101  15/ 60 periodic periods: 12 maxT 3120
+000001100111   0/ 60 periodic
+000001101001   0/ 60 periodic
+000001101011  60/ 60 periodic periods: 12 maxT 191
+000001101101   0/ 60 periodic
+000001101111   0/ 60 periodic
+000001110001   0/ 60 periodic
+000001110011   0/ 60 periodic
+000001110101  18/ 60 periodic periods: 12 maxT 3598
+000001110111   0/ 60 periodic
+000001111001   0/ 60 periodic
+000001111011  58/ 60 periodic periods: 12 maxT 2609
+000001111101   0/ 60 periodic
+000001111111   0/ 60 periodic
+000010000101   0/ 60 periodic
+000010000111   0/ 60 periodic
+000010001001  60/ 60 periodic periods: 12 maxT 2799
+000010001011   3/ 60 periodic periods: 12 maxT 3572
+000010001101   0/ 60 periodic
+000010001111   0/ 60 periodic
+000010010001  60/ 60 periodic periods: 12 maxT 153
+000010010011  14/ 60 periodic periods: 12 maxT 3951
+000010010101   0/ 60 periodic
+000010010111   0/ 60 periodic
+000010011001  59/ 60 periodic periods: 12 maxT 3001
+000010011011   0/ 60 periodic
+000010011101   0/ 60 periodic
+000010011111  60/ 60 periodic periods: 24 12 maxT 1211
+000010100011   8/ 60 periodic periods: 12 maxT 2374
+000010100101   0/ 60 periodic
+000010100111   0/ 60 periodic
+000010101001  60/ 60 periodic periods: 12 maxT 3613
+000010101011   0/ 60 periodic
+000010101101   0/ 60 periodic
+000010101111   0/ 60 periodic
+000010110001   0/ 60 periodic
+000010110011   0/ 60 periodic
+000010110101   0/ 60 periodic
+000010110111   0/ 60 periodic
+000010111001   0/ 60 periodic
+000010111011   0/ 60 periodic
