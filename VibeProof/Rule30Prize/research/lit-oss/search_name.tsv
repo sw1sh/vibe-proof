@@ -1,0 +1,908 @@
+2026-10-14T05:36:12Z	Patto1155/rule30-foundry	1	GPU-heavy local research and benchmarking workbench for the Wolfram Rule 30 prize problems.
+2026-10-09T07:31:58Z	beedbyte/rule30-research	0	Finite Rule 30 center-column models, specification, and checks
+2026-10-09T04:27:54Z	igor-holt/rule30-vdf	3	
+2026-10-08T20:26:54Z	nateberzai-svg/rule30-left-edge	0	Research
+2026-10-07T18:41:43Z	xetrics/rule30	0	cross-platform rule 30 visualizer/simulator
+2026-10-06T20:52:16Z	cochon123/rule30-prize	0	Rule 30 prize research notes and experiments (unsolved). No prize claim.
+2026-10-06T19:20:30Z	ChrisBrooksbank/rule30-renderer	0	Interactive TypeScript canvas renderer for Wolfram's Rule 30 cellular automaton
+2026-09-30T15:03:04Z	charleswest775/MMM-Rule30	0	MagicMirror² module: Wolfram's rule 30 grown from a single cell, a row at a time, regular on the left and random on the right, drawn for a Raspberry Pi without 
+2026-10-09T10:05:14Z	tankiancheng1974-SGP/Wolfram-Rule30-Resolution	0	Resolution to the Wolfram Rule30
+2026-09-14T12:33:44Z	emmatoad-droid/ferns-and-rule30-ascii	0	ASCII art demos: Barnsley fern and cellular automata (Rule 30 & Rule 110) in Rust
+2026-09-14T02:06:58Z	AlloySecureGroup/RULE30	0	Rule 30 and computational irreducibility
+2026-09-13T21:21:10Z	Dibujaron/rule30	0	Formalizing Wolfram's Rule 30 cellular automaton in Lean 4, with a harness that lets Claude agents do the proving.
+2026-09-11T01:46:29Z	a2aaron/Rule30	0	
+2026-09-08T14:42:33Z	fabianxvogt/rule30	0	
+2026-09-08T09:40:16Z	vibemathing/problem-rule30-1	0	[rule30-1] Rule30中央列非最终周期性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:21Z	vibemathing/problem-rule30-3	0	[rule30-3] Rule30计算不可约性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:16Z	vibemathing/problem-rule30-2	0	[rule30-2] Rule30中央列0/1极限频率 — Vibe Mathing bounty problem repository.
+2026-08-24T02:34:24Z	nick-wallingford/rule30	0	
+2026-08-19T11:47:05Z	connorWinningUM/Rule30Simulator	0	
+2026-10-08T20:59:46Z	wryan2986/rule30-lab	0	Reproducible computational research tools for Stephen Wolfram's Rule 30 prize problems
+2026-07-30T15:56:55Z	ezimuel/Rule30-PQ	1	A fast cryptographic hash function based on Rule 30 cellular automaton and designed for post-quantum security margins
+2026-07-08T10:18:15Z	qizwiz/rule30-ski-research	0	
+2026-06-28T05:55:04Z	Master-Ferrari/rule30-the-world	0	
+2026-06-22T16:21:35Z	kemingy/rule30	3	Pseudo random number generator with cellular automaton rule 30.
+2026-06-08T02:04:01Z	vmendi/rule30-webgl	0	Fast WebGL explorer for Wolfram elementary cellular automata
+2026-05-05T19:28:18Z	snknaveenkumaar/tt-rule30-vga	0	Rule 30 Cellular Automaton VGA Display
+2026-04-09T10:17:06Z	alessan2703a-max/Rule30	0	
+2026-04-06T15:54:54Z	poroshin-ao/rule30rngtests	0	
+2026-03-21T16:54:43Z	pratik7k/wolframs_rule30	0	
+2026-03-12T06:53:21Z	lefterachestefan/rule30	0	
+2026-03-08T14:22:04Z	elijasgogu/rule30-structure	0	Structural analysis of Rule 30 and Game of Life via path numbers
+2026-03-03T07:30:20Z	kwaneleb21-ctrl/rule30_band_sat_sweep_repo_resumable_debugged_rc10_20_direct	0	Rule 30 Periodicity band sweep
+2026-02-06T05:21:22Z	mathcode220-math/rule30.2	0	
+2026-01-13T01:29:48Z	conancarrow/rule30	0	
+2026-01-01T19:08:42Z	vrypan/rule30rnd	0	Repo moved to R30R2
+2025-12-11T03:43:20Z	Patto1155/Rule30_Tools	0	https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/
+2025-11-28T15:40:48Z	midnitefox/rule30	0	Predicting the future by computing at a higher dimension
+2025-11-23T12:00:29Z	sandyherho/rule30-simulator	0	
+2025-10-14T22:11:11Z	izaic3/rule30	0	Rule 30 cellular automaton generator.
+2025-08-03T00:29:37Z	lba-brauer/rule30-symbolic-fsm	0	Symbolic drift and FSM validation for Wolfram's Rule 30 – with full simulation, analysis, and prize-relevant findings.
+2025-07-03T23:13:00Z	booleanbunny/rule30mips	0	
+2025-01-20T18:13:14Z	superfrink/rule30-sacks	0	
+2024-12-18T07:04:37Z	adi-code22/cellular-automata-rule30	1	The most basic Rule30 pseudo randomness algorithm visualised using GoLang
+2024-10-21T16:58:39Z	AndresCasillas99/Rule30-Pseudo-Random-Number-Generator	0	A (pseudo)random number generator that uses the central column values of Wolfram's Rule30.
+2024-10-21T16:41:48Z	AndresCasillas99/Rule30	0	An efficient algorithm for computing the n-th row of Wolfram's Rule 30. 
+2024-06-24T23:35:03Z	lwcarani/rule30	0	cellular automaton rule 30 [left XOR (center OR right)]
+2024-03-19T23:48:42Z	staticWagomU/rule30	0	
+2023-12-23T06:13:11Z	galqiwi/rule30_21	0	
+2023-10-27T16:45:40Z	glennwiz/Rule30	0	
+2023-10-25T22:52:59Z	leovandriel/rule30	0	Animate rule 30 forward and reversed
+2023-09-12T23:13:07Z	gifton/Rule30	0	Swift application that showcases Stephen Wolfram's Cellular automata and their rules
+2023-07-22T09:02:36Z	mell-o-tron/Rule30Variation	0	
+2023-01-20T09:16:17Z	martian17/rule30-seeded-random	0	
+2022-12-23T05:06:36Z	LuisAlbertoPenaNunez/Rule30CodingChallenge	1	Rule 30 is an elementary cellular automaton introduced by Stephen Wolfram in 1983.
+2022-10-21T21:39:33Z	luuketi/GameOfLife-Rule30	0	
+2022-08-24T15:48:56Z	Kimiega/PRNG_rule30	0	Lib that provides random numbers obtained from a tree built according to rule 30.
+2022-07-08T22:41:05Z	0xchl0e/Rule30_PRNG	0	Experimenting with the Rule 30 cellular Automata as a PRNG
+2022-07-03T13:29:25Z	knyazev13ivan/cellular-automata-rule30	0	cellular automata. rule 30 with gradient tail.
+2022-06-13T17:05:34Z	bakaq/rule30conway	0	A simulation of feeding rule 30 into Conway's Game of Life
+2022-05-12T07:15:30Z	crebro/rule30-visual	0	Visualization for the rule 30 pattern using p5.js
+2022-03-21T15:25:19Z	mark1044/rule30	0	
+2022-03-19T12:57:58Z	rishabharoraa/rule30	1	illustration of rule30 cellular automaton written in go
+2022-01-03T18:49:59Z	northofnormal/Rule30Transloc	0	Implementation of the Rule 30 algorithm 
+2021-12-08T18:40:13Z	deppong/rule30_SDL	0	Rule30 simulation in C/SDL2
+2021-09-11T20:50:16Z	LuBru90/Rule30	0	Rule 30 is an elementary cellular automaton
+2021-08-12T14:55:36Z	ln2058/celullar-automata-rule30-centercolumn	0	A python program that will calculate the on and off states (in 0s and 1s) for the middle / center column of Rule 30 cellular automata which is thought to be cap
+2020-12-16T16:31:43Z	gmhcode/Rule30	0	
+2020-11-23T20:35:30Z	Brandogs/Rule30	0	Rule 30 Cellular Automata Demo Project
+2020-05-19T17:56:08Z	ZachWolpe/Rule30-Cellular-Automata	0	Implementation of CA - The Famous Rule 30
+2020-04-28T15:36:03Z	plming/Rule30	0	This is Rule 30 cellular automata written in C
+2020-02-27T17:22:31Z	willflet/rule30-research	0	Investigation into the structure and behaviour of the elementary cellular automaton (ECA) rule 30, motivated by Wolfram's challenge https://www.rule30prize.org/
+2019-08-03T12:45:42Z	EL-S/Rule30RNG	1	A rule 30 random number generator
+2019-05-17T03:04:17Z	allenspicer/demo_rule30	0	A demonstration of the elementary cellular automaton rule known as "rule 30"
+2019-03-26T04:04:50Z	stephanieshen18/Rule30Simulation	0	JAVA -- Computes at least 300 iterations of the one-dimensional binary cellular automaton known as Rule 30, which has been shown to display a periodic and chaot
+2018-12-27T06:54:59Z	wjr0102/PRNG_with_rule30	0	
+2018-08-07T18:13:12Z	MartyFromCary/Rule30	0	Rule 30 Cellular Automaton displayed on pixel level
+2018-07-18T16:14:19Z	rho24/fsharp-rule30	0	
+2017-08-23T05:18:25Z	alangfiles/Rule30	0	Generating some triangles, writing obtuse js.
+2017-06-01T21:57:54Z	earthfail/rule30	0	terminal simulation of rule30 created by steven wolfram
+2017-05-27T16:49:00Z	zmwangx/rule30	31	Python implementation of Stephen Wolfram's elementary cellular automata (in particular, Rule 30)
+2017-03-19T11:00:47Z	ciubotaru/bitfield-rule30	2	An implementation of Wolfram's Rule 30 cellular automaton written in C
+2017-03-11T17:30:10Z	agwind/rule30	0	Elementary cellular automata
+2017-02-22T18:59:26Z	YanpuLi/Cellular-Automata-Rule30-Implementation	0	
+2016-06-21T05:52:09Z	jessefromearth/rule30	2	An open-source implementation of Stephen Wolframs Rule 30 cellular automaton rule written using Python and pygame.
+2016-04-28T14:19:13Z	maharleeeka/Rule30	0	
+2016-04-23T16:30:19Z	Paksssssss/rule30	0	
+2016-04-22T16:56:20Z	HowDoIGitHelp/rule30automata	0	
+2016-04-22T16:42:30Z	Lesterrific17/Rule30	0	Cellular Automata
+2016-04-22T14:09:19Z	marosenarca/Rule30	0	
+2016-04-22T10:33:22Z	jessduran/Rule30	0	
+2016-04-22T03:22:08Z	faielomente/cmsc141-rule30	0	Console implementation
+2016-03-19T17:16:00Z	JotaAlava/MEAN-Rule30	0	Will draw Wolfram's rule 30.
+2016-02-03T00:58:20Z	screamish/rule30-elm	1	A quick and dirty attempt at cellular automaton rule 30 in elmlang
+2015-06-29T04:34:11Z	jesseract/Rule30	0	
+2015-05-24T01:11:24Z	mearns/rule30	0	Implementatino of Wolfram's Rule-30 Cellular Automata
+2015-02-18T19:40:34Z	dperjar/rule30	0	A JavaScript and canvas implemenation of Stephen Wolfram's elementary cellular automata according to Rule  30
+2015-01-21T19:05:40Z	vbetts/rule30	1	A python project which simulates one-dimensional binary cellular automaton rule 30. Outputs a jpg for each line of the drawing so you can make an animated gif
+2014-12-19T13:02:51Z	JarettRoman/rule30	0	Repo holding a rule30 script written in Ruby
+2014-05-09T16:37:11Z	vrde/rule30	0	Generating chaos
+2014-05-02T12:10:12Z	JasonLunsford/rule30	0	My solution to the rule 30 challenge
+2014-04-07T14:26:35Z	dcarter5804/Rule30	0	Cellular Automation Rule 30
+2011-10-01T20:23:16Z	jeremysalwen/rule30cyclefinder	1	Finds repetitions of states in bounded width rule 30 cellular automata
+2011-02-13T15:49:02Z	johnmn3/clj-rule30	1	
+2026-10-14T05:36:12Z	Patto1155/rule30-foundry	1	GPU-heavy local research and benchmarking workbench for the Wolfram Rule 30 prize problems.
+2026-10-09T07:31:58Z	beedbyte/rule30-research	0	Finite Rule 30 center-column models, specification, and checks
+2026-10-09T04:27:54Z	igor-holt/rule30-vdf	3	
+2026-10-08T20:26:54Z	nateberzai-svg/rule30-left-edge	0	Research
+2026-10-07T18:41:43Z	xetrics/rule30	0	cross-platform rule 30 visualizer/simulator
+2026-10-06T20:52:16Z	cochon123/rule30-prize	0	Rule 30 prize research notes and experiments (unsolved). No prize claim.
+2026-10-06T19:20:30Z	ChrisBrooksbank/rule30-renderer	0	Interactive TypeScript canvas renderer for Wolfram's Rule 30 cellular automaton
+2026-10-05T16:13:41Z	Noofalateeq/ARTI303-Lab5-Rules	0	
+2026-10-02T22:36:15Z	wesam-sanb0/arti303-lab05-rules	0	ARTI 303 — Programming for AI | Lab Assignment 05. Prolog knowledge base for The Simpsons family tree. Facts (male, female, parent) plus rules for father, mothe
+2026-10-01T19:25:29Z	Reham-Alqahtani/ARTI303-Lab05-Rules	0	
+2026-09-30T15:03:04Z	charleswest775/MMM-Rule30	0	MagicMirror² module: Wolfram's rule 30 grown from a single cell, a row at a time, regular on the left and random on the right, drawn for a Raspberry Pi without 
+2026-09-29T14:24:57Z	KhoKhoo/ARTI-303-Lab-Assignment-03---Working-with-Rules	0	
+2026-09-29T07:07:21Z	Lujain-Almalki/ARTI303-Lab05-Rules	0	
+2026-09-24T07:52:07Z	RobertBoettcherSF/Ada-Rule-30	0	Rule of 30 in Ada
+2026-10-09T10:05:14Z	tankiancheng1974-SGP/Wolfram-Rule30-Resolution	0	Resolution to the Wolfram Rule30
+2026-09-14T12:33:44Z	emmatoad-droid/ferns-and-rule30-ascii	0	ASCII art demos: Barnsley fern and cellular automata (Rule 30 & Rule 110) in Rust
+2026-09-14T02:06:58Z	AlloySecureGroup/RULE30	0	Rule 30 and computational irreducibility
+2026-09-13T21:21:10Z	Dibujaron/rule30	0	Formalizing Wolfram's Rule 30 cellular automaton in Lean 4, with a harness that lets Claude agents do the proving.
+2026-09-11T01:46:29Z	a2aaron/Rule30	0	
+2026-09-08T14:42:33Z	fabianxvogt/rule30	0	
+2026-09-08T09:40:16Z	vibemathing/problem-rule30-1	0	[rule30-1] Rule30中央列非最终周期性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:21Z	vibemathing/problem-rule30-3	0	[rule30-3] Rule30计算不可约性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:16Z	vibemathing/problem-rule30-2	0	[rule30-2] Rule30中央列0/1极限频率 — Vibe Mathing bounty problem repository.
+2026-09-07T14:36:36Z	allisongibbes/The-30-Degree-Rule-Simulator	0	
+2026-09-04T02:08:56Z	tkluysk/rule-30-explorer	0	
+2026-09-01T23:21:44Z	CpanelInc/ea-modsec30-rules-owasp-crs	0	EXPERIMENTAL
+2026-09-01T19:44:49Z	JosephRuff/60-30-10-rule	0	Analysis of 60-30-10 Rule in Images and Video
+2026-08-26T16:41:41Z	abhinavthakurbish-eng/legal-metrology-rules-check-30	0	legal-metrology-rules-check-30
+2026-08-24T02:34:24Z	nick-wallingford/rule30	0	
+2026-08-19T18:36:42Z	SuyamaCorporation/frugal-budget-rule-50-30-20	0	AI-generated app: 50/30/20 ルール 家計バランスチェッカー (zerohuman-labs daily 2026-08-20)
+2026-08-19T11:47:05Z	connorWinningUM/Rule30Simulator	0	
+2026-08-14T00:18:36Z	Buliangzhang24/PhD_Thesis_Measuring-the-3-30-300-rule-in-NewZealand	0	
+2026-08-06T14:04:18Z	eleonoraandreotti/3-30-300-rule	0	
+2026-10-08T20:59:46Z	wryan2986/rule30-lab	0	Reproducible computational research tools for Stephen Wolfram's Rule 30 prize problems
+2026-07-30T15:56:55Z	ezimuel/Rule30-PQ	1	A fast cryptographic hash function based on Rule 30 cellular automaton and designed for post-quantum security margins
+2026-07-27T10:59:54Z	flapzero-dmssb/300-nazo-rule	0	rule
+2026-07-14T15:15:57Z	eko-071/prng-rule-30	0	A pseudo-random number generator using the Rule 30 cellular automata
+2026-07-08T10:18:15Z	qizwiz/rule30-ski-research	0	
+2026-06-28T05:55:04Z	Master-Ferrari/rule30-the-world	0	
+2026-06-22T16:21:35Z	kemingy/rule30	3	Pseudo random number generator with cellular automaton rule 30.
+2026-06-08T02:04:01Z	vmendi/rule30-webgl	0	Fast WebGL explorer for Wolfram elementary cellular automata
+2026-05-24T10:11:12Z	driftnode986/claude-code-design-30-rules-samples	0	Companion samples for the book "Claude Code 設計の30の鉄則" (Makino Makoto, 2026)
+2026-05-13T19:38:48Z	macronfx/Rule-30	0	
+2026-05-11T17:52:29Z	priyarachel2508-byte/30-rule-theory	0	
+2026-05-05T19:28:18Z	snknaveenkumaar/tt-rule30-vga	0	Rule 30 Cellular Automaton VGA Display
+2026-05-04T22:42:30Z	you1113254-prog/30day-rule	0	
+2026-05-03T09:41:39Z	SimpleMindedMoron/3-10-30-rule-experiment	0	A Python network simulation quantifying the efficiency of targeted vs. random fact-checking in halting fake news cascades.
+2026-04-18T12:52:29Z	greatsong/ai-rule-designer-30h-opus47	0	EduFlow chapters regenerated with Claude Opus 4.7 (vs ai-rule-designer-30h which used Opus 4.6)
+2026-04-18T12:51:44Z	greatsong/ai-rule-designer-30h	2	
+2026-04-09T10:17:06Z	alessan2703a-max/Rule30	0	
+2026-04-06T15:54:54Z	poroshin-ao/rule30rngtests	0	
+2026-03-26T18:55:11Z	AgamSinghDhir/Rule-30-CA-Based-Hardware-Encryption-Engine	0	
+2026-03-21T16:54:43Z	pratik7k/wolframs_rule30	0	
+2026-03-16T09:22:35Z	Tornilla/50-20-30_Rule	0	
+2026-03-12T06:53:21Z	lefterachestefan/rule30	0	
+2026-03-08T14:22:04Z	elijasgogu/rule30-structure	0	Structural analysis of Rule 30 and Game of Life via path numbers
+2026-03-03T07:30:20Z	kwaneleb21-ctrl/rule30_band_sat_sweep_repo_resumable_debugged_rc10_20_direct	0	Rule 30 Periodicity band sweep
+2026-02-21T06:17:41Z	GitArthurMarchetti/50-30-20-Rule	0	
+2026-02-17T13:34:52Z	mrspeedy30/50-30-20-rule-calculator-	0	Just small project that helps to calculate spendigs based on your salary.  
+2026-02-07T15:39:52Z	trungnt25604-debug/vn30-rule-based-trading-system	0	Rule-based decision support system for VN30 stocks using technical indicators
+2026-02-06T05:21:22Z	mathcode220-math/rule30.2	0	
+2026-02-02T00:36:42Z	NoeA90/ruleta.bet300vip	0	
+2026-01-17T09:08:56Z	ragesband2/January-17-2026-Talahanayan-ng-Polygamy-Law-Rule-at-Age-30-2026	0	
+2026-01-17T08:33:57Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-6	0	
+2026-01-17T08:27:56Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-5	0	
+2026-01-17T08:25:24Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-4	0	
+2026-01-17T08:23:28Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-3	0	
+2026-01-17T08:20:47Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-2	0	
+2026-01-17T08:15:54Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026	0	
+2026-01-15T01:48:04Z	s-sj-b/rule-30	0	
+2026-01-13T01:29:48Z	conancarrow/rule30	0	
+2026-01-10T09:56:00Z	VKBEGINS/30-sg-rules	0	
+2026-01-01T19:08:42Z	vrypan/rule30rnd	0	Repo moved to R30R2
+2025-12-23T18:34:01Z	ECBrands/ECInternet_Sage300TaxRules	0	EC Internet Sage300 Tax Rules extension
+2025-12-21T19:27:52Z	johndoe2x/53-30-20-budgeting-rule	0	53/30/20 budgeting rule
+2025-12-16T14:06:12Z	mao-syseng/k-rule-30-elementary-cellular-automata	0	rule 30 in 4 lines of k
+2025-12-11T03:43:20Z	Patto1155/Rule30_Tools	0	https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/
+2025-12-03T14:06:39Z	303BarberStudio/ruleta303	0	
+2025-11-28T15:40:48Z	midnitefox/rule30	0	Predicting the future by computing at a higher dimension
+2025-11-23T12:00:29Z	sandyherho/rule30-simulator	0	
+2025-11-21T07:13:51Z	AKSAKS24/DB_RULE_301_SNIP	0	DB_RULE_301_SNIP
+2025-11-21T07:12:18Z	AKSAKS24/DB_RULE_303_304_SNIP	0	DB_RULE_303_304_SNIP
+2025-11-15T04:09:15Z	NoeA90/ruleta.bet300	0	
+2025-11-09T17:31:31Z	Bimanpc/vpsaidev30rulesgr	0	
+2025-11-03T18:45:20Z	RatnakarVise/db_rule_303_304	0	
+2025-11-03T18:38:09Z	RatnakarVise/db_rule_301	0	
+2025-11-02T09:19:50Z	jdmotalora/3-30-300-rule-3-visibility-optimization	0	Set Cover algorithm for optimizing tree placement under 3-30-300 urban greening rule
+2025-10-27T09:30:58Z	R-nees/70-30-Money-rule	0	
+2025-10-23T05:09:44Z	yenulisiri/rule-based-test-a30ee4af	0	Auto-generated rule-based Python test project - a30ee4af
+2025-10-14T22:11:11Z	izaic3/rule30	0	Rule 30 cellular automaton generator.
+2025-10-12T17:56:27Z	maheshsmc2/d30-rule-intent-chatbot	0	
+2025-10-05T23:05:56Z	NoeA90/bet300.ruleta.luj	0	
+2025-10-04T08:00:09Z	jmvallejop1/rules_30PB	0	
+2025-09-22T16:16:10Z	NoeA90/ruleta.bet300.lu	0	
+2025-09-13T16:04:42Z	yenulisiri/rule-based-test-41e30697	0	Auto-generated rule-based Python test project - 41e30697
+2025-09-12T14:01:15Z	xaviernuel-nc/rewrite_rules_301_generator	0	
+2025-09-10T16:35:00Z	yenulisiri/rule-based-test-adb6ac30	0	Auto-generated rule-based Python test project - adb6ac30
+2025-09-10T12:57:39Z	yenulisiri/rule-based-test-0db87c30	0	Auto-generated rule-based Python test project - 0db87c30
+2025-09-09T08:56:11Z	yenulisiri/rule-based-test-29bea30c	0	Auto-generated rule-based Python test project - 29bea30c
+2025-08-25T15:51:44Z	NoeA90/ruletavip.bet300	0	
+2025-08-23T17:59:10Z	arafatmonowar8/30-Day-Rule-California-Esa	0	CertifyESA helps individuals quickly and legally obtain Emotional Support Animal (ESA) letters from licensed mental health professionals. Our service is fast, s
+2025-08-19T06:31:55Z	quanganh2302/Repeated_Point_Measurement-Camera_Ruler_3000	0	
+2025-08-03T00:29:37Z	lba-brauer/rule30-symbolic-fsm	0	Symbolic drift and FSM validation for Wolfram's Rule 30 – with full simulation, analysis, and prize-relevant findings.
+2025-07-30T11:12:38Z	ragesband2/July-30-2025-Busted-Rule---Relationship-Game	0	
+2025-07-30T11:04:32Z	ragesband2/July-30-2025-No-Contact-Rule-The-Game	0	
+2025-07-25T02:08:13Z	MarceloLuisDantas/Rule-30	0	
+2025-07-18T06:48:15Z	ragesband2/July-18-2025-Engagement-Rules-With-30-Minutes-Phase-Out-Button-But-Null-Links	0	
+2025-07-03T23:13:00Z	booleanbunny/rule30mips	0	
+2025-06-22T05:17:38Z	AkiseF/Rule-30-ECA	0	Práctica 2 del curso Cellular Automata | Complex Systems
+2025-06-22T04:31:49Z	AddAcTech/rule-30	0	
+2025-06-21T03:36:51Z	FuriousKidD/Conway-Rule-30	0	This is a simple program imitating conway's rule 30 cellular automata
+2025-05-24T13:47:51Z	grinara/rule-30	0	
+2025-05-08T08:13:13Z	USAGEHub/30_rule	0	
+2025-05-08T08:04:57Z	USAGEHub/300_rule	0	
+2025-01-26T14:25:46Z	slknnk/1C-ExchangeRules-Trade103ToAcc30	0	Exchange rules
+2025-01-20T18:13:14Z	superfrink/rule30-sacks	0	
+2024-12-18T07:04:37Z	adi-code22/cellular-automata-rule30	1	The most basic Rule30 pseudo randomness algorithm visualised using GoLang
+2024-10-21T16:58:39Z	AndresCasillas99/Rule30-Pseudo-Random-Number-Generator	0	A (pseudo)random number generator that uses the central column values of Wolfram's Rule30.
+2024-10-21T16:41:48Z	AndresCasillas99/Rule30	0	An efficient algorithm for computing the n-th row of Wolfram's Rule 30. 
+2024-08-27T19:45:56Z	cordova-jon1618/cellular_automata_program_rule_30	0	
+2024-07-16T20:29:14Z	egmonou/30-AR-Ruler	0	
+2024-06-24T23:35:03Z	lwcarani/rule30	0	cellular automaton rule 30 [left XOR (center OR right)]
+2024-06-03T02:32:21Z	galenwilkerson/Wolfram-Rule-30	0	Implementation of Wolfram's Rule 30
+2024-05-21T21:08:57Z	222115222Murovhi/Rule-30-cellular-automation	0	simulation of the rule 30 cellular automation 
+2024-03-28T16:55:02Z	Rayintu/rust_sdl2_rule_30	0	
+2024-03-25T14:50:19Z	sick-appspace-samples-develop/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2024-03-23T18:06:52Z	Stef-van-Stipdonk/cellular-automaton-rule-30	0	
+2024-03-19T23:48:42Z	staticWagomU/rule30	0	
+2024-03-18T22:11:36Z	MAVUNDL/C-Rule-30-Cellular-Automaton	1	The C++ Rule 30 Cellular Automaton is a simulation of a one-dimensional system where each cell's state evolves based on its current state and neighboring cells 
+2024-01-19T22:57:27Z	Adan-7742/Day_30-One-Defination-Rule	0	
+2024-01-11T08:19:47Z	elliotwaite/rule-30-and-game-of-life	162	Generates a 2D animation of Rule 30 (or other rules) being fed into Conway's Game of Life.
+2023-12-23T06:13:11Z	galqiwi/rule30_21	0	
+2023-12-20T23:56:58Z	sick-appspace-samples/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2023-12-15T02:57:49Z	uhthomas/rules_go-issue-3033	0	https://github.com/bazelbuild/rules_go/issues/3033
+2023-12-06T22:09:22Z	confusedCoyote/pcb-30cm-ruler	0	A Printed Circuit Board ruler with some helpful hints
+2023-12-02T17:50:27Z	Sarthak950/Rule-30	0	
+2023-11-30T13:02:36Z	30-06-2004/chatbot-with-rule-based-responce	0	
+2023-11-05T16:58:42Z	Zaffer/rule-30	0	workings for rule 30 prizes
+2023-11-03T00:03:05Z	Danny-Bold/Rule-30-Automata	0	
+2023-10-27T16:45:40Z	glennwiz/Rule30	0	
+2023-10-25T22:52:59Z	leovandriel/rule30	0	Animate rule 30 forward and reversed
+2023-09-12T23:13:07Z	gifton/Rule30	0	Swift application that showcases Stephen Wolfram's Cellular automata and their rules
+2023-08-09T18:40:04Z	YextHHChallenges/ANS302-query-rules	0	
+2023-07-22T09:02:36Z	mell-o-tron/Rule30Variation	0	
+2023-07-01T20:57:02Z	tugsanyesil/Rule_30	0	
+2023-04-09T17:01:33Z	DakinQuelia/phpBB30-RulesPageAdvanced	1	About Rules Pages Advanced for phpBB 3.0.x 
+2023-03-27T13:34:02Z	mayukhmali-das-instruct-sota-v1/Rule_30_Solving_the_Chaos	1	This paper provides an analytical solution to the Wolfram Alpha Problem 1. In this paper we discuss whether the central column of the Rule 30 structure is purel
+2023-02-25T21:24:41Z	smudgeConn/Rule-30	0	Codewars | 5 kyu | Rule 30
+2023-02-05T00:31:34Z	nceeg01/50-30-20-rule	0	
+2023-01-20T09:16:17Z	martian17/rule30-seeded-random	0	
+2022-12-23T05:06:36Z	LuisAlbertoPenaNunez/Rule30CodingChallenge	1	Rule 30 is an elementary cellular automaton introduced by Stephen Wolfram in 1983.
+2022-10-21T21:39:33Z	luuketi/GameOfLife-Rule30	0	
+2022-10-11T07:34:04Z	PratikJagdale/ConwaysGameOfLifeRule30	0	
+2022-08-24T15:48:56Z	Kimiega/PRNG_rule30	0	Lib that provides random numbers obtained from a tree built according to rule 30.
+2022-08-05T15:01:16Z	zebieksts/rule-30	0	This application draws cellural automata rule 30 pattern rotated by 45 degree
+2022-07-08T22:41:05Z	0xchl0e/Rule30_PRNG	0	Experimenting with the Rule 30 cellular Automata as a PRNG
+2022-07-03T13:29:25Z	knyazev13ivan/cellular-automata-rule30	0	cellular automata. rule 30 with gradient tail.
+2022-06-14T09:27:50Z	ernestak/Sigma-Rule-for-CVE-2022-30190	0	
+2022-06-13T17:05:34Z	bakaq/rule30conway	0	A simulation of feeding rule 30 into Conway's Game of Life
+2022-06-09T14:04:35Z	Carlos-gitjub/CellularAutomataRule30	0	Interactive Visualizations for Cellular Automaton Rule 30.
+2022-05-12T07:15:30Z	crebro/rule30-visual	0	Visualization for the rule 30 pattern using p5.js
+2022-05-11T18:38:13Z	garrettroell/rule_30	0	An interactive visualizer for Steven Wolfram's cellular automata
+2022-04-14T09:35:32Z	dominiczypen/Rule_30_rotate	0	Rule 30 cellular automaton with "wrapping at edges" (solved by rotation). Branchless and with bitwise op -> fast.
+2022-04-02T15:43:54Z	ozgurgunay/wolfram-rule-30	0	CA
+2022-03-21T15:25:19Z	mark1044/rule30	0	
+2022-03-19T12:57:58Z	rishabharoraa/rule30	1	illustration of rule30 cellular automaton written in go
+2022-02-16T01:53:07Z	Scotch101Tape/rule-30-pfp-maker	0	
+2022-02-11T14:05:19Z	Fibonacci1664/SFML_RuleBasedSystem_MAT_301_AI	0	
+2022-02-08T01:25:59Z	hexaron/Rule-30	0	
+2022-02-01T16:31:38Z	PoulIgorson/rule-30	0	
+2022-01-03T18:49:59Z	northofnormal/Rule30Transloc	0	Implementation of the Rule 30 algorithm 
+2022-01-01T21:41:22Z	matthabermehl/rule-30	0	A small Vue app that runs Wolfram's rule 30 (javascript)
+2021-12-08T18:40:13Z	deppong/rule30_SDL	0	Rule30 simulation in C/SDL2
+2021-09-11T20:50:16Z	LuBru90/Rule30	0	Rule 30 is an elementary cellular automaton
+2021-08-12T14:55:36Z	ln2058/celullar-automata-rule30-centercolumn	0	A python program that will calculate the on and off states (in 0s and 1s) for the middle / center column of Rule 30 cellular automata which is thought to be cap
+2021-07-21T09:23:42Z	Zinc-30/rule_selection	0	
+2021-06-06T22:29:30Z	jamesspeller/community-30k-rules	0	Unofficial 30k community rules pack
+2021-03-19T15:32:49Z	melmelnick/IEMS-308-Association-Rules	0	IEMS 308 Homework 2
+2021-03-03T10:12:41Z	berkay-demir/Look-Up-Rule-30	0	
+2020-12-16T16:31:43Z	gmhcode/Rule30	0	
+2020-11-23T20:35:30Z	Brandogs/Rule30	0	Rule 30 Cellular Automata Demo Project
+2020-10-01T18:10:10Z	itzzritik/30-30-BreakRule	2	
+2020-09-23T15:57:45Z	Scavix/Rule_30_Processing	0	Wolfram's Rule 30 Replica done in Processing
+2020-05-19T17:56:08Z	ZachWolpe/Rule30-Cellular-Automata	0	Implementation of CA - The Famous Rule 30
+2020-04-28T15:36:03Z	plming/Rule30	0	This is Rule 30 cellular automata written in C
+2020-03-02T14:42:27Z	clj0020/Rule-30	0	An android application that showcases Wolfram Alpha's Rule 30 of cellular automata.
+2020-02-27T17:22:31Z	willflet/rule30-research	0	Investigation into the structure and behaviour of the elementary cellular automaton (ECA) rule 30, motivated by Wolfram's challenge https://www.rule30prize.org/
+2020-02-13T21:37:16Z	anandbraman/association-rules-iems-308	0	Using apriori algorithm to recommend reorganization of Dillard's planograms
+2020-02-08T19:42:37Z	LynnLing1229/IEMS308_Association_Rules	0	IEMS308_Association_rules
+2019-11-24T10:11:17Z	benhe119/CYDF300-suricata-rules	0	
+2019-09-09T17:52:35Z	scottybcoder/30-360-rule-module	2	A Module for PHP-Nuke Titanium v3.0.0 - ACTUAL/360 (AKA 365/360) Rule Calculator
+2019-08-03T12:45:42Z	EL-S/Rule30RNG	1	A rule 30 random number generator
+2019-06-03T03:55:26Z	beenotung/rule-30	0	screensaver showing rule30 pattern
+2019-05-17T03:04:17Z	allenspicer/demo_rule30	0	A demonstration of the elementary cellular automaton rule known as "rule 30"
+2019-05-06T18:00:24Z	Lukelear-Warhead/Rule_30	0	CodingTest
+2019-03-26T04:04:50Z	stephanieshen18/Rule30Simulation	0	JAVA -- Computes at least 300 iterations of the one-dimensional binary cellular automaton known as Rule 30, which has been shown to display a periodic and chaot
+2018-12-27T06:54:59Z	wjr0102/PRNG_with_rule30	0	
+2018-08-07T18:13:12Z	MartyFromCary/Rule30	0	Rule 30 Cellular Automaton displayed on pixel level
+2018-07-18T16:14:19Z	rho24/fsharp-rule30	0	
+2018-02-09T22:03:57Z	pkk503/308_AssociationRules	0	
+2018-02-07T22:02:46Z	jakeatlas/IEMS_308_AssociationRules	0	
+2017-12-03T16:12:45Z	Runemoor/Rule_30	0	My Excel-version of Stephen Wolfram's famous one dimensional cellular automaton rule - the Rule 30
+2017-08-23T05:18:25Z	alangfiles/Rule30	0	Generating some triangles, writing obtuse js.
+2017-06-01T21:57:54Z	earthfail/rule30	0	terminal simulation of rule30 created by steven wolfram
+2017-05-27T16:49:00Z	zmwangx/rule30	31	Python implementation of Stephen Wolfram's elementary cellular automata (in particular, Rule 30)
+2017-03-29T03:37:59Z	jylopez/rule-30	0	:shell: Returns new binary state of array after applying cellular automaton Rule 30
+2017-03-19T11:00:47Z	ciubotaru/bitfield-rule30	2	An implementation of Wolfram's Rule 30 cellular automaton written in C
+2017-03-11T17:30:10Z	agwind/rule30	0	Elementary cellular automata
+2017-02-22T18:59:26Z	YanpuLi/Cellular-Automata-Rule30-Implementation	0	
+2016-12-07T16:25:03Z	ckftahadlangit/MP5-RevisitingRule30	0	
+2016-12-07T15:43:57Z	MEPacana/MP5_Revisiting_Rule_30	0	Rule 30 implementation with threads
+2016-10-01T04:25:16Z	FrostySkank/Oonclaups-Stream-Rule.-9-30-16	0	Oonclaups Stream Rule. 9/30/16
+2016-06-21T05:52:09Z	jessefromearth/rule30	2	An open-source implementation of Stephen Wolframs Rule 30 cellular automaton rule written using Python and pygame.
+2016-04-28T14:19:13Z	maharleeeka/Rule30	0	
+2016-04-23T16:30:19Z	Paksssssss/rule30	0	
+2016-04-22T17:52:09Z	dev-marimo/Rule-30-Cellular-Automata	0	
+2016-04-22T16:56:20Z	HowDoIGitHelp/rule30automata	0	
+2016-04-22T16:42:30Z	Lesterrific17/Rule30	0	Cellular Automata
+2016-04-22T16:02:37Z	miriammariety/Rule-30	0	MP3 for CMSC 141
+2016-04-22T14:09:19Z	marosenarca/Rule30	0	
+2016-04-22T10:33:22Z	jessduran/Rule30	0	
+2016-04-22T03:22:08Z	faielomente/cmsc141-rule30	0	Console implementation
+2016-04-21T19:36:31Z	jannielynacha/Rule-30	0	CMSC 141 MP3
+2016-03-19T17:16:00Z	JotaAlava/MEAN-Rule30	0	Will draw Wolfram's rule 30.
+2016-02-03T00:58:20Z	screamish/rule30-elm	1	A quick and dirty attempt at cellular automaton rule 30 in elmlang
+2015-11-04T17:45:39Z	wharkins3/harkinsRule30	0	
+2015-07-17T12:10:30Z	aefesp/Rule_30	0	
+2015-06-30T19:00:23Z	dheckman/Rule-30	0	
+2015-06-29T04:34:11Z	jesseract/Rule30	0	
+2015-05-24T01:11:24Z	mearns/rule30	0	Implementatino of Wolfram's Rule-30 Cellular Automata
+2015-02-18T19:40:34Z	dperjar/rule30	0	A JavaScript and canvas implemenation of Stephen Wolfram's elementary cellular automata according to Rule  30
+2015-01-21T19:05:40Z	vbetts/rule30	1	A python project which simulates one-dimensional binary cellular automaton rule 30. Outputs a jpg for each line of the drawing so you can make an animated gif
+2014-12-19T13:02:51Z	JarettRoman/rule30	0	Repo holding a rule30 script written in Ruby
+2014-05-09T16:37:11Z	vrde/rule30	0	Generating chaos
+2014-05-02T12:10:12Z	JasonLunsford/rule30	0	My solution to the rule 30 challenge
+2014-04-07T14:26:35Z	dcarter5804/Rule30	0	Cellular Automation Rule 30
+2013-04-28T18:13:20Z	wonjyou/WolframRule30	0	A C++ program that simulates Rule 30 of Wolfram's cellular automata.
+2011-10-01T20:23:16Z	jeremysalwen/rule30cyclefinder	1	Finds repetitions of states in bounded width rule 30 cellular automata
+2011-02-13T15:49:02Z	johnmn3/clj-rule30	1	
+2026-10-14T05:36:12Z	Patto1155/rule30-foundry	1	GPU-heavy local research and benchmarking workbench for the Wolfram Rule 30 prize problems.
+2026-10-09T07:31:58Z	beedbyte/rule30-research	0	Finite Rule 30 center-column models, specification, and checks
+2026-10-09T04:27:54Z	igor-holt/rule30-vdf	3	
+2026-10-08T20:26:54Z	nateberzai-svg/rule30-left-edge	0	Research
+2026-10-07T18:41:43Z	xetrics/rule30	0	cross-platform rule 30 visualizer/simulator
+2026-10-06T20:52:16Z	cochon123/rule30-prize	0	Rule 30 prize research notes and experiments (unsolved). No prize claim.
+2026-10-06T19:20:30Z	ChrisBrooksbank/rule30-renderer	0	Interactive TypeScript canvas renderer for Wolfram's Rule 30 cellular automaton
+2026-10-05T16:13:41Z	Noofalateeq/ARTI303-Lab5-Rules	0	
+2026-10-02T22:36:15Z	wesam-sanb0/arti303-lab05-rules	0	ARTI 303 — Programming for AI | Lab Assignment 05. Prolog knowledge base for The Simpsons family tree. Facts (male, female, parent) plus rules for father, mothe
+2026-10-01T19:25:29Z	Reham-Alqahtani/ARTI303-Lab05-Rules	0	
+2026-09-30T15:03:04Z	charleswest775/MMM-Rule30	0	MagicMirror² module: Wolfram's rule 30 grown from a single cell, a row at a time, regular on the left and random on the right, drawn for a Raspberry Pi without 
+2026-09-29T14:24:57Z	KhoKhoo/ARTI-303-Lab-Assignment-03---Working-with-Rules	0	
+2026-09-29T07:07:21Z	Lujain-Almalki/ARTI303-Lab05-Rules	0	
+2026-09-24T07:52:07Z	RobertBoettcherSF/Ada-Rule-30	0	Rule of 30 in Ada
+2026-10-09T10:05:14Z	tankiancheng1974-SGP/Wolfram-Rule30-Resolution	0	Resolution to the Wolfram Rule30
+2026-09-14T12:33:44Z	emmatoad-droid/ferns-and-rule30-ascii	0	ASCII art demos: Barnsley fern and cellular automata (Rule 30 & Rule 110) in Rust
+2026-09-14T02:06:58Z	AlloySecureGroup/RULE30	0	Rule 30 and computational irreducibility
+2026-09-13T21:21:10Z	Dibujaron/rule30	0	Formalizing Wolfram's Rule 30 cellular automaton in Lean 4, with a harness that lets Claude agents do the proving.
+2026-09-11T01:46:29Z	a2aaron/Rule30	0	
+2026-09-08T14:42:33Z	fabianxvogt/rule30	0	
+2026-09-08T09:40:16Z	vibemathing/problem-rule30-1	0	[rule30-1] Rule30中央列非最终周期性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:21Z	vibemathing/problem-rule30-3	0	[rule30-3] Rule30计算不可约性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:16Z	vibemathing/problem-rule30-2	0	[rule30-2] Rule30中央列0/1极限频率 — Vibe Mathing bounty problem repository.
+2026-09-07T14:36:36Z	allisongibbes/The-30-Degree-Rule-Simulator	0	
+2026-09-04T02:08:56Z	tkluysk/rule-30-explorer	0	
+2026-09-01T23:21:44Z	CpanelInc/ea-modsec30-rules-owasp-crs	0	EXPERIMENTAL
+2026-09-01T19:44:49Z	JosephRuff/60-30-10-rule	0	Analysis of 60-30-10 Rule in Images and Video
+2026-08-26T16:41:41Z	abhinavthakurbish-eng/legal-metrology-rules-check-30	0	legal-metrology-rules-check-30
+2026-08-24T02:34:24Z	nick-wallingford/rule30	0	
+2026-08-19T18:36:42Z	SuyamaCorporation/frugal-budget-rule-50-30-20	0	AI-generated app: 50/30/20 ルール 家計バランスチェッカー (zerohuman-labs daily 2026-08-20)
+2026-08-19T11:47:05Z	connorWinningUM/Rule30Simulator	0	
+2026-08-14T00:18:36Z	Buliangzhang24/PhD_Thesis_Measuring-the-3-30-300-rule-in-NewZealand	0	
+2026-08-06T14:04:18Z	eleonoraandreotti/3-30-300-rule	0	
+2026-10-08T20:59:46Z	wryan2986/rule30-lab	0	Reproducible computational research tools for Stephen Wolfram's Rule 30 prize problems
+2026-07-30T15:56:55Z	ezimuel/Rule30-PQ	1	A fast cryptographic hash function based on Rule 30 cellular automaton and designed for post-quantum security margins
+2026-07-27T10:59:54Z	flapzero-dmssb/300-nazo-rule	0	rule
+2026-07-14T15:15:57Z	eko-071/prng-rule-30	0	A pseudo-random number generator using the Rule 30 cellular automata
+2026-07-08T10:18:15Z	qizwiz/rule30-ski-research	0	
+2026-06-28T05:55:04Z	Master-Ferrari/rule30-the-world	0	
+2026-06-22T16:21:35Z	kemingy/rule30	3	Pseudo random number generator with cellular automaton rule 30.
+2026-06-08T02:04:01Z	vmendi/rule30-webgl	0	Fast WebGL explorer for Wolfram elementary cellular automata
+2026-05-24T10:11:12Z	driftnode986/claude-code-design-30-rules-samples	0	Companion samples for the book "Claude Code 設計の30の鉄則" (Makino Makoto, 2026)
+2026-05-13T19:38:48Z	macronfx/Rule-30	0	
+2026-05-11T17:52:29Z	priyarachel2508-byte/30-rule-theory	0	
+2026-05-05T19:28:18Z	snknaveenkumaar/tt-rule30-vga	0	Rule 30 Cellular Automaton VGA Display
+2026-05-04T22:42:30Z	you1113254-prog/30day-rule	0	
+2026-05-03T09:41:39Z	SimpleMindedMoron/3-10-30-rule-experiment	0	A Python network simulation quantifying the efficiency of targeted vs. random fact-checking in halting fake news cascades.
+2026-04-18T12:52:29Z	greatsong/ai-rule-designer-30h-opus47	0	EduFlow chapters regenerated with Claude Opus 4.7 (vs ai-rule-designer-30h which used Opus 4.6)
+2026-04-18T12:51:44Z	greatsong/ai-rule-designer-30h	2	
+2026-04-09T10:17:06Z	alessan2703a-max/Rule30	0	
+2026-04-06T15:54:54Z	poroshin-ao/rule30rngtests	0	
+2026-03-26T18:55:11Z	AgamSinghDhir/Rule-30-CA-Based-Hardware-Encryption-Engine	0	
+2026-03-21T16:54:43Z	pratik7k/wolframs_rule30	0	
+2026-03-16T09:22:35Z	Tornilla/50-20-30_Rule	0	
+2026-03-12T06:53:21Z	lefterachestefan/rule30	0	
+2026-03-08T14:22:04Z	elijasgogu/rule30-structure	0	Structural analysis of Rule 30 and Game of Life via path numbers
+2026-03-03T07:30:20Z	kwaneleb21-ctrl/rule30_band_sat_sweep_repo_resumable_debugged_rc10_20_direct	0	Rule 30 Periodicity band sweep
+2026-02-21T06:17:41Z	GitArthurMarchetti/50-30-20-Rule	0	
+2026-02-17T13:34:52Z	mrspeedy30/50-30-20-rule-calculator-	0	Just small project that helps to calculate spendigs based on your salary.  
+2026-02-07T15:39:52Z	trungnt25604-debug/vn30-rule-based-trading-system	0	Rule-based decision support system for VN30 stocks using technical indicators
+2026-02-06T05:21:22Z	mathcode220-math/rule30.2	0	
+2026-02-02T00:36:42Z	NoeA90/ruleta.bet300vip	0	
+2026-01-17T09:08:56Z	ragesband2/January-17-2026-Talahanayan-ng-Polygamy-Law-Rule-at-Age-30-2026	0	
+2026-01-17T08:33:57Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-6	0	
+2026-01-17T08:27:56Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-5	0	
+2026-01-17T08:25:24Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-4	0	
+2026-01-17T08:23:28Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-3	0	
+2026-01-17T08:20:47Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026-2	0	
+2026-01-17T08:15:54Z	ragesband2/January-17-2026-Age-30-Polygamy-Rule-2026	0	
+2026-01-15T01:48:04Z	s-sj-b/rule-30	0	
+2026-01-13T01:29:48Z	conancarrow/rule30	0	
+2026-01-10T09:56:00Z	VKBEGINS/30-sg-rules	0	
+2026-01-01T19:08:42Z	vrypan/rule30rnd	0	Repo moved to R30R2
+2025-12-23T18:34:01Z	ECBrands/ECInternet_Sage300TaxRules	0	EC Internet Sage300 Tax Rules extension
+2025-12-21T19:27:52Z	johndoe2x/53-30-20-budgeting-rule	0	53/30/20 budgeting rule
+2025-12-16T14:06:12Z	mao-syseng/k-rule-30-elementary-cellular-automata	0	rule 30 in 4 lines of k
+2025-12-11T03:43:20Z	Patto1155/Rule30_Tools	0	https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/
+2025-12-03T14:06:39Z	303BarberStudio/ruleta303	0	
+2025-11-28T15:40:48Z	midnitefox/rule30	0	Predicting the future by computing at a higher dimension
+2025-11-23T12:00:29Z	sandyherho/rule30-simulator	0	
+2025-11-21T07:13:51Z	AKSAKS24/DB_RULE_301_SNIP	0	DB_RULE_301_SNIP
+2025-11-21T07:12:18Z	AKSAKS24/DB_RULE_303_304_SNIP	0	DB_RULE_303_304_SNIP
+2025-11-15T04:09:15Z	NoeA90/ruleta.bet300	0	
+2025-11-09T17:31:31Z	Bimanpc/vpsaidev30rulesgr	0	
+2025-11-03T18:45:20Z	RatnakarVise/db_rule_303_304	0	
+2025-11-03T18:38:09Z	RatnakarVise/db_rule_301	0	
+2025-11-02T09:19:50Z	jdmotalora/3-30-300-rule-3-visibility-optimization	0	Set Cover algorithm for optimizing tree placement under 3-30-300 urban greening rule
+2025-10-27T09:30:58Z	R-nees/70-30-Money-rule	0	
+2025-10-23T05:09:44Z	yenulisiri/rule-based-test-a30ee4af	0	Auto-generated rule-based Python test project - a30ee4af
+2025-10-14T22:11:11Z	izaic3/rule30	0	Rule 30 cellular automaton generator.
+2025-10-12T17:56:27Z	maheshsmc2/d30-rule-intent-chatbot	0	
+2025-10-05T23:05:56Z	NoeA90/bet300.ruleta.luj	0	
+2025-10-04T08:00:09Z	jmvallejop1/rules_30PB	0	
+2025-09-22T16:16:10Z	NoeA90/ruleta.bet300.lu	0	
+2025-09-13T16:04:42Z	yenulisiri/rule-based-test-41e30697	0	Auto-generated rule-based Python test project - 41e30697
+2025-09-12T14:01:15Z	xaviernuel-nc/rewrite_rules_301_generator	0	
+2025-09-10T16:35:00Z	yenulisiri/rule-based-test-adb6ac30	0	Auto-generated rule-based Python test project - adb6ac30
+2025-09-10T12:57:39Z	yenulisiri/rule-based-test-0db87c30	0	Auto-generated rule-based Python test project - 0db87c30
+2025-09-09T08:56:11Z	yenulisiri/rule-based-test-29bea30c	0	Auto-generated rule-based Python test project - 29bea30c
+2025-08-25T15:51:44Z	NoeA90/ruletavip.bet300	0	
+2025-08-23T17:59:10Z	arafatmonowar8/30-Day-Rule-California-Esa	0	CertifyESA helps individuals quickly and legally obtain Emotional Support Animal (ESA) letters from licensed mental health professionals. Our service is fast, s
+2025-08-19T06:31:55Z	quanganh2302/Repeated_Point_Measurement-Camera_Ruler_3000	0	
+2025-08-03T00:29:37Z	lba-brauer/rule30-symbolic-fsm	0	Symbolic drift and FSM validation for Wolfram's Rule 30 – with full simulation, analysis, and prize-relevant findings.
+2025-07-30T11:12:38Z	ragesband2/July-30-2025-Busted-Rule---Relationship-Game	0	
+2025-07-30T11:04:32Z	ragesband2/July-30-2025-No-Contact-Rule-The-Game	0	
+2025-07-25T02:08:13Z	MarceloLuisDantas/Rule-30	0	
+2025-07-18T06:48:15Z	ragesband2/July-18-2025-Engagement-Rules-With-30-Minutes-Phase-Out-Button-But-Null-Links	0	
+2025-07-03T23:13:00Z	booleanbunny/rule30mips	0	
+2025-06-22T05:17:38Z	AkiseF/Rule-30-ECA	0	Práctica 2 del curso Cellular Automata | Complex Systems
+2025-06-22T04:31:49Z	AddAcTech/rule-30	0	
+2025-06-21T03:36:51Z	FuriousKidD/Conway-Rule-30	0	This is a simple program imitating conway's rule 30 cellular automata
+2025-05-24T13:47:51Z	grinara/rule-30	0	
+2025-05-08T08:13:13Z	USAGEHub/30_rule	0	
+2025-05-08T08:04:57Z	USAGEHub/300_rule	0	
+2025-01-26T14:25:46Z	slknnk/1C-ExchangeRules-Trade103ToAcc30	0	Exchange rules
+2025-01-20T18:13:14Z	superfrink/rule30-sacks	0	
+2024-12-18T07:04:37Z	adi-code22/cellular-automata-rule30	1	The most basic Rule30 pseudo randomness algorithm visualised using GoLang
+2024-10-21T16:58:39Z	AndresCasillas99/Rule30-Pseudo-Random-Number-Generator	0	A (pseudo)random number generator that uses the central column values of Wolfram's Rule30.
+2024-10-21T16:41:48Z	AndresCasillas99/Rule30	0	An efficient algorithm for computing the n-th row of Wolfram's Rule 30. 
+2024-08-27T19:45:56Z	cordova-jon1618/cellular_automata_program_rule_30	0	
+2024-07-16T20:29:14Z	egmonou/30-AR-Ruler	0	
+2024-06-24T23:35:03Z	lwcarani/rule30	0	cellular automaton rule 30 [left XOR (center OR right)]
+2024-06-03T02:32:21Z	galenwilkerson/Wolfram-Rule-30	0	Implementation of Wolfram's Rule 30
+2024-05-21T21:08:57Z	222115222Murovhi/Rule-30-cellular-automation	0	simulation of the rule 30 cellular automation 
+2024-03-28T16:55:02Z	Rayintu/rust_sdl2_rule_30	0	
+2024-03-25T14:50:19Z	sick-appspace-samples-develop/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2024-03-23T18:06:52Z	Stef-van-Stipdonk/cellular-automaton-rule-30	0	
+2024-03-19T23:48:42Z	staticWagomU/rule30	0	
+2024-03-18T22:11:36Z	MAVUNDL/C-Rule-30-Cellular-Automaton	1	The C++ Rule 30 Cellular Automaton is a simulation of a one-dimensional system where each cell's state evolves based on its current state and neighboring cells 
+2024-01-19T22:57:27Z	Adan-7742/Day_30-One-Defination-Rule	0	
+2024-01-11T08:19:47Z	elliotwaite/rule-30-and-game-of-life	162	Generates a 2D animation of Rule 30 (or other rules) being fed into Conway's Game of Life.
+2023-12-23T06:13:11Z	galqiwi/rule30_21	0	
+2023-12-20T23:56:58Z	sick-appspace-samples/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2023-12-15T02:57:49Z	uhthomas/rules_go-issue-3033	0	https://github.com/bazelbuild/rules_go/issues/3033
+2023-12-06T22:09:22Z	confusedCoyote/pcb-30cm-ruler	0	A Printed Circuit Board ruler with some helpful hints
+2023-12-02T17:50:27Z	Sarthak950/Rule-30	0	
+2023-11-30T13:02:36Z	30-06-2004/chatbot-with-rule-based-responce	0	
+2023-11-05T16:58:42Z	Zaffer/rule-30	0	workings for rule 30 prizes
+2023-11-03T00:03:05Z	Danny-Bold/Rule-30-Automata	0	
+2023-10-27T16:45:40Z	glennwiz/Rule30	0	
+2023-10-25T22:52:59Z	leovandriel/rule30	0	Animate rule 30 forward and reversed
+2023-09-12T23:13:07Z	gifton/Rule30	0	Swift application that showcases Stephen Wolfram's Cellular automata and their rules
+2023-08-09T18:40:04Z	YextHHChallenges/ANS302-query-rules	0	
+2023-07-22T09:02:36Z	mell-o-tron/Rule30Variation	0	
+2023-07-01T20:57:02Z	tugsanyesil/Rule_30	0	
+2023-04-09T17:01:33Z	DakinQuelia/phpBB30-RulesPageAdvanced	1	About Rules Pages Advanced for phpBB 3.0.x 
+2023-03-27T13:34:02Z	mayukhmali-das-instruct-sota-v1/Rule_30_Solving_the_Chaos	1	This paper provides an analytical solution to the Wolfram Alpha Problem 1. In this paper we discuss whether the central column of the Rule 30 structure is purel
+2023-02-25T21:24:41Z	smudgeConn/Rule-30	0	Codewars | 5 kyu | Rule 30
+2023-02-05T00:31:34Z	nceeg01/50-30-20-rule	0	
+2023-01-20T09:16:17Z	martian17/rule30-seeded-random	0	
+2022-12-23T05:06:36Z	LuisAlbertoPenaNunez/Rule30CodingChallenge	1	Rule 30 is an elementary cellular automaton introduced by Stephen Wolfram in 1983.
+2022-10-21T21:39:33Z	luuketi/GameOfLife-Rule30	0	
+2022-10-11T07:34:04Z	PratikJagdale/ConwaysGameOfLifeRule30	0	
+2022-08-24T15:48:56Z	Kimiega/PRNG_rule30	0	Lib that provides random numbers obtained from a tree built according to rule 30.
+2022-08-05T15:01:16Z	zebieksts/rule-30	0	This application draws cellural automata rule 30 pattern rotated by 45 degree
+2022-07-08T22:41:05Z	0xchl0e/Rule30_PRNG	0	Experimenting with the Rule 30 cellular Automata as a PRNG
+2022-07-03T13:29:25Z	knyazev13ivan/cellular-automata-rule30	0	cellular automata. rule 30 with gradient tail.
+2022-06-14T09:27:50Z	ernestak/Sigma-Rule-for-CVE-2022-30190	0	
+2022-06-13T17:05:34Z	bakaq/rule30conway	0	A simulation of feeding rule 30 into Conway's Game of Life
+2022-06-09T14:04:35Z	Carlos-gitjub/CellularAutomataRule30	0	Interactive Visualizations for Cellular Automaton Rule 30.
+2022-05-12T07:15:30Z	crebro/rule30-visual	0	Visualization for the rule 30 pattern using p5.js
+2022-05-11T18:38:13Z	garrettroell/rule_30	0	An interactive visualizer for Steven Wolfram's cellular automata
+2022-04-14T09:35:32Z	dominiczypen/Rule_30_rotate	0	Rule 30 cellular automaton with "wrapping at edges" (solved by rotation). Branchless and with bitwise op -> fast.
+2022-04-02T15:43:54Z	ozgurgunay/wolfram-rule-30	0	CA
+2022-03-21T15:25:19Z	mark1044/rule30	0	
+2022-03-19T12:57:58Z	rishabharoraa/rule30	1	illustration of rule30 cellular automaton written in go
+2022-02-16T01:53:07Z	Scotch101Tape/rule-30-pfp-maker	0	
+2022-02-11T14:05:19Z	Fibonacci1664/SFML_RuleBasedSystem_MAT_301_AI	0	
+2022-02-08T01:25:59Z	hexaron/Rule-30	0	
+2022-02-01T16:31:38Z	PoulIgorson/rule-30	0	
+2022-01-03T18:49:59Z	northofnormal/Rule30Transloc	0	Implementation of the Rule 30 algorithm 
+2022-01-01T21:41:22Z	matthabermehl/rule-30	0	A small Vue app that runs Wolfram's rule 30 (javascript)
+2021-12-08T18:40:13Z	deppong/rule30_SDL	0	Rule30 simulation in C/SDL2
+2021-09-11T20:50:16Z	LuBru90/Rule30	0	Rule 30 is an elementary cellular automaton
+2021-08-12T14:55:36Z	ln2058/celullar-automata-rule30-centercolumn	0	A python program that will calculate the on and off states (in 0s and 1s) for the middle / center column of Rule 30 cellular automata which is thought to be cap
+2021-07-21T09:23:42Z	Zinc-30/rule_selection	0	
+2021-06-06T22:29:30Z	jamesspeller/community-30k-rules	0	Unofficial 30k community rules pack
+2021-03-19T15:32:49Z	melmelnick/IEMS-308-Association-Rules	0	IEMS 308 Homework 2
+2021-03-03T10:12:41Z	berkay-demir/Look-Up-Rule-30	0	
+2020-12-16T16:31:43Z	gmhcode/Rule30	0	
+2020-11-23T20:35:30Z	Brandogs/Rule30	0	Rule 30 Cellular Automata Demo Project
+2020-10-01T18:10:10Z	itzzritik/30-30-BreakRule	2	
+2020-09-23T15:57:45Z	Scavix/Rule_30_Processing	0	Wolfram's Rule 30 Replica done in Processing
+2020-05-19T17:56:08Z	ZachWolpe/Rule30-Cellular-Automata	0	Implementation of CA - The Famous Rule 30
+2020-04-28T15:36:03Z	plming/Rule30	0	This is Rule 30 cellular automata written in C
+2020-03-02T14:42:27Z	clj0020/Rule-30	0	An android application that showcases Wolfram Alpha's Rule 30 of cellular automata.
+2020-02-27T17:22:31Z	willflet/rule30-research	0	Investigation into the structure and behaviour of the elementary cellular automaton (ECA) rule 30, motivated by Wolfram's challenge https://www.rule30prize.org/
+2020-02-13T21:37:16Z	anandbraman/association-rules-iems-308	0	Using apriori algorithm to recommend reorganization of Dillard's planograms
+2020-02-08T19:42:37Z	LynnLing1229/IEMS308_Association_Rules	0	IEMS308_Association_rules
+2019-11-24T10:11:17Z	benhe119/CYDF300-suricata-rules	0	
+2019-09-09T17:52:35Z	scottybcoder/30-360-rule-module	2	A Module for PHP-Nuke Titanium v3.0.0 - ACTUAL/360 (AKA 365/360) Rule Calculator
+2019-08-03T12:45:42Z	EL-S/Rule30RNG	1	A rule 30 random number generator
+2019-06-03T03:55:26Z	beenotung/rule-30	0	screensaver showing rule30 pattern
+2019-05-17T03:04:17Z	allenspicer/demo_rule30	0	A demonstration of the elementary cellular automaton rule known as "rule 30"
+2019-05-06T18:00:24Z	Lukelear-Warhead/Rule_30	0	CodingTest
+2019-03-26T04:04:50Z	stephanieshen18/Rule30Simulation	0	JAVA -- Computes at least 300 iterations of the one-dimensional binary cellular automaton known as Rule 30, which has been shown to display a periodic and chaot
+2018-12-27T06:54:59Z	wjr0102/PRNG_with_rule30	0	
+2018-08-07T18:13:12Z	MartyFromCary/Rule30	0	Rule 30 Cellular Automaton displayed on pixel level
+2018-07-18T16:14:19Z	rho24/fsharp-rule30	0	
+2018-02-09T22:03:57Z	pkk503/308_AssociationRules	0	
+2018-02-07T22:02:46Z	jakeatlas/IEMS_308_AssociationRules	0	
+2017-12-03T16:12:45Z	Runemoor/Rule_30	0	My Excel-version of Stephen Wolfram's famous one dimensional cellular automaton rule - the Rule 30
+2017-08-23T05:18:25Z	alangfiles/Rule30	0	Generating some triangles, writing obtuse js.
+2017-06-01T21:57:54Z	earthfail/rule30	0	terminal simulation of rule30 created by steven wolfram
+2017-05-27T16:49:00Z	zmwangx/rule30	31	Python implementation of Stephen Wolfram's elementary cellular automata (in particular, Rule 30)
+2017-03-29T03:37:59Z	jylopez/rule-30	0	:shell: Returns new binary state of array after applying cellular automaton Rule 30
+2017-03-19T11:00:47Z	ciubotaru/bitfield-rule30	2	An implementation of Wolfram's Rule 30 cellular automaton written in C
+2017-03-11T17:30:10Z	agwind/rule30	0	Elementary cellular automata
+2017-02-22T18:59:26Z	YanpuLi/Cellular-Automata-Rule30-Implementation	0	
+2016-12-07T16:25:03Z	ckftahadlangit/MP5-RevisitingRule30	0	
+2016-12-07T15:43:57Z	MEPacana/MP5_Revisiting_Rule_30	0	Rule 30 implementation with threads
+2016-10-01T04:25:16Z	FrostySkank/Oonclaups-Stream-Rule.-9-30-16	0	Oonclaups Stream Rule. 9/30/16
+2016-06-21T05:52:09Z	jessefromearth/rule30	2	An open-source implementation of Stephen Wolframs Rule 30 cellular automaton rule written using Python and pygame.
+2016-04-28T14:19:13Z	maharleeeka/Rule30	0	
+2016-04-23T16:30:19Z	Paksssssss/rule30	0	
+2016-04-22T17:52:09Z	dev-marimo/Rule-30-Cellular-Automata	0	
+2016-04-22T16:56:20Z	HowDoIGitHelp/rule30automata	0	
+2016-04-22T16:42:30Z	Lesterrific17/Rule30	0	Cellular Automata
+2016-04-22T16:02:37Z	miriammariety/Rule-30	0	MP3 for CMSC 141
+2016-04-22T14:09:19Z	marosenarca/Rule30	0	
+2016-04-22T10:33:22Z	jessduran/Rule30	0	
+2016-04-22T03:22:08Z	faielomente/cmsc141-rule30	0	Console implementation
+2016-04-21T19:36:31Z	jannielynacha/Rule-30	0	CMSC 141 MP3
+2016-03-19T17:16:00Z	JotaAlava/MEAN-Rule30	0	Will draw Wolfram's rule 30.
+2016-02-03T00:58:20Z	screamish/rule30-elm	1	A quick and dirty attempt at cellular automaton rule 30 in elmlang
+2015-11-04T17:45:39Z	wharkins3/harkinsRule30	0	
+2015-07-17T12:10:30Z	aefesp/Rule_30	0	
+2015-06-30T19:00:23Z	dheckman/Rule-30	0	
+2015-06-29T04:34:11Z	jesseract/Rule30	0	
+2015-05-24T01:11:24Z	mearns/rule30	0	Implementatino of Wolfram's Rule-30 Cellular Automata
+2015-02-18T19:40:34Z	dperjar/rule30	0	A JavaScript and canvas implemenation of Stephen Wolfram's elementary cellular automata according to Rule  30
+2015-01-21T19:05:40Z	vbetts/rule30	1	A python project which simulates one-dimensional binary cellular automaton rule 30. Outputs a jpg for each line of the drawing so you can make an animated gif
+2014-12-19T13:02:51Z	JarettRoman/rule30	0	Repo holding a rule30 script written in Ruby
+2014-05-09T16:37:11Z	vrde/rule30	0	Generating chaos
+2014-05-02T12:10:12Z	JasonLunsford/rule30	0	My solution to the rule 30 challenge
+2014-04-07T14:26:35Z	dcarter5804/Rule30	0	Cellular Automation Rule 30
+2013-04-28T18:13:20Z	wonjyou/WolframRule30	0	A C++ program that simulates Rule 30 of Wolfram's cellular automata.
+2011-10-01T20:23:16Z	jeremysalwen/rule30cyclefinder	1	Finds repetitions of states in bounded width rule 30 cellular automata
+2011-02-13T15:49:02Z	johnmn3/clj-rule30	1	
+2026-10-09T10:05:14Z	tankiancheng1974-SGP/Wolfram-Rule30-Resolution	0	Resolution to the Wolfram Rule30
+2026-09-08T09:40:16Z	vibemathing/problem-rule30-1	0	[rule30-1] Rule30中央列非最终周期性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:21Z	vibemathing/problem-rule30-3	0	[rule30-3] Rule30计算不可约性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:16Z	vibemathing/problem-rule30-2	0	[rule30-2] Rule30中央列0/1极限频率 — Vibe Mathing bounty problem repository.
+2024-12-18T07:04:37Z	adi-code22/cellular-automata-rule30	1	The most basic Rule30 pseudo randomness algorithm visualised using GoLang
+2024-10-21T16:58:39Z	AndresCasillas99/Rule30-Pseudo-Random-Number-Generator	0	A (pseudo)random number generator that uses the central column values of Wolfram's Rule30.
+2024-08-30T17:48:26Z	FrancescoGalli/automata	0	rule30 repository
+2024-05-05T10:01:52Z	Muskra/r30sum	0	Really slow and biased hashing algorithm based on rule30 made by Stephen Wolfram in 1983.
+2023-05-13T13:30:55Z	0xchl0e/R30-rs	2	Rule30 pseudorandom bit generator in Rust
+2022-06-16T00:39:40Z	AaronRobson/py-elementary-cellular-automaton	0	To demonstrate the patterns available in Wolfram's Rule30 and related patterns.
+2022-03-19T12:57:58Z	rishabharoraa/rule30	1	illustration of rule30 cellular automaton written in go
+2021-12-08T18:40:13Z	deppong/rule30_SDL	0	Rule30 simulation in C/SDL2
+2021-01-23T01:54:36Z	mpollock/iOSRule30	0	An implementation of rule30 on iOS: https://en.wikipedia.org/wiki/Rule_30
+2019-06-03T03:55:26Z	beenotung/rule-30	0	screensaver showing rule30 pattern
+2019-05-02T03:24:18Z	MGunwal/CA-Rule-Perl	0	Cellular Automaton Problem Statement     Imagine you have a set of ‘cells’, each of which can be in a finite number of states. A cellular automaton is a set of 
+2019-01-23T13:28:02Z	namansaxena9/Image-Compression-Tool	1	It is image compression and encryption tool. It uses lossy Vector Quantization by implementing codebook through Linde-Buzo-Gray algorithm.After compression the 
+2017-06-01T21:57:54Z	earthfail/rule30	0	terminal simulation of rule30 created by steven wolfram
+2014-12-19T13:02:51Z	JarettRoman/rule30	0	Repo holding a rule30 script written in Ruby
+2014-02-17T10:25:29Z	RobKohr/elementary-cellular-automaton	0	[fractals] Implementation of cellular automation simulation with Rule 30 as a model - http://mathworld.wolfram.com/Rule30.html
+2014-01-27T04:58:11Z	benmccormick/automaton	0	Generates a Rule30 cellular Automaton
+2026-10-14T21:04:36Z	bgage72590/xploitscan-action	1	GitHub Action: scan your code for security vulnerabilities with XploitScan. 223 security rules (30 free), SARIF output for the GitHub Security tab, PR comments,
+2026-10-14T05:36:12Z	Patto1155/rule30-foundry	1	GPU-heavy local research and benchmarking workbench for the Wolfram Rule 30 prize problems.
+2026-10-10T13:01:02Z	12lo22/cellular-automata	0	Python implementation of one-dimensional cellular automata Rule 30 and Rule 110, with Matplotlib animations exported as GIFs.
+2026-10-09T07:31:58Z	beedbyte/rule30-research	0	Finite Rule 30 center-column models, specification, and checks
+2026-10-09T06:09:45Z	discoveranytime/community-rules	0	Community Rules — 30 rules for a safe, honest community
+2026-10-08T13:33:18Z	theRiddler9/Pseudo-Random-Number-Generator	0	Rule 30 cellular automaton PRNG implemented in Verilog for the PYNQ-Z2, with AXI4-Lite integration, Vivado build flow, Python driver, simulations, and statistic
+2026-10-07T18:41:43Z	xetrics/rule30	0	cross-platform rule 30 visualizer/simulator
+2026-10-06T20:52:16Z	cochon123/rule30-prize	0	Rule 30 prize research notes and experiments (unsolved). No prize claim.
+2026-10-06T19:20:30Z	ChrisBrooksbank/rule30-renderer	0	Interactive TypeScript canvas renderer for Wolfram's Rule 30 cellular automaton
+2026-10-04T10:07:54Z	fullymiddleaged/Clawness	5	Claude Code & OpenClaw plugin, with a context-aware rules engine that injects only the rules each prompt needs. Codebase-aware, ~4ms lookup, pure Python. 222 ru
+2026-09-30T15:03:04Z	charleswest775/MMM-Rule30	0	MagicMirror² module: Wolfram's rule 30 grown from a single cell, a row at a time, regular on the left and random on the right, drawn for a Raspberry Pi without 
+2026-09-25T17:58:39Z	mididadoro/County-Budget-Execution	0	This uses your Migori budget experience. It measures budget absorption and tests the PFM Act rules (30% development floor, 35% wage cap).
+2026-09-14T12:33:44Z	emmatoad-droid/ferns-and-rule30-ascii	0	ASCII art demos: Barnsley fern and cellular automata (Rule 30 & Rule 110) in Rust
+2026-09-14T02:06:58Z	AlloySecureGroup/RULE30	0	Rule 30 and computational irreducibility
+2026-09-13T21:21:10Z	Dibujaron/rule30	0	Formalizing Wolfram's Rule 30 cellular automaton in Lean 4, with a harness that lets Claude agents do the proving.
+2026-09-01T16:29:48Z	LuisContla/WolframRegla30	1	Repositorio donde se guardará mi práctica para la Materia de Cellular Automata. La práctica consiste en desarrollar un programa de la Regla 30 de Wolfram, con e
+2026-08-23T19:24:04Z	arjuptl/museum-of-emergence	0	A living museum of self-organising systems. Eight rooms where simple local rules produce order nobody designed — flocking, slime mould, reaction-diffusion, Leni
+2026-09-25T15:14:09Z	hatch3r/hatch3r	26	Open-source CLI + editor plugin (Claude Code, Cursor, GitHub Copilot): one command installs 29 agents, 53 skills, 67 rules, 30 commands, 7 hooks & MCP integrati
+2026-08-05T22:58:19Z	ncreighton/a0e746cc-cursor-rules--ai-ide-prompt-l	0	50+ cursor rules & 30+ AI prompts templates to maximize your AI IDE productivity. Plug-and-play frameworks for Cursor and compatible tools.
+2026-10-08T20:59:46Z	wryan2986/rule30-lab	0	Reproducible computational research tools for Stephen Wolfram's Rule 30 prize problems
+2026-10-06T09:18:57Z	TMHSDigital/Plaid-Developer-Tools	0	Cursor plugin and MCP companion for building on the Plaid API. 17 skills, 7 rules, 30 MCP tools.
+2026-07-30T15:56:55Z	ezimuel/Rule30-PQ	1	A fast cryptographic hash function based on Rule 30 cellular automaton and designed for post-quantum security margins
+2026-07-15T08:02:53Z	Shivaram304/CryptoLab	0	A comprehensive, interactive cryptography sandbox and educational toolkit implementing AES-256 (CBC/GCM), RSA-2048/4096 (OAEP/PSS), SHA hashing, HMAC/HKDF key d
+2026-07-14T15:15:57Z	eko-071/prng-rule-30	0	A pseudo-random number generator using the Rule 30 cellular automata
+2026-07-09T05:51:20Z	Genesis-Conductor-Engine/procedural-truth-verifier	0	Double loopback procedural truth verifier — Rule 30 VDF, eigen projection, crystal scoring for Genesis Conductor
+2026-06-25T06:22:22Z	JesseAngeles/Elementary-Cellular-Automaton	1	Proposal for ECA Rule 30 
+2026-06-22T16:21:35Z	kemingy/rule30	3	Pseudo random number generator with cellular automaton rule 30.
+2026-06-15T11:32:37Z	Kronaxis/kpm	0	KPM-2.2 v15.1: hand-crafted UK election forecasting rules (+30.7pp lift over LLM baseline). Public scorecard at kronaxis.co.uk/scorecard. Continuous by-election
+2026-06-14T12:00:25Z	csmb/gol-graph	0	Rule 30 cellular automaton on the GitHub contribution graph
+2026-06-12T15:55:31Z	xiaobei930/cc-best	48	🎭 cc-best: Turn Claude Code into a full dev team — PM→Lead→Dev→QA autonomous workflow. 44 commands · 19 skills · 8 agents · 43 rules · 30 hooks · auto-learning 
+2026-06-02T10:05:28Z	kalamishere/ca-audio-visualizer	0	Browser audio visualizer built on Wolfram-style elementary cellular automata (Rule 30, 110, ...). Single HTML file.
+2026-05-24T06:11:21Z	zozo123/xor-fractal-fb0	0	Wolfram cellular automaton demo · Rule 30/90/110
+2026-05-16T12:50:46Z	hubertnowicki00/cellular_automata	0	Python implementations of 1D and 2D Cellular Automata (Rule 30, Rule 110, Game of Life, Day & Night). This project explores how synchronous versus sequential ra
+2026-05-05T19:28:18Z	snknaveenkumaar/tt-rule30-vga	0	Rule 30 Cellular Automaton VGA Display
+2026-04-04T09:42:51Z	rogue-agent1/cellular	0	1D cellular automata (Rule 30/110/etc)
+2026-03-08T14:22:04Z	elijasgogu/rule30-structure	0	Structural analysis of Rule 30 and Game of Life via path numbers
+2026-03-03T07:30:20Z	kwaneleb21-ctrl/rule30_band_sat_sweep_repo_resumable_debugged_rc10_20_direct	0	Rule 30 Periodicity band sweep
+2026-02-21T08:03:30Z	prikarsartam/period-doubling-in-a-non-linear-chaotic-dynamical-system	0	computation of the period doubling in the right diagonals of the rule 30 elementary cellular automata, until out of memory.
+2026-02-09T16:00:54Z	dipankar-raja/Quantum-Circuit-Representation	0	Quantum Circuit Representation and Simulation of Rule 30: A Pathway to Quantum Complexity
+2026-02-02T22:33:01Z	EliasJHL/Wolfram	0	Generates patterns for Wolfram's Rule 30, Rule 90, and Rule 110
+2026-01-19T17:44:11Z	KgaogeloMakgoba/cellular-automata-simulation	0	C++ Rule 30 cellular automaton simulation using dynamic arrays and menu-driven execution
+2026-01-03T23:24:43Z	vrypan/ring30mix	0	High-performance pseudo-random number generator based on Rule 30.
+2026-01-03T10:12:32Z	vrypan/r30r2	1	A pseudorandom number generator using a variation of Rule 30
+2025-12-16T14:06:12Z	mao-syseng/k-rule-30-elementary-cellular-automata	0	rule 30 in 4 lines of k
+2025-12-11T03:43:20Z	Patto1155/Rule30_Tools	0	https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/
+2025-12-03T18:17:46Z	isaacjef/turing_machine	0	Máquina de Turing para aplicação da Regra 30 (Rule 30)
+2025-11-20T03:06:06Z	sandyherho/batara-guru	0	Python-based Rule 30 cellular automaton with parallel processing and entropy analysis
+2025-10-14T22:11:11Z	izaic3/rule30	0	Rule 30 cellular automaton generator.
+2025-10-02T15:24:36Z	girloffthecob/CellularAutomata	0	A JavaScript implementation of 1D cellular automata, rendered visually on an HTML canvas. Allows experimenting with rule sets (e.g., Rule 30, Rule 126, etc.) an
+2025-09-23T09:25:25Z	sure-lahari-igt/Playwright	0	Responsible Gaming UI Casino Rule 30 Alerts Rule Automation
+2025-08-03T00:29:37Z	lba-brauer/rule30-symbolic-fsm	0	Symbolic drift and FSM validation for Wolfram's Rule 30 – with full simulation, analysis, and prize-relevant findings.
+2025-06-21T03:36:51Z	FuriousKidD/Conway-Rule-30	0	This is a simple program imitating conway's rule 30 cellular automata
+2025-01-20T05:37:56Z	ERJ00/Cryptography-Using-Cellular-Automata	0	A Python-based cryptographic tool leveraging Rule 30 Cellular Automata for secure and dynamic key generation. This project features a GUI for easy encryption an
+2024-12-10T17:49:45Z	FattiMei/fast-conv	0	From rule 30 cellular automata to fast 1d convolutions
+2024-11-14T15:30:25Z	AndresCasillas99/PseudoRandomNumberGeneratorR30-Matrix-	0	We present a pseudo-random number generator using the values of the central column of Wolfram's Rule 30 automata arranged as a matrix.
+2024-10-21T16:41:48Z	AndresCasillas99/Rule30	0	An efficient algorithm for computing the n-th row of Wolfram's Rule 30. 
+2024-06-24T23:35:03Z	lwcarani/rule30	0	cellular automaton rule 30 [left XOR (center OR right)]
+2024-06-03T02:32:21Z	galenwilkerson/Wolfram-Rule-30	0	Implementation of Wolfram's Rule 30
+2024-05-21T21:08:57Z	222115222Murovhi/Rule-30-cellular-automation	0	simulation of the rule 30 cellular automation 
+2024-03-18T22:11:36Z	MAVUNDL/C-Rule-30-Cellular-Automaton	1	The C++ Rule 30 Cellular Automaton is a simulation of a one-dimensional system where each cell's state evolves based on its current state and neighboring cells 
+2024-01-21T14:43:14Z	mvdgamboa/CMPLXSY-CellularAutomataR30	0	Python implementation of Cellular Automata (Rule 30)
+2024-01-11T08:19:47Z	elliotwaite/rule-30-and-game-of-life	162	Generates a 2D animation of Rule 30 (or other rules) being fed into Conway's Game of Life.
+2023-12-07T20:24:55Z	riley-martine/cellular-automata-cryptography	2	Cryptography with rule 30 cellular automata
+2023-11-05T16:58:42Z	Zaffer/rule-30	0	workings for rule 30 prizes
+2023-10-25T22:52:59Z	leovandriel/rule30	0	Animate rule 30 forward and reversed
+2023-10-08T16:53:06Z	ait-hellal-noureddine/Beyond-30	0	in this repo I will look into the question of what comes before the axiom of Rule 30.
+2023-07-16T20:02:43Z	glianx/cell_automata	0	Cellular Automata - Game of Life, Rule 30, etc.
+2023-05-25T19:08:09Z	usize/1d2d	0	A 1D cellular automata (Rule 30) feeding into a 2D CA (Conway's Game of Life)
+2023-03-27T13:34:02Z	mayukhmali-das-instruct-sota-v1/Rule_30_Solving_the_Chaos	1	This paper provides an analytical solution to the Wolfram Alpha Problem 1. In this paper we discuss whether the central column of the Rule 30 structure is purel
+2023-02-25T21:24:41Z	smudgeConn/Rule-30	0	Codewars | 5 kyu | Rule 30
+2023-01-15T14:45:21Z	Valentin-elter/Wolfram	0	A second-year student project that implements rules 30, 90, and 110 of Wolfram's elementary cellular automata in the terminal
+2022-12-23T05:06:36Z	LuisAlbertoPenaNunez/Rule30CodingChallenge	1	Rule 30 is an elementary cellular automaton introduced by Stephen Wolfram in 1983.
+2022-08-24T15:48:56Z	Kimiega/PRNG_rule30	0	Lib that provides random numbers obtained from a tree built according to rule 30.
+2022-08-05T15:01:16Z	zebieksts/rule-30	0	This application draws cellural automata rule 30 pattern rotated by 45 degree
+2022-07-14T13:20:37Z	dinodik/rulen	1	A Rust implementation of Wolfram's Rule 30 cellular automaton, generalised for Rule N.
+2022-07-08T22:41:05Z	0xchl0e/Rule30_PRNG	0	Experimenting with the Rule 30 cellular Automata as a PRNG
+2022-07-03T13:29:25Z	knyazev13ivan/cellular-automata-rule30	0	cellular automata. rule 30 with gradient tail.
+2022-07-02T14:38:58Z	Booster39/my_wolfram	0	Functionnal programming in Haskell. Reproducing Conway's Game of Life: Cellular Automata/ Elementary cellular automaton. Three rules: -> Rule 30 -> Rule 90 -> R
+2022-06-13T17:05:34Z	bakaq/rule30conway	0	A simulation of feeding rule 30 into Conway's Game of Life
+2022-06-09T14:04:35Z	Carlos-gitjub/CellularAutomataRule30	0	Interactive Visualizations for Cellular Automaton Rule 30.
+2022-05-12T07:15:30Z	crebro/rule30-visual	0	Visualization for the rule 30 pattern using p5.js
+2022-04-14T09:35:32Z	dominiczypen/Rule_30_rotate	0	Rule 30 cellular automaton with "wrapping at edges" (solved by rotation). Branchless and with bitwise op -> fast.
+2022-01-20T19:40:47Z	shrivigness/image-encryptor	0	Encrypts image using Rule 30 of Cellular Automata
+2022-01-03T18:49:59Z	northofnormal/Rule30Transloc	0	Implementation of the Rule 30 algorithm 
+2022-01-01T21:41:22Z	matthabermehl/rule-30	0	A small Vue app that runs Wolfram's rule 30 (javascript)
+2021-10-01T17:22:45Z	Nolan0105/CellularAutomata	0	John Conway's Game of Life, Rule 30, Rule 82
+2021-09-11T20:50:16Z	LuBru90/Rule30	0	Rule 30 is an elementary cellular automaton
+2021-08-12T14:55:36Z	ln2058/celullar-automata-rule30-centercolumn	0	A python program that will calculate the on and off states (in 0s and 1s) for the middle / center column of Rule 30 cellular automata which is thought to be cap
+2021-04-27T03:26:09Z	xpjb/ca-toy	0	Cellular automata framework thing, featuring predator-prey, BML traffic and 1D elementary automatas e.g. rule 30
+2021-04-20T16:12:43Z	gkbrk/r30sponge.h	0	Sponge function based on the Rule 30 Cellular Automaton
+2021-01-23T01:54:36Z	mpollock/iOSRule30	0	An implementation of rule30 on iOS: https://en.wikipedia.org/wiki/Rule_30
+2020-12-14T20:52:54Z	CarlosE2001/Cellular-Automaton	0	Cellular automaton using rule 30 and Conway's automaton
+2020-11-29T21:03:32Z	SebastianMonteroC/Parallel-Cellular-Automaton-Simulation	1	Parallel Cellular Automaton Simulation implemented with OpenMP. Implemented in this program: Rule 30 automaton and Conway's Automaton.
+2020-11-23T20:35:30Z	Brandogs/Rule30	0	Rule 30 Cellular Automata Demo Project
+2020-09-23T15:57:45Z	Scavix/Rule_30_Processing	0	Wolfram's Rule 30 Replica done in Processing
+2020-05-24T07:33:49Z	Gunstick/wolframmer	0	elementary cellular automaton (rule 30) for AtariST
+2020-05-19T17:56:08Z	ZachWolpe/Rule30-Cellular-Automata	0	Implementation of CA - The Famous Rule 30
+2020-05-01T14:30:17Z	bainro/led_cell_auto	0	LED cellular automata e.g. rule 30 and rule 110
+2020-04-28T15:36:03Z	plming/Rule30	0	This is Rule 30 cellular automata written in C
+2020-03-02T14:42:27Z	clj0020/Rule-30	0	An android application that showcases Wolfram Alpha's Rule 30 of cellular automata.
+2020-02-27T17:22:31Z	willflet/rule30-research	0	Investigation into the structure and behaviour of the elementary cellular automaton (ECA) rule 30, motivated by Wolfram's challenge https://www.rule30prize.org/
+2019-12-16T13:50:02Z	elixir-validation/validation	60	Elixir Validation library with +25 fully tested rules. (+30 coming up soon!)
+2019-08-03T12:45:42Z	EL-S/Rule30RNG	1	A rule 30 random number generator
+2019-06-14T02:56:06Z	adamism/Automata	0	An app written in Swift that implements Cellular Automaton Rule 30
+2019-05-17T03:04:17Z	allenspicer/demo_rule30	0	A demonstration of the elementary cellular automaton rule known as "rule 30"
+2019-05-13T21:11:02Z	ferenckamil/Cellular_automata	0	Implemented: rule 30, 60, 90, 120, 225
+2019-05-02T02:39:10Z	MGunwal/CA-RULE-JS	0	Cellular Automaton Problem : Rule 30
+2019-03-26T04:04:50Z	stephanieshen18/Rule30Simulation	0	JAVA -- Computes at least 300 iterations of the one-dimensional binary cellular automaton known as Rule 30, which has been shown to display a periodic and chaot
+2018-12-04T03:03:59Z	Gungo/WolframFractals	0	A python implementation of Wolfram's rule_30 binary map.
+2018-08-07T18:13:12Z	MartyFromCary/Rule30	0	Rule 30 Cellular Automaton displayed on pixel level
+2018-04-03T02:18:53Z	mthwhite/mthwhite.github.io	0	Rule 30 simulation
+2018-02-25T15:10:54Z	glureau/war30-python	0	Naive python implementation of the Wolfram Automata Rule 30
+2018-02-20T12:04:59Z	glureau/android-wolfram-R30-poc	0	POC: Wolfram cellular automata rule 30 for encrypting text & image
+2018-02-01T22:00:34Z	crhung/Cell-Generation-Simulation	0	Visual simulation of one-dimensional binary cellular automaton  rules based on rule 30
+2017-12-03T16:12:45Z	Runemoor/Rule_30	0	My Excel-version of Stephen Wolfram's famous one dimensional cellular automaton rule - the Rule 30
+2017-10-13T19:04:23Z	Meta-James/1DGameOfLife	0	One dimensional version of Conway's game of life. Uses rule 30 to determine if 
+2017-05-27T16:49:00Z	zmwangx/rule30	31	Python implementation of Stephen Wolfram's elementary cellular automata (in particular, Rule 30)
+2017-03-29T03:37:59Z	jylopez/rule-30	0	:shell: Returns new binary state of array after applying cellular automaton Rule 30
+2017-03-19T11:00:47Z	ciubotaru/bitfield-rule30	2	An implementation of Wolfram's Rule 30 cellular automaton written in C
+2017-01-21T20:34:46Z	ditrytus/CellularAutomataScreensaver	0	Windows screen saver displaying a "Rule 30" cellular automaton.
+2017-01-06T17:36:31Z	gourav-1156411/predict-uat	0	Rule 30 and 34
+2016-12-07T15:43:57Z	MEPacana/MP5_Revisiting_Rule_30	0	Rule 30 implementation with threads
+2016-09-20T16:19:51Z	ashish1512/Image-Encryption	1	Built & coded the encryption technique in Python for encrypting an image in two levels, combining RC4 and Rule 30 for higher security using lagged fibonacci gen
+2016-06-21T05:52:09Z	jessefromearth/rule30	2	An open-source implementation of Stephen Wolframs Rule 30 cellular automaton rule written using Python and pygame.
+2016-05-28T19:41:11Z	tivtag/Silverlight.CellularAutomata	0	Rule 30/110-Style Cellular Autamata
+2016-04-23T06:16:39Z	starrajane/CMSC141_MP3	0	Rule 30
+2016-04-22T03:38:12Z	tpen-rey/cmsc141_mp3	0	This is an implementation of Rule 30. Rule 30 is a one-dimensional binary cellular automaton rule introduced by Stephen Wolfram in 1983. (https://en.wikipedia.o
+2016-04-22T03:15:31Z	rjesteban/Cellular-automata	1	Cellular automata rule 30
+2016-04-14T14:03:23Z	tonsaludadez/cellular-automata	0	CMSC 141: rule 30
+2016-03-19T17:16:00Z	JotaAlava/MEAN-Rule30	0	Will draw Wolfram's rule 30.
+2016-02-03T00:58:20Z	screamish/rule30-elm	1	A quick and dirty attempt at cellular automaton rule 30 in elmlang
+2015-09-15T20:29:08Z	okmanek/Cellural-automaton	0	Implementation of few simple CAs in Python: game of life and rules 30, 60, 90. 
+2015-05-24T01:11:24Z	mearns/rule30	0	Implementatino of Wolfram's Rule-30 Cellular Automata
+2015-02-18T19:40:34Z	dperjar/rule30	0	A JavaScript and canvas implemenation of Stephen Wolfram's elementary cellular automata according to Rule  30
+2015-02-01T19:47:43Z	Zev-Chonoles/chaos-clock	1	A binary clock seeding a rule 30 cellular automaton
+2015-01-21T19:05:40Z	vbetts/rule30	1	A python project which simulates one-dimensional binary cellular automaton rule 30. Outputs a jpg for each line of the drawing so you can make an animated gif
+2014-09-17T05:12:07Z	the13ghost/RandomCA	1	Cellular automata based pseudo-random number generator using Rule 30
+2014-05-02T12:10:12Z	JasonLunsford/rule30	0	My solution to the rule 30 challenge
+2014-04-07T14:26:35Z	dcarter5804/Rule30	0	Cellular Automation Rule 30
+2014-02-17T10:25:29Z	RobKohr/elementary-cellular-automaton	0	[fractals] Implementation of cellular automation simulation with Rule 30 as a model - http://mathworld.wolfram.com/Rule30.html
+2013-04-28T18:13:20Z	wonjyou/WolframRule30	0	A C++ program that simulates Rule 30 of Wolfram's cellular automata.
+2011-12-09T02:37:03Z	briantemple/Elementary-Cellular-Automata	2	iOS 5 implementation of Rule 30 elementary cellular automata
+2011-10-01T20:23:16Z	jeremysalwen/rule30cyclefinder	1	Finds repetitions of states in bounded width rule 30 cellular automata
+2026-10-14T05:36:12Z	Patto1155/rule30-foundry	1	GPU-heavy local research and benchmarking workbench for the Wolfram Rule 30 prize problems.
+2026-10-09T07:31:58Z	beedbyte/rule30-research	0	Finite Rule 30 center-column models, specification, and checks
+2026-10-09T04:27:54Z	igor-holt/rule30-vdf	3	
+2026-10-08T20:26:54Z	nateberzai-svg/rule30-left-edge	0	Research
+2026-10-07T18:41:43Z	xetrics/rule30	0	cross-platform rule 30 visualizer/simulator
+2026-10-06T20:52:16Z	cochon123/rule30-prize	0	Rule 30 prize research notes and experiments (unsolved). No prize claim.
+2026-10-06T19:20:30Z	ChrisBrooksbank/rule30-renderer	0	Interactive TypeScript canvas renderer for Wolfram's Rule 30 cellular automaton
+2026-09-30T15:03:04Z	charleswest775/MMM-Rule30	0	MagicMirror² module: Wolfram's rule 30 grown from a single cell, a row at a time, regular on the left and random on the right, drawn for a Raspberry Pi without 
+2026-09-24T07:52:07Z	RobertBoettcherSF/Ada-Rule-30	0	Rule of 30 in Ada
+2026-10-09T10:05:14Z	tankiancheng1974-SGP/Wolfram-Rule30-Resolution	0	Resolution to the Wolfram Rule30
+2026-09-14T12:33:44Z	emmatoad-droid/ferns-and-rule30-ascii	0	ASCII art demos: Barnsley fern and cellular automata (Rule 30 & Rule 110) in Rust
+2026-09-14T02:06:58Z	AlloySecureGroup/RULE30	0	Rule 30 and computational irreducibility
+2026-09-13T21:21:10Z	Dibujaron/rule30	0	Formalizing Wolfram's Rule 30 cellular automaton in Lean 4, with a harness that lets Claude agents do the proving.
+2026-09-11T01:46:29Z	a2aaron/Rule30	0	
+2026-09-08T14:42:33Z	fabianxvogt/rule30	0	
+2026-09-08T09:40:16Z	vibemathing/problem-rule30-1	0	[rule30-1] Rule30中央列非最终周期性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:21Z	vibemathing/problem-rule30-3	0	[rule30-3] Rule30计算不可约性 — Vibe Mathing bounty problem repository.
+2026-09-08T08:37:16Z	vibemathing/problem-rule30-2	0	[rule30-2] Rule30中央列0/1极限频率 — Vibe Mathing bounty problem repository.
+2026-09-04T02:08:56Z	tkluysk/rule-30-explorer	0	
+2026-08-24T02:34:24Z	nick-wallingford/rule30	0	
+2026-08-19T11:47:05Z	connorWinningUM/Rule30Simulator	0	
+2026-10-08T20:59:46Z	wryan2986/rule30-lab	0	Reproducible computational research tools for Stephen Wolfram's Rule 30 prize problems
+2026-07-30T15:56:55Z	ezimuel/Rule30-PQ	1	A fast cryptographic hash function based on Rule 30 cellular automaton and designed for post-quantum security margins
+2026-07-14T15:15:57Z	eko-071/prng-rule-30	0	A pseudo-random number generator using the Rule 30 cellular automata
+2026-07-08T10:18:15Z	qizwiz/rule30-ski-research	0	
+2026-06-28T05:55:04Z	Master-Ferrari/rule30-the-world	0	
+2026-06-22T16:21:35Z	kemingy/rule30	3	Pseudo random number generator with cellular automaton rule 30.
+2026-06-08T02:04:01Z	vmendi/rule30-webgl	0	Fast WebGL explorer for Wolfram elementary cellular automata
+2026-05-13T19:38:48Z	macronfx/Rule-30	0	
+2026-05-05T19:28:18Z	snknaveenkumaar/tt-rule30-vga	0	Rule 30 Cellular Automaton VGA Display
+2026-04-09T10:17:06Z	alessan2703a-max/Rule30	0	
+2026-04-06T15:54:54Z	poroshin-ao/rule30rngtests	0	
+2026-03-26T18:55:11Z	AgamSinghDhir/Rule-30-CA-Based-Hardware-Encryption-Engine	0	
+2026-03-21T16:54:43Z	pratik7k/wolframs_rule30	0	
+2026-03-12T06:53:21Z	lefterachestefan/rule30	0	
+2026-03-08T14:22:04Z	elijasgogu/rule30-structure	0	Structural analysis of Rule 30 and Game of Life via path numbers
+2026-03-03T07:30:20Z	kwaneleb21-ctrl/rule30_band_sat_sweep_repo_resumable_debugged_rc10_20_direct	0	Rule 30 Periodicity band sweep
+2026-02-06T05:21:22Z	mathcode220-math/rule30.2	0	
+2026-01-15T01:48:04Z	s-sj-b/rule-30	0	
+2026-01-13T01:29:48Z	conancarrow/rule30	0	
+2026-01-01T19:08:42Z	vrypan/rule30rnd	0	Repo moved to R30R2
+2025-12-16T14:06:12Z	mao-syseng/k-rule-30-elementary-cellular-automata	0	rule 30 in 4 lines of k
+2025-12-11T03:43:20Z	Patto1155/Rule30_Tools	0	https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/
+2025-12-03T14:06:39Z	303BarberStudio/ruleta303	0	
+2025-11-28T15:40:48Z	midnitefox/rule30	0	Predicting the future by computing at a higher dimension
+2025-11-23T12:00:29Z	sandyherho/rule30-simulator	0	
+2025-11-21T07:13:51Z	AKSAKS24/DB_RULE_301_SNIP	0	DB_RULE_301_SNIP
+2025-11-21T07:12:18Z	AKSAKS24/DB_RULE_303_304_SNIP	0	DB_RULE_303_304_SNIP
+2025-11-03T18:45:20Z	RatnakarVise/db_rule_303_304	0	
+2025-11-03T18:38:09Z	RatnakarVise/db_rule_301	0	
+2025-10-14T22:11:11Z	izaic3/rule30	0	Rule 30 cellular automaton generator.
+2025-10-04T08:00:09Z	jmvallejop1/rules_30PB	0	
+2025-09-12T14:01:15Z	xaviernuel-nc/rewrite_rules_301_generator	0	
+2025-08-19T06:31:55Z	quanganh2302/Repeated_Point_Measurement-Camera_Ruler_3000	0	
+2025-08-03T00:29:37Z	lba-brauer/rule30-symbolic-fsm	0	Symbolic drift and FSM validation for Wolfram's Rule 30 – with full simulation, analysis, and prize-relevant findings.
+2025-07-25T02:08:13Z	MarceloLuisDantas/Rule-30	0	
+2025-07-03T23:13:00Z	booleanbunny/rule30mips	0	
+2025-06-22T05:17:38Z	AkiseF/Rule-30-ECA	0	Práctica 2 del curso Cellular Automata | Complex Systems
+2025-06-22T04:31:49Z	AddAcTech/rule-30	0	
+2025-06-21T03:36:51Z	FuriousKidD/Conway-Rule-30	0	This is a simple program imitating conway's rule 30 cellular automata
+2025-05-24T13:47:51Z	grinara/rule-30	0	
+2025-01-20T18:13:14Z	superfrink/rule30-sacks	0	
+2024-12-18T07:04:37Z	adi-code22/cellular-automata-rule30	1	The most basic Rule30 pseudo randomness algorithm visualised using GoLang
+2024-10-21T16:58:39Z	AndresCasillas99/Rule30-Pseudo-Random-Number-Generator	0	A (pseudo)random number generator that uses the central column values of Wolfram's Rule30.
+2024-10-21T16:41:48Z	AndresCasillas99/Rule30	0	An efficient algorithm for computing the n-th row of Wolfram's Rule 30. 
+2024-08-27T19:45:56Z	cordova-jon1618/cellular_automata_program_rule_30	0	
+2024-06-24T23:35:03Z	lwcarani/rule30	0	cellular automaton rule 30 [left XOR (center OR right)]
+2024-06-03T02:32:21Z	galenwilkerson/Wolfram-Rule-30	0	Implementation of Wolfram's Rule 30
+2024-05-21T21:08:57Z	222115222Murovhi/Rule-30-cellular-automation	0	simulation of the rule 30 cellular automation 
+2024-03-28T16:55:02Z	Rayintu/rust_sdl2_rule_30	0	
+2024-03-25T14:50:19Z	sick-appspace-samples-develop/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2024-03-23T18:06:52Z	Stef-van-Stipdonk/cellular-automaton-rule-30	0	
+2024-03-19T23:48:42Z	staticWagomU/rule30	0	
+2024-03-18T22:11:36Z	MAVUNDL/C-Rule-30-Cellular-Automaton	1	The C++ Rule 30 Cellular Automaton is a simulation of a one-dimensional system where each cell's state evolves based on its current state and neighboring cells 
+2024-01-11T08:19:47Z	elliotwaite/rule-30-and-game-of-life	162	Generates a 2D animation of Rule 30 (or other rules) being fed into Conway's Game of Life.
+2023-12-23T06:13:11Z	galqiwi/rule30_21	0	
+2023-12-20T23:56:58Z	sick-appspace-samples/Ranger3Ruler3000	0	Image acquisition for a Ranger3 or Ruler3000 camera. Topics: #remote-device #image-2d #image-3d #acquisition #ranger3 #ruler3000 #sick-appspace
+2023-12-02T17:50:27Z	Sarthak950/Rule-30	0	
+2023-11-05T16:58:42Z	Zaffer/rule-30	0	workings for rule 30 prizes
+2023-11-03T00:03:05Z	Danny-Bold/Rule-30-Automata	0	
+2023-10-27T16:45:40Z	glennwiz/Rule30	0	
+2023-10-25T22:52:59Z	leovandriel/rule30	0	Animate rule 30 forward and reversed
+2023-09-12T23:13:07Z	gifton/Rule30	0	Swift application that showcases Stephen Wolfram's Cellular automata and their rules
+2023-07-22T09:02:36Z	mell-o-tron/Rule30Variation	0	
+2023-07-01T20:57:02Z	tugsanyesil/Rule_30	0	
+2023-03-27T13:34:02Z	mayukhmali-das-instruct-sota-v1/Rule_30_Solving_the_Chaos	1	This paper provides an analytical solution to the Wolfram Alpha Problem 1. In this paper we discuss whether the central column of the Rule 30 structure is purel
+2023-02-25T21:24:41Z	smudgeConn/Rule-30	0	Codewars | 5 kyu | Rule 30
+2023-01-20T09:16:17Z	martian17/rule30-seeded-random	0	
+2022-12-23T05:06:36Z	LuisAlbertoPenaNunez/Rule30CodingChallenge	1	Rule 30 is an elementary cellular automaton introduced by Stephen Wolfram in 1983.
+2022-10-21T21:39:33Z	luuketi/GameOfLife-Rule30	0	
+2022-10-11T07:34:04Z	PratikJagdale/ConwaysGameOfLifeRule30	0	
+2022-08-24T15:48:56Z	Kimiega/PRNG_rule30	0	Lib that provides random numbers obtained from a tree built according to rule 30.
+2022-08-05T15:01:16Z	zebieksts/rule-30	0	This application draws cellural automata rule 30 pattern rotated by 45 degree
+2022-07-08T22:41:05Z	0xchl0e/Rule30_PRNG	0	Experimenting with the Rule 30 cellular Automata as a PRNG
+2022-07-03T13:29:25Z	knyazev13ivan/cellular-automata-rule30	0	cellular automata. rule 30 with gradient tail.
+2022-06-13T17:05:34Z	bakaq/rule30conway	0	A simulation of feeding rule 30 into Conway's Game of Life
+2022-06-09T14:04:35Z	Carlos-gitjub/CellularAutomataRule30	0	Interactive Visualizations for Cellular Automaton Rule 30.
+2022-05-12T07:15:30Z	crebro/rule30-visual	0	Visualization for the rule 30 pattern using p5.js
+2022-05-11T18:38:13Z	garrettroell/rule_30	0	An interactive visualizer for Steven Wolfram's cellular automata
+2022-04-14T09:35:32Z	dominiczypen/Rule_30_rotate	0	Rule 30 cellular automaton with "wrapping at edges" (solved by rotation). Branchless and with bitwise op -> fast.
+2022-04-02T15:43:54Z	ozgurgunay/wolfram-rule-30	0	CA
+2022-03-21T15:25:19Z	mark1044/rule30	0	
+2022-03-19T12:57:58Z	rishabharoraa/rule30	1	illustration of rule30 cellular automaton written in go
+2022-02-16T01:53:07Z	Scotch101Tape/rule-30-pfp-maker	0	
+2022-02-08T01:25:59Z	hexaron/Rule-30	0	
+2022-02-01T16:31:38Z	PoulIgorson/rule-30	0	
+2022-01-03T18:49:59Z	northofnormal/Rule30Transloc	0	Implementation of the Rule 30 algorithm 
+2022-01-01T21:41:22Z	matthabermehl/rule-30	0	A small Vue app that runs Wolfram's rule 30 (javascript)
+2021-12-08T18:40:13Z	deppong/rule30_SDL	0	Rule30 simulation in C/SDL2
+2021-09-11T20:50:16Z	LuBru90/Rule30	0	Rule 30 is an elementary cellular automaton
+2021-08-12T14:55:36Z	ln2058/celullar-automata-rule30-centercolumn	0	A python program that will calculate the on and off states (in 0s and 1s) for the middle / center column of Rule 30 cellular automata which is thought to be cap
+2021-03-03T10:12:41Z	berkay-demir/Look-Up-Rule-30	0	
+2020-12-16T16:31:43Z	gmhcode/Rule30	0	
+2020-11-23T20:35:30Z	Brandogs/Rule30	0	Rule 30 Cellular Automata Demo Project
+2020-09-23T15:57:45Z	Scavix/Rule_30_Processing	0	Wolfram's Rule 30 Replica done in Processing
+2020-05-19T17:56:08Z	ZachWolpe/Rule30-Cellular-Automata	0	Implementation of CA - The Famous Rule 30
+2020-04-28T15:36:03Z	plming/Rule30	0	This is Rule 30 cellular automata written in C
+2020-03-02T14:42:27Z	clj0020/Rule-30	0	An android application that showcases Wolfram Alpha's Rule 30 of cellular automata.
+2020-02-27T17:22:31Z	willflet/rule30-research	0	Investigation into the structure and behaviour of the elementary cellular automaton (ECA) rule 30, motivated by Wolfram's challenge https://www.rule30prize.org/
+2019-08-03T12:45:42Z	EL-S/Rule30RNG	1	A rule 30 random number generator
+2019-06-03T03:55:26Z	beenotung/rule-30	0	screensaver showing rule30 pattern
+2019-05-17T03:04:17Z	allenspicer/demo_rule30	0	A demonstration of the elementary cellular automaton rule known as "rule 30"
+2019-05-06T18:00:24Z	Lukelear-Warhead/Rule_30	0	CodingTest
+2019-03-26T04:04:50Z	stephanieshen18/Rule30Simulation	0	JAVA -- Computes at least 300 iterations of the one-dimensional binary cellular automaton known as Rule 30, which has been shown to display a periodic and chaot
+2018-12-27T06:54:59Z	wjr0102/PRNG_with_rule30	0	
+2018-08-07T18:13:12Z	MartyFromCary/Rule30	0	Rule 30 Cellular Automaton displayed on pixel level
+2018-07-18T16:14:19Z	rho24/fsharp-rule30	0	
+2017-12-03T16:12:45Z	Runemoor/Rule_30	0	My Excel-version of Stephen Wolfram's famous one dimensional cellular automaton rule - the Rule 30
+2017-08-23T05:18:25Z	alangfiles/Rule30	0	Generating some triangles, writing obtuse js.
+2017-06-01T21:57:54Z	earthfail/rule30	0	terminal simulation of rule30 created by steven wolfram
+2017-05-27T16:49:00Z	zmwangx/rule30	31	Python implementation of Stephen Wolfram's elementary cellular automata (in particular, Rule 30)
+2017-03-29T03:37:59Z	jylopez/rule-30	0	:shell: Returns new binary state of array after applying cellular automaton Rule 30
+2017-03-19T11:00:47Z	ciubotaru/bitfield-rule30	2	An implementation of Wolfram's Rule 30 cellular automaton written in C
+2017-03-11T17:30:10Z	agwind/rule30	0	Elementary cellular automata
+2017-02-22T18:59:26Z	YanpuLi/Cellular-Automata-Rule30-Implementation	0	
+2016-12-07T16:25:03Z	ckftahadlangit/MP5-RevisitingRule30	0	
+2016-12-07T15:43:57Z	MEPacana/MP5_Revisiting_Rule_30	0	Rule 30 implementation with threads
+2016-06-21T05:52:09Z	jessefromearth/rule30	2	An open-source implementation of Stephen Wolframs Rule 30 cellular automaton rule written using Python and pygame.
+2016-04-28T14:19:13Z	maharleeeka/Rule30	0	
+2016-04-23T16:30:19Z	Paksssssss/rule30	0	
+2016-04-22T17:52:09Z	dev-marimo/Rule-30-Cellular-Automata	0	
+2016-04-22T16:56:20Z	HowDoIGitHelp/rule30automata	0	
+2016-04-22T16:42:30Z	Lesterrific17/Rule30	0	Cellular Automata
+2016-04-22T16:02:37Z	miriammariety/Rule-30	0	MP3 for CMSC 141
+2016-04-22T14:09:19Z	marosenarca/Rule30	0	
+2016-04-22T10:33:22Z	jessduran/Rule30	0	
+2016-04-22T03:22:08Z	faielomente/cmsc141-rule30	0	Console implementation
+2016-04-21T19:36:31Z	jannielynacha/Rule-30	0	CMSC 141 MP3
+2016-03-19T17:16:00Z	JotaAlava/MEAN-Rule30	0	Will draw Wolfram's rule 30.
+2016-02-03T00:58:20Z	screamish/rule30-elm	1	A quick and dirty attempt at cellular automaton rule 30 in elmlang
+2015-11-04T17:45:39Z	wharkins3/harkinsRule30	0	
+2015-07-17T12:10:30Z	aefesp/Rule_30	0	
+2015-06-30T19:00:23Z	dheckman/Rule-30	0	
+2015-06-29T04:34:11Z	jesseract/Rule30	0	
+2015-05-24T01:11:24Z	mearns/rule30	0	Implementatino of Wolfram's Rule-30 Cellular Automata
+2015-02-18T19:40:34Z	dperjar/rule30	0	A JavaScript and canvas implemenation of Stephen Wolfram's elementary cellular automata according to Rule  30
+2015-01-21T19:05:40Z	vbetts/rule30	1	A python project which simulates one-dimensional binary cellular automaton rule 30. Outputs a jpg for each line of the drawing so you can make an animated gif
+2014-12-19T13:02:51Z	JarettRoman/rule30	0	Repo holding a rule30 script written in Ruby
+2014-05-09T16:37:11Z	vrde/rule30	0	Generating chaos
+2014-05-02T12:10:12Z	JasonLunsford/rule30	0	My solution to the rule 30 challenge
+2014-04-07T14:26:35Z	dcarter5804/Rule30	0	Cellular Automation Rule 30
+2013-04-28T18:13:20Z	wonjyou/WolframRule30	0	A C++ program that simulates Rule 30 of Wolfram's cellular automata.
+2011-10-01T20:23:16Z	jeremysalwen/rule30cyclefinder	1	Finds repetitions of states in bounded width rule 30 cellular automata
+2011-02-13T15:49:02Z	johnmn3/clj-rule30	1	
