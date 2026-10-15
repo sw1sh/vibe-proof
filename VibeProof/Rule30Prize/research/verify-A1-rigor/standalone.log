@@ -1,0 +1,30 @@
+/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/verify-A1-rigor/A1Standalone.lean:73:32: warning: unused variable `x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+A1Check.realization' : ∀ (a : Nat → Bool),
+  (∀ (t : Nat), A1Check.zorb (A1Check.lam a) t 0 = a t) ∧
+    ∀ (x : Nat → Bool), (∀ (t : Nat), A1Check.zorb x t 0 = a t) → x = A1Check.lam a
+A1Check.spec_realization : ∀ (a : Nat → Bool),
+  ∃ y,
+    (∀ (p : Int), 0 ≤ p → y p = false) ∧
+      (∀ (t : Nat), A1Check.specOrb y t (-1) = a t) ∧
+        ∀ (z : Int → Bool), (∀ (p : Int), 0 ≤ p → z p = false) → (∀ (t : Nat), A1Check.specOrb z t (-1) = a t) → z = y
+'A1Check.realize'' does not depend on any axioms
+'A1Check.unique'' does not depend on any axioms
+'A1Check.realization'' depends on axioms: [Quot.sound]
+'A1Check.embed_zstep' depends on axioms: [propext, Quot.sound]
+'A1Check.spec_realization' depends on axioms: [propext, Quot.sound]
+[(true, true),
+ (false, false),
+ (true, true),
+ (true, true),
+ (false, false),
+ (false, false),
+ (true, true),
+ (false, false),
+ (false, false),
+ (true, true),
+ (false, false),
+ (false, false)]
+true
+true

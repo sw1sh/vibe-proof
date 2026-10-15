@@ -1,0 +1,11 @@
+'ZBLBarrier.finite_abstraction_has_lasso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.trunc_survives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.z_restart' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.pigeonhole' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZBLBarrier.finite_abstraction_has_lasso : ∀ (w : Nat) (α : (Nat → Bool) → List Bool),
+  (∀ (s : Nat → Bool), (α s).length = w) →
+    ∃ n m m',
+      n % 2 = 1 ∧
+        m < m' ∧
+          (∀ (j : Nat), j ≤ m' → ZBLBarrier.Survives (ZBLBarrier.iter (ZBLBarrier.trunc n) j)) ∧
+            α (ZBLBarrier.iter (ZBLBarrier.trunc n) m) = α (ZBLBarrier.iter (ZBLBarrier.trunc n) m')

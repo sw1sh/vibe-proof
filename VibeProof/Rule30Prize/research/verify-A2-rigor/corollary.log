@@ -1,0 +1,5 @@
+'ZBLBarrier.finite_abstraction_has_lasso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.finite_abstraction_has_lasso_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.sound_abstraction_has_reachable_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.no_finite_abstract_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZBLBarrier.prose_off_by_one' depends on axioms: [propext, Classical.choice, Quot.sound]

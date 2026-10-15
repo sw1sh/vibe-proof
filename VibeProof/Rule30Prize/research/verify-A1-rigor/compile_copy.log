@@ -1,0 +1,32 @@
+'R30ProgA.realize' depends on axioms: [propext]
+'R30ProgA.history_eq_cols' does not depend on any axioms
+'R30ProgA.realization' depends on axioms: [propext, Quot.sound]
+'R30ProgA.left_perm' does not depend on any axioms
+def R30ProgA.rn : (Nat → Bool) → Nat → Bool :=
+fun x x_1 =>
+  match x_1 with
+  | 0 => false
+  | j.succ => x j
+def R30ProgA.zstep : (Nat → Bool) → Nat → Bool :=
+fun x i => x (i + 1) ^^ (x i || R30ProgA.rn x i)
+def R30ProgA.zorb : (Nat → Bool) → Nat → Nat → Bool :=
+fun x x_1 => Nat.brecOn (motive := fun x => Nat → Bool) x_1 (R30ProgA.zorb._f x)
+def R30ProgA.cols : (Nat → Bool) → Nat → Nat → Bool :=
+fun a x x_1 => Nat.brecOn (motive := fun x => Nat → Bool) x (R30ProgA.cols._f a) x_1
+def R30ProgA.lam : (Nat → Bool) → Nat → Bool :=
+fun a i => R30ProgA.cols a (i + 1) 0
+R30ProgA.realization : ∀ (a : Nat → Bool),
+  (∀ (t : Nat), R30ProgA.zorb (R30ProgA.lam a) t 0 = a t) ∧
+    ∀ (x : Nat → Bool), (∀ (t : Nat), R30ProgA.zorb x t 0 = a t) → x = R30ProgA.lam a
+R30ProgA.realize : ∀ (a : Nat → Bool) (t i : Nat), R30ProgA.zorb (R30ProgA.lam a) t i = R30ProgA.cols a (i + 1) t
+@R30ProgA.history_eq_cols : ∀ {x a : Nat → Bool},
+  (∀ (t : Nat), R30ProgA.zorb x t 0 = a t) → ∀ (k t : Nat), R30ProgA.zorb x t k = R30ProgA.cols a (k + 1) t
+xor : Bool → Bool → Bool
+@[reducible] def Bool.xor : Bool → Bool → Bool :=
+bne
+/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/verify-A1-rigor/ZBLCoreCopy.lean:908:29: error: Type mismatch
+  rfl
+has type
+  ?m.13 = ?m.13
+but is expected to have type
+  2 + 2 = 5
