@@ -1,0 +1,68 @@
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints._proof_1_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g21 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_g21 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g21: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p11._proof_1_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_p11._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p11._proof_1_1: [TYPE differs]
+MISSING in catalog: KC.PeriodTwoW5.K5_checkGb._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_checkGb._proof_1_1 (scratch module KC.PeriodTwoW5)
+MISSING in catalog: KC.PeriodTwoW5.K5_checkGb -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_checkGb (scratch module KC.PeriodTwoW5)
+MISSING in catalog: KC.PeriodTwoW5.K5_checkb._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_checkb._proof_1_1 (scratch module KC.PeriodTwoW5)
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints._simp_1_2 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g23._proof_1_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_g23._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g23._proof_1_1: [TYPE differs]
+MISSING in catalog: KC.PeriodTwoW5.K5_checkb -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_checkb (scratch module KC.PeriodTwoW5)
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.wAt_eq expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.wAt_eq -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.wAt_eq: [TYPE differs]
+MISSING in catalog: KC.PeriodTwoW5.K5_posP -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_posP (scratch module KC.PeriodTwoW5)
+MISSING in catalog: KC.PeriodTwoW5.K5_perP -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_perP (scratch module KC.PeriodTwoW5)
+MISSING in catalog: KC.PeriodTwoW5.K5_rankP -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_rankP (scratch module KC.PeriodTwoW5)
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p00000 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_p00000 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p00000: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints._proof_1_4 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g23 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_g23 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g23: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p00000._proof_1_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_p00000._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p00000._proof_1_1: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.col1Forbidden -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden: [DEF VALUE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints._simp_1_3 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g21._proof_1_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_g21._proof_1_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g21._proof_1_1: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints._proof_1_2 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints._proof_1_3 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISSING in catalog: KC.PeriodTwoW5.K5 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5 (scratch module KC.PeriodTwoW5)
+MISSING in catalog: KC.PeriodTwoW5.K5_wordP -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.K5_wordP (scratch module KC.PeriodTwoW5)
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p11 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.occ_p11 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p11: [TYPE differs]
+WRONG MODULE: Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden.eq_1 expected in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+MISMATCH KC.PeriodTwoW5.col1Forbidden.eq_1 -> Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden.eq_1: [TYPE differs]
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_g21 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_p11._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_checkGb._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_checkGb in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_checkb._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1_constraints._simp_1_2 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_g23._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_checkb in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.wAt_eq in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_posP in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_perP in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_rankP in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_p00000 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints._proof_1_4 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_g23 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1_constraints in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_p00000._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1Forbidden in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1_constraints._simp_1_3 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_g21._proof_1_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints._proof_1_2 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints._proof_1_3 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.K5_wordP in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.occ_p11 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+EXTRA in catalog (no scratch counterpart): Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1Forbidden.eq_1 in Ruliology.CellularAutomata.Rule30PeriodTwoWidth5
+proof-term differences (theorems; types identical): #[Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p11._proof_1_1, Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g23._proof_1_1, Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.wAt_eq, Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints, Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_p00000._proof_1_1, Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.occ_g21._proof_1_1]

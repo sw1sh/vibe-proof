@@ -1,0 +1,52 @@
+'Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_period_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Prize.no_column_eventually_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.no_small_eventual_period' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.not_eventually_period_two_of_Q01' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.absorption_excludes' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.least_period_four_of_absorption' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0001' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0011' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0111' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.no_wall_le_12' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_absorption' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_011_of_C3w' depends on axioms: [propext, Quot.sound]
+sweep: 55 Ruliology modules, 5353 constants; axioms used: [propext, Quot.sound, Classical.choice]; violations: 0
+        4.03 real         0.57 user         0.74 sys
+          1256652800  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               52034  page reclaims
+               30586  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                5954  voluntary context switches
+               21611  involuntary context switches
+           330543804  instructions retired
+           133781392  cycles elapsed
+            10846928  peak memory footprint

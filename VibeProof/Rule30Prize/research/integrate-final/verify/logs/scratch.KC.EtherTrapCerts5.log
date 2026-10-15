@@ -1,0 +1,22 @@
+timeout 60 /usr/bin/time -l lake env lean /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/kernel-certify-r2/t3/src/KC/EtherTrapCerts5.lean --setup /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchsetup/KC.EtherTrapCerts5.setup.json -o /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts5.olean
+--- stdout
+
+--- stderr
+        5.42 real         5.34 user         0.18 sys
+          1173045248  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               77039  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                 919  involuntary context switches
+           316090062  instructions retired
+           120196986  cycles elapsed
+            10601072  peak memory footprint

@@ -1,0 +1,49 @@
+{
+ "plugins": [],
+ "package": null,
+ "options": {},
+ "name": "KC.EtherTrapMain",
+ "isModule": false,
+ "importArts": {
+  "KC.EtherTrap": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrap.olean"
+  ],
+  "KC.EtherTrapCerts0": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts0.olean"
+  ],
+  "KC.EtherTrapCerts1": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts1.olean"
+  ],
+  "KC.EtherTrapCerts2": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts2.olean"
+  ],
+  "KC.EtherTrapCerts3": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts3.olean"
+  ],
+  "KC.EtherTrapCerts4": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts4.olean"
+  ],
+  "KC.EtherTrapCerts5": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/EtherTrapCerts5.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Diagonals": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Diagonals.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Ether": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Ether.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Jen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Jen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30MaskedJen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30MaskedJen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Prize": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Prize.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30StripCertificates": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30StripCertificates.olean"
+  ]
+ },
+ "dynlibs": []
+}

@@ -1,0 +1,22 @@
+timeout 60 /usr/bin/time -l lake env lean /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/kernel-certify-r2/t1/src/KC/Q01W52/C3.lean --setup /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchsetup/KC.Q01W52.C3.setup.json -o /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C3.olean
+--- stdout
+
+--- stderr
+        4.99 real         4.06 user         1.04 sys
+          1491582976  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              489915  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                6164  involuntary context switches
+           317166856  instructions retired
+           112718553  cycles elapsed
+            10470024  peak memory footprint

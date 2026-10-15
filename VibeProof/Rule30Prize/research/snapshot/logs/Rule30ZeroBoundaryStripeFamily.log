@@ -1,0 +1,20 @@
+✔ [15/15] Built Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFamily (526ms)
+Build completed successfully (15 jobs).
+        0.68 real         0.62 user         0.12 sys
+           450560000  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               33386  page reclaims
+                   7  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  15  voluntary context switches
+                3208  involuntary context switches
+           394294118  instructions retired
+           184908112  cycles elapsed
+            15565976  peak memory footprint

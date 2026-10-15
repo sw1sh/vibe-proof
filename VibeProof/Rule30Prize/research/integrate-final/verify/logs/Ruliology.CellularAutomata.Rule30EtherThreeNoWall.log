@@ -1,0 +1,22 @@
+timeout 60 /usr/bin/time -l lake env lean /Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.lean --setup /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/setup/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.setup.json -o /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/build/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.olean
+--- stdout
+
+--- stderr
+        8.67 real         8.84 user         0.21 sys
+          1046429696  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               69825  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                3181  involuntary context switches
+           316027791  instructions retired
+           120341023  cycles elapsed
+            10601072  peak memory footprint

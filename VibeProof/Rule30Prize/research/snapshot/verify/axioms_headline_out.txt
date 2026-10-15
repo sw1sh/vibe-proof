@@ -1,0 +1,227 @@
+'Ruliology.CellularAutomata.Rule30Prize.Problem1' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30Prize.Problem2' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30Prize.no_column_eventually_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_period_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Window.no_small_eventual_period' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.nine_black' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.black_shield' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_long_black_run' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_black_white_run' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.not_eventually_zero_ones' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRuns.no_white_run_11' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_black_run_block' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_period_black_run_then_white' depends on axioms: [propext,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.problem1_iff_no_word' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_word_strip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.Cert.sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_00000011' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_000000000101' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30StripCertificateTable.not_eventually_certTable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.jen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.periodic_column_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Jen.not_adjacent' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.orCol_not_eventuallyPeriodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.effective_step' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30MaskedJen.window_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30MaskedJen.finitary_jen' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_column' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_exists' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_unique' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_black_or_white' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_30_or_135' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.R_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.D_periodic' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Diagonals.center_eq_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.e_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.per_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.rows_at_powers_of_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30RightPeriods.not_half_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.golden' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.not_eventually_period_two_of_Q01' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_fixed' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_Theta' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_staged' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.count_constrained' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.jen_clock' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundary.free_bits_no00_no11111' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.stripe_absorb' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.Theta_eventually_stripe_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.first_defect_phase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundarySmall.q01_width_le_16' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundarySmall.q01_width_le_15_odd' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_checks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_chunks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52_linear' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.not_inX_of_width_le_52' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.front_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.family_of_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family_list' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.CQ01_of_Q01' does not depend on any axioms
+'Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.no_eventual_period_two_of_CQ01' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.ether_coupled_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.no_pattern' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.ether_rule' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.trap_invariant' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.no_ether_wall_entry' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.absorption_excludes' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Ether.least_period_four_of_absorption' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.skeleton_0001' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.skeleton_0011' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.column_m1_0111' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.least_period_four_of_C3' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.word_lemma' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.escapes_of_certOK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.not_trap_of_certOK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0001' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0011' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0111' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.ether3_rule' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.alignments_001_complete' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.alignments_011_complete' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.absorption3_excludes' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.no_wall_le_12' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.trap_001' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.absorptionT_excludes' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_absorption' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.t001_reached' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.absorbed_empty' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_Q001' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_011_of_C3w' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.Q001_stripe' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.C3w_011_ether' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.skeleton_001' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.skeleton_011' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_C3s' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.column_realizable_unique' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.seed_perturbation' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Realization.barrier' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.finite_abstraction_has_lasso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_local_ranking' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_edge_dfa_ranking' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_joint_local_ranking' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.Rule30.predCount_eq_three_iff' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30.predCount_eq_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30.sum_predCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30.numWithPreds_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Blocks.blockAt_allowed' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Blocks.occurs_iff' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.Rule30Blocks.occurs_single_cell' depends on axioms: [propext, Quot.sound]
+'Ruliology.CellularAutomata.BusyBeaverLifetimes.lifetime450504084' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ruliology.CellularAutomata.BusyBeaverLifetimes.lifetime5810255963295' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+        0.26 real         0.12 user         0.10 sys
+           413040640  maximum resident set size
+rc=0

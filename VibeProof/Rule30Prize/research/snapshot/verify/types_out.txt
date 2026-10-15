@@ -1,0 +1,900 @@
+Ruliology.CellularAutomata.Rule30Prize.Problem1 : Prop
+Ruliology.CellularAutomata.Rule30Prize.Problem2 : Prop
+Ruliology.CellularAutomata.Rule30Prize.no_column_eventually_constant : ∀ (i : Int),
+  ¬∃ (T : Nat), ∃ (b : Bool), ∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t i = b
+Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_period_one : ¬∃ (N : Nat),
+    ∀ (t : Nat),
+      N ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + 1) = Ruliology.CellularAutomata.Rule30Prize.center t
+Ruliology.CellularAutomata.Rule30Window.no_small_eventual_period : ∀ (T P : Nat),
+  0 < P →
+    P ≤ Ruliology.CellularAutomata.Rule30Window.windowN / 4 →
+      T ≤ Ruliology.CellularAutomata.Rule30Window.windowN / 2 →
+        ¬∀ (t : Nat),
+            T ≤ t →
+              Ruliology.CellularAutomata.Rule30Prize.center (t + P) = Ruliology.CellularAutomata.Rule30Prize.center t
+Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge : ∀ (T P : Nat),
+  0 < P →
+    (∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Prize.center (t + P) = Ruliology.CellularAutomata.Rule30Prize.center t) →
+      Ruliology.CellularAutomata.Rule30FactorWindow.M ≤ T + P
+Ruliology.CellularAutomata.Rule30BlackRuns.nine_black : ∀ (t : Nat) (m : Int),
+  (∀ (s : Nat), s < 9 → Ruliology.CellularAutomata.Rule30Jen.cell (t + s) m = true) →
+    Ruliology.CellularAutomata.Rule30Jen.cell (t + 9) (m + 1) = false ∧
+      Ruliology.CellularAutomata.Rule30Jen.cell (t + 9) (m + 2) = true
+Ruliology.CellularAutomata.Rule30BlackRuns.black_shield : ∀ (m : Int) (j t : Nat),
+  (∀ (s : Nat), s < 9 * j → Ruliology.CellularAutomata.Rule30Jen.cell (t + s) m = true) →
+    ∀ (i : Nat),
+      1 ≤ i →
+        i ≤ j →
+          Ruliology.CellularAutomata.Rule30Jen.cell (t + 9 * j) (m + 2 * ↑i - 1) = false ∧
+            Ruliology.CellularAutomata.Rule30Jen.cell (t + 9 * j) (m + 2 * ↑i) = true
+Ruliology.CellularAutomata.Rule30BlackRuns.no_long_black_run : ∀ (T P r t1 : Nat),
+  (∀ (t : Nat),
+      T ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + P) = Ruliology.CellularAutomata.Rule30Prize.center t) →
+    T ≤ t1 →
+      r ≤ P →
+        (∀ (s : Nat), s < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s) = true) →
+          9 * ((P - r + 10) / 2) ≤ r → False
+Ruliology.CellularAutomata.Rule30BlackRuns.no_black_white_run : ∀ (T P s r t1 : Nat),
+  (∀ (t : Nat),
+      T ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + P) = Ruliology.CellularAutomata.Rule30Prize.center t) →
+    T ≤ t1 →
+      9 ≤ s →
+        s + r ≤ P →
+          (∀ (i : Nat), i < s → Ruliology.CellularAutomata.Rule30Prize.center (t1 + i) = true) →
+            (∀ (i : Nat), i < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s + i) = false) →
+              1 + 9 * ((P - s - r + 9) / 2) ≤ r → False
+Ruliology.CellularAutomata.Rule30BlackRuns.not_eventually_zero_ones : ∀ (k : Nat),
+  9 ≤ k →
+    ∀ (T : Nat), ¬∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = decide ((t - T) % (k + 1) ≠ 0)
+Ruliology.CellularAutomata.Rule30BlackRuns.no_white_run_11 : ∀ (T r t0 : Nat),
+  10 ≤ r →
+    (∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Prize.center (t + (r + 2)) =
+            Ruliology.CellularAutomata.Rule30Prize.center t) →
+      T ≤ t0 →
+        (∀ (i : Nat), i < r → Ruliology.CellularAutomata.Rule30Prize.center (t0 + i) = false) →
+          Ruliology.CellularAutomata.Rule30Prize.center (t0 + r) = true →
+            Ruliology.CellularAutomata.Rule30Prize.center (t0 + r + 1) = true → False
+Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_black_run_block : ∀ (u : List Bool) (j0 : Nat),
+  Ruliology.CellularAutomata.Rule30BlackRunBlocks.Determined u j0 = true →
+    2 * j0 ≤ u.length + 10 →
+      ∀ (T r t1 : Nat),
+        (∀ (t : Nat),
+            T ≤ t →
+              Ruliology.CellularAutomata.Rule30Prize.center (t + (r + u.length)) =
+                Ruliology.CellularAutomata.Rule30Prize.center t) →
+          T ≤ t1 →
+            9 ≤ r →
+              9 * j0 ≤ r →
+                (∀ (s : Nat), s < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s) = true) →
+                  (∀ (i : Nat),
+                      i < u.length → Ruliology.CellularAutomata.Rule30Prize.center (t1 + r + i) = u.getD i false) →
+                    False
+Ruliology.CellularAutomata.Rule30BlackRunBlocks.no_period_black_run_then_white : ∀ (T r t1 : Nat),
+  18 ≤ r →
+    (∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Prize.center (t + (r + 1)) =
+            Ruliology.CellularAutomata.Rule30Prize.center t) →
+      T ≤ t1 →
+        (∀ (s : Nat), s < r → Ruliology.CellularAutomata.Rule30Prize.center (t1 + s) = true) →
+          Ruliology.CellularAutomata.Rule30Prize.center (t1 + r) = false → False
+Ruliology.CellularAutomata.Rule30StripCertificates.problem1_iff_no_word : Ruliology.CellularAutomata.Rule30Prize.Problem1 ↔
+  ∀ (w : List Bool), w ≠ [] → ¬Ruliology.CellularAutomata.Rule30StripCertificates.EventuallyWord w
+Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_word_strip : ∀ (w : List Bool) (K k : Nat),
+  1 ≤ K →
+    0 < w.length →
+      Ruliology.CellularAutomata.Rule30StripCertificates.stripCert w K k = true →
+        ¬Ruliology.CellularAutomata.Rule30StripCertificates.EventuallyWord w
+Ruliology.CellularAutomata.Rule30StripCertificates.Cert.sound : ∀
+  (C : Ruliology.CellularAutomata.Rule30StripCertificates.Cert),
+  C.check = true →
+    C.checkG = true →
+      0 < C.P →
+        0 < C.b →
+          ∀ (T : Nat),
+            (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = C.wAt ((t - T) % C.P)) → False
+Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_00000011 : ¬Ruliology.CellularAutomata.Rule30StripCertificates.EventuallyWord
+    [false, false, false, false, false, false, true, true]
+Ruliology.CellularAutomata.Rule30StripCertificates.not_eventually_000000000101 : ¬Ruliology.CellularAutomata.Rule30StripCertificates.EventuallyWord
+    [false, false, false, false, false, false, false, false, false, true, false, true]
+Ruliology.CellularAutomata.Rule30StripCertificateTable.not_eventually_certTable : ∀ (e : Nat × Nat × Nat × Nat),
+  e ∈ Ruliology.CellularAutomata.Rule30StripCertificateTable.certTable →
+    ¬Ruliology.CellularAutomata.Rule30StripCertificates.EventuallyWord
+        (Ruliology.CellularAutomata.Rule30StripCertificateTable.wordOf e.fst e.snd.fst)
+Ruliology.CellularAutomata.Rule30Jen.jen : ∀ (j k : Int),
+  j ≠ k →
+    ¬((Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+          Ruliology.CellularAutomata.Rule30Jen.cell t j) ∧
+        Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+          Ruliology.CellularAutomata.Rule30Jen.cell t k)
+Ruliology.CellularAutomata.Rule30Jen.periodic_column_unique : ∀ (j k : Int),
+  (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30Jen.cell t j) →
+    (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+        Ruliology.CellularAutomata.Rule30Jen.cell t k) →
+      j = k
+Ruliology.CellularAutomata.Rule30Jen.not_adjacent : ∀ (i : Int),
+  (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30Jen.cell t i) →
+    (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+        Ruliology.CellularAutomata.Rule30Jen.cell t (i + 1)) →
+      False
+Ruliology.CellularAutomata.Rule30MaskedJen.masked_jen : ∀ (i : Int) {T P : Nat},
+  0 < P →
+    (∀ (t : Nat),
+        T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell (t + P) i = Ruliology.CellularAutomata.Rule30Jen.cell t i) →
+      (∀ (t : Nat),
+          T ≤ t →
+            Ruliology.CellularAutomata.Rule30Jen.cell t i = false →
+              Ruliology.CellularAutomata.Rule30Jen.cell (t + P) (i + 1) =
+                Ruliology.CellularAutomata.Rule30Jen.cell t (i + 1)) →
+        False
+Ruliology.CellularAutomata.Rule30MaskedJen.orCol_not_eventuallyPeriodic : ∀ (i : Int),
+  (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30Jen.cell t i) →
+    ¬Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+        Ruliology.CellularAutomata.Rule30MaskedJen.orCol i t
+Ruliology.CellularAutomata.Rule30MaskedJen.effective_step : ∀ (t : Nat),
+  Ruliology.CellularAutomata.Rule30Jen.cell (t + 1) (-1) =
+    Ruliology.CellularAutomata.Rule30Jen.rule (Ruliology.CellularAutomata.Rule30Jen.cell t (-2))
+      (Ruliology.CellularAutomata.Rule30Jen.cell t (-1))
+      (Ruliology.CellularAutomata.Rule30Prize.center t && Ruliology.CellularAutomata.Rule30Prize.center (t + 1))
+@Ruliology.CellularAutomata.Rule30MaskedJen.window_jen : ∀ {t₁ t₂ : Nat},
+  t₁ < t₂ →
+    (∀ (s : Nat),
+        s ≤ t₂ →
+          Ruliology.CellularAutomata.Rule30Jen.cell (t₁ + s) 0 = Ruliology.CellularAutomata.Rule30Jen.cell (t₂ + s) 0) →
+      (∀ (s : Nat),
+          s < t₂ →
+            Ruliology.CellularAutomata.Rule30MaskedJen.orCol 0 (t₁ + s) =
+              Ruliology.CellularAutomata.Rule30MaskedJen.orCol 0 (t₂ + s)) →
+        False
+@Ruliology.CellularAutomata.Rule30MaskedJen.finitary_jen : ∀ {P n : Nat},
+  0 < P →
+    P ≤ n →
+      (∀ (x : Nat),
+          n - P ≤ x →
+            x + P ≤ 2 * n →
+              Ruliology.CellularAutomata.Rule30Jen.cell (x + P) 0 = Ruliology.CellularAutomata.Rule30Jen.cell x 0) →
+        (∀ (x : Nat),
+            n - P ≤ x →
+              x + P < 2 * n →
+                Ruliology.CellularAutomata.Rule30MaskedJen.orCol 0 (x + P) =
+                  Ruliology.CellularAutomata.Rule30MaskedJen.orCol 0 x) →
+          False
+@Ruliology.CellularAutomata.Rule30DrivenLeft.no_periodic_column : ∀ {c : Nat → Bool} {s : Int → Bool} {m : Nat},
+  (∀ (p : Int), p < -↑m → s p = false) →
+    s (-↑m) = true →
+      0 < m →
+        Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic c →
+          ∀ {q : Int},
+            q < 0 →
+              (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+                  Ruliology.CellularAutomata.Rule30DrivenLeft.L c s t q) →
+                False
+@Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_exists : ∀ {c : Nat → Bool} (b : Nat → Bool) {n : Nat},
+  0 < n →
+    ∃ (s : Int → Bool),
+      (∀ (p : Int), p < -↑n → s p = false) ∧
+        s (-↑n) = true ∧ ∀ (k : Nat), k + 1 < n → Ruliology.CellularAutomata.Rule30DrivenLeft.L c s k (-1) = b k
+@Ruliology.CellularAutomata.Rule30DrivenLeft.barrier_unique : ∀ {c : Nat → Bool} {s s' : Int → Bool} {n : Nat},
+  (∀ (p : Int), p < -↑n → s p = false) →
+    s (-↑n) = true →
+      (∀ (p : Int), p < -↑n → s' p = false) →
+        s' (-↑n) = true →
+          (∀ (k : Nat),
+              k + 1 < n →
+                Ruliology.CellularAutomata.Rule30DrivenLeft.L c s k (-1) =
+                  Ruliology.CellularAutomata.Rule30DrivenLeft.L c s' k (-1)) →
+            ∀ (p : Int), p < 0 → s p = s' p
+Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_black_or_white : ¬((Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic
+      fun (t : Nat) => Ruliology.CellularAutomata.Rule30Jen.cell t 0) ∧
+    Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30WhiteSeed.cellW t 0)
+Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_30_or_135 : ¬((Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic
+      fun (t : Nat) => Ruliology.CellularAutomata.Rule30Jen.cell t 0) ∧
+    Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30WhiteSeed.cell135 t 0)
+Ruliology.CellularAutomata.Rule30Diagonals.R_periodic : ∀ (j t : Nat),
+  Ruliology.CellularAutomata.Rule30Diagonals.R j (t + 2 ^ j) = Ruliology.CellularAutomata.Rule30Diagonals.R j t
+Ruliology.CellularAutomata.Rule30Diagonals.D_periodic : ∀ (j : Nat),
+  ∃ (T : Nat),
+    ∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Diagonals.D j (t + 2 ^ j) = Ruliology.CellularAutomata.Rule30Diagonals.D j t
+Ruliology.CellularAutomata.Rule30Diagonals.center_eq_parity : ∀ (t : Nat),
+  2 ≤ t →
+    Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+      ((List.filter
+              (fun (s : Nat) =>
+                Ruliology.CellularAutomata.Rule30Jen.cell s (↑s - ↑t + 1) ||
+                  Ruliology.CellularAutomata.Rule30Jen.cell s (↑s - ↑t + 2))
+              (List.range t)).length %
+          2 ==
+        1)
+@Ruliology.CellularAutomata.Rule30RightPeriods.e_step : ∀ {j e e' : Nat},
+  Ruliology.CellularAutomata.Rule30RightPeriods.IsE j e →
+    Ruliology.CellularAutomata.Rule30RightPeriods.IsE (j + 1) e' →
+      e' = e + if Ruliology.CellularAutomata.Rule30Diagonals.R (j + 1) (2 ^ e) = true then 1 else 0
+@Ruliology.CellularAutomata.Rule30RightPeriods.per_bound : ∀ {J k : Nat},
+  Ruliology.CellularAutomata.Rule30RightPeriods.Per J (2 ^ k) → J ≤ 2 ^ (k + 1) - 2
+Ruliology.CellularAutomata.Rule30RightPeriods.per_upper : ∀ (j : Nat),
+  2 ≤ j → Ruliology.CellularAutomata.Rule30RightPeriods.Per j (2 ^ ((2 * j + 1) / 3))
+Ruliology.CellularAutomata.Rule30RightPeriods.rows_at_powers_of_two : ∀ (k : Nat),
+  ∃ (J : Nat),
+    k ≤ J ∧
+      J ≤ 2 ^ (k + 1) - 2 ∧
+        (∀ (j : Nat), Ruliology.CellularAutomata.Rule30RightPeriods.Per j (2 ^ k) ↔ j ≤ J) ∧
+          (∀ (u : Nat),
+              u % 2 = 1 →
+                (∀ (i : Nat), 1 ≤ i → i ≤ J → Ruliology.CellularAutomata.Rule30Diagonals.R i (2 ^ k * u) = false) ∧
+                  Ruliology.CellularAutomata.Rule30Diagonals.R (J + 1) (2 ^ k * u) = true) ∧
+            (∀ (i : Nat), i ≤ J → Ruliology.CellularAutomata.Rule30Diagonals.R i (2 ^ k - 1) = true) ∧
+              Ruliology.CellularAutomata.Rule30Diagonals.R (J + 1) (2 ^ k - 1) = false
+Ruliology.CellularAutomata.Rule30RightPeriods.not_half_lower : ¬∀ (j k : Nat),
+    Ruliology.CellularAutomata.Rule30RightPeriods.Per j (2 ^ k) → j / 2 ≤ k
+@Ruliology.CellularAutomata.Rule30PeriodTwo.normalize : ∀ {T0 : Nat},
+  (∀ (t : Nat),
+      T0 ≤ t →
+        Ruliology.CellularAutomata.Rule30Prize.center (t + 2) = Ruliology.CellularAutomata.Rule30Prize.center t) →
+    ∃ (T : Nat),
+      ∀ (k : Nat),
+        Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k) 0 = true ∧
+          Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) 0 = false
+@Ruliology.CellularAutomata.Rule30PeriodTwo.golden : ∀ {T : Nat},
+  (∀ (k : Nat),
+      Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k) 0 = true ∧
+        Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) 0 = false) →
+    ∀ (k : Nat),
+      Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) (-1) = false →
+        Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 3) (-1) = true
+Ruliology.CellularAutomata.Rule30PeriodTwo.not_eventually_period_two_of_Q01 : Ruliology.CellularAutomata.Rule30PeriodTwo.Q01 →
+  ¬∃ (T0 : Nat),
+      ∀ (t : Nat),
+        T0 ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + 2) = Ruliology.CellularAutomata.Rule30Prize.center t
+Ruliology.CellularAutomata.Rule30PeriodTwo.stripe_fixed : ∀ (t : Nat) (p : Int),
+  p < 0 →
+    Ruliology.CellularAutomata.Rule30DrivenLeft.L (fun (x : Nat) => false)
+        Ruliology.CellularAutomata.Rule30PeriodTwo.stripe t p =
+      Ruliology.CellularAutomata.Rule30PeriodTwo.stripe p
+Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_Theta : Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01 ↔
+  ∀ (f : Nat → Bool),
+    ¬Ruliology.CellularAutomata.Rule30ZeroBoundary.FinSupp (Ruliology.CellularAutomata.Rule30ZeroBoundary.Theta f)
+Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_bounded : Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01 ↔
+  ∀ (d : Nat),
+    ∃ (B : Nat),
+      ∀ (f : Nat → Bool),
+        ∃ (k : Nat), d < k ∧ k ≤ d + B ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.Theta f k = true
+Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01_iff_staged : Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01 ↔
+  Ruliology.CellularAutomata.Rule30PeriodTwo.Q01
+Ruliology.CellularAutomata.Rule30ZeroBoundary.count_constrained : ∀ (W : Nat),
+  Ruliology.CellularAutomata.Rule30ZeroBoundary.cnt W [] = 2 ^ (W / 2)
+@Ruliology.CellularAutomata.Rule30ZeroBoundary.jen_clock : ∀ {L : Nat → Bool} {m : Nat},
+  1 ≤ m →
+    L m = true →
+      (∀ (k : Nat), m < k → L k = false) →
+        ∀ {T ℓ P : Nat},
+          0 < P →
+            (∀ (t : Nat),
+                T ≤ t →
+                  t + P ≤ T + ℓ →
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow L (t + P) 1 =
+                      Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow L t 1) →
+              ℓ + 2 ≤ T + m + 2 * P
+@Ruliology.CellularAutomata.Rule30ZeroBoundary.free_bits_no00_no11111 : ∀ {T : Nat},
+  (∀ (k : Nat),
+      Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k) 0 = true ∧
+        Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) 0 = false) →
+    ∀ (k : Nat),
+      ¬(Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) (-1) = false ∧
+            Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * (k + 1) + 1) (-1) = false) ∧
+        ¬∀ (i : Nat), i < 5 → Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * (k + i) + 1) (-1) = true
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.stripe_absorb : ∀ (R : Nat → Bool) (m : Nat),
+  m % 2 = 1 →
+    Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.AgreesFrom R m →
+      ∃ (T : Nat),
+        ∀ (t : Nat),
+          T ≤ t →
+            ∀ (k : Nat),
+              1 ≤ k →
+                Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow R t k =
+                  Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.Theta_eventually_stripe_iff : ∀ (f : Nat → Bool),
+  (∃ (m : Nat),
+      Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.AgreesFrom
+        (Ruliology.CellularAutomata.Rule30ZeroBoundary.Theta f) m) ↔
+    ∃ (S : Nat), ∀ (s : Nat), S ≤ s → f s = true
+@Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe.first_defect_phase : ∀ {T : Nat},
+  (∀ (k : Nat),
+      Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k) 0 = true ∧
+        Ruliology.CellularAutomata.Rule30Jen.cell (T + 2 * k + 1) 0 = false) →
+    ∀ (u d : Nat),
+      T ≤ u →
+        1 ≤ d →
+          (∀ (k : Nat),
+              1 ≤ k →
+                k < d →
+                  Ruliology.CellularAutomata.Rule30Jen.cell u (-↑k) =
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+            Ruliology.CellularAutomata.Rule30Jen.cell u (-↑d) ≠ Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe d →
+              (d % 2 = 0 ↔ Ruliology.CellularAutomata.Rule30Jen.cell u 0 = true)
+Ruliology.CellularAutomata.Rule30ZeroBoundarySmall.q01_width_le_16 : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 16 < k → x k = false) →
+    ∃ (j : Nat), 2 * j < 34 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x (2 * j) 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundarySmall.q01_width_le_15_odd : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 15 < k → x k = false) →
+    ∃ (j : Nat), 2 * j < 34 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x (2 * j + 1) 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_checks : ∀ (W K n : Nat),
+  n ≤ W / 2 →
+    (∀ (c : Nat), c < 2 ^ (W / 2 - n) → Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.check W K n c = true) →
+      ∀ (x : Nat → Bool),
+        (∀ (k : Nat), W < k → x k = false) →
+          ∃ (t : Nat), t < K ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_chunks : ∀ (W K n : Nat),
+  n ≤ W / 2 →
+    Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.ChunksOK W K n 0 (2 ^ (W / 2 - n)) →
+      ∀ (x : Nat → Bool),
+        (∀ (k : Nat), W < k → x k = false) →
+          ∃ (t : Nat), t < K ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52 : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) →
+    ∃ (t : Nat), t ≤ 96 ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52_linear : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) →
+    ∃ (t : Nat), t ≤ 2 * 52 + 8 ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.not_inX_of_width_le_52 : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) → ¬Ruliology.CellularAutomata.Rule30ZeroBoundary.InX x
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.front_sound : ∀ (x : Nat → Bool) (d K S lam : Nat),
+  1 ≤ d →
+    (∀ (k : Nat), 1 ≤ k → k < d → x k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+      S + 1 ≤ K →
+        Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.Cycle K S
+            (Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.pk (fun (i : Nat) => x (d + i)) K) (d % 2) lam →
+          ∃ (s : Nat),
+            s ≤ S ∧ (d - 1 + s) % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x (d - 1 + s) 1 = false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.family_of_class : ∀ (m q δ lam : Nat) (b0 b1 b2 : Bool),
+  m % 2 = q →
+    1 ≤ δ →
+      Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.devB q δ b0 b1 b2 = true →
+        Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.Cycle 32 31
+            (Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.pk
+              (fun (i : Nat) => Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.vget b0 b1 b2 (δ - 1 + i)) 32)
+            ((q + δ) % 2) lam →
+          (∀ (k : Nat),
+              1 ≤ k →
+                k < m + δ →
+                  Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2 k =
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) ∧
+            Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2 (m + δ) ≠
+                Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe (m + δ) ∧
+              ∃ (t : Nat),
+                t ≤ m + δ - 1 + 31 ∧
+                  t % 2 = 0 ∧
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow
+                        (Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2) t 1 =
+                      false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family : ∀ (m : Nat) (b0 b1 b2 : Bool),
+  ∃ (d : Nat),
+    1 ≤ d ∧
+      d ≤ m + 5 ∧
+        (∀ (k : Nat),
+            1 ≤ k →
+              k < d →
+                Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2 k =
+                  Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) ∧
+          Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2 d ≠
+              Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe d ∧
+            ∃ (t : Nat),
+              t ≤ d - 1 + 31 ∧
+                t % 2 = 0 ∧
+                  Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow
+                      (Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.row3 m b0 b1 b2) t 1 =
+                    false
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family_list : ∀ (m : Nat) (v : List Bool),
+  v.length ≤ 3 →
+    ∃ (d : Nat),
+      1 ≤ d ∧
+        d ≤ m + 5 ∧
+          (∀ (k : Nat),
+              1 ≤ k →
+                k < d →
+                  Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.rowV m v k =
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) ∧
+            Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.rowV m v d ≠
+                Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe d ∧
+              ∃ (t : Nat),
+                t ≤ d - 1 + 31 ∧
+                  t % 2 = 0 ∧
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow
+                        (Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.rowV m v) t 1 =
+                      false
+Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.CQ01_of_Q01 : Ruliology.CellularAutomata.Rule30ZeroBoundary.Q01 →
+  Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.CQ01
+Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.no_eventual_period_two_of_CQ01 : Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.CQ01 →
+  ¬∃ (T0 : Nat),
+      ∀ (t : Nat),
+        T0 ≤ t → Ruliology.CellularAutomata.Rule30Prize.center (t + 2) = Ruliology.CellularAutomata.Rule30Prize.center t
+Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.ether_coupled_witness : (∀ (s : Nat),
+    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow (Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.etherLeft 1)
+        (2 * s) 1 =
+      true) ∧
+  ∀ (s : Nat),
+    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow (Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.etherLeft 1)
+        (2 * s + 1) 1 =
+      !Ruliology.CellularAutomata.Rule30Ether.drv Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.altCol
+          (Ruliology.CellularAutomata.Rule30PeriodTwoCoupled.etherRight 1) (2 * s + 1) 1
+Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.no_pattern : ∀
+  (C : Ruliology.CellularAutomata.Rule30StripCertificates.Cert) (bad : Nat),
+  C.w = [false, true] →
+    ∀ (T T' : Nat),
+      T ≤ T' →
+        (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = C.wAt ((t - T) % C.P)) →
+          (∀ (t : Nat),
+              T' ≤ t → C.rk ((t - T) % C.P) (Ruliology.CellularAutomata.Rule30StripCertificates.rowR t C.b) = bad) →
+            0 < C.b →
+              ∀ (pat : List Bool),
+                Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.occurs C bad pat = false →
+                  ∀ (t : Nat),
+                    T' ≤ t →
+                      (t - T) % 2 = 0 →
+                        ¬∀ (i : Nat),
+                            i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) 1 = pat.getD i false
+Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) 1 = pat.getD i false
+Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) (-1) = !pat.getD i false
+Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) 1 = pat.getD i false
+Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) (-1) = !pat.getD i false
+Ruliology.CellularAutomata.Rule30Ether.ether_rule : ∀ (j φ : Nat),
+  Ruliology.CellularAutomata.Rule30Ether.ether j (φ + 1) =
+    Ruliology.CellularAutomata.Rule30Jen.rule (Ruliology.CellularAutomata.Rule30Ether.ether (j + 6) φ)
+      (Ruliology.CellularAutomata.Rule30Ether.ether j φ) (Ruliology.CellularAutomata.Rule30Ether.ether (j + 1) φ)
+@Ruliology.CellularAutomata.Rule30Ether.trap_invariant : ∀ {F : Nat → Nat → Bool},
+  Ruliology.CellularAutomata.Rule30Ether.IsR30 F →
+    ∀ (j0 s k t1 : Nat),
+      (j0 + k) % 7 = 2 →
+        (∀ (t : Nat), t1 ≤ t → F t 0 = Ruliology.CellularAutomata.Rule30Ether.ether j0 (t + s)) →
+          (∀ (p : Nat), 1 ≤ p → p ≤ k → F t1 p = Ruliology.CellularAutomata.Rule30Ether.ether (j0 + p) (t1 + s)) →
+            ((t1 + s) % 4, Ruliology.CellularAutomata.Rule30Ether.rowOf F t1 k 13) ∈
+                Ruliology.CellularAutomata.Rule30Ether.wallStates →
+              ∀ (n : Nat),
+                (∀ (p : Nat),
+                    p ≤ k → F (t1 + n) p = Ruliology.CellularAutomata.Rule30Ether.ether (j0 + p) (t1 + n + s)) ∧
+                  ((t1 + n + s) % 4, Ruliology.CellularAutomata.Rule30Ether.rowOf F (t1 + n) k 13) ∈
+                    Ruliology.CellularAutomata.Rule30Ether.wallStates
+Ruliology.CellularAutomata.Rule30Ether.no_ether_wall_entry : ∀ (w : List Bool) (j0 s : Nat),
+  Ruliology.CellularAutomata.Rule30Ether.aligned w j0 s = true →
+    ∀ (T : Nat),
+      (∀ (t : Nat),
+          T ≤ t →
+            Ruliology.CellularAutomata.Rule30Jen.cell t 0 = Ruliology.CellularAutomata.Rule30Ether.wordAt w (t - T)) →
+        ∀ (t1 k : Nat),
+          T ≤ t1 →
+            (j0 + k) % 7 = 2 →
+              (∀ (p : Nat),
+                  1 ≤ p →
+                    p ≤ k →
+                      Ruliology.CellularAutomata.Rule30Jen.cell t1 ↑p =
+                        Ruliology.CellularAutomata.Rule30Ether.ether (j0 + p) (t1 - T + s)) →
+                ((t1 - T + s) % 4,
+                      Ruliology.CellularAutomata.Rule30Ether.rowOf Ruliology.CellularAutomata.Rule30Ether.trueRight t1 k
+                        13) ∈
+                    Ruliology.CellularAutomata.Rule30Ether.wallStates →
+                  False
+Ruliology.CellularAutomata.Rule30Ether.absorption_excludes : ∀ (w : List Bool) (A : List (Nat × Nat)),
+  (∀ (a : Nat × Nat), a ∈ A → Ruliology.CellularAutomata.Rule30Ether.aligned w a.fst a.snd = true) →
+    Ruliology.CellularAutomata.Rule30Ether.Absorption w A →
+      ¬∃ (T : Nat),
+          ∀ (t : Nat),
+            T ≤ t →
+              Ruliology.CellularAutomata.Rule30Jen.cell t 0 = Ruliology.CellularAutomata.Rule30Ether.wordAt w (t - T)
+Ruliology.CellularAutomata.Rule30Ether.least_period_four_of_absorption : Ruliology.CellularAutomata.Rule30Ether.Absorption
+    Ruliology.CellularAutomata.Rule30Ether.w0001 Ruliology.CellularAutomata.Rule30Ether.A0001 →
+  Ruliology.CellularAutomata.Rule30Ether.Absorption Ruliology.CellularAutomata.Rule30Ether.w0011
+      Ruliology.CellularAutomata.Rule30Ether.A0011 →
+    Ruliology.CellularAutomata.Rule30Ether.Absorption Ruliology.CellularAutomata.Rule30Ether.w0111
+        Ruliology.CellularAutomata.Rule30Ether.A0111 →
+      (¬∃ (T : Nat),
+            ∀ (t : Nat),
+              T ≤ t →
+                Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                  Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0001 (t - T)) ∧
+        (¬∃ (T : Nat),
+              ∀ (t : Nat),
+                T ≤ t →
+                  Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                    Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0011
+                      (t - T)) ∧
+          ¬∃ (T : Nat),
+              ∀ (t : Nat),
+                T ≤ t →
+                  Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                    Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0111 (t - T)
+Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.skeleton_0001 : ∀ (T : Nat),
+  (∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+          Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.K0001.wAt ((t - T) % 4)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            ((t - T) % 4 = 0 →
+                Ruliology.CellularAutomata.Rule30Jen.cell t 1 = false ∧
+                  Ruliology.CellularAutomata.Rule30Jen.cell t 3 = true) ∧
+              ((t - T) % 4 = 1 → Ruliology.CellularAutomata.Rule30Jen.cell t 2 = true) ∧
+                ((t - T) % 4 = 2 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = true) ∧
+                  ((t - T) % 4 = 3 →
+                    Ruliology.CellularAutomata.Rule30Jen.cell t 1 = true ∧
+                      Ruliology.CellularAutomata.Rule30Jen.cell t 2 = false)
+Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.skeleton_0011 : ∀ (T : Nat),
+  (∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+          Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.K0011.wAt ((t - T) % 4)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            ((t - T) % 4 = 1 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = true) ∧
+              ((t - T) % 4 = 2 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = true) ∧
+                ((t - T) % 4 = 3 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = false)
+Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.column_m1_0111 : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = decide (1 ≤ (t - T) % 4)) →
+    ∀ (t : Nat),
+      T ≤ t →
+        ((t - T) % 4 = 0 →
+            Ruliology.CellularAutomata.Rule30Jen.cell t (-1) = !Ruliology.CellularAutomata.Rule30Jen.cell t 1) ∧
+          ((t - T) % 4 = 1 → Ruliology.CellularAutomata.Rule30Jen.cell t (-1) = false) ∧
+            ((t - T) % 4 = 2 → Ruliology.CellularAutomata.Rule30Jen.cell t (-1) = false) ∧
+              ((t - T) % 4 = 3 → Ruliology.CellularAutomata.Rule30Jen.cell t (-1) = true)
+Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.least_period_four_of_C3 : Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.C3
+    Ruliology.CellularAutomata.Rule30Ether.w0001 →
+  Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.C3 Ruliology.CellularAutomata.Rule30Ether.w0011 →
+    Ruliology.CellularAutomata.Rule30PeriodFourSkeleton.C3 Ruliology.CellularAutomata.Rule30Ether.w0111 →
+      (¬∃ (T : Nat),
+            ∀ (t : Nat),
+              T ≤ t →
+                Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                  Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0001 (t - T)) ∧
+        (¬∃ (T : Nat),
+              ∀ (t : Nat),
+                T ≤ t →
+                  Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                    Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0011
+                      (t - T)) ∧
+          ¬∃ (T : Nat),
+              ∀ (t : Nat),
+                T ≤ t →
+                  Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                    Ruliology.CellularAutomata.Rule30Ether.wordAt Ruliology.CellularAutomata.Rule30Ether.w0111 (t - T)
+Ruliology.CellularAutomata.Rule30EtherTrap.word_lemma : ∀ (w : List Bool) (T : Nat × List Bool → Prop),
+  Ruliology.CellularAutomata.Rule30EtherTrap.Closed w T →
+    ∀ (x0 y : Nat × List Bool),
+      T x0 →
+        x0.fst < 4 →
+          ∀ (P : List Bool) (a b : Nat → Bool) (L j0 : Nat),
+            Ruliology.CellularAutomata.Rule30EtherTrap.traj w x0 (fun (n : Nat) => P.getD n false) P.length = y →
+              Ruliology.CellularAutomata.Rule30EtherTrap.traj w y a L = y →
+                Ruliology.CellularAutomata.Rule30EtherTrap.traj w y b L = y →
+                  L % 4 = 0 →
+                    0 < L →
+                      j0 < L →
+                        Ruliology.CellularAutomata.Rule30EtherTrap.white w
+                              (Ruliology.CellularAutomata.Rule30EtherTrap.traj w y a j0) =
+                            true →
+                          Ruliology.CellularAutomata.Rule30EtherTrap.col1
+                                (Ruliology.CellularAutomata.Rule30EtherTrap.traj w y a j0) ≠
+                              Ruliology.CellularAutomata.Rule30EtherTrap.col1
+                                (Ruliology.CellularAutomata.Rule30EtherTrap.traj w y b j0) →
+                            ∃ (u : Nat → Bool),
+                              (∀ (n : Nat), T (Ruliology.CellularAutomata.Rule30EtherTrap.traj w x0 u n)) ∧
+                                ¬Ruliology.CellularAutomata.Rule30EtherTrap.MaskedPer w
+                                    (Ruliology.CellularAutomata.Rule30EtherTrap.traj w x0 u)
+Ruliology.CellularAutomata.Rule30EtherTrap.escapes_of_certOK : ∀ (w : List Bool) (x0 : Nat × List Bool)
+  (P A B : List Bool) (j0 : Nat),
+  Ruliology.CellularAutomata.Rule30EtherTrap.certOK w x0 P A B j0 = true →
+    ∀ (T : Nat × List Bool → Prop),
+      Ruliology.CellularAutomata.Rule30EtherTrap.Closed w T →
+        T x0 →
+          ∃ (u : Nat → Bool),
+            (∀ (n : Nat), T (Ruliology.CellularAutomata.Rule30EtherTrap.traj w x0 u n)) ∧
+              ¬Ruliology.CellularAutomata.Rule30EtherTrap.MaskedPer w
+                  (Ruliology.CellularAutomata.Rule30EtherTrap.traj w x0 u)
+Ruliology.CellularAutomata.Rule30EtherTrap.not_trap_of_certOK : ∀ (w : List Bool) (x0 : Nat × List Bool)
+  (P A B : List Bool) (j0 : Nat),
+  Ruliology.CellularAutomata.Rule30EtherTrap.certOK w x0 P A B j0 = true →
+    ∀ (T : Nat × List Bool → Prop), Ruliology.CellularAutomata.Rule30EtherTrap.Trap w T → ¬T x0
+Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0001 : ∀ (a : Nat × Nat),
+  a ∈ Ruliology.CellularAutomata.Rule30Ether.A0001 →
+    ∀ (φ : Nat),
+      φ < 4 →
+        ∀ (b : Nat),
+          1 ≤ b →
+            b ≤ 20 →
+              ∀ (T : Nat × List Bool → Prop),
+                Ruliology.CellularAutomata.Rule30EtherTrap.Trap Ruliology.CellularAutomata.Rule30Ether.w0001 T →
+                  ¬T (φ, Ruliology.CellularAutomata.Rule30Ether.etherRow a.fst ((φ + a.snd) % 4) b)
+Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0011 : ∀ (a : Nat × Nat),
+  a ∈ Ruliology.CellularAutomata.Rule30Ether.A0011 →
+    ∀ (φ : Nat),
+      φ < 4 →
+        ∀ (b : Nat),
+          1 ≤ b →
+            b ≤ 20 →
+              ∀ (T : Nat × List Bool → Prop),
+                Ruliology.CellularAutomata.Rule30EtherTrap.Trap Ruliology.CellularAutomata.Rule30Ether.w0011 T →
+                  ¬T (φ, Ruliology.CellularAutomata.Rule30Ether.etherRow a.fst ((φ + a.snd) % 4) b)
+Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0111 : ∀ (a : Nat × Nat),
+  a ∈ Ruliology.CellularAutomata.Rule30Ether.A0111 →
+    ∀ (φ : Nat),
+      φ < 4 →
+        ∀ (b : Nat),
+          1 ≤ b →
+            b ≤ 20 →
+              ∀ (T : Nat × List Bool → Prop),
+                Ruliology.CellularAutomata.Rule30EtherTrap.Trap Ruliology.CellularAutomata.Rule30Ether.w0111 T →
+                  ¬T (φ, Ruliology.CellularAutomata.Rule30Ether.etherRow a.fst ((φ + a.snd) % 4) b)
+Ruliology.CellularAutomata.Rule30EtherThree.ether3_rule : ∀ (j φ : Nat),
+  Ruliology.CellularAutomata.Rule30EtherThree.ether3 j (φ + 1) =
+    Ruliology.CellularAutomata.Rule30Jen.rule (Ruliology.CellularAutomata.Rule30EtherThree.ether3 (j + 11) φ)
+      (Ruliology.CellularAutomata.Rule30EtherThree.ether3 j φ)
+      (Ruliology.CellularAutomata.Rule30EtherThree.ether3 (j + 1) φ)
+Ruliology.CellularAutomata.Rule30EtherThree.alignments_001_complete : ∀ (j0 : Nat),
+  j0 < 12 →
+    ∀ (s : Nat),
+      s < 3 →
+        (Ruliology.CellularAutomata.Rule30EtherThree.aligned3 Ruliology.CellularAutomata.Rule30EtherThree.w001 j0 s =
+            true ↔
+          (j0, s) ∈ Ruliology.CellularAutomata.Rule30EtherThree.A001)
+Ruliology.CellularAutomata.Rule30EtherThree.alignments_011_complete : ∀ (j0 : Nat),
+  j0 < 12 →
+    ∀ (s : Nat),
+      s < 3 →
+        (Ruliology.CellularAutomata.Rule30EtherThree.aligned3 Ruliology.CellularAutomata.Rule30EtherThree.w011 j0 s =
+            true ↔
+          (j0, s) ∈ Ruliology.CellularAutomata.Rule30EtherThree.A011)
+Ruliology.CellularAutomata.Rule30EtherThree.absorption3_excludes : ∀ (w : List Bool) (A : List (Nat × Nat)),
+  (∀ (al : Nat × Nat), al ∈ A → Ruliology.CellularAutomata.Rule30EtherThree.aligned3 w al.fst al.snd = true) →
+    ∀ {a b : Nat} {W : Nat → Nat → Prop},
+      Ruliology.CellularAutomata.Rule30EtherThree.WallOK a b W →
+        0 < b →
+          Ruliology.CellularAutomata.Rule30EtherThree.Absorption3 w A a b W →
+            ¬∃ (T : Nat),
+                ∀ (t : Nat),
+                  T ≤ t →
+                    Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                      Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 w (t - T)
+Ruliology.CellularAutomata.Rule30EtherThree.no_wall_le_12 : ∀ (a b : Nat),
+  0 < b →
+    b ≤ 12 → ∀ {W : Nat → Nat → Prop}, Ruliology.CellularAutomata.Rule30EtherThree.WallOK a b W → ∀ (φ r : Nat), ¬W φ r
+Ruliology.CellularAutomata.Rule30EtherThree.trap_001 : ∀ (T : Nat),
+  (∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+          Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001
+            (t - T)) →
+    ∀ (t1 i : Nat),
+      T ≤ t1 →
+        i < Ruliology.CellularAutomata.Rule30EtherThree.t001.n →
+          (t1 - T) % 3 = Ruliology.CellularAutomata.Rule30EtherThree.t001.lab i % 3 →
+            Ruliology.CellularAutomata.Rule30EtherThree.EncF Ruliology.CellularAutomata.Rule30Ether.trueRight 47 t1 0
+                (Ruliology.CellularAutomata.Rule30EtherThree.t001.st i) →
+              False
+Ruliology.CellularAutomata.Rule30EtherThree.absorptionT_excludes : ∀
+  (C : Ruliology.CellularAutomata.Rule30EtherThree.PTrap),
+  C.check = true →
+    0 < C.b →
+      Ruliology.CellularAutomata.Rule30EtherThree.AbsorptionT C →
+        ¬∃ (T : Nat),
+            ∀ (t : Nat),
+              T ≤ t →
+                Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+                  Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 C.w (t - T)
+Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_absorption : Ruliology.CellularAutomata.Rule30EtherThree.AbsorptionT
+    Ruliology.CellularAutomata.Rule30EtherThree.t001 →
+  ¬∃ (T : Nat),
+      ∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+            Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001 (t - T)
+Ruliology.CellularAutomata.Rule30EtherThree.t001_reached : ∃ (i : Nat),
+  i < Ruliology.CellularAutomata.Rule30EtherThree.t001.n ∧
+    (1270 + 0) % 3 = Ruliology.CellularAutomata.Rule30EtherThree.t001.lab i % 3 ∧
+      Ruliology.CellularAutomata.Rule30EtherThree.EncF
+        (Ruliology.CellularAutomata.Rule30Ether.drv
+          (fun (t : Nat) =>
+            Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001
+              (t + 0))
+          fun (x : Nat) => false)
+        Ruliology.CellularAutomata.Rule30EtherThree.t001.b 1270 0
+        (Ruliology.CellularAutomata.Rule30EtherThree.t001.st i)
+Ruliology.CellularAutomata.Rule30EtherThree.absorbed_empty : ∃ (t1 : Nat),
+  ∃ (i : Nat),
+    i < Ruliology.CellularAutomata.Rule30EtherThree.t001.n ∧
+      (t1 + 0) % 3 = Ruliology.CellularAutomata.Rule30EtherThree.t001.lab i % 3 ∧
+        Ruliology.CellularAutomata.Rule30EtherThree.EncF
+          (Ruliology.CellularAutomata.Rule30Ether.drv
+            (fun (t : Nat) =>
+              Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.t001.w
+                (t + 0))
+            fun (x : Nat) => false)
+          Ruliology.CellularAutomata.Rule30EtherThree.t001.b t1 0
+          (Ruliology.CellularAutomata.Rule30EtherThree.t001.st i)
+Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_Q001 : Ruliology.CellularAutomata.Rule30EtherThree.Q001 →
+  ¬∃ (T : Nat),
+      ∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+            Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001 (t - T)
+Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_011_of_C3w : Ruliology.CellularAutomata.Rule30EtherThree.C3w
+    Ruliology.CellularAutomata.Rule30EtherThree.w011 →
+  ¬∃ (T : Nat),
+      ∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+            Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w011 (t - T)
+Ruliology.CellularAutomata.Rule30EtherThree.Q001_stripe : ∀ (k : Nat),
+  Ruliology.CellularAutomata.Rule30DrivenLeft.L (fun (x : Nat) => false)
+      Ruliology.CellularAutomata.Rule30PeriodTwo.stripe (3 * k) (-1) =
+    true
+Ruliology.CellularAutomata.Rule30EtherThree.C3w_011_ether : ∀ (k : Nat),
+  Ruliology.CellularAutomata.Rule30EtherThree.fits3
+      (Ruliology.CellularAutomata.Rule30EtherThree.colPattern3 Ruliology.CellularAutomata.Rule30EtherThree.w011) (k % 3)
+      (Ruliology.CellularAutomata.Rule30DrivenLeft.L
+        (fun (k : Nat) =>
+          Ruliology.CellularAutomata.Rule30EtherThree.wordAt3
+            (Ruliology.CellularAutomata.Rule30EtherThree.effWord3 Ruliology.CellularAutomata.Rule30EtherThree.w011) k)
+        Ruliology.CellularAutomata.Rule30EtherThree.etherLeft k (-1)) =
+    true
+Ruliology.CellularAutomata.Rule30EtherThree.skeleton_001 : ∀ (T : Nat),
+  (∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+          Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001
+            (t - T)) →
+    ∃ (T' : Nat), T ≤ T' ∧ ∀ (t : Nat), T' ≤ t → (t - T) % 3 = 0 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = false
+Ruliology.CellularAutomata.Rule30EtherThree.skeleton_011 : ∀ (T : Nat),
+  (∀ (t : Nat),
+      T ≤ t →
+        Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+          Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w011
+            (t - T)) →
+    ∃ (T' : Nat),
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            ((t - T) % 3 = 1 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = true) ∧
+              ((t - T) % 3 = 2 → Ruliology.CellularAutomata.Rule30Jen.cell t 1 = false)
+Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_C3s : Ruliology.CellularAutomata.Rule30EtherThree.C3s001 →
+  ¬∃ (T : Nat),
+      ∀ (t : Nat),
+        T ≤ t →
+          Ruliology.CellularAutomata.Rule30Jen.cell t 0 =
+            Ruliology.CellularAutomata.Rule30EtherThree.wordAt3 Ruliology.CellularAutomata.Rule30EtherThree.w001 (t - T)
+Ruliology.CellularAutomata.Rule30Realization.column_realizable_unique : ∀ (R : Int → Bool) (c : Nat → Bool),
+  ∃ (x : Int → Bool),
+    (∀ (p : Int), 1 ≤ p → x p = R p) ∧
+      (∀ (t : Nat), Ruliology.CellularAutomata.Rule30Realization.evol x t 0 = c t) ∧
+        ∀ (x' : Int → Bool),
+          (∀ (p : Int), 1 ≤ p → x' p = R p) →
+            (∀ (t : Nat), Ruliology.CellularAutomata.Rule30Realization.evol x' t 0 = c t) → x' = x
+Ruliology.CellularAutomata.Rule30Realization.seed_perturbation : ∀ (n : Nat),
+  ∃ (x : Int → Bool),
+    (∀ (p : Int), -↑n ≤ p → x p = Ruliology.CellularAutomata.Rule30Realization.seed p) ∧
+      (∀ (t : Nat),
+          t ≤ n →
+            Ruliology.CellularAutomata.Rule30Realization.evol x t 0 = Ruliology.CellularAutomata.Rule30Jen.cell t 0) ∧
+        ∀ (t : Nat), n < t → Ruliology.CellularAutomata.Rule30Realization.evol x t 0 = false
+Ruliology.CellularAutomata.Rule30Realization.barrier : (∀ (i : Int),
+    ¬((Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+          Ruliology.CellularAutomata.Rule30Realization.run Ruliology.CellularAutomata.Rule30Realization.g210 t i) ∧
+        Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+          Ruliology.CellularAutomata.Rule30Realization.run Ruliology.CellularAutomata.Rule30Realization.g210 t
+            (i + 1))) ∧
+  (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+      Ruliology.CellularAutomata.Rule30Realization.run Ruliology.CellularAutomata.Rule30Realization.g90 t 0) ∧
+    (Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+        Ruliology.CellularAutomata.Rule30Realization.run Ruliology.CellularAutomata.Rule30Realization.g150 t 0) ∧
+      Ruliology.CellularAutomata.Rule30Jen.EventuallyPeriodic fun (t : Nat) =>
+        Ruliology.CellularAutomata.Rule30Realization.run Ruliology.CellularAutomata.Rule30Realization.g210 t 0
+Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.finite_abstraction_has_lasso : ∀ (w : Nat)
+  (α : (Nat → Bool) → List Bool),
+  (∀ (s : Nat → Bool), (α s).length = w) →
+    ∃ (n : Nat),
+      ∃ (m : Nat),
+        ∃ (m' : Nat),
+          n % 2 = 1 ∧
+            m < m' ∧
+              (∀ (j : Nat),
+                  j ≤ m' →
+                    Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.Survives
+                      (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.iter
+                        (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.trunc n) j)) ∧
+                α
+                    (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.iter
+                      (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.trunc n) m) =
+                  α
+                    (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.iter
+                      (Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.trunc n) m')
+Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_local_ranking : ∀ (w e : Nat)
+  (R : Nat → List Bool → List Bool → Nat), ¬Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.RankCert w e R
+Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_edge_dfa_ranking : ∀
+  (A : Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.DFA) (N : Nat),
+  0 < N → (∀ (q : Nat) (b : Bool), A.δ q b < N) → ¬Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.CertE A
+Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.no_joint_local_ranking : ∀ (w e : Nat)
+  (R : Int → Int → List Bool → List Bool → List Bool → Nat),
+  ¬Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers.JointCert w e R
+Ruliology.CellularAutomata.Rule30.predCount_eq_three_iff : ∀ (y : List Bool),
+  y ≠ [] → (Ruliology.CellularAutomata.Rule30.predCount y = 3 ↔ y = List.replicate y.length true ∧ y.length % 3 = 0)
+Ruliology.CellularAutomata.Rule30.predCount_eq_one_iff : ∀ (y : List Bool),
+  y ≠ [] → (Ruliology.CellularAutomata.Rule30.predCount y = 1 ↔ Ruliology.CellularAutomata.Rule30.HasOneRun y)
+Ruliology.CellularAutomata.Rule30.sum_predCount : ∀ (N : Nat),
+  1 ≤ N → (List.map Ruliology.CellularAutomata.Rule30.predCount (Ruliology.CellularAutomata.Rule30.regs N)).sum = 2 ^ N
+Ruliology.CellularAutomata.Rule30.numWithPreds_zero : ∀ (N : Nat),
+  1 ≤ N →
+    Ruliology.CellularAutomata.Rule30.numWithPreds 0 N =
+      Ruliology.CellularAutomata.Rule30.numWithPreds 2 N + 2 * if N % 3 = 0 then 1 else 0
+Ruliology.CellularAutomata.Rule30Blocks.blockAt_allowed : ∀ (x : Int → Bool) (p : Int),
+  (Ruliology.CellularAutomata.Rule30Blocks.blockAt x p).allowed = true
+Ruliology.CellularAutomata.Rule30Blocks.occurs_iff : ∀ (k : Ruliology.CellularAutomata.Rule30Blocks.Block),
+  (∃ (x : Int → Bool), ∃ (p : Int), Ruliology.CellularAutomata.Rule30Blocks.blockAt x p = k) ↔ k.allowed = true
+Ruliology.CellularAutomata.Rule30Blocks.occurs_single_cell : ∀ (k : Ruliology.CellularAutomata.Rule30Blocks.Block),
+  k.allowed = true →
+    ∃ (t : Nat),
+      ∃ (p : Int),
+        t ≤ 21 ∧
+          Ruliology.CellularAutomata.Rule30Blocks.blockAt
+              (Ruliology.CellularAutomata.BusyBeaverLifetimes.TwoColor.cell 30 1 t) p =
+            k
+Ruliology.CellularAutomata.BusyBeaverLifetimes.lifetime450504084 : (∀ (t : Nat),
+    t < 308 → ∃ (p : Int), Ruliology.CellularAutomata.BusyBeaverLifetimes.TwoColor.cell 450504084 2 t p = true) ∧
+  ∀ (p : Int), Ruliology.CellularAutomata.BusyBeaverLifetimes.TwoColor.cell 450504084 2 308 p = false
+Ruliology.CellularAutomata.BusyBeaverLifetimes.lifetime5810255963295 : (∀ (t : Nat),
+    t < 2194 → ∃ (p : Int), Ruliology.CellularAutomata.BusyBeaverLifetimes.ThreeColor.cell 5810255963295 t p ≠ 0) ∧
+  ∀ (p : Int), Ruliology.CellularAutomata.BusyBeaverLifetimes.ThreeColor.cell 5810255963295 2194 p = 0
+        0.45 real         0.21 user         0.13 sys
+           416088064  maximum resident set size
+rc=0

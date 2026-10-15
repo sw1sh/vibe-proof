@@ -1,0 +1,22 @@
+timeout 60 /usr/bin/time -l lake env lean /Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap5.lean --setup /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/setup/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap5.setup.json -o /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/build/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap5.olean
+--- stdout
+
+--- stderr
+        5.20 real         5.14 user         0.17 sys
+          1140654080  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               75046  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   1  voluntary context switches
+                 887  involuntary context switches
+           316802968  instructions retired
+           111174131  cycles elapsed
+            10371672  peak memory footprint

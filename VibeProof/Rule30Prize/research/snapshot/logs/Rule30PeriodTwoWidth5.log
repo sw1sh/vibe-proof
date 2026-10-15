@@ -1,0 +1,57 @@
+⚠ [13/14] Replayed Ruliology.CellularAutomata.Rule30PeriodTwoLanguage
+warning: Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean:169:23: This simp argument is unused:
+  bne_iff_ne
+
+Hint: Omit it from the simp argument list.
+  simp only [occurs, b̵ne_i̵f̵f̵_̵n̵e,̵ ̵n̵e̵_̵e̵q, Bool.not_eq_true, decide_eq_false_iff_not, Decidable.not_not] at hocc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean:169:35: This simp argument is unused:
+  ne_eq
+
+Hint: Omit it from the simp argument list.
+  simp only [occurs, bne_iff_ne, n̵e̵_̵e̵q̵,̵ ̵Bool.not_eq_true, decide_eq_false_iff_not,
+  ̲  ̲ ̲ ̲ ̲ ̲Decidable.not_not] at hocc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean:169:42: This simp argument is unused:
+  Bool.not_eq_true
+
+Hint: Omit it from the simp argument list.
+  simp only [occurs, bne_iff_ne, ne_eq, B̵o̵o̵l̵.̵n̵o̵t̵_̵e̵q̵_̵t̵r̵u̵e̵,̵ ̵decide_eq_false_iff_not, Decidable.not_not] at hocc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean:169:60: This simp argument is unused:
+  decide_eq_false_iff_not
+
+Hint: Omit it from the simp argument list.
+  simp only [occurs, bne_iff_ne, ne_eq, Bool.not_eq_true, d̵e̵c̵i̵d̵e̵_̵e̵q̵_̵f̵a̵l̵s̵e̵_̵i̵f̵f̵_̵n̵o̵t̵,̵ ̵Decidable.not_not] at hocc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean:169:85: This simp argument is unused:
+  Decidable.not_not
+
+Hint: Omit it from the simp argument list.
+  simp only [occurs, bne_iff_ne, ne_eq, Bool.not_eq_true, decide_eq_false_iff_not,̵ ̵D̵e̵c̵i̵d̵a̵b̵l̵e̵.̵n̵o̵t̵_̵n̵o̵t̵] at hocc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [14/14] Built Ruliology.CellularAutomata.Rule30PeriodTwoWidth5 (613ms)
+Build completed successfully (14 jobs).
+        0.67 real         0.59 user         0.15 sys
+           539852800  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               37848  page reclaims
+                 950  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 105  voluntary context switches
+                4711  involuntary context switches
+           400640021  instructions retired
+           163691507  cycles elapsed
+            14713840  peak memory footprint

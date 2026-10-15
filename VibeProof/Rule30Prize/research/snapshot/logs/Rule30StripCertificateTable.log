@@ -1,0 +1,20 @@
+✔ [6/6] Built Ruliology.CellularAutomata.Rule30StripCertificateTable (20s)
+Build completed successfully (6 jobs).
+       21.03 real        19.59 user         0.89 sys
+          3879010304  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              276708  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   6  voluntary context switches
+               10223  involuntary context switches
+           347749128  instructions retired
+           146093312  cycles elapsed
+            12534648  peak memory footprint

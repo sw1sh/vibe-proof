@@ -1,0 +1,20 @@
+✔ [4/4] Built Ruliology.CellularAutomata.Rule30MaskedJen (389ms)
+Build completed successfully (4 jobs).
+        0.45 real         0.55 user         0.11 sys
+           437583872  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               32361  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   3  voluntary context switches
+                2165  involuntary context switches
+           334936707  instructions retired
+           130373844  cycles elapsed
+            12878784  peak memory footprint

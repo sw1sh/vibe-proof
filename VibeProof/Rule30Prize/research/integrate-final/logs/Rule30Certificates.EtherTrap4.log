@@ -1,0 +1,20 @@
+✔ [9/9] Built Ruliology.CellularAutomata.Rule30Certificates.EtherTrap4 (4.7s)
+Build completed successfully (9 jobs).
+        4.82 real         4.68 user         0.16 sys
+          1067991040  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               70868  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   4  voluntary context switches
+                1054  involuntary context switches
+           354410136  instructions retired
+           137554334  cycles elapsed
+            12747616  peak memory footprint

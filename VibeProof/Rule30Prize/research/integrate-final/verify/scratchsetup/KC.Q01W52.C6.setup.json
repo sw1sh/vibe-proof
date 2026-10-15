@@ -1,0 +1,37 @@
+{
+ "plugins": [],
+ "package": null,
+ "options": {},
+ "name": "KC.Q01W52.C6",
+ "isModule": false,
+ "importArts": {
+  "KC.Q01Lanes": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01Lanes.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30BlackRuns": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30BlackRuns.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Diagonals": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Diagonals.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30DrivenLeft": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Jen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Jen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30MaskedJen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30MaskedJen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PeriodTwo": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PeriodTwo.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Prize": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Prize.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundary": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.olean"
+  ]
+ },
+ "dynlibs": []
+}

@@ -1,0 +1,20 @@
+✔ [14/14] Built Ruliology.CellularAutomata.Rule30PeriodTwoCoupled (710ms)
+Build completed successfully (14 jobs).
+        0.76 real         1.17 user         0.23 sys
+           487489536  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               34453  page reclaims
+                1136  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  85  voluntary context switches
+               11875  involuntary context switches
+           399027834  instructions retired
+           168739793  cycles elapsed
+            14631896  peak memory footprint

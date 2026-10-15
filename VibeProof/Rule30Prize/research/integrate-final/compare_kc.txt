@@ -1,0 +1,8 @@
+catalog constants: 1125; scratch constants: 1125; types identical: 1125; defs identical: 109/109; theorem proof terms identical: 1011/1016; problems: 0
+
+-- theorems whose proof terms differ (types identical):
+Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.occStep.eq_def
+Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.startMask.eq_def
+Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.AD.eq_def
+Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.pack.eq_def
+Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.pk.eq_def

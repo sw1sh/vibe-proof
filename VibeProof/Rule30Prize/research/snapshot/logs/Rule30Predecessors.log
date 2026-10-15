@@ -1,0 +1,22 @@
+info: rule30prize: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+✔ [2/2] Built Ruliology.CellularAutomata.Rule30Predecessors (1.8s)
+Build completed successfully (2 jobs).
+        2.11 real         1.84 user         0.41 sys
+           615071744  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               27016  page reclaims
+               16182  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 322  voluntary context switches
+               22938  involuntary context switches
+           579762857  instructions retired
+           315018797  cycles elapsed
+            13075296  peak memory footprint

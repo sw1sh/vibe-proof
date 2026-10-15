@@ -1,0 +1,428 @@
+[
+ {
+  "module": "Rule30Prize",
+  "added": "start",
+  "what": "States Problems 1 and 2 as in formal-conjectures' `Other/Rule30.lean`. No column is eventually constant, so period 1 is excluded for every column and every transient.",
+  "heads": [
+   "Problem1",
+   "Problem2",
+   "no_column_eventually_constant",
+   "center_not_eventually_period_one"
+  ]
+ },
+ {
+  "module": "Rule30Window",
+  "added": "start",
+  "what": "From the first 16,384 center bits, computed in the kernel: there is no eventual period P \u2264 4096 with transient \u2264 8192.",
+  "heads": [
+   "no_small_eventual_period"
+  ]
+ },
+ {
+  "module": "Rule30FactorWindow",
+  "added": "R1",
+  "what": "Any eventual period P from time T has T + P \u2265 16359, because the first 16,384 bits have 16,359 distinct factors of length 26.",
+  "heads": [
+   "transient_add_period_ge"
+  ]
+ },
+ {
+  "module": "Rule30BlackRuns",
+  "added": "R1",
+  "what": "Nine black cells in a column shield the right half (Lemma A). Long black runs exclude many periods (Theorems B and D).",
+  "heads": [
+   "nine_black",
+   "black_shield",
+   "no_long_black_run",
+   "no_black_white_run",
+   "not_eventually_zero_ones",
+   "no_white_run_11"
+  ]
+ },
+ {
+  "module": "Rule30BlackRunBlocks",
+  "added": "R1",
+  "what": "Theorem B\u2032: excludes the words `1^r u` for eight kernel-checked blocks `u`.",
+  "heads": [
+   "no_black_run_block",
+   "no_period_black_run_then_white"
+  ]
+ },
+ {
+  "module": "Rule30StripCertificates",
+  "added": "R1",
+  "what": "Problem 1 holds iff no word is an eventual tail. Bitmask and rank strip certificates are sound via masked Jen; three words are excluded.",
+  "heads": [
+   "problem1_iff_no_word",
+   "not_eventually_word_strip",
+   "Cert.sound",
+   "not_eventually_00000011",
+   "not_eventually_000000000101"
+  ]
+ },
+ {
+  "module": "Rule30StripCertificateTable",
+  "added": "R1",
+  "what": "Kernel-checked certificates exclude 30 periodic words of length 8\u201313.",
+  "heads": [
+   "not_eventually_certTable"
+  ]
+ },
+ {
+  "module": "Rule30Jen",
+  "added": "10-10",
+  "what": "Jen (1986): no two columns are both eventually periodic.",
+  "heads": [
+   "jen",
+   "periodic_column_unique",
+   "not_adjacent"
+  ]
+ },
+ {
+  "module": "Rule30MaskedJen",
+  "added": "R1",
+  "what": "Masked, effective-boundary and window forms of Jen's theorem.",
+  "heads": [
+   "masked_jen",
+   "orCol_not_eventuallyPeriodic",
+   "effective_step",
+   "window_jen",
+   "finitary_jen"
+  ]
+ },
+ {
+  "module": "Rule30DrivenLeft",
+  "added": "R1",
+  "what": "Jen's theorem for the left half driven by a boundary column: from a finite nonzero start, an eventually periodic driver makes no left column eventually periodic. A barrier: for a start whose leftmost black cell is at \u2212n, column \u22121 can follow any target for the first n \u2212 1 steps.",
+  "heads": [
+   "no_periodic_column",
+   "barrier_exists",
+   "barrier_unique"
+  ]
+ },
+ {
+  "module": "Rule30WhiteSeed",
+  "added": "R1",
+  "what": "Of the center columns from a single black cell and from a single white cell, at least one is not eventually periodic. The same holds for rules 30 and 135.",
+  "heads": [
+   "problem1_black_or_white",
+   "problem1_30_or_135"
+  ]
+ },
+ {
+  "module": "Rule30Diagonals",
+  "added": "start",
+  "what": "Right diagonals have period 2^j from the start, and left diagonals are eventually 2^j-periodic.",
+  "heads": [
+   "R_periodic",
+   "D_periodic",
+   "center_eq_parity"
+  ]
+ },
+ {
+  "module": "Rule30RightPeriods",
+  "added": "R1",
+  "what": "Right-diagonal periods: the doubling rule, upper and lower bounds, rows at powers of two, restarts.",
+  "heads": [
+   "e_step",
+   "per_bound",
+   "per_upper",
+   "rows_at_powers_of_two",
+   "not_half_lower"
+  ]
+ },
+ {
+  "module": "Rule30PeriodTwo",
+  "added": "R1",
+  "what": "What an eventual period 2 forces. `Q01` (zero-driven left half; **open**) implies no eventual period 2.",
+  "heads": [
+   "normalize",
+   "golden",
+   "not_eventually_period_two_of_Q01",
+   "stripe_fixed"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundary",
+  "added": "R2",
+  "what": "The zero-boundary left half (ZBL): dynamics, realization, free bits, equivalent forms of `Q01`, Jen inside the ZBL.",
+  "heads": [
+   "Q01_iff_Theta",
+   "Q01_iff_bounded",
+   "Q01_iff_staged",
+   "count_constrained",
+   "jen_clock",
+   "free_bits_no00_no11111"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundaryStripe",
+  "added": "R2",
+  "what": "ZBL epochs, stripe stability and stripe absorption.",
+  "heads": [
+   "stripe_absorb",
+   "Theta_eventually_stripe_iff",
+   "first_defect_phase"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundarySmall",
+  "added": "R2",
+  "what": "`Q01` holds for every start of width \u2264 16 (kernel-checked search).",
+  "heads": [
+   "q01_width_le_16",
+   "q01_width_le_15_odd"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundaryLanes",
+  "added": "final",
+  "what": "A bit-sliced `Q01` checker that runs in the kernel, with its soundness proof.",
+  "heads": [
+   "q01_of_checks",
+   "q01_of_chunks"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundaryWidth52",
+  "added": "final",
+  "what": "`Q01` holds for every start of width \u2264 52: depth 1 turns white at an even time \u2264 96.",
+  "heads": [
+   "q01_width_le_52",
+   "q01_width_le_52_linear",
+   "not_inX_of_width_le_52"
+  ]
+ },
+ {
+  "module": "Rule30Certificates/ZeroBoundaryWidth52Chunks0",
+  "added": "final",
+  "what": "Data: the 256 chunk checks behind width 52, 64 per file (namespaces `Rule30ZeroBoundaryWidth52.C0`\u2013`C15`).",
+  "heads": []
+ },
+ {
+  "module": "Rule30ZeroBoundaryStripeFront",
+  "added": "final",
+  "what": "The front window of a stripe prefix evolves on its own; checked periodic orbits bound its death time.",
+  "heads": [
+   "front_sound",
+   "family_of_class"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundaryStripeFamily",
+  "added": "final",
+  "what": "Every stripe prefix `S[1..m] \u00b7 v \u00b7 0^\u221e` with \\|v\\| \u2264 3 dies within 31 steps of arrival.",
+  "heads": [
+   "stripe_prefix_family",
+   "stripe_prefix_family_list"
+  ]
+ },
+ {
+  "module": "Rule30Certificates/ZeroBoundaryStripeCycles0",
+  "added": "final",
+  "what": "Data: the eight window cycles behind the stripe-prefix family.",
+  "heads": []
+ },
+ {
+  "module": "Rule30PeriodTwoCoupled",
+  "added": "R2",
+  "what": "The coupled question `CQ01` (**open**): `Q01` implies `CQ01`, and `CQ01` excludes period 2. The ether is an infinite witness.",
+  "heads": [
+   "CQ01_of_Q01",
+   "no_eventual_period_two_of_CQ01",
+   "ether_coupled_witness"
+  ]
+ },
+ {
+  "module": "Rule30PeriodTwoLanguage",
+  "added": "final",
+  "what": "Under period 2: if a kernel check shows that no path inside the bad class of the right strip spells a word, then column 1 at the white times eventually never spells it.",
+  "heads": [
+   "no_pattern"
+  ]
+ },
+ {
+  "module": "Rule30PeriodTwoWidth5",
+  "added": "final",
+  "what": "Period-2 constraints at strip width 5; for example, the free bits never spell `00` or `11111`.",
+  "heads": [
+   "col1_constraints",
+   "free_bit_constraints"
+  ]
+ },
+ {
+  "module": "Rule30PeriodTwoWidth6",
+  "added": "final",
+  "what": "The same at strip width 6, with more forbidden patterns.",
+  "heads": [
+   "col1_constraints",
+   "free_bit_constraints"
+  ]
+ },
+ {
+  "module": "Rule30Ether",
+  "added": "R2",
+  "what": "The 7\u00d74 ether, the 109-state wall and the ether-and-wall traps. Absorption (**open**) excludes `0001`, `0011` and `0111`.",
+  "heads": [
+   "ether_rule",
+   "trap_invariant",
+   "no_ether_wall_entry",
+   "absorption_excludes",
+   "least_period_four_of_absorption"
+  ]
+ },
+ {
+  "module": "Rule30PeriodFourSkeleton",
+  "added": "R2",
+  "what": "The right-half skeletons that least period 4 forces, and a reduction to the left-half statements `C3` (**open**).",
+  "heads": [
+   "skeleton_0001",
+   "skeleton_0011",
+   "column_m1_0111",
+   "least_period_four_of_C3"
+  ]
+ },
+ {
+  "module": "Rule30EtherTrap",
+  "added": "final",
+  "what": "Traps of the strip relaxation, and a certificate check that a path escapes them.",
+  "heads": [
+   "word_lemma",
+   "escapes_of_certOK",
+   "not_trap_of_certOK"
+  ]
+ },
+ {
+  "module": "Rule30EtherTrapWidth20",
+  "added": "final",
+  "what": "The pure ether lies in no trap of width \u2264 20.",
+  "heads": [
+   "pure_ether_not_in_trap_0001",
+   "pure_ether_not_in_trap_0011",
+   "pure_ether_not_in_trap_0111"
+  ]
+ },
+ {
+  "module": "Rule30Certificates/EtherTrap0",
+  "added": "final",
+  "what": "Data: the 24 certificates behind width 20.",
+  "heads": []
+ },
+ {
+  "module": "Rule30EtherThree",
+  "added": "final",
+  "what": "The 12\u00d73 ether and the ether-and-wall framework for period 3.",
+  "heads": [
+   "ether3_rule",
+   "alignments_001_complete",
+   "alignments_011_complete",
+   "absorption3_excludes"
+  ]
+ },
+ {
+  "module": "Rule30EtherThreeNoWall",
+  "added": "final",
+  "what": "The period-3 ether has no wall of width \u2264 12.",
+  "heads": [
+   "no_wall_le_12"
+  ]
+ },
+ {
+  "module": "Rule30EtherThreeTrap",
+  "added": "final",
+  "what": "`t001`, a 47-column trap of period 21. `AbsorptionT t001` (**open**) excludes `001`.",
+  "heads": [
+   "trap_001",
+   "absorptionT_excludes",
+   "not_eventually_001_of_absorption"
+  ]
+ },
+ {
+  "module": "Rule30EtherThreeReach",
+  "added": "final",
+  "what": "The empty right half reaches `t001` at time 1270.",
+  "heads": [
+   "t001_reached",
+   "absorbed_empty"
+  ]
+ },
+ {
+  "module": "Rule30EtherThreeLeft",
+  "added": "final",
+  "what": "Reductions to the left half: `Q001` for `001` and `C3w` for `011` (both **open**).",
+  "heads": [
+   "not_eventually_001_of_Q001",
+   "not_eventually_011_of_C3w",
+   "Q001_stripe",
+   "C3w_011_ether"
+  ]
+ },
+ {
+  "module": "Rule30EtherThreeSkeleton",
+  "added": "final",
+  "what": "Right-half skeletons for `001` and `011`, and the reduction `C3s001` (**open**).",
+  "heads": [
+   "skeleton_001",
+   "skeleton_011",
+   "not_eventually_001_of_C3s"
+  ]
+ },
+ {
+  "module": "Rule30Realization",
+  "added": "R1",
+  "what": "Some configuration realizes any right half together with any column 0. Rules 90, 150 and 210 meet Jen's hypotheses, yet their center columns are eventually constant.",
+  "heads": [
+   "column_realizable_unique",
+   "seed_perturbation",
+   "barrier"
+  ]
+ },
+ {
+  "module": "Rule30ZeroBoundaryBarriers",
+  "added": "R2",
+  "what": "For `Q01` there is no ranking through a finite abstraction, no local ranking and no edge-DFA ranking. Also gives a two-sided barrier.",
+  "heads": [
+   "finite_abstraction_has_lasso",
+   "no_local_ranking",
+   "no_edge_dfa_ranking",
+   "no_joint_local_ranking"
+  ]
+ },
+ {
+  "module": "Rule30Predecessors",
+  "added": "10-10",
+  "what": "A corrected form of the Feynmans' predecessor theorem: rule 30 on a cyclic register.",
+  "heads": [
+   "predCount_eq_three_iff",
+   "predCount_eq_one_iff"
+  ]
+ },
+ {
+  "module": "Rule30PredecessorCounts",
+  "added": "10-10",
+  "what": "How many registers have 0, 1, 2 or 3 predecessors.",
+  "heads": [
+   "sum_predCount",
+   "numWithPreds_zero"
+  ]
+ },
+ {
+  "module": "Rule30Blocks",
+  "added": "10-10",
+  "what": "Only 24 of the 32 possible 3\u00d72 blocks occur.",
+  "heads": [
+   "blockAt_allowed",
+   "occurs_iff",
+   "occurs_single_cell"
+  ]
+ },
+ {
+  "module": "BusyBeaverLifetimes",
+  "added": "10-10",
+  "what": "Busy-beaver lifetimes of four cellular automata. `Rule30Blocks` reuses its bit-plane simulation.",
+  "heads": [
+   "lifetime450504084",
+   "lifetime5810255963295"
+  ]
+ }
+]

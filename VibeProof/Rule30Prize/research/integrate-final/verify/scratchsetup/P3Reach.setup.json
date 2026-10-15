@@ -1,0 +1,169 @@
+{
+ "plugins": [],
+ "package": null,
+ "options": {},
+ "name": "P3Reach",
+ "isModule": false,
+ "importArts": {
+  "P3Ether": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/P3Ether.olean"
+  ],
+  "P3Trap001": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/P3Trap001.olean"
+  ],
+  "Ruliology": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/Ruliology.olean"
+  ],
+  "Ruliology.AxiomSystems.NandMinimality": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/AxiomSystems/NandMinimality.olean"
+  ],
+  "Ruliology.AxiomSystems.ShefferBasis": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/AxiomSystems/ShefferBasis.olean"
+  ],
+  "Ruliology.AxiomSystems.WolframAxiom": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/AxiomSystems/WolframAxiom.olean"
+  ],
+  "Ruliology.CellularAutomata.BusyBeaverLifetimes": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/BusyBeaverLifetimes.olean"
+  ],
+  "Ruliology.CellularAutomata.Code10Center": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Code10Center.olean"
+  ],
+  "Ruliology.CellularAutomata.LongLifetimeK3": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/LongLifetimeK3.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity.Basic": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity/Basic.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity.T1": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity/T1.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity.T2": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity/T2.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity.T3": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity/T3.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule104Complexity.T4": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule104Complexity/T4.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30BlackRunBlocks": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30BlackRunBlocks.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30BlackRuns": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30BlackRuns.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Blocks": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Blocks.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Diagonals": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Diagonals.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30DrivenLeft": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Ether": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Ether.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30FactorWindow": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30FactorWindow.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Jen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Jen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30MaskedJen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30MaskedJen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PeriodFourSkeleton": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PeriodFourSkeleton.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PeriodTwo": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PeriodTwo.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PeriodTwoCoupled": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PeriodTwoCoupled.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PredecessorCounts": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PredecessorCounts.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Predecessors": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Predecessors.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Prize": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Prize.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Realization": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Realization.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30RightPeriods": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30RightPeriods.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30StripCertificateTable": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30StripCertificateTable.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30StripCertificates": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30StripCertificates.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30WhiteSeed": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30WhiteSeed.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Window": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Window.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundary": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundaryBarriers": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryBarriers.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundarySmall": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundarySmall.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripe": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripe.olean"
+  ],
+  "Ruliology.MultiwaySystems.NonOverlappingConfluence": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/MultiwaySystems/NonOverlappingConfluence.olean"
+  ],
+  "Ruliology.MultiwaySystems.NonOverlappingCounts": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/MultiwaySystems/NonOverlappingCounts.olean"
+  ],
+  "Ruliology.NumberSystems.NestedlyRecursiveFunctions": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/NumberSystems/NestedlyRecursiveFunctions.olean"
+  ],
+  "Ruliology.NumberSystems.P111ClosedForm": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/NumberSystems/P111ClosedForm.olean"
+  ],
+  "Ruliology.NumberSystems.SummerSchoolSequence": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/NumberSystems/SummerSchoolSequence.olean"
+  ],
+  "Ruliology.SymbolicSystems.ChurchNumerals": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/SymbolicSystems/ChurchNumerals.olean"
+  ],
+  "Ruliology.SymbolicSystems.Combinators": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/SymbolicSystems/Combinators.olean"
+  ],
+  "Ruliology.SymbolicSystems.CombinatorsNonterminating": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/SymbolicSystems/CombinatorsNonterminating.olean"
+  ],
+  "Ruliology.SymbolicSystems.LambdaCalculus": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/SymbolicSystems/LambdaCalculus.olean"
+  ],
+  "Ruliology.SymbolicSystems.LambdaNormalization": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/SymbolicSystems/LambdaNormalization.olean"
+  ],
+  "Ruliology.TagSystems.OneTwo": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/TagSystems/OneTwo.olean"
+  ],
+  "Ruliology.TagSystems.Post": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/TagSystems/Post.olean"
+  ],
+  "Ruliology.TuringMachines.LangtonsAnt": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/TuringMachines/LangtonsAnt.olean"
+  ]
+ },
+ "dynlibs": []
+}

@@ -1,0 +1,20 @@
+✔ [3/3] Built Ruliology.CellularAutomata.Rule30Diagonals (485ms)
+Build completed successfully (3 jobs).
+        0.54 real         0.95 user         0.14 sys
+           461373440  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               33827  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   6  voluntary context switches
+                3524  involuntary context switches
+           336180688  instructions retired
+           130665576  cycles elapsed
+            12960680  peak memory footprint

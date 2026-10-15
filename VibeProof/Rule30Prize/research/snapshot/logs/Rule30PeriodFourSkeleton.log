@@ -1,0 +1,20 @@
+✔ [9/9] Built Ruliology.CellularAutomata.Rule30PeriodFourSkeleton (3.9s)
+Build completed successfully (9 jobs).
+        3.97 real         4.88 user         0.49 sys
+          1031700480  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               70780  page reclaims
+                  23  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   9  voluntary context switches
+               28729  involuntary context switches
+           372926031  instructions retired
+           155494163  cycles elapsed
+            15647704  peak memory footprint

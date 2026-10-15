@@ -1,0 +1,20 @@
+✔ [11/11] Built Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks2 (19s)
+Build completed successfully (11 jobs).
+       19.59 real        16.25 user         5.06 sys
+          3085320192  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1710915  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   4  voluntary context switches
+               66883  involuntary context switches
+           370491619  instructions retired
+           154431885  cycles elapsed
+            13878256  peak memory footprint

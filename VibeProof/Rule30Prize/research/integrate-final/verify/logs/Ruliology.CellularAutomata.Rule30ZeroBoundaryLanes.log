@@ -1,0 +1,22 @@
+timeout 60 /usr/bin/time -l lake env lean /Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.lean --setup /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/setup/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.setup.json -o /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/build/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.olean
+--- stdout
+
+--- stderr
+        0.70 real         1.33 user         0.17 sys
+           509919232  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               35860  page reclaims
+                 684  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  17  voluntary context switches
+                9512  involuntary context switches
+           328761099  instructions retired
+           118062766  cycles elapsed
+            10469976  peak memory footprint

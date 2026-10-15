@@ -1,0 +1,20 @@
+✔ [5/5] Built Ruliology.CellularAutomata.Rule30DrivenLeft (885ms)
+Build completed successfully (5 jobs).
+        0.98 real         1.84 user         0.20 sys
+           516505600  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               37107  page reclaims
+                 126  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  29  voluntary context switches
+               11159  involuntary context switches
+           352717148  instructions retired
+           138695031  cycles elapsed
+            13878136  peak memory footprint

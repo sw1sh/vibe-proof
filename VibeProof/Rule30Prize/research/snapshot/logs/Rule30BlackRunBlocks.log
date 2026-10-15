@@ -1,0 +1,20 @@
+✔ [7/7] Built Ruliology.CellularAutomata.Rule30BlackRunBlocks (19s)
+Build completed successfully (7 jobs).
+       20.00 real        19.48 user         0.68 sys
+          2327199744  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              173401  page reclaims
+                   4  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   3  voluntary context switches
+               16062  involuntary context switches
+           355645483  instructions retired
+           147947606  cycles elapsed
+            13452128  peak memory footprint

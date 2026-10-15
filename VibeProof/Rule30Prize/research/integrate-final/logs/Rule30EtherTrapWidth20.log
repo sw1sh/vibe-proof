@@ -1,0 +1,20 @@
+✔ [15/15] Built Ruliology.CellularAutomata.Rule30EtherTrapWidth20 (244ms)
+Build completed successfully (15 jobs).
+        0.34 real         0.28 user         0.10 sys
+           422674432  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               31649  page reclaims
+                   3  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   4  voluntary context switches
+                 946  involuntary context switches
+           375709502  instructions retired
+           139203539  cycles elapsed
+            14779448  peak memory footprint

@@ -1,0 +1,20 @@
+✔ [14/14] Built Ruliology.CellularAutomata.Rule30EtherThreeSkeleton (385ms)
+Build completed successfully (14 jobs).
+        0.45 real         0.53 user         0.12 sys
+           470138880  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               34534  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   7  voluntary context switches
+                3808  involuntary context switches
+           376601442  instructions retired
+           136181272  cycles elapsed
+            14418928  peak memory footprint

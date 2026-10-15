@@ -1,0 +1,20 @@
+✔ [9/9] Built Ruliology.CellularAutomata.Rule30EtherThreeNoWall (9.1s)
+Build completed successfully (9 jobs).
+        9.15 real         9.19 user         0.30 sys
+          1062453248  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               70619  page reclaims
+                   2  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   3  voluntary context switches
+                8740  involuntary context switches
+           362291382  instructions retired
+           149649476  cycles elapsed
+            13697912  peak memory footprint

@@ -1,0 +1,85 @@
+{
+ "plugins": [],
+ "package": null,
+ "options": {},
+ "name": "KC.Q01W52",
+ "isModule": false,
+ "importArts": {
+  "KC.Q01Lanes": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01Lanes.olean"
+  ],
+  "KC.Q01W52.C0": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C0.olean"
+  ],
+  "KC.Q01W52.C1": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C1.olean"
+  ],
+  "KC.Q01W52.C10": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C10.olean"
+  ],
+  "KC.Q01W52.C11": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C11.olean"
+  ],
+  "KC.Q01W52.C12": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C12.olean"
+  ],
+  "KC.Q01W52.C13": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C13.olean"
+  ],
+  "KC.Q01W52.C14": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C14.olean"
+  ],
+  "KC.Q01W52.C15": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C15.olean"
+  ],
+  "KC.Q01W52.C2": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C2.olean"
+  ],
+  "KC.Q01W52.C3": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C3.olean"
+  ],
+  "KC.Q01W52.C4": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C4.olean"
+  ],
+  "KC.Q01W52.C5": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C5.olean"
+  ],
+  "KC.Q01W52.C6": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C6.olean"
+  ],
+  "KC.Q01W52.C7": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C7.olean"
+  ],
+  "KC.Q01W52.C8": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C8.olean"
+  ],
+  "KC.Q01W52.C9": [
+   "/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/scratchbuild/KC/Q01W52/C9.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30BlackRuns": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30BlackRuns.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Diagonals": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Diagonals.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30DrivenLeft": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Jen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Jen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30MaskedJen": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30MaskedJen.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30PeriodTwo": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30PeriodTwo.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30Prize": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30Prize.olean"
+  ],
+  "Ruliology.CellularAutomata.Rule30ZeroBoundary": [
+   "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/.lake/build/lib/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.olean"
+  ]
+ },
+ "dynlibs": []
+}
