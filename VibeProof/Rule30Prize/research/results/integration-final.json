@@ -1,0 +1,869 @@
+{
+ "run": "wf_b44f3630-477",
+ "description": "Final-batch integration into ruliology-lean, its adversarial check, and the write-up update (3 agents)",
+ "agents": [
+  {
+   "label": "integrate-final",
+   "phase": "Integrate",
+   "result": {
+    "summary": "The final-batch Rule 30 results are now in the catalog at /Users/swish/src/wolfram/vibe-proof/ruliology-lean. There are 28 new modules: 15 top-level and 13 data modules under Ruliology/CellularAutomata/Rule30Certificates/. The root Ruliology.lean gained 15 imports (45 → 60).\n\n**Layout**\n- Q01 at width 52: Rule30ZeroBoundaryLanes, then 4 chunk modules ZeroBoundaryWidth52Chunks0–3 (64 chunks each), then Rule30ZeroBoundaryWidth52. A 64-chunk module took 19.3–20.3 s and 3.0–3.15 GB, under the 40 s limit, so 4×64 was kept. 4×64 also caps a parallel full rebuild at about 12.5 GB, versus about 18 GB for 8×32.\n- Stripe-prefix family: Rule30ZeroBoundaryStripeFront, then ZeroBoundaryStripeCycles0–2, then Rule30ZeroBoundaryStripeFamily.\n- Ether traps: Rule30EtherTrap, then EtherTrap0–5, then Rule30EtherTrapWidth20.\n- Period 2: Rule30PeriodTwoLanguage, then Rule30PeriodTwoWidth5 and Rule30PeriodTwoWidth6.\n- Period 3: Rule30EtherThree, Rule30EtherThreeNoWall, Rule30EtherThreeTrap, Rule30EtherThreeReach, Rule30EtherThreeLeft, Rule30EtherThreeSkeleton.\n\n**What changed**\n- Each scratch namespace was renamed one-to-one, e.g. KC.Q01Lanes → Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes. Rule30EtherThree was already in catalog style and is unchanged.\n- The W52 sub-namespaces C0–C15 and their 16-chunk `range` theorems were kept, so `all_chunks` is byte-identical.\n- Imports were fixed: P3Ether imported the whole root `Ruliology`; it now imports Rule30Ether, and the Left and Skeleton modules add their own direct imports.\n- Every module docstring says what the module proves and gives its source (final batch, 2026-10-15). The Width52 docstring carries the required note on W ≤ 56.\n\n**Checks that only names changed**\n1. Text check (check_equiv.py): after removing module docstrings and import/namespace/open/end lines, all 28 files are line-for-line identical to their sources.\n2. Term check for t1–t4 (CompareKC.lean): scratch and catalog loaded side by side. Under the rename, 1125 constants map to 1125. All types and all 109 definition bodies are identical, and 1011 of 1016 proof terms are identical. The other 5 are auto-generated `eq_def` lemmas, whose types are identical.\n3. Term check for period 3 (fingerprint dumps taken before the root was changed): all 407 names, types and 124 definition bodies are identical. Every hand-written proof term is identical; only two auto-generated equation lemmas differ, and only in their proof terms.\n\n**Builds**\nEach module was built alone, in dependency order, with `timeout 60 /usr/bin/time -l lake build Ruliology.CellularAutomata.<Module>`. All 28 passed. The full `timeout 60 lake build` after adding the imports rebuilt only the root (253 ms); `lake build --no-build` reports all 81 jobs up to date.\n\n**Axioms**\n- Axioms.lean runs `#print axioms` on 69 main theorems; all use only propext, Quot.sound and Classical.choice.\n- A sweep of every constant in the new namespaces (1532, including all 256 chunk theorems and every certificate check) found 0 violations.\n- A grep of the 28 files finds no sorry, admit, native_decide, axiom, extern, unsafe, opaque, set_option or partial.\n\n**Housekeeping**\n- No existing file under Ruliology/ changed; this was checked against the orchestrator's catalog_before.sha256.\n- ruliology-lean is git-ignored, so nothing was committed. /Users/swish/src/wolfram/Ruliology was not touched.\n- No Lean, lake or orphan processes are left running.\n\n**Evidence** is in /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/:\n- gen_catalog.py, check_equiv.py, the stage/ copy of the generated files, CompareKC.lean and compare_kc.txt\n- DumpP3Scratch.lean, DumpP3Catalog.lean, p3_scratch.txt and p3_catalog.txt\n- Axioms.lean, axioms_output.txt, logs/*.log (per-module time and memory) and catalog_after.sha256 (81-file manifest)",
+    "new_files": [
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.lean",
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes",
+      "sha256": "1241a16ff1fe7a95ae10c02e1e6f6af7e6be0037c2d54c9c8478b4fd38e2ae39",
+      "compile_seconds": 0.79,
+      "peak_gb": 0.51
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryWidth52Chunks0.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks0",
+      "sha256": "8cefebb1dd906938eeeaf1f04ac8a9d1965c4c0cdf07e8216c87de4007793e53",
+      "compile_seconds": 20.31,
+      "peak_gb": 3.04
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryWidth52Chunks1.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks1",
+      "sha256": "2e018426d51e0d0f047a0ecc3da2fe3d9e5433e19ebb103e40ddbd2321bedea0",
+      "compile_seconds": 19.33,
+      "peak_gb": 3.11
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryWidth52Chunks2.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks2",
+      "sha256": "df3f7d6e3c73ce028ce3e9d648d3f06e22d8f4432f9cd9ac395cf86f7538049e",
+      "compile_seconds": 19.59,
+      "peak_gb": 3.09
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryWidth52Chunks3.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks3",
+      "sha256": "44ad7b584bbfebc378e598422b779071d1be05b87e02de19620b25a60d435fbd",
+      "compile_seconds": 19.63,
+      "peak_gb": 3.15
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryWidth52.lean",
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52",
+      "sha256": "6ab1bd93d7912bf943063275f4f475c4cc1f0ec29d198977bbb7e80bfe662c96",
+      "compile_seconds": 0.37,
+      "peak_gb": 0.41
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFront.lean",
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront",
+      "sha256": "cde6682ccb18f7ad124437a34bad2c7307dcb4c028beb8729e8ce2b95391be1b",
+      "compile_seconds": 0.97,
+      "peak_gb": 0.55
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryStripeCycles0.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles0",
+      "sha256": "2bf34b418337b3ee6a4ca076094d4cedbc0d205540243849078ae33fd6fe9b9b",
+      "compile_seconds": 2.19,
+      "peak_gb": 0.77
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryStripeCycles1.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles1",
+      "sha256": "222e0051246018df59a02f32c99b1218bc845ad722ce9e191afdbe8fa6385f9e",
+      "compile_seconds": 1.54,
+      "peak_gb": 0.6
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/ZeroBoundaryStripeCycles2.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles2",
+      "sha256": "a6e789c18b1badf7305d836489595607d19a21c73d74a5fa224b3990a0bc09a4",
+      "compile_seconds": 3.01,
+      "peak_gb": 0.76
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFamily.lean",
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFamily",
+      "sha256": "21be705cafde834fdb3f6c6d133ce35ae7f50fbbb85fa4de843f198d488fb160",
+      "compile_seconds": 0.56,
+      "peak_gb": 0.45
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherTrap.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherTrap",
+      "sha256": "9757bdcc3770f9db8f479ebb7a28256d33818a9a4cf8a3fb4f28f3e86140765d",
+      "compile_seconds": 0.67,
+      "peak_gb": 0.5
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap0.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap0",
+      "sha256": "46bfc171712a450dba6e2f0a591a71a13c0e9ee26ccd3e6c62e932473aab33b2",
+      "compile_seconds": 4.93,
+      "peak_gb": 1.02
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap1.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap1",
+      "sha256": "39464cf51e896d9c22e785ad251e97aed8ef665794a8ab5da2b811c9e62762e7",
+      "compile_seconds": 5.07,
+      "peak_gb": 1.13
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap2.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap2",
+      "sha256": "d355dd5d1988946b991c33ff4bbef474fa1e20a9310d911fe1e1aeb7bd2689c6",
+      "compile_seconds": 5.17,
+      "peak_gb": 1.02
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap3.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap3",
+      "sha256": "23192562e6b92a2f2fa71026ad4337943108bddde268b5f7b9a47aa60bcde1d8",
+      "compile_seconds": 5.2,
+      "peak_gb": 1.09
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap4.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap4",
+      "sha256": "1d0962381cce2d3f8b6b08f787c17fff771a25d0301cacdbcd8611738bcd28cd",
+      "compile_seconds": 4.82,
+      "peak_gb": 1.07
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30Certificates/EtherTrap5.lean",
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap5",
+      "sha256": "0dcd9a28a5a03696356208a46a86c4e4e425d7dd213129df78149f4fa265fc58",
+      "compile_seconds": 5.39,
+      "peak_gb": 1.14
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherTrapWidth20.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherTrapWidth20",
+      "sha256": "192137087e4b9835b3fc37c9a72f80ac6770bf49146f9d1666af39aef7e9268a",
+      "compile_seconds": 0.34,
+      "peak_gb": 0.42
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean",
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoLanguage",
+      "sha256": "80eb492bff92b2b38fc1dda5f940324195df3d09dfbdb5935ebf665147c91f1e",
+      "compile_seconds": 0.57,
+      "peak_gb": 0.47
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth5.lean",
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth5",
+      "sha256": "f278718f126123b3b968b7d2fd2e2d26a4dc027f547acf6961ca8883cb0b1bfa",
+      "compile_seconds": 0.56,
+      "peak_gb": 0.53
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth6.lean",
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth6",
+      "sha256": "89b6dd50190f270a6d6a2141273b45cb7cf138e27c1edad73c673f203738c3ff",
+      "compile_seconds": 1.53,
+      "peak_gb": 0.78
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThree.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThree",
+      "sha256": "f31b90e21e26ce5cb380ec7e5d1f908aeb6a8ce8de55736e5990adce03ea55d6",
+      "compile_seconds": 1.1,
+      "peak_gb": 0.55
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeNoWall",
+      "sha256": "8f401e24ecc410ddf7b11200f55ce4e95404238a3eec1c89606f2a72b235ed2e",
+      "compile_seconds": 9.01,
+      "peak_gb": 1.12
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeTrap.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeTrap",
+      "sha256": "f06364d1b23b602714559cf8a7d7998a0d6b299cc6b871d34c0791ee1d3a0ead",
+      "compile_seconds": 1.11,
+      "peak_gb": 0.6
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeReach.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeReach",
+      "sha256": "9120f3c4fc801548330489609b6d40c398407c9450cdc40e99e477489f7a162f",
+      "compile_seconds": 0.46,
+      "peak_gb": 0.46
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeLeft.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeLeft",
+      "sha256": "bf8a6078f668d931b05e74733ab165b342021fcc466dcc3b70d6c89e841c93fe",
+      "compile_seconds": 0.79,
+      "peak_gb": 0.53
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology/CellularAutomata/Rule30EtherThreeSkeleton.lean",
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeSkeleton",
+      "sha256": "4c2fdc561d50237b61b7a0c1ece7523f2d44965cbc46abc732cbe9b953f24ebd",
+      "compile_seconds": 0.45,
+      "peak_gb": 0.47
+     },
+     {
+      "path": "/Users/swish/src/wolfram/vibe-proof/ruliology-lean/Ruliology.lean",
+      "module": "Ruliology (EXISTING root file, modified: 15 imports appended, now 60 imports; the full lake build rebuilt only this module)",
+      "sha256": "3dd06e6ac0c25421abed69b52d51ec00b8822767e1f64e76ad9eef9e024f13a2",
+      "compile_seconds": 0.35,
+      "peak_gb": 0.44
+     }
+    ],
+    "name_map": [
+     {
+      "scratch": "module KC.Q01Lanes (kernel-certify-r2/t1/src/KC/Q01Lanes.lean)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes"
+     },
+     {
+      "scratch": "modules KC.Q01W52.C0, C1, C2, C3 (t1/src/KC/Q01W52/C0-C3.lean, chunks 0-63)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks0"
+     },
+     {
+      "scratch": "modules KC.Q01W52.C4-C7 (chunks 64-127)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks1"
+     },
+     {
+      "scratch": "modules KC.Q01W52.C8-C11 (chunks 128-191)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks2"
+     },
+     {
+      "scratch": "modules KC.Q01W52.C12-C15 (chunks 192-255)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks3"
+     },
+     {
+      "scratch": "module KC.Q01W52 (t1/src/KC/Q01W52.lean)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52"
+     },
+     {
+      "scratch": "module KC.StripeFront (t2)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront"
+     },
+     {
+      "scratch": "modules KC.StripeCycles0, KC.StripeCycles1, KC.StripeCycles2 (t2)",
+      "catalog": "modules Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles0, ZeroBoundaryStripeCycles1, ZeroBoundaryStripeCycles2"
+     },
+     {
+      "scratch": "module KC.StripeFamily (t2)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFamily (its theorems are in namespace Rule30ZeroBoundaryStripeFront, as in the source)"
+     },
+     {
+      "scratch": "module KC.EtherTrap (t3)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherTrap"
+     },
+     {
+      "scratch": "modules KC.EtherTrapCerts0-5 (t3)",
+      "catalog": "modules Ruliology.CellularAutomata.Rule30Certificates.EtherTrap0-5"
+     },
+     {
+      "scratch": "module KC.EtherTrapMain (t3)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherTrapWidth20 (its theorems are in namespace Rule30EtherTrap, as in the source)"
+     },
+     {
+      "scratch": "module KC.PeriodTwoLang (t4)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30PeriodTwoLanguage"
+     },
+     {
+      "scratch": "module KC.PeriodTwoW5 (t4)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30PeriodTwoWidth5"
+     },
+     {
+      "scratch": "module KC.PeriodTwoW6 (t4)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30PeriodTwoWidth6"
+     },
+     {
+      "scratch": "module P3Ether (p3-ether/lean)",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThree"
+     },
+     {
+      "scratch": "module P3NoWall",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThreeNoWall"
+     },
+     {
+      "scratch": "module P3Trap001",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThreeTrap"
+     },
+     {
+      "scratch": "module P3Reach",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThreeReach"
+     },
+     {
+      "scratch": "module P3Left",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThreeLeft"
+     },
+     {
+      "scratch": "module P3Skel",
+      "catalog": "module Ruliology.CellularAutomata.Rule30EtherThreeSkeleton"
+     },
+     {
+      "scratch": "namespace KC.Q01Lanes.*",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.*"
+     },
+     {
+      "scratch": "namespace KC.Q01W52.* (including KC.Q01W52.C{j}.c{i} and KC.Q01W52.C{j}.range, j < 16, i < 256)",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.* (Rule30ZeroBoundaryWidth52.C{j}.c{i}, Rule30ZeroBoundaryWidth52.C{j}.range)"
+     },
+     {
+      "scratch": "namespace KC.StripeFront.* (including KC.StripeFront.StripeCycles{k}.*)",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.* (Rule30ZeroBoundaryStripeFront.StripeCycles{k}.*)"
+     },
+     {
+      "scratch": "namespace KC.EtherTrap.*",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30EtherTrap.*"
+     },
+     {
+      "scratch": "namespace KC.PeriodTwoLang.*",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.*"
+     },
+     {
+      "scratch": "namespace KC.PeriodTwoW5.*",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.*"
+     },
+     {
+      "scratch": "namespace KC.PeriodTwoW6.*",
+      "catalog": "namespace Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.*"
+     },
+     {
+      "scratch": "namespace Ruliology.CellularAutomata.Rule30EtherThree.* (all six p3 modules)",
+      "catalog": "unchanged: Ruliology.CellularAutomata.Rule30EtherThree.*"
+     },
+     {
+      "scratch": "KC.Q01W52.q01_width_le_52",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52"
+     },
+     {
+      "scratch": "KC.Q01W52.q01_width_le_52_linear",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52_linear"
+     },
+     {
+      "scratch": "KC.Q01W52.not_inX_of_width_le_52",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.not_inX_of_width_le_52"
+     },
+     {
+      "scratch": "KC.Q01W52.all_chunks",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.all_chunks"
+     },
+     {
+      "scratch": "KC.Q01Lanes.q01_of_checks / q01_of_chunks / run_sound / scanN_AD / level / pat_spec / check / ChunksOK",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_checks / q01_of_chunks / run_sound / scanN_AD / level / pat_spec / check / ChunksOK"
+     },
+     {
+      "scratch": "KC.StripeFront.stripe_prefix_family_list / stripe_prefix_family / rowV / row3",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family_list / stripe_prefix_family / rowV / row3"
+     },
+     {
+      "scratch": "KC.StripeFront.front_sound / win_step / win_orb / sig_sound / family_of_class",
+      "catalog": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.front_sound / win_step / win_orb / sig_sound / family_of_class"
+     },
+     {
+      "scratch": "KC.EtherTrap.word_lemma / node_traj / escapes_take / certOK / Trap / Closed / MaskedPer",
+      "catalog": "Ruliology.CellularAutomata.Rule30EtherTrap.word_lemma / node_traj / escapes_take / certOK / Trap / Closed / MaskedPer"
+     },
+     {
+      "scratch": "KC.EtherTrap.pure_ether_not_in_trap_{0001,0011,0111} / pure_ether_escapes_{0001,0011,0111} / cert_*",
+      "catalog": "Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_{0001,0011,0111} / pure_ether_escapes_{0001,0011,0111} / cert_*"
+     },
+     {
+      "scratch": "KC.PeriodTwoLang.no_pattern / occurs",
+      "catalog": "Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.no_pattern / occurs"
+     },
+     {
+      "scratch": "KC.PeriodTwoW5.free_bit_constraints / col1_constraints / col1Forbidden / K5",
+      "catalog": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints / col1_constraints / col1Forbidden / K5"
+     },
+     {
+      "scratch": "KC.PeriodTwoW6.free_bit_constraints / col1_constraints / col1Forbidden / K6",
+      "catalog": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints / col1_constraints / col1Forbidden / K6"
+     }
+    ],
+    "main_theorems": [
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52",
+      "statement": "theorem q01_width_le_52 (x : Nat → Bool) (hx : ∀ k, 52 < k → x k = false) : ∃ t, t ≤ 96 ∧ t % 2 = 0 ∧ zrow x t 1 = false   -- zrow = Rule30ZeroBoundary.zrow",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.q01_width_le_52_linear",
+      "statement": "theorem q01_width_le_52_linear (x : Nat → Bool) (hx : ∀ k, 52 < k → x k = false) : ∃ t, t ≤ 2 * 52 + 8 ∧ t % 2 = 0 ∧ zrow x t 1 = false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.not_inX_of_width_le_52",
+      "statement": "theorem not_inX_of_width_le_52 (x : Nat → Bool) (hx : ∀ k, 52 < k → x k = false) : ¬ InX x   -- InX = Rule30ZeroBoundary.InX",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52.all_chunks",
+      "statement": "theorem all_chunks : ChunksOK 52 97 18 0 256",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_checks",
+      "statement": "theorem q01_of_checks (W K n : Nat) (hn : n ≤ W / 2) (hc : ∀ c, c < 2 ^ (W / 2 - n) → check W K n c = true) (x : Nat → Bool) (hx : ∀ k, W < k → x k = false) : ∃ t, t < K ∧ t % 2 = 0 ∧ zrow x t 1 = false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.q01_of_chunks",
+      "statement": "theorem q01_of_chunks (W K n : Nat) (hn : n ≤ W / 2) (h : ChunksOK W K n 0 (2 ^ (W / 2 - n))) (x : Nat → Bool) (hx : ∀ k, W < k → x k = false) : ∃ t, t < K ∧ t % 2 = 0 ∧ zrow x t 1 = false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family_list (module Rule30ZeroBoundaryStripeFamily)",
+      "statement": "theorem stripe_prefix_family_list (m : Nat) (v : List Bool) (hv : v.length ≤ 3) : ∃ d, 1 ≤ d ∧ d ≤ m + 5 ∧ (∀ k, 1 ≤ k → k < d → rowV m v k = stripe k) ∧ rowV m v d ≠ stripe d ∧ ∃ t, t ≤ d - 1 + 31 ∧ t % 2 = 0 ∧ zrow (rowV m v) t 1 = false   -- rowV m v k := if k ≤ m then stripe k else v.getD (k - m - 1) false; stripe = Rule30ZeroBoundary.stripe",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.stripe_prefix_family (module Rule30ZeroBoundaryStripeFamily)",
+      "statement": "theorem stripe_prefix_family (m : Nat) (b0 b1 b2 : Bool) : ∃ d, 1 ≤ d ∧ d ≤ m + 5 ∧ (∀ k, 1 ≤ k → k < d → row3 m b0 b1 b2 k = stripe k) ∧ row3 m b0 b1 b2 d ≠ stripe d ∧ ∃ t, t ≤ d - 1 + 31 ∧ t % 2 = 0 ∧ zrow (row3 m b0 b1 b2) t 1 = false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront.front_sound",
+      "statement": "theorem front_sound (x : Nat → Bool) (d K S lam : Nat) (hd : 1 ≤ d) (hag : ∀ k, 1 ≤ k → k < d → x k = stripe k) (hSK : S + 1 ≤ K) (hcyc : Cycle K S (pk (fun i => x (d + i)) K) (d % 2) lam) : ∃ s, s ≤ S ∧ (d - 1 + s) % 2 = 0 ∧ zrow x (d - 1 + s) 1 = false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherTrap.word_lemma",
+      "statement": "theorem word_lemma (w : List Bool) (T : Nat × List Bool → Prop) (hT : Closed w T) (x0 y : Nat × List Bool) (hx0 : T x0) (hx04 : x0.1 < 4) (P : List Bool) (a b : Nat → Bool) (L j0 : Nat) (hP : traj w x0 (fun n => P.getD n false) P.length = y) (ha : traj w y a L = y) (hb : traj w y b L = y) (hL4 : L % 4 = 0) (hL0 : 0 < L) (hj0 : j0 < L) (hwhite : white w (traj w y a j0) = true) (hdiff : col1 (traj w y a j0) ≠ col1 (traj w y b j0)) : ∃ u : Nat → Bool, (∀ n, T (traj w x0 u n)) ∧ ¬ MaskedPer w (traj w x0 u)",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherTrap.node_traj",
+      "statement": "theorem node_traj (w : List Bool) (x : Nat → Bool) (b : Nat) : ∀ t, node w x t b = traj w (node w x 0 b) (fun t => drv (wordAt w) x t (b + 1)) t   -- node, drv, wordAt from Rule30Ether",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0001 (module Rule30EtherTrapWidth20)",
+      "statement": "theorem pure_ether_not_in_trap_0001 (a : Nat × Nat) (ha : a ∈ A0001) (φ : Nat) (hφ : φ < 4) (b : Nat) (hb1 : 1 ≤ b) (hb : b ≤ 20) (T : Nat × List Bool → Prop) (hT : Trap w0001 T) : ¬ T (φ, etherRow a.1 ((φ + a.2) % 4) b)",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0011 (module Rule30EtherTrapWidth20)",
+      "statement": "theorem pure_ether_not_in_trap_0011 (a : Nat × Nat) (ha : a ∈ A0011) (φ : Nat) (hφ : φ < 4) (b : Nat) (hb1 : 1 ≤ b) (hb : b ≤ 20) (T : Nat × List Bool → Prop) (hT : Trap w0011 T) : ¬ T (φ, etherRow a.1 ((φ + a.2) % 4) b)",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherTrap.pure_ether_not_in_trap_0111 (module Rule30EtherTrapWidth20)",
+      "statement": "theorem pure_ether_not_in_trap_0111 (a : Nat × Nat) (ha : a ∈ A0111) (φ : Nat) (hφ : φ < 4) (b : Nat) (hb1 : 1 ≤ b) (hb : b ≤ 20) (T : Nat × List Bool → Prop) (hT : Trap w0111 T) : ¬ T (φ, etherRow a.1 ((φ + a.2) % 4) b)",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30PeriodTwoLanguage.no_pattern",
+      "statement": "theorem no_pattern (C : Cert) (bad : Nat) (hw : C.w = [false, true]) (T T' : Nat) (hTT : T ≤ T') (h : ∀ t, T ≤ t → cell t 0 = C.wAt ((t - T) % C.P)) (hbad : ∀ t, T' ≤ t → C.rk ((t - T) % C.P) (rowR t C.b) = bad) (hb : 0 < C.b) (pat : List Bool) (hocc : occurs C bad pat = false) (t : Nat) (ht : T' ≤ t) (hph : (t - T) % 2 = 0) : ¬ ∀ i, i < pat.length → cell (t + 2 * i) 1 = pat.getD i false",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth5.free_bit_constraints",
+      "statement": "theorem free_bit_constraints (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = ((t - T) % 2 == 1)) : ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → (t - T) % 2 = 0 → ∀ pat ∈ col1Forbidden, ¬ ∀ i, i < pat.length → cell (t + 2 * i) (-1) = !pat.getD i false   -- col1Forbidden = [11, 00000, 100101, 10010001] (as Bool lists); col1_constraints is the same statement for column 1 without the complement",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth6.free_bit_constraints",
+      "statement": "theorem free_bit_constraints (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = ((t - T) % 2 == 1)) : ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → (t - T) % 2 = 0 → ∀ pat ∈ col1Forbidden, ¬ ∀ i, i < pat.length → cell (t + 2 * i) (-1) = !pat.getD i false   -- col1Forbidden (width 6) = nine words: 11, 00000, gap pairs 21, 23, 12, gap triples 114, 132, 241, 243",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.ether3_rule / ether3_glide",
+      "statement": "theorem ether3_rule (j φ : Nat) : ether3 j (φ + 1) = rule (ether3 (j + 11) φ) (ether3 j φ) (ether3 (j + 1) φ);  theorem ether3_glide (j φ : Nat) : ether3 (j + 4) φ = ether3 j (φ + 1)",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.alignments_001_complete / alignments_011_complete",
+      "statement": "theorem alignments_001_complete : ∀ j0, j0 < 12 → ∀ s, s < 3 → (aligned3 w001 j0 s = true ↔ (j0, s) ∈ A001);  theorem alignments_011_complete : ∀ j0, j0 < 12 → ∀ s, s < 3 → (aligned3 w011 j0 s = true ↔ (j0, s) ∈ A011)   -- A001 = [(0,0),(1,0),(4,2),(5,2),(8,1),(9,1)], A011 = [(2,0),(3,2),(6,2),(7,1),(10,1),(11,0)]",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.absorption3_excludes",
+      "statement": "theorem absorption3_excludes (w : List Bool) (A : List (Nat × Nat)) (hal : ∀ al ∈ A, aligned3 w al.1 al.2 = true) {a b : Nat} {W : Nat → Nat → Prop} (hW : WallOK a b W) (hb : 0 < b) (hA : Absorption3 w A a b W) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 w (t - T)   -- vacuous for walls of width ≤ 12 (no_wall_le_12)",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.no_wall_le_12 (module Rule30EtherThreeNoWall)",
+      "statement": "theorem no_wall_le_12 (a b : Nat) (hb : 0 < b) (hb12 : b ≤ 12) {W : Nat → Nat → Prop} (hW : WallOK a b W) : ∀ φ r, ¬ W φ r",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.t001_check (module Rule30EtherThreeTrap)",
+      "statement": "theorem t001_check : t001.check = true   -- the 815-state, width-47, label-mod-21 trap for 001",
+      "axioms": "propext"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.trap_001 (module Rule30EtherThreeTrap)",
+      "statement": "theorem trap_001 (T : Nat) (hc : ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T)) (t1 i : Nat) (ht1 : T ≤ t1) (hi : i < t001.n) (hph : (t1 - T) % 3 = t001.lab i % 3) (hr : EncF trueRight 47 t1 0 (t001.st i)) : False",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.absorptionT_excludes / not_eventually_001_of_absorption (module Rule30EtherThreeTrap)",
+      "statement": "theorem absorptionT_excludes (C : PTrap) (hC : C.check = true) (hb : 0 < C.b) (hA : AbsorptionT C) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 C.w (t - T);  theorem not_eventually_001_of_absorption (hA : AbsorptionT t001) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T)   -- AbsorptionT t001 is open",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.t001_reached (module Rule30EtherThreeReach)",
+      "statement": "theorem t001_reached : ∃ i, i < t001.n ∧ (1270 + 0) % 3 = t001.lab i % 3 ∧ EncF (drv (fun t => wordAt3 w001 (t + 0)) (fun _ => false)) t001.b 1270 0 (t001.st i)",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_Q001 / not_eventually_011_of_C3w (module Rule30EtherThreeLeft)",
+      "statement": "theorem not_eventually_001_of_Q001 (hQ : Q001) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T);  theorem not_eventually_011_of_C3w (hC : C3w w011) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 w011 (t - T)   -- Q001 := ∀ m s, 0 < m → (∀ p < -m, s p = false) → s (-m) = true → ¬ ∀ k, L (fun _ => false) s (3 * k) (-1) = true; C3w w := ∀ s, (∃ M, ∀ p < -M, s p = false) → ¬ ∃ K, ∀ k ≥ K, fits3 (colPattern3 w) (k % 3) (L (fun k => wordAt3 (effWord3 w) k) s k (-1)) = true; both open",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.col_m1_001 / col_m1_011 (module Rule30EtherThreeLeft)",
+      "statement": "theorem col_m1_001 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T)) (t : Nat) (ht : T ≤ t) : ((t - T) % 3 = 0 → cell t (-1) = cell t 1) ∧ ((t - T) % 3 = 1 → cell t (-1) = !cell t 1) ∧ ((t - T) % 3 = 2 → cell t (-1) = true);  theorem col_m1_011 (same hypotheses with w011) : ((t - T) % 3 = 0 → cell t (-1) = !cell t 1) ∧ ((t - T) % 3 = 1 → cell t (-1) = false) ∧ ((t - T) % 3 = 2 → cell t (-1) = true)",
+      "axioms": "propext, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.skeleton_001 / skeleton_011 (module Rule30EtherThreeSkeleton)",
+      "statement": "theorem skeleton_001 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T)) : ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → (t - T) % 3 = 0 → cell t 1 = false;  theorem skeleton_011 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = wordAt3 w011 (t - T)) : ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t → ((t - T) % 3 = 1 → cell t 1 = true) ∧ ((t - T) % 3 = 2 → cell t 1 = false)",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     },
+     {
+      "name": "Ruliology.CellularAutomata.Rule30EtherThree.not_eventually_001_of_C3s (module Rule30EtherThreeSkeleton)",
+      "statement": "theorem not_eventually_001_of_C3s (hC : C3s001) : ¬ ∃ T, ∀ t, T ≤ t → cell t 0 = wordAt3 w001 (t - T)   -- C3s001 := ∀ s, (∃ M, ∀ p < -M, s p = false) → ¬ ∃ K, ∀ k ≥ K, fits3 [some false, none, some true] (k % 3) (L (fun _ => false) s k (-1)) = true; open",
+      "axioms": "propext, Classical.choice, Quot.sound"
+     }
+    ],
+    "root_import_count": 60,
+    "not_integrated": [
+     "W ≤ 56 (KC.Q01W56: q01_width_le_56 with bound 100, q01_width_le_56_linear, not_inX_of_width_le_56). It has 1024 chunks in 64 files and takes about 345 s of kernel time, which is too heavy for the catalog, as the task specified. It stays, with build.sh and buildall56.sh, in /Users/swish/src/wolfram/vibe-proof/VibeProof/Rule30Prize/research/kernel-certify-r2/t1; the Rule30ZeroBoundaryWidth52 docstring says so.",
+     "KC.Q01W20 (t1/src/KC/Q01W20.lean, Q01W20/C0-C1): a width-20 smoke test, superseded by the W ≤ 52 theorem.",
+     "Scratch probes and tests with no catalog content:\n- t1: Calib*.lean (per-path DFS calibration), src/KC/TestChunk.lean and TestSmall.lean (checker tests), Names.lean (#check only), src/KC/AxW52.lean and AxW56.lean (axiom prints).\n- t2: Calib.lean, src/KC/AxStripe.lean.\n- t3: Names.lean, src/KC/AxTrap.lean.\n- t4: src/KC/AxP2.lean; data_01_5.lean and data_01_6.lean are raw generator output, and the same data is inline in Rule30PeriodTwoWidth5/6.\n- p3-ether/lean: Ax1-3.lean, AxAll.lean, Checks.lean, Probe.lean, Probe2.lean.",
+     "Target 5 of kernel-certify-r2 (mod-2 conservation laws of rule 30²) was never attempted by the worker, so there is no Lean to integrate.",
+     "Computational evidence (C and Python) is not Lean and stays in the research archive:\n- the D(W) table beyond 56;\n- wall searches up to width 28 and trap searches up to width 22;\n- t001 entry statistics (18,258 of 18,258 runs entered);\n- the period-3 death-time searches;\n- the b = 14 period-2 bad-class constraints."
+    ],
+    "problems": [
+     "Rule30PeriodTwoLanguage gives 5 'unused simp argument' linter warnings, all on line 169 (the `simp only [occurs, bne_iff_ne, ...] at hocc` step of no_pattern). They are inherited from the scratch source and the verifier saw them too. I left the proof unchanged because only names were to change. Other catalog modules silence this linter with `set_option linter.unusedSimpArgs false in`. lake replays the warnings when building modules that depend on this one.",
+     "Four docstrings were edited beyond pure renaming; no Lean code changed:\n- The period-3 trap module said 'many but not all tested right halves enter' t001. It now gives the final report's figures: all 18,258 tested right halves entered, with delays up to about 2·10^5.\n- The EtherTrap docstring cited names that do not exist (`escapes_of_width_20`, `proj_*`). It now cites `stepW_take` and `escapes_take`, and adds a bullet for `node_succ`/`node_traj`.\n- Rule30EtherTrapWidth20 gained a sentence saying the result concerns only the strip relaxation, as in the report's caveat.\n- Rule30PeriodTwoWidth5 says width 5 is minimal 'by computation', as the verifier established.",
+     "Module names and namespaces do not always match:\n- Rule30ZeroBoundaryStripeFamily puts its theorems in namespace Rule30ZeroBoundaryStripeFront.\n- Rule30EtherTrapWidth20 puts its theorems in namespace Rule30EtherTrap.\n- All six period-3 modules share namespace Rule30EtherThree.\nThis mirrors the scratch namespaces exactly, so the name map is a plain prefix swap. The catalog has a precedent: Rule30Predecessors and Rule30PredecessorCounts share `Rule30`.",
+     "Each W52 data module peaks at about 3.1 GB with 64 chunks; the old 16-chunk files peaked at 1.5 GB. A from-scratch parallel `lake build` could run all four at once, about 12.5 GB.",
+     "The archived W56 build scripts (build.sh, buildall56.sh in VibeProof/Rule30Prize/research/kernel-certify-r2/t1) hard-code B=/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/kernel-certify-r2/t1. Rebuilding from the archive after the job tmp directory is gone means editing B; the Width52 docstring says so.",
+     "Plain `by decide` occurs 25 times, carried over unchanged from the sources (for example ether3_rule_small and small side conditions). These are kernel-checked, not native; every heavy certificate uses `decide +kernel` (323 checks).",
+     "Heavy Lean and lake processes, and the Python generator and checker, ran under `timeout 60`, one at a time. A few trivial file operations (ls, cp, grep, sed) were not individually wrapped.",
+     "Not done here: sending the new hashes to the Ruliology session, which the catalog workflow requires. The manifest of all 81 files after integration is /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/catalog_after.sha256. ruliology-lean is git-ignored, so nothing was committed."
+    ]
+   }
+  },
+  {
+   "label": "verify-integration",
+   "phase": "Check",
+   "result": {
+    "existing_files_unchanged": true,
+    "changed_existing": [
+     "Ruliology.lean (allowed): its first 45 lines hash to exactly the old root (945c0af8…), so the change is 15 appended imports only (60 imports now). The other 52 entries in catalog_before.sha256 (50 .lean files plus lakefile.toml and lean-toolchain) still match. Exactly 28 new .lean files were added and nothing was removed. No file in ruliology-lean (including .lake) changed during this verification."
+    ],
+    "modules": [
+     {
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.7,
+      "notes": "0.51 GB. Rebuilt olean is byte-identical to the catalog's. 3 compiler-generated `_unsafe_rec` helpers (pack/AD/dbl), identical in scratch; theorems cannot reference them. Constants identical to KC.Q01Lanes after renaming, including private match lemmas."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks0",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 20.16,
+      "notes": "3.17 GB. Byte-identical olean. Namespaces C0–C3, chunks 0–63; text and terms identical to scratch C0–C3."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks1",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 19.48,
+      "notes": "3.10 GB. Byte-identical olean. C4–C7, chunks 64–127."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks2",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 19.51,
+      "notes": "3.08 GB. Byte-identical olean. C8–C11, chunks 128–191."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryWidth52Chunks3",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 19.35,
+      "notes": "3.12 GB. Byte-identical olean. C12–C15, chunks 192–255."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryWidth52",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.24,
+      "notes": "Byte-identical olean. Every chunk index 0–255 appears exactly once as `check 52 97 18 i = true` (decide +kernel), in namespace C{i/16}; text matches scratch. Each C{j}.range is ChunksOK 52 97 18 (16j) 16 from c{16j..16j+15} in order. all_chunks combines C0–C15.range and has the same proof term as scratch. All 256 chunk theorems lie in q01_width_le_52's dependency closure. The W≤56 archive path in the docstring exists (build.sh, buildall56.sh, 64 W56 chunk files, bound 100)."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFront",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.9,
+      "notes": "Byte-identical olean. 2 compiler-generated `_unsafe_rec` helpers (pk, orb), identical in scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles0",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 2.14,
+      "notes": "Byte-identical olean. Docstring's six cycles and their lengths match the file."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles1",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 1.6,
+      "notes": "Byte-identical olean. cyc_4_1, length 65536, four seg checks."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.ZeroBoundaryStripeCycles2",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 2.86,
+      "notes": "Byte-identical olean. cyc_5_0, length 65536, four seg checks."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30ZeroBoundaryStripeFamily",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.48,
+      "notes": "Byte-identical olean. Its theorems are in namespace Rule30ZeroBoundaryStripeFront, as in scratch. stripe_prefix_family and stripe_prefix_family_list are identical to scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherTrap",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.59,
+      "notes": "Byte-identical olean. Uses Classical.propDecidable (allowed axiom). 2 `_unsafe_rec` helpers (runW, traj), identical in scratch. Names cited in the new docstring (stepW_take, escapes_take, node_succ, node_traj) exist."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap0",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 4.95,
+      "notes": "Byte-identical olean. cert_0001_5_0–3, matching the docstring."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap1",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 4.99,
+      "notes": "Byte-identical olean. cert_0001_6_*."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap2",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 5.12,
+      "notes": "Byte-identical olean. cert_0011_0_*."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap3",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 5.15,
+      "notes": "Byte-identical olean. cert_0011_1_*."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap4",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 4.68,
+      "notes": "Byte-identical olean. cert_0011_4_*."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30Certificates.EtherTrap5",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 5.2,
+      "notes": "Byte-identical olean. cert_0111_2_*."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherTrapWidth20",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.29,
+      "notes": "Byte-identical olean. pure_ether_not_in_trap_* and pure_ether_escapes_* are identical to scratch. It realizes Rule30Ether.A0001/A0011/A0111.eq_1, standard equation lemmas, also present in scratch. The strip-relaxation caveat in the docstring matches the report."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoLanguage",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.52,
+      "notes": "Byte-identical olean. 5 inherited unused-simp-argument warnings on line 169, as reported. 3 `_unsafe_rec` helpers (occStep, startMask, simMask), identical in scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth5",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.54,
+      "notes": "Byte-identical olean. col1Forbidden decodes to 11, 00000, 100101 (gap pair 21), 10010001 (gap pair 23), with complements 00, 11111, 011010, 01101110, as the docstring says. The 'width 5 minimal (computation)' claim is in the round-2 report."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30PeriodTwoWidth6",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 1.5,
+      "notes": "Byte-identical olean. Nine words: 11, 00000, gap pairs 21/23/12, gap triples 114/132/241/243, as the docstring says."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThree",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 1.01,
+      "notes": "Byte-identical olean. Changes from P3Ether.lean: the import (root Ruliology → Rule30Ether) and the docstring. Constants are identical to scratch P3Ether, which I rebuilt against a reconstructed old 45-import root. 2 `_unsafe_rec` helpers (allBelowT, rowN), identical in scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeNoWall",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 8.67,
+      "notes": "1.05 GB. Byte-identical olean. no_wall_le_12 identical to scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeTrap",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.96,
+      "notes": "Byte-identical olean. The 'admit' grep hit is the docstring word 'admits'. The reworded docstring figure (all 18,258 runs entered t001) matches p3-ether/REPORT.md line 347."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeReach",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.35,
+      "notes": "Byte-identical olean. t001_reached identical to scratch."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeLeft",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.73,
+      "notes": "Byte-identical olean. Adds direct imports of Rule30DrivenLeft and Rule30PeriodTwo; the constants are unchanged (Q001, C3w, col_m1_* identical)."
+     },
+     {
+      "module": "Ruliology.CellularAutomata.Rule30EtherThreeSkeleton",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.42,
+      "notes": "Byte-identical olean. Adds a direct import of Rule30PeriodFourSkeleton; constants unchanged (C3s001 uses colPattern001s = [some false, none, some true])."
+     },
+     {
+      "module": "Ruliology (root)",
+      "compiles": true,
+      "axioms_ok": true,
+      "no_tricks": true,
+      "statements_match_scratch": true,
+      "seconds": 0.23,
+      "notes": "No declarations. Recompiled to a byte-identical olean. All 28 new modules and all 78 catalog modules are reachable from the root."
+     }
+    ],
+    "full_build_ok": true,
+    "refuted": [
+     "\"Axioms.lean runs #print axioms on 69 main theorems\": the integrator's Axioms.lean has 68 #print axioms commands and axioms_output.txt has 68 results (bookkeeping only).",
+     "\"Term check for t1–t4: … 1011 of 1016 proof terms are identical. The other 5 are auto-generated eq_def lemmas\": all 1016 are identical. The 5 differences (pack/AD/pk/occStep/startMask.eq_def) come from CompareKC.lean not renaming module-prefixed private names (_private.KC.Q01Lanes.0… vs _private.Ruliology.CellularAutomata.Rule30ZeroBoundaryLanes.0…). With full renaming, each proof term is identical (verify/CheckEqDef.lean). The error is in the harmless direction (it understates identity).",
+     "\"Term check for period 3: … only two auto-generated equation lemmas differ, and only in their proof terms\": the same private-name artifact (allBelowT.eq_def, colPattern3.eq_3). My full structural comparison finds them identical. Their check also compared 32-bit Expr.hash fingerprints, not full terms.",
+     "\"Plain `by decide` occurs 25 times … (for example ether3_rule_small and small side conditions)\": 25 counts only whole proofs `:= by decide`. Including side conditions, which the claim mentions, non-kernel `by decide` occurs 138 times in code (107 lines). All are kernel-checked, so soundness is unaffected; the count of 323 `decide +kernel` checks is correct."
+    ],
+    "overall": "The integration is sound and faithful. Only bookkeeping counts in the report are wrong; nothing affects soundness or the statements.\n\n**Check 1 (existing files):** of the 53 files in catalog_before.sha256, only Ruliology.lean differs, and its first 45 lines hash to the old root, so the change is 15 appended imports. Exactly 28 new files were added. All 29 reported hashes and the 81-line catalog_after.sha256 match.\n\n**Check 2 (recompile):** all 28 modules were recompiled one at a time, in dependency order, with `timeout 60 /usr/bin/time -l lake env lean <file> --setup <json> -o verify/build/...`. The two extra flags only pin the module name and import paths and write the output under verify/. I wrote my own setup JSONs: options {}, import sets checked against source closures, and new-module imports pointing at my freshly built oleans, so the whole new chain was rebuilt from source. Every result is byte-identical to the catalog olean. Times: 0.24–8.67 s for the light modules; 19.35–20.16 s and 3.08–3.17 GB for the four W52 chunk modules. The only diagnostics are the 5 inherited linter warnings.\n\n**Check 3 (axioms):** verify/VerifyAxioms.lean runs #print axioms on 56 main theorems, all within {propext, Classical.choice, Quot.sound}. A sweep of all 1557 constants of the 28 modules finds 0 violations and no axiom, opaque, extern, implemented_by or partial declarations. The only unsafe constants are 12 compiler-generated `_unsafe_rec` helpers, also present in scratch. The integrator's 1532-constant sweep, by namespace prefix, skipped 25 private match lemmas and splitters plus three realized Rule30Ether.A0xxx.eq_1 lemmas; my sweep covers them.\n\n**Check 4 (grep):** clean. The single 'admit' hit is the docstring word 'admits'; there is no set_option.\n\n**Check 5 (statements):**\n- Text level: every changed line is an import, namespace, open or end line or inside a module docstring.\n- Lean level: I rebuilt all scratch modules from source into verify/scratchbuild. P3 was built against a reconstructed old 45-import root. All rebuilt oleans are byte-identical to the workers' oleans. verify/CompareConsts.lean reads the scratch oleans and compares each constant with the catalog after full renaming, including private and module-prefixed names. All 1557 scratch constants map one-to-one onto the 1557 catalog constants, in the right modules, with identical kinds, universe parameters, types, definition bodies, inductive and recursor data, and proof terms. extraConstNames also match (269 = 269).\n- A negative control with a deliberately wrong mapping was caught (39 problems).\n- W52 chunks: indices 0–255 appear exactly once with `check 52 97 18 i = true`, and all 256 are in q01_width_le_52's dependency closure.\n- The integrator's quoted statements and axiom sets match the sources. Docstring claims check out against the reports and the code: the 18,258 figure, width-5 minimality, the forbidden words, cycle lengths, cited names, and the W56 archive path.\n\n**Check 6 (build):** `timeout 60 lake build` reports 'Build completed successfully (81 jobs)'.\n\n**Housekeeping:** ruliology-lean is git-ignored; vibe-proof is clean at 6bf26d8; the Ruliology repo is clean with nothing modified after 11:30. I modified nothing outside /Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/integrate-final/verify/, and no processes are left running. Every Lean, lake and Python run was wrapped in timeout 60; a few trivial file commands (mkdir, sed, grep, cat, stat) were not individually wrapped.\n\n**Not verified:** the parallel-memory estimates (12.5 GB vs 18 GB) are estimates and were not tested.\n\nEvidence in verify/: rebuild.py, rebuild_scratch.py, check_chunks.py, classify_diffs.py, VerifyAxioms.lean with axioms_verify_output.txt, CompareConsts.lean with compare_run.txt, CompareNeg.lean, CheckExtra.lean, CheckEqDef.lean, CheckChunkUse.lean, and logs/."
+   }
+  },
+  {
+   "label": "writeup-final",
+   "phase": "Check",
+   "result": {
+    "path": "/Users/swish/src/wolfram/vibe-proof/VibeProof/Rule30Prize/writeup/rule30-state.html",
+    "sections_changed": [
+     "Header: h1 now says 'after rounds 1 and 2 and the final batch'; the meta line now gives 393 theorems and 22 computations",
+     "Abstract: adds the final-batch results (Q01 for width <= 52, and <= 56 in the archive; the stripe-prefix family; the pure ether in no trap of width <= 20; the width-5 and width-6 free-bit laws) and the least-period-3 reductions, and ends: 'No final-batch result excludes any period unconditionally'",
+     "At-a-glance cards: a new 'Final batch' card; period-3 implications added to the implication card, the trap result to the barriers card, and 18,258/18,258 t001 entries to the evidence card",
+     "Contents: a new section 9 with six subsections; the frontier is renumbered as section 10 (ids s10-*)",
+     "Section 1.2: the D(W) row notes the Lean bound; a new row for the period-3 ether and t001; Rule30ZeroBoundary is marked as now in the catalog",
+     "Section 3.1: a proved bullet for the width-5/6 free-bit words; the epoch consequence (an epoch of depth 6 is followed only by depth 6 or 10)",
+     "Sections 3.2, 3.3, 4.6, 4.7 and the section 5 lead: pointers to the trap barrier, the period-3 reductions, the 12x3 ether and its walls, and the skeletons",
+     "Section 4.5: Q01 extended from width 16 to width 52 (catalog) and 56 (archive)",
+     "Section 6.1: Lean statement rewritten; the chart gains shaded kernel-checked bands, a label, key swatches, a description and tooltip text (CSS and JS edits)",
+     "Sections 6.2-6.5: Lean status of the stripe family; the trap barrier; the width-5 part of the block law; a pointer to C14-C22",
+     "Sections 7.2 and 7.4: the fixed-width-trap claim upgraded with the Lean theorem; a pointer to the verifier corrections",
+     "NEW section 9 'The final batch': 9.1 Q01 for width <= 52/56 (method, what is not proved); 9.2 stripe-prefix family |v| <= 3; 9.3 the pure ether in no trap of width <= 20, plus a labelled paper consequence and its scope; 9.4 period-2 free-bit laws at widths 5 and 6; 9.5 least period 3 (12x3 ether, complete alignments, no walls, trap t001 and its evidence, Q001/C3s001/C3w(011) statement boxes, skeletons, status box); 9.6 integration checks, caveats and verifier corrections",
+     "Section 10 (was 9): 10.1 bullets updated and least-period-3 bullet replaced; 10.2 five new conditional rows; 10.3 item 1 replaced and two items added; 10.4 a new closing paragraph",
+     "Appendix A: intro counts (393/60/20), catalog naming, archive paths; 50 new rows T344-T393 in five groups with re-printed axioms and verified line numbers",
+     "Appendix B: intro note; C1, C2 and C12 cells updated; new rows C14-C22",
+     "Appendix C: intro counts and file scan; four final-batch audit rows; a collapsible table of the 28 modules (sha256 prefix, build time, peak memory)",
+     "Footer: notes that the final-batch material was added by hand and that re-running build.py would drop it"
+    ],
+    "stale_claims_fixed": [
+     "'Lean covers W <= 16' for Q01 (sections 4.5 and 6.1, C1): now Lean proves every start of width <= 52 dies by time 96 (catalog) and width <= 56 by time 100 (archive). D(W) values for smaller widths and their tightness stay computed.",
+     "'Least period 3 has no reduction recorded in the round-2 sources' plus the round-2 p3_affine/c8check remarks: replaced by the Lean reductions (AbsorptionT t001, Q001 or C3s001 for 001; C3w(011) for 011; all open) and by the bad-class skeletons.",
+     "Next step 'What remains is the import into Ruliology.lean' for the seven staged modules: done, byte-identical to the audited versions; the 28 final-batch modules are also imported (60 imports). Sending hashes to the Ruliology session is still pending.",
+     "The stripe-prefix family was only computed (section 6.2, C2): it is now a Lean theorem for |v| <= 3 (death within 31 steps of arrival); |v| <= 7 with bound 45 stays computed.",
+     "Fixed-width traps were excluded only by computation (sections 6.3 and 7.2, C12): Lean now proves no trap of width <= 20 contains the pure ether. The consequence 'no trap of width <= 20 is entered by every finite right half' is labelled paper and not verifier-checked.",
+     "Period-2 right-half laws were only no-00/no-11111: the width-5 and width-6 forbidden words are now proved (sections 3.1, 6.4, 10.1).",
+     "Counts updated: 343 theorems / 47 kernel / 14 implications / 13 computations became 393 / 60 / 20 / 22 (header, appendix A, appendix C).",
+     "'After rounds 1 and 2' and 'open after two rounds' (h1, abstract) now include the final batch.",
+     "Verifier corrections added: no wall is known only up to width 28; the minimality of t001 is open; AbsorptionT t001, Q001, C3s001 and C3w(011) are open; the >5e6 closure count is false for small widths; uniqueness of the minimal closed set is confirmed only to width 22; the -j 1 build note is refuted."
+    ],
+    "size_kb": 345.5,
+    "notes": "The page was updated in place, from 276,348 to 353,789 bytes. checkhtml.py reports 0 errors, 492 internal links with no missing targets, and no external resources. At a true 390 px layout (measured in an iframe), the page has no horizontal scroll. The chart and the new section were checked visually in light and dark themes.\n\nHow the update was made:\n- All edits went through one atomic Python pass of 60 replacements, each anchored to text that occurs exactly once, followed by two small wording fixes.\n- Links are generated from the theorem table's own names.\n- Every new row's line number was checked against its source file.\n\nAxioms:\n- I re-printed the axioms of all 48 cited catalog theorems with `timeout 60 lake env lean --stdin`, so no file was written; this took 0.25 s.\n- I re-printed the two archived KC.Q01W56 theorems from the oleans in kernel-certify-r2/t1/build.\n- All 50 use only propext, Classical.choice and Quot.sound.\n\nHashes:\n- The sha256 of all 28 new modules and the root match the integration report.\n- All 81 entries of catalog_after.sha256 still match the catalog.\n- The catalog's copies of the seven round-2 modules are byte-identical to the audited staging versions.\n\nThings to know:\n- Section 9.3 contains one claim of mine: no trap of width <= 20 is entered by every finite right half. It follows from T235 and the new theorem, but the verifiers did not check it, so it is labelled 'paper' and says so.\n- Re-running writeup-r2/build.py would drop all final-batch material; the footer says so.\n- Screenshots were taken in a temporary /tmp directory with a separate headless Chrome profile. The directory has been deleted, and no Chrome process is left running.\n\nWhat was not done:\n- No other file was changed. The page is git-ignored, so there is nothing to commit.\n- The page was not published as an Artifact, because the task limited changes to this file.\n- Nothing was re-run computationally. C14-C22 say 'Not re-run in this update' and cite the verifiers' independent re-computations."
+   }
+  }
+ ]
+}
