@@ -1,0 +1,10 @@
+E=010 K=*01 ph0=1 W=61: max survival  84 steps (all starts of width <= W violate by time 84); nodes 8742510
+E=010 K=*01 ph0=1 W=62: max survival  85 steps (all starts of width <= W violate by time 85); nodes 11186214
+E=010 K=*01 ph0=1 W=63: max survival  90 steps (all starts of width <= W violate by time 90); nodes 13975955
+E=010 K=*01 ph0=1 W=64: max survival  91 steps (all starts of width <= W violate by time 91); nodes 17477755
+E=010 K=*01 ph0=1 W=65: max survival  96 steps (all starts of width <= W violate by time 96); nodes 22382472
+E=010 K=*01 ph0=1 W=66: max survival  96 steps (all starts of width <= W violate by time 96); nodes 27988422
+E=010 K=*01 ph0=1 W=67: max survival  96 steps (all starts of width <= W violate by time 96); nodes 34942934
+E=010 K=*01 ph0=1 W=68: max survival  99 steps (all starts of width <= W violate by time 99); nodes 44757155
+E=010 K=*01 ph0=1 W=69: max survival  99 steps (all starts of width <= W violate by time 99); nodes 55928846
+E=010 K=*01 ph0=1 W=70: max survival  99 steps (all starts of width <= W violate by time 99); nodes 69878959

@@ -1,0 +1,29 @@
+'KC.Q01W52.q01_width_le_52' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01W52.q01_width_le_52 : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) →
+    ∃ t, t ≤ 96 ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+'KC.Q01W52.q01_width_le_52_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01W52.q01_width_le_52_linear : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) →
+    ∃ t, t ≤ 2 * 52 + 8 ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+'KC.Q01W52.not_inX_of_width_le_52' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01W52.not_inX_of_width_le_52 : ∀ (x : Nat → Bool),
+  (∀ (k : Nat), 52 < k → x k = false) → ¬Ruliology.CellularAutomata.Rule30ZeroBoundary.InX x
+        0.26 real         0.15 user         0.08 sys
+           407601152  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               30597  page reclaims
+                  21  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                  13  voluntary context switches
+                 328  involuntary context switches
+            16388804  instructions retired
+             7815698  cycles elapsed
+             1179936  peak memory footprint

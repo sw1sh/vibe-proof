@@ -1,0 +1,57 @@
+'KC.Q01Lanes.run_sound' depends on axioms: [propext, Quot.sound]
+KC.Q01Lanes.run_sound : ∀ (W n c ALL : Nat) (pats : List Nat) (y : Nat → Bool) (p : Nat),
+  ALL.testBit p = true →
+    (∀ (t : Nat), t % 2 = 1 → t + 1 ≤ W → (KC.Q01Lanes.yFree n c ALL pats (t / 2)).testBit p = y t) →
+      (∀ (d : Nat), W < d → Ruliology.CellularAutomata.Rule30ZeroBoundary.recon y d 0 = false) →
+        ∀ (fuel k : Nat) (R Rm : List Nat) (alive : Nat),
+          KC.Q01Lanes.run W n c ALL pats fuel k R Rm alive = true →
+            (∀ (t : Nat), k ≤ t → t < k + fuel → t % 2 = 0 → y t = true) →
+              List.map (fun v => v.testBit p) R = KC.Q01Lanes.AD y k 0 k →
+                List.map (fun v => v.testBit p) Rm = KC.Q01Lanes.AD y (k - 1) 0 (k - 1) → alive.testBit p = true → False
+'KC.Q01Lanes.q01_of_checks' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01Lanes.q01_of_checks : ∀ (W K n : Nat),
+  n ≤ W / 2 →
+    (∀ (c : Nat), c < 2 ^ (W / 2 - n) → KC.Q01Lanes.check W K n c = true) →
+      ∀ (x : Nat → Bool),
+        (∀ (k : Nat), W < k → x k = false) →
+          ∃ t, t < K ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+'KC.Q01Lanes.q01_of_chunks' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01Lanes.q01_of_chunks : ∀ (W K n : Nat),
+  n ≤ W / 2 →
+    KC.Q01Lanes.ChunksOK W K n 0 (2 ^ (W / 2 - n)) →
+      ∀ (x : Nat → Bool),
+        (∀ (k : Nat), W < k → x k = false) →
+          ∃ t, t < K ∧ t % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t 1 = false
+'KC.Q01Lanes.scanN_lin' depends on axioms: [propext, Quot.sound]
+KC.Q01Lanes.scanN_lin : ∀ (as bs : List Nat) (acc : Nat),
+  KC.Q01Lanes.scanN acc as bs =
+    (KC.Q01Lanes.mapX acc (KC.Q01Lanes.scanN 0 as bs).fst, acc ^^^ (KC.Q01Lanes.scanN 0 as bs).snd)
+'KC.Q01Lanes.pat_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.Q01Lanes.pat_spec : ∀ (n s p : Nat), s < n → p < 2 ^ n → (KC.Q01Lanes.pat n s).testBit p = p.testBit s
+'KC.Q01Lanes.level' depends on axioms: [propext, Quot.sound]
+KC.Q01Lanes.level : ∀ (y : Nat → Bool) (p k : Nat) (R Rm : List Nat) (Y : Nat),
+  List.map (fun v => v.testBit p) R = KC.Q01Lanes.AD y k 0 k →
+    List.map (fun v => v.testBit p) Rm = KC.Q01Lanes.AD y (k - 1) 0 (k - 1) →
+      Y.testBit p = y k →
+        List.map (fun v => v.testBit p) (Y :: (KC.Q01Lanes.scanN Y R (0 :: Rm)).fst) =
+            KC.Q01Lanes.AD y (k + 1) 0 (k + 1) ∧
+          (KC.Q01Lanes.scanN Y R (0 :: Rm)).snd.testBit p =
+            Ruliology.CellularAutomata.Rule30ZeroBoundary.recon y (k + 1) 0
+        1.31 real         1.14 user         0.12 sys
+           475824128  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               34205  page reclaims
+                 563  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                 305  voluntary context switches
+                2781  involuntary context switches
+            16344905  instructions retired
+             7621490  cycles elapsed
+             1179936  peak memory footprint

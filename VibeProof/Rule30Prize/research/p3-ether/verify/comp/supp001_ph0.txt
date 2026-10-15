@@ -1,0 +1,2 @@
+runs 4096 entered 4096 (100.000%) max entry 186490 at [467 0]; not entered 0; col1@white periodic (non-entered) 0
+  cumulative entry <= 4096:477 8192:1011 16384:2053 32768:3131 40000:3418 120000:4071 200000:4096 300000:4096

@@ -1,0 +1,60 @@
+'KC.StripeFront.front_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.StripeFront.front_sound : ∀ (x : Nat → Bool) (d K S lam : Nat),
+  1 ≤ d →
+    (∀ (k : Nat), 1 ≤ k → k < d → x k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+      S + 1 ≤ K →
+        KC.StripeFront.Cycle K S (KC.StripeFront.pk (fun i => x (d + i)) K) (d % 2) lam →
+          ∃ s, s ≤ S ∧ (d - 1 + s) % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x (d - 1 + s) 1 = false
+'KC.StripeFront.win_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.StripeFront.win_step : ∀ (x : Nat → Bool) (d K t : Nat),
+  (∀ (k : Nat), 1 ≤ k → k < d → x k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+    t + 2 ≤ d → KC.StripeFront.win x d K (t + 1) = KC.StripeFront.fstep K (KC.StripeFront.win x d K t) ((d - t) % 2)
+'KC.StripeFront.sig_sound' depends on axioms: [propext, Quot.sound]
+KC.StripeFront.sig_sound : ∀ (fuel r x : Nat),
+  KC.StripeFront.sig fuel r x = true →
+    ∃ s, s < fuel ∧ (r + s) % 2 = 0 ∧ Ruliology.CellularAutomata.Rule30ZeroBoundarySmall.prun x s % 2 = 0
+'KC.StripeFront.family_of_class' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.StripeFront.family_of_class : ∀ (m q δ lam : Nat) (b0 b1 b2 : Bool),
+  m % 2 = q →
+    1 ≤ δ →
+      KC.StripeFront.devB q δ b0 b1 b2 = true →
+        KC.StripeFront.Cycle 32 31 (KC.StripeFront.pk (fun i => KC.StripeFront.vget b0 b1 b2 (δ - 1 + i)) 32)
+            ((q + δ) % 2) lam →
+          (∀ (k : Nat),
+              1 ≤ k →
+                k < m + δ → KC.StripeFront.row3 m b0 b1 b2 k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) ∧
+            KC.StripeFront.row3 m b0 b1 b2 (m + δ) ≠ Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe (m + δ) ∧
+              ∃ t,
+                t ≤ m + δ - 1 + 31 ∧
+                  t % 2 = 0 ∧
+                    Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow (KC.StripeFront.row3 m b0 b1 b2) t 1 = false
+'KC.StripeFront.win_orb' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.StripeFront.win_orb : ∀ (x : Nat → Bool) (d K : Nat),
+  (∀ (k : Nat), 1 ≤ k → k < d → x k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+    ∀ (t : Nat),
+      t + 1 ≤ d → KC.StripeFront.orb K t (KC.StripeFront.win x d K 0, d % 2) = (KC.StripeFront.win x d K t, (d - t) % 2)
+'KC.StripeFront.stripe_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.StripeFront.stripe_below : ∀ (x : Nat → Bool) (d : Nat),
+  (∀ (k : Nat), 1 ≤ k → k < d → x k = Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k) →
+    ∀ (t k : Nat),
+      k + t < d →
+        Ruliology.CellularAutomata.Rule30ZeroBoundary.zrow x t k =
+          Ruliology.CellularAutomata.Rule30ZeroBoundary.stripe k
+        1.54 real         1.42 user         0.12 sys
+           484524032  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               35281  page reclaims
+                  23  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                   4  voluntary context switches
+                2355  involuntary context switches
+            16427088  instructions retired
+             8884417  cycles elapsed
+             1179936  peak memory footprint

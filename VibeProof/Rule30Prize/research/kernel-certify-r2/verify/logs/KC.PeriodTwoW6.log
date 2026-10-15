@@ -1,0 +1,42 @@
+'KC.PeriodTwoW6.free_bit_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.PeriodTwoW6.free_bit_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ T',
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ KC.PeriodTwoW6.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) (-1) = !pat.getD i false
+'KC.PeriodTwoW6.col1_constraints' depends on axioms: [propext, Classical.choice, Quot.sound]
+KC.PeriodTwoW6.col1_constraints : ∀ (T : Nat),
+  (∀ (t : Nat), T ≤ t → Ruliology.CellularAutomata.Rule30Jen.cell t 0 = ((t - T) % 2 == 1)) →
+    ∃ T',
+      T ≤ T' ∧
+        ∀ (t : Nat),
+          T' ≤ t →
+            (t - T) % 2 = 0 →
+              ∀ (pat : List Bool),
+                pat ∈ KC.PeriodTwoW6.col1Forbidden →
+                  ¬∀ (i : Nat),
+                      i < pat.length → Ruliology.CellularAutomata.Rule30Jen.cell (t + 2 * i) 1 = pat.getD i false
+        1.66 real         1.51 user         0.18 sys
+           810811392  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               55257  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   1  signals received
+                   3  voluntary context switches
+                4413  involuntary context switches
+            16873600  instructions retired
+             7605097  cycles elapsed
+             1179936  peak memory footprint
