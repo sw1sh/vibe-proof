@@ -5,3 +5,4 @@ import Rule30Equivalents.NumberTheory
 import Rule30Equivalents.TwoAdic
 import Rule30Equivalents.PowerSeriesF2
 import Rule30Equivalents.LinearRelations
+import Rule30Equivalents.WordsAutomata
