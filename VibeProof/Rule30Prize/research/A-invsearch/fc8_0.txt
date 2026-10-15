@@ -1,0 +1,1 @@
+L=8 K=56 v in [0,32): max sigma = 45 (v=13, m parity 1, at t=1633869), max orbit (mu+lambda) = 134217728, fails = 0

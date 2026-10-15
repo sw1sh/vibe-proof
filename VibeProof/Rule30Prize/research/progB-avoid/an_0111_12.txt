@@ -1,0 +1,2 @@
+  BAD SCC size 3096: input-irrelevant 1648, free(both in) 1448, forced 0 (to 0: 0, to 1: 0), growth/step ~ 1.4920
+w=0111 b=12 nodes=16384 SCCs(nontrivial): good=0 (nodes 0) bad=1 (nodes 3096)

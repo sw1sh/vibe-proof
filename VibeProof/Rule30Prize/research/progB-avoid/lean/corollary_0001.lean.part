@@ -1,0 +1,49 @@
+
+namespace R30Skel
+open Ruliology.CellularAutomata.Rule30Jen
+
+theorem col_m1 (t : Nat) : cell t (-1) = xor (cell (t + 1) 0) (cell t 0 || cell t 1) := by
+  have := cell_left t 0
+  rw [show (0 : Int) - 1 = -1 by rfl, show (0 : Int) + 1 = 1 by rfl] at this
+  exact this
+
+theorem phase_succ (t T : Nat) (ht : T ≤ t) : (t + 1 - T) % 4 = ((t - T) % 4 + 1) % 4 := by
+  rw [show t + 1 - T = (t - T) + 1 by omega]; omega
+
+theorem wAt_0001 (φ : Nat) (hφ : φ < 4) : K0001.wAt φ = decide (φ = 3) := by
+  have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+  rcases this with h | h | h | h <;> subst h <;> decide
+
+/-- **Skeleton for `0001`, explicit form.**  If `c(t) = [ (t-T) % 4 = 3 ]` for `t ≥ T`, then eventually
+column 1 is white at phase 0 and black at phases 2, 3; column 2 is black at phase 1 and white at phase 3;
+column 3 is black at phase 0; and column -1 is (white, = column 1, white, black) at phases (0, 1, 2, 3). -/
+theorem skeleton_0001_explicit (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide ((t - T) % 4 = 3)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 0 → cell t 1 = false ∧ cell t 3 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 1 → cell t 2 = true ∧ cell t (-1) = cell t 1) ∧
+      ((t - T) % 4 = 2 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t 1 = true ∧ cell t 2 = false ∧ cell t (-1) = true) := by
+  have h' : ∀ t, T ≤ t → cell t 0 = K0001.wAt ((t - T) % 4) := by
+    intro t ht; rw [h t ht, wAt_0001 _ (Nat.mod_lt _ (by decide))]
+  obtain ⟨T', hT', hs⟩ := skeleton_0001 T h'
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨s0, s1, s2, s3⟩ := hs t ht
+  have c0 := h t (by omega)
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T (by omega)] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩
+  · obtain ⟨a, b⟩ := s0 hφ
+    refine ⟨a, b, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · refine ⟨s1 hφ, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s2 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · obtain ⟨a, b⟩ := s3 hφ
+    refine ⟨a, b, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+
+end R30Skel
+
+#print axioms R30Skel.skeleton_0001_explicit

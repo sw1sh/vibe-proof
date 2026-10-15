@@ -1,0 +1,7 @@
+w=0101 alignments: (j0=3,s=0) (j0=3,s=2)
+no entry within 20000: T=1 ph0=0
+no entry within 20000: T=1 ph0=1
+no entry within 20000: T=1 ph0=2
+no entry within 20000: T=1 ph0=3
+no entry within 20000: T=2 ph0=0
+w=0101 bw=13 true T=1..3000 step 1: runs=12000 fails=11630 max entry=118 log2hist: [2]4 [3]18 [4]46 [5]128 [6]144 [7]30  k: 6:364 13:6

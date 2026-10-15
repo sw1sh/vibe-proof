@@ -1,0 +1,3 @@
+FAIL v=189 mpar=1 t=46242701
+FAIL v=189 mpar=1 t=180460429
+L=8 K=56 v in [160,192): max sigma = 53 (v=189, m parity 1, at t=39197581), max orbit (mu+lambda) = 268435456, fails = 2

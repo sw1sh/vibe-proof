@@ -1,0 +1,12 @@
+  good SCC size 81 outword 011000111
+  good SCC size 123 outword 000111011
+  good SCC size 46 outword 011000
+  good SCC size 11 outword 011000
+  good SCC size 40 outword 000011
+  good SCC size 19 outword 0
+  good SCC size 8 outword 0
+  good SCC size 38 outword 0
+  good SCC size 112 outword 0
+  good SCC size 18 outword 111000
+  BAD SCC size 2523: input-irrelevant 1344, free(both in) 1179, forced 0 (to 0: 0, to 1: 0), growth/step ~ 1.5382
+w=0001 b=14 nodes=65536 SCCs(nontrivial): good=10 (nodes 496) bad=1 (nodes 2523)

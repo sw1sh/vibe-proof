@@ -1,0 +1,3 @@
+  good SCC size 188 outword 0
+  BAD SCC size 6438: input-irrelevant 3378, free(both in) 2868, forced 192 (to 0: 97, to 1: 95), growth/step ~ 1.4903
+w=0111 b=14 nodes=65536 SCCs(nontrivial): good=1 (nodes 188) bad=1 (nodes 6438)

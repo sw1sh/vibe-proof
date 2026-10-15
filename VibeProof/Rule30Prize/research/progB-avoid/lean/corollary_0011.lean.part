@@ -1,0 +1,64 @@
+
+namespace R30Skel
+open Ruliology.CellularAutomata.Rule30Jen
+
+theorem col_m1 (t : Nat) : cell t (-1) = xor (cell (t + 1) 0) (cell t 0 || cell t 1) := by
+  have := cell_left t 0
+  rw [show (0 : Int) - 1 = -1 by rfl, show (0 : Int) + 1 = 1 by rfl] at this
+  exact this
+
+theorem phase_succ (t T : Nat) (ht : T ≤ t) : (t + 1 - T) % 4 = ((t - T) % 4 + 1) % 4 := by
+  rw [show t + 1 - T = (t - T) + 1 by omega]; omega
+
+theorem wAt_0011 (φ : Nat) (hφ : φ < 4) : K0011.wAt φ = decide (2 ≤ φ) := by
+  have : φ = 0 ∨ φ = 1 ∨ φ = 2 ∨ φ = 3 := by omega
+  rcases this with h | h | h | h <;> subst h <;> decide
+
+/-- **Skeleton for `0011`, explicit form.**  If `c(t) = [ (t-T) % 4 ≥ 2 ]` for `t ≥ T`, then eventually column 1
+is black at phases 1, 2 and white at phase 3, and column -1 is (= column 1, white, white, black) at phases
+(0, 1, 2, 3). -/
+theorem skeleton_0011_explicit (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide (2 ≤ (t - T) % 4)) :
+    ∃ T', T ≤ T' ∧ ∀ t, T' ≤ t →
+      ((t - T) % 4 = 0 → cell t (-1) = cell t 1) ∧
+      ((t - T) % 4 = 1 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 2 → cell t 1 = true ∧ cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t 1 = false ∧ cell t (-1) = true) := by
+  have h' : ∀ t, T ≤ t → cell t 0 = K0011.wAt ((t - T) % 4) := by
+    intro t ht; rw [h t ht, wAt_0011 _ (Nat.mod_lt _ (by decide))]
+  obtain ⟨T', hT', hs⟩ := skeleton_0011 T h'
+  refine ⟨T', hT', fun t ht => ?_⟩
+  obtain ⟨s1, s2, s3⟩ := hs t ht
+  have c0 := h t (by omega)
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T (by omega)] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩
+  · rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s1 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, a, hφ]; decide
+  · have a := s2 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+  · have a := s3 hφ
+    refine ⟨a, ?_⟩
+    rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide
+
+/-- **Column -1 for `0111` (no skeleton needed).**  If `c(t) = [ (t-T) % 4 ≥ 1 ]` for `t ≥ T`, then for all
+`t ≥ T` column -1 is (= not column 1, white, white, black) at phases (0, 1, 2, 3). -/
+theorem column_m1_0111 (T : Nat) (h : ∀ t, T ≤ t → cell t 0 = decide (1 ≤ (t - T) % 4)) :
+    ∀ t, T ≤ t →
+      ((t - T) % 4 = 0 → cell t (-1) = !cell t 1) ∧
+      ((t - T) % 4 = 1 → cell t (-1) = false) ∧
+      ((t - T) % 4 = 2 → cell t (-1) = false) ∧
+      ((t - T) % 4 = 3 → cell t (-1) = true) := by
+  intro t ht
+  have c0 := h t ht
+  have c1 := h (t + 1) (by omega)
+  rw [phase_succ t T ht] at c1
+  refine ⟨fun hφ => ?_, fun hφ => ?_, fun hφ => ?_, fun hφ => ?_⟩ <;>
+    (rw [col_m1, c1, c0, hφ]; cases cell t 1 <;> decide)
+
+end R30Skel
+
+#print axioms R30Skel.skeleton_0011_explicit
+#print axioms R30Skel.column_m1_0111

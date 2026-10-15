@@ -1,0 +1,10 @@
+W=8 mode=1 best death time=9  (death-W=1)  x0=10111111
+W=12 mode=1 best death time=16  (death-W=4)  x0=101011011000
+W=16 mode=1 best death time=23  (death-W=7)  x0=1010101011000101
+W=20 mode=1 best death time=37  (death-W=17)  x0=10101101110001111010
+W=24 mode=1 best death time=37  (death-W=13)  x0=101011011100011110100000
+W=28 mode=1 best death time=38  (death-W=10)  x0=1010101110111111011011101111
+W=32 mode=1 best death time=46  (death-W=14)  x0=10101101100000010111000101000101
+W=36 mode=1 best death time=55  (death-W=19)  x0=101010111010010110010000100101100101
+W=40 mode=1 best death time=55  (death-W=15)  x0=1010101110100101100100001001011001010000
+W=44 mode=1 best death time=58  (death-W=14)  x0=10101010110000111000011010001101110000101011
