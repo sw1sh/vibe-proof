@@ -260,7 +260,7 @@ footer p { margin: 0 0 8px; max-width: 48em; }
   function checkBox(e) {
     var c = e.check || {}, st = c.state || "queued";
     var label = {
-      queued: "Waiting for the Lean verifier", passed: "Lean check passed", failed: "Lean check failed",
+      queued: "Waiting for the Lean verifier", running: "The Lean verifier is checking it", passed: "Lean check passed", failed: "Lean check failed",
       error: "The verifier hit an error", "no-source": "No Lean source found", "no-target": "No headline theorem to check"
     }[st] || st;
     var box = el("div", { cls: "check " + st }, [el("span", { cls: "state", text: label })]);

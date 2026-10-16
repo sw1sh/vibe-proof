@@ -132,6 +132,31 @@ VerificationTest[
     TestID -> "queue-holds-sources"
 ]
 
+(* The deployed API starts each new verification through this hook. *)
+VerificationTest[
+    Block[{Rule30PrizeSite`$Rule30PrizeOnSubmit = Function[id, hooked = id], hooked = None},
+        hookedSubmission = Rule30PrizeSubmit[fields[submissionNotebook[template], "title" -> "Hooked"]];
+        {hooked === hookedSubmission["id"], hookedSubmission["check"]["state"]}
+    ],
+    {True, "queued"},
+    TestID -> "submit-starts-verification"
+]
+
+VerificationTest[
+    {Rule30PrizeClaimCheck[hookedSubmission["id"]], Rule30PrizeClaimCheck[hookedSubmission["id"]], MissingQ[Rule30PrizeQueueItem[hookedSubmission["id"]]], Rule30PrizeEntry[hookedSubmission["id"]]["check"]["state"]},
+    {True, False, True, "running"},
+    TestID -> "claim-once"
+]
+
+(* A run that stopped answering long ago gives its submission back to the queue. *)
+VerificationTest[
+    Block[{Rule30PrizeSite`Private`$staleRunSeconds = -1}, Rule30PrizeQueueItem[hookedSubmission["id"]]["id"]],
+    hookedSubmission["id"],
+    TestID -> "stale-claim-requeued"
+]
+
+VerificationTest[Rule30PrizeHide[hookedSubmission["id"], "test"]; Rule30PrizeQueueItem[hookedSubmission["id"]], Missing["NotWaiting", hookedSubmission["id"]], TestID -> "hidden-not-queued"]
+
 VerificationTest[
     ByteArrayToString[BaseDecode[First[Select[Rule30PrizeQueue[10], #id === good["id"]&]]["sourceBase64"]], "UTF-8"] === template,
     True,

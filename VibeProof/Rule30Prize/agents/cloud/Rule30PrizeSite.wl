@@ -44,6 +44,12 @@ Rule30PrizeSubmissionsPage::usage = "Rule30PrizeSubmissionsPage[] gives the subm
 
 Rule30PrizeQueue::usage = "Rule30PrizeQueue[n] gives up to n submissions waiting for the Lean verifier, with their sources (the owner's kernel)."
 
+Rule30PrizeQueueItem::usage = "Rule30PrizeQueueItem[id] gives submission id as the verifier needs it, if it is waiting for the verifier."
+
+Rule30PrizeClaimCheck::usage = "Rule30PrizeClaimCheck[id] marks a waiting submission as being checked, and gives True if it did."
+
+$Rule30PrizeOnSubmit::usage = "$Rule30PrizeOnSubmit is None, or a function applied to the id of each new submission that waits for the verifier."
+
 Rule30PrizeRecordCheck::usage = "Rule30PrizeRecordCheck[id, sha, result] records the verifier's result for submission id, whose Lean source has SHA-256 sha."
 
 Rule30PrizeSetStatus::usage = "Rule30PrizeSetStatus[id, status, note] sets the status of a submission (an administrator's action)."
@@ -69,6 +75,12 @@ $Rule30PrizeStore = "Cloud"
 $Rule30PrizeStatuses = {"Lean Unverified", "Lean Verified", "Human Verified", "Prize Claimed"}
 
 $Rule30PrizeReviewerDomains = {"wolframinstitute.org", "wolfram.com"}
+
+(* Rule30PrizeDeploy sets it to start the verification of each new submission in the cloud. *)
+$Rule30PrizeOnSubmit = None
+
+(* A check that has been running this long without a result is presumed dead, and queued again. *)
+$staleRunSeconds = 7200
 
 $kitVersion = "1"
 
@@ -396,6 +408,8 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, bytes, so
     |>;
     storeSetEntry[id, entry];
     storeSetPrivate[id, <|"email" -> fields["email"], "requester" -> requester[], "submittedUnix" -> now, "tokenSHA256" -> sha256[token]|>];
+    (* Start the verification; a failure here must not lose the submission, which stays queued. *)
+    If[check["state"] === "queued" && $Rule30PrizeOnSubmit =!= None, Quiet @ Check[$Rule30PrizeOnSubmit[id], Null]];
     <|
         "ok" -> True,
         "id" -> id,
@@ -453,22 +467,31 @@ Rule30PrizeSubmissionsPage[] := StringReplace[$submissionsTemplate, "\"__RULE30_
 
 (* === the verifier's side === *)
 
-Rule30PrizeQueue[n_Integer : 10] := Block[{queued},
-    queued = Take[SortBy[Select[Values @ storeIndex[], #check["state"] === "queued" && ! TrueQ[#hidden]&], #submittedUnix&], UpTo[n]];
-    Map[
-        Function[e,
-            <|
-                "id" -> e["id"],
-                "problem" -> e["problem"],
-                "claim" -> e["claim"],
-                "target" -> e["target"],
-                "headlines" -> e["headlines"],
-                "sourceSHA256" -> e["sourceSHA256"],
-                "sourceBase64" -> BaseEncode @ Replace[storeReadBytes[e["id"], "Rule30Submission.lean"], Except[_ByteArray] -> ByteArray[{}]]
-            |>
-        ],
-        queued
-    ]
+(* Waiting for the verifier: queued, or claimed by a run that has been silent for too long. *)
+waitingQ[e_Association] := ! TrueQ[e["hidden"]] && Replace[e["check"]["state"], {
+    "queued" -> True,
+    "running" :> nowUnix[] - Replace[e["check"]["startedUnix"], Except[_Integer] -> 0] > $staleRunSeconds,
+    _ -> False
+}]
+
+queueItem[e_Association] := <|
+    "id" -> e["id"],
+    "problem" -> e["problem"],
+    "claim" -> e["claim"],
+    "target" -> e["target"],
+    "headlines" -> e["headlines"],
+    "sourceSHA256" -> e["sourceSHA256"],
+    "sourceBase64" -> BaseEncode @ Replace[storeReadBytes[e["id"], "Rule30Submission.lean"], Except[_ByteArray] -> ByteArray[{}]]
+|>
+
+Rule30PrizeQueue[n_Integer : 10] := queueItem /@ Take[SortBy[Select[Values @ storeIndex[], waitingQ], #submittedUnix&], UpTo[n]]
+
+Rule30PrizeQueueItem[id_String] := Replace[storeEntry[id], {e_Association /; waitingQ[e] :> queueItem[e], _ -> Missing["NotWaiting", id]}]
+
+Rule30PrizeClaimCheck[id_String] := Block[{e = storeEntry[id]},
+    If[ ! AssociationQ[e] || ! waitingQ[e], Return[False, Block]];
+    storeSetEntry[id, Join[e, <|"check" -> <|"state" -> "running", "detail" -> "The Lean verifier is checking it.", "startedUnix" -> nowUnix[]|>|>]];
+    True
 ]
 
 (* The verifier's JSON, cut down to what the page shows. *)
@@ -594,7 +617,7 @@ Rule30PrizeAttach[root_String : $Rule30PrizeRoot] := Block[{ce},
 
 $reviewerPermissions = {"Authenticated" -> {"Read", "Execute"}}
 
-Options[Rule30PrizeDeploy] = {"SkillFile" -> None, "StartNotebook" -> None, "AgentsPage" -> None, "Root" -> Automatic}
+Options[Rule30PrizeDeploy] = {"SkillFile" -> None, "Root" -> Automatic}
 
 Rule30PrizeDeploy[opts : OptionsPattern[]] := Block[{attached, urls},
     attached = Rule30PrizeAttach[Replace[OptionValue["Root"], Automatic -> $Rule30PrizeRoot]];
@@ -606,10 +629,9 @@ Rule30PrizeDeploy[opts : OptionsPattern[]] := Block[{attached, urls},
         "submissions.json" -> CloudDeploy[Delayed[forReviewers[jsonResponse[submissionsData[Rule30PrizeEntries[]]]]], CloudObject[$rootURL <> "/submissions.json"], Permissions -> $reviewerPermissions],
         "api/file" -> CloudDeploy[APIFunction[{"id" -> "String", "kind" -> "String"}, forReviewers[fileResponse[#id, #kind]]&], CloudObject[$rootURL <> "/api/file"], Permissions -> $reviewerPermissions]
     |>;
-    (* The instructions are public. skill.md and the agents page name the deployment as {{ROOT}}. *)
+    (* skill.md is public and names the deployment as {{ROOT}}. deploy.wls publishes the other
+       public pages: the landing page, the starter notebook and the kit archive. *)
     If[StringQ[OptionValue["SkillFile"]], urls["skill.md"] = publishText["skill.md", StringReplace[Import[OptionValue["SkillFile"], "Text", CharacterEncoding -> "UTF-8"], "{{ROOT}}" -> $rootURL], "text/plain; charset=utf-8"]];
-    If[StringQ[OptionValue["AgentsPage"]], urls["agents"] = publishText["agents", StringReplace[Import[OptionValue["AgentsPage"], "Text", CharacterEncoding -> "UTF-8"], "{{ROOT}}" -> $rootURL], "text/html; charset=utf-8"]];
-    If[StringQ[OptionValue["StartNotebook"]], urls["HowToStart.nb"] = CopyFile[OptionValue["StartNotebook"], CloudObject[$rootURL <> "/HowToStart.nb", Permissions -> "Public"]]];
     Map[First, urls]
 ]
 
