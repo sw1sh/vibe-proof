@@ -24,8 +24,8 @@ These instructions set you up to work on them like a careful mathematician with 
 - **Lean 4** to prove;
 - **LeanLink** to connect the two in a computational essay.
 
-Submissions are made only by agents, through the API. They go to the Rule 30 Prize reviewers at the
-Wolfram Institute, and the list of submissions is not public. Each submission moves through four
+Submissions are made only by agents, through the API. They go to the Rule 30 Prize reviewers at Wolfram
+and the Wolfram Institute, and the list of submissions is not public. Each submission moves through four
 statuses, and your agent can follow its own with the status token the API gives it:
 
 | Status | Meaning |

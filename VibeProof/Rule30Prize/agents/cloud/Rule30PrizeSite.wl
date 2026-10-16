@@ -3,7 +3,7 @@
 (* Rule30PrizeSite.wl - submissions to the Rule 30 Prize, in the Wolfram Cloud.
 
    Agents submit through the API only; there is no form. Reviewers - Wolfram IDs at
-   $Rule30PrizeReviewerDomain - read the submissions page, its JSON and the files. Nothing is public
+   $Rule30PrizeReviewerDomains - read the submissions page, its JSON and the files. Nothing is public
    but the API and the instructions. An agent follows its own submission with the status token the
    API gave it.
 
@@ -28,7 +28,7 @@ $Rule30PrizeStore::usage = "$Rule30PrizeStore is \"Cloud\", or a local directory
 
 $Rule30PrizeStatuses::usage = "$Rule30PrizeStatuses lists the statuses of a submission, in order."
 
-$Rule30PrizeReviewerDomain::usage = "$Rule30PrizeReviewerDomain is the email domain of the Wolfram IDs that may read the submissions."
+$Rule30PrizeReviewerDomains::usage = "$Rule30PrizeReviewerDomains lists the email domains of the Wolfram IDs that may read the submissions."
 
 Rule30PrizeNotebookSource::usage = "Rule30PrizeNotebookSource[file] reads a notebook without evaluating it and gives the Lean source of its rule30Submission = LeanImportString[\"...\", ...] cell, or a Failure."
 
@@ -68,7 +68,7 @@ $Rule30PrizeStore = "Cloud"
 
 $Rule30PrizeStatuses = {"Lean Unverified", "Lean Verified", "Human Verified", "Prize Claimed"}
 
-$Rule30PrizeReviewerDomain = "wolframinstitute.org"
+$Rule30PrizeReviewerDomains = {"wolframinstitute.org", "wolfram.com"}
 
 $kitVersion = "1"
 
@@ -141,7 +141,7 @@ newID[] := "R30-" <> DateString[{"Year", "Month", "Day"}, TimeZone -> 0] <> "-" 
 newToken[] := IntegerString[RandomInteger[2^128 - 1], 16, 32]
 
 (* Wolfram IDs at the reviewers' domain. A Wolfram ID is a verified email address. *)
-reviewerQ[id_String] := StringEndsQ[ToLowerCase[StringTrim[id]], "@" <> ToLowerCase[$Rule30PrizeReviewerDomain]]
+reviewerQ[id_String] := AnyTrue[$Rule30PrizeReviewerDomains, StringEndsQ[ToLowerCase[StringTrim[id]], "@" <> ToLowerCase[#]]&]
 
 reviewerQ[_] := False
 
@@ -540,7 +540,7 @@ jsonResponse[expr_, code_Integer : 200] := HTTPResponse[utf8 @ ExportString[expr
 
 failureJSON[f_Failure] := <|"ok" -> False, "error" -> f[[1]], "message" -> f["Message"]|>
 
-forbidden[] := HTTPResponse[utf8["Only Wolfram IDs at " <> $Rule30PrizeReviewerDomain <> " can read the Rule 30 Prize submissions."], <|"StatusCode" -> 403, "ContentType" -> "text/plain; charset=utf-8"|>]
+forbidden[] := HTTPResponse[utf8["Only Wolfram IDs at " <> StringRiffle[$Rule30PrizeReviewerDomains, " or "] <> " can read the Rule 30 Prize submissions."], <|"StatusCode" -> 403, "ContentType" -> "text/plain; charset=utf-8"|>]
 
 (* Evaluate body only for a reviewer. Deployed with "Authenticated" permissions, so every
    request carries a Wolfram ID. *)

@@ -49,7 +49,7 @@ It returns the URLs of everything it deployed:
   - `submissions.json`;
   - `api/file?id=...&kind=notebook|lean`, the downloads.
 
-  These three are deployed for authenticated Wolfram IDs, and their code also requires `$RequesterWolframID` to end in `@wolframinstitute.org` (`$Rule30PrizeReviewerDomain`). Wolfram Cloud permissions cannot express an email domain, so the check sits in the code.
+  These three are deployed for authenticated Wolfram IDs, and their code also requires `$RequesterWolframID` to end in `@wolframinstitute.org` or `@wolfram.com` (`$Rule30PrizeReviewerDomains`). Wolfram Cloud permissions cannot express an email domain, so the check sits in the code.
 
 The endpoints run as the owner and spend the owner's Cloud credits: every submission and every page view costs one call. There are limits:
 

@@ -212,8 +212,8 @@ VerificationTest[KeyExistsQ[Rule30PrizeStatus[good["id"], good["token"]], "revie
 (* === the submissions page, for reviewers === *)
 
 VerificationTest[
-    Rule30PrizeSite`Private`reviewerQ /@ {"a@wolframinstitute.org", "B.C@WolframInstitute.org", "a@wolframinstitute.org.evil.com", "a@gmail.com", "wolframinstitute.org", None},
-    {True, True, False, False, False, False},
+    Rule30PrizeSite`Private`reviewerQ /@ {"a@wolframinstitute.org", "B.C@WolframInstitute.org", "a@wolfram.com", "a@evilwolfram.com", "a@mail.wolfram.com", "a@wolframinstitute.org.evil.com", "a@wolfram.com.evil.com", "a@gmail.com", "wolfram.com", None},
+    {True, True, True, False, False, False, False, False, False, False},
     TestID -> "reviewers-by-domain"
 ]
 
