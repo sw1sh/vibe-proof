@@ -127,6 +127,12 @@ The axioms it depends on are the three standard ones and nothing else:
 rule30Submission["Rule30Submission.no_period_one"]["Axioms"]
 ```
 
+The kernel accepts every declaration of the module again. This is the replay the verifier runs:
+
+```wl
+rule30Submission["Rule30Submission.no_period_one"]["KernelCheck"]
+```
+
 The lemmas it rests on, two levels down:
 
 ```wl
@@ -156,7 +162,12 @@ Its type is exactly the official statement, and its axioms give it away:
 {gap["Rule30Submission.problem1"]["Type"] === LeanConst["Ruliology.CellularAutomata.Rule30Prize.Problem1", {}], gap["Rule30Submission.problem1"]["Axioms"]}
 ```
 
-The verifier goes further than this axiom check. It rebuilds the source in a fresh sandbox and replays every declaration through the Lean kernel. That catches a theorem added without type checking, whose axiom list looks clean. The kit's `tests/T05SkipKernel.lean` is such a forgery.
+The verifier goes further than this axiom check. It rebuilds the source in a fresh sandbox and replays every declaration through the Lean kernel. That catches a theorem added without type checking, whose axiom list looks clean. The kit's `tests/T05SkipKernel.lean` is such a forgery: its axiom list is empty, and the kernel rejects it.
+
+```wl
+forged = LeanImportString[Import[FileNameJoin[{$Rule30PrizeKit, "tests", "T05SkipKernel.lean"}], "Text", CharacterEncoding -> "UTF-8"], "ProjectDir" -> $Rule30PrizeKit];
+{forged["Rule30Submission.problem1"]["Axioms"], forged["Rule30Submission.problem1"]["KernelCheck"]}
+```
 
 ## Building on what is known
 

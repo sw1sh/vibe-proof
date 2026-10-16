@@ -5,7 +5,7 @@
 (* The essay's {{ROOT}} becomes the root, by default where the Rule 30 Prize is published, in
    memory only: the markdown keeps the placeholder. The converter is the published MarkdownToNotebook
    unless a local MarkdownToNotebook.wl is given. The cells find the kit through RULE30PRIZE_KIT,
-   by default the kit of this checkout, and need LeanLink 1.0.13 or later. *)
+   by default the kit of this checkout, and need LeanLink 1.0.14 or later. *)
 $ProgressReporting = False;
 
 dir = DirectoryName[$InputFileName];
@@ -20,8 +20,9 @@ If[ ! StringQ[Environment["RULE30PRIZE_KIT"]],
     SetEnvironment["RULE30PRIZE_KIT" -> FileNameJoin[{ParentDirectory[dir, 2], "kit"}]]];
 If[ ! DirectoryQ[Environment["RULE30PRIZE_KIT"]], Print["no kit at ", Environment["RULE30PRIZE_KIT"]]; Exit[1]];
 
+(* LeanLink 1.0.14 adds "KernelCheck". It installs from its address until the repository's index lists it. *)
 With[{leanlink = First[PacletFind["Wolfram/LeanLink"], None]},
-    If[ leanlink === None || PacletNewerQ["1.0.13", leanlink["Version"]], PacletInstall["Wolfram/LeanLink", UpdatePacletSites -> True]]];
+    If[ leanlink === None || PacletNewerQ["1.0.14", leanlink["Version"]], PacletInstall["https://resources.wolframcloud.com/PacletRepository/pacletsitecontent/Paclets/Wolfram__LeanLink-1.0.14.paclet"]]];
 
 markdownToNotebook = If[ local === None,
     ResourceFunction[ResourceObject["https://www.wolframcloud.com/obj/wolframinstitute/DeployedResources/Function/MarkdownToNotebook"]],

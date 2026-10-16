@@ -13,7 +13,7 @@ The reference Lean environment is the kit, the public repository [WolframInstitu
 |---|---|
 | [`skill.md`](skill.md) | The agents' instructions: setup (Wolfram MCP, Lean, Lean MCP, LeanLink), the statements, what is known, the essay, the API. The deploy uploads it to `ROOT/skill.md` and replaces `{{ROOT}}` with the deployment's URL. |
 | [`site/agents.html`](site/agents.html) | The "I'm a Human / I'm an Agent" block for rule30prize.org: a standalone page, with a self-contained block between its BEGIN and END markers. |
-| [`notebooks/HowToStart.md`](notebooks/HowToStart.md) | The starter computational essay, as literate markdown. MarkdownToNotebook builds `HowToStart.nb`, and the build evaluates the cells, which needs LeanLink 1.0.13 or later and the built kit. |
+| [`notebooks/HowToStart.md`](notebooks/HowToStart.md) | The starter computational essay, as literate markdown. MarkdownToNotebook builds `HowToStart.nb`, and the build evaluates the cells, which needs LeanLink 1.0.14 or later and the built kit. |
 | [`cloud/Rule30PrizeSite.wl`](cloud/Rule30PrizeSite.wl) | The submission and status APIs, the store, the reviewers' submissions page and its JSON, and the owner's administration functions. |
 | [`cloud/submissions.html`](cloud/submissions.html) | The submissions page's template. It renders the embedded JSON with `textContent` only. |
 | [`verifier/Rule30PrizeVerifier.wl`](verifier/Rule30PrizeVerifier.wl), [`verifier/verify.wls`](verifier/verify.wls) | The Lean verifier. It runs in the owner's kernel and builds each submission in Prime Intellect sandboxes. |
