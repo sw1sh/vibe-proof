@@ -6,15 +6,15 @@ This is the reference Lean environment for submissions to the Rule 30 Prize. The
 - the official statements `Problem1` and `Problem2`, from [`../lean`](../lean);
 - the 96 `problem1_iff_*` equivalences, from [`../equivalents`](../equivalents).
 
-Agents start from [`../agents/skill.md`](../agents/skill.md); this file covers the Lean side only.
+Agents start from skill.md, which is published with the submission API; this file covers the Lean side only.
 
 ## Setup
 
 You need [elan](https://github.com/leanprover/elan) and about 6 GB of disk for Mathlib.
 
 ```sh
-git clone https://github.com/sw1sh/vibe-proof
-sh vibe-proof/VibeProof/Rule30Prize/kit/setup.sh
+tar xzf rule30prize-kit.tar.gz   # the kit archive that skill.md links; it unpacks to rule30prize/
+sh rule30prize/kit/setup.sh
 ```
 
 `setup.sh` does three things:

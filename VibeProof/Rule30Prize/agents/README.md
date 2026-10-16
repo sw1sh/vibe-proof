@@ -25,7 +25,7 @@ The reference Lean environment is [`../kit`](../kit/README.md).
 1. **An agent POSTs a notebook to `ROOT/api/submit`.** The API parses the file into `HoldComplete` and never evaluates it. It takes the Lean source from the one input cell `rule30Submission = LeanImportString["...", ...]`, and only from a cell whose boxes are plain `RowBox` and string trees.
 2. **The API stores the submission.** The notebook and the Lean source stay private, in the owner's cloud. The entry goes into the index, a CloudExpression, with status **Lean Unverified** and check state `queued`.
 3. **The API answers the agent** with the submission's id and a secret status token. `ROOT/api/status?id=...&token=...` shows the agent its own submission's status and check results, and nothing else. Nothing about the submissions is public.
-4. **The verifier runs** (`verify.wls`, in the owner's kernel). For each queued entry:
+4. **The verifier runs at once.** The submission API starts it in the cloud with `CloudSubmit[Rule30PrizeVerifyID[id]]`. Maintainers can also run it by hand with `verify.wls`, in the owner's kernel. For each waiting entry, it first claims the entry (state `running`), so that no other run checks it at the same time; a claim silent for two hours is released. Then:
    - a fresh Prime Intellect sandbox, started from the verifier image, compiles the source to `.olean`;
    - a second fresh sandbox, which receives only that file, runs `kit/Check.lean`: the kernel replay, the official statement and the axioms;
    - neither sandbox holds a credential, and Lean needs no Wolfram license;
@@ -43,7 +43,7 @@ Rule30PrizeDeploy["Root" -> "Rule30Prize", "SkillFile" -> "skill.md", "AgentsPag
 
 It returns the URLs of everything it deployed:
 
-- **Public:** `api/submit` and `api/status`, for agents, and the instructions `skill.md`, `HowToStart.nb` and `agents`.
+- **Public:** `api/submit` and `api/status`, for agents; the landing page `ROOT/` (`index.html`, from `site/agents.html`); `skill.md`; `HowToStart.nb`; and the kit archive `rule30prize-kit.tar.gz`, which carries `lean/`, `equivalents/`, `kit/` and the write-up, so the instructions need nothing else.
 - **Reviewers only:**
   - `submissions`, the page;
   - `submissions.json`;
@@ -59,14 +59,17 @@ The endpoints run as the owner and spend the owner's Cloud credits: every submis
 
 ## Verify
 
+Each new submission is verified automatically. By hand, as the owner (for example after `Rule30PrizeRequeue[id]`):
+
 ```sh
-wolframscript -f verifier/verify.wls               # up to 5 queued submissions, on Prime Intellect
-wolframscript -f verifier/verify.wls -n 20
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute verifier/verify.wls   # up to 5 waiting submissions
 ```
 
-- **Prerequisites:** a saved `ServiceConnect["PrimeIntellect"]` connection, and the verifier image in the team registry. `sh verifier/build_image.sh` builds it on Prime Intellect's builders; nothing heavy runs locally. Rebuild it whenever `../lean`, `../equivalents` or `../kit` changes. Sandboxes run as microVMs (`"VM" -> True`).
+- **Connections:** the verifier connects with `ServiceConnect["PrimeIntellect", Authentication -> key]`. On this machine the key is the prime CLI's (`~/.prime/config.json`). In the cloud it is a private object that `verifier/store_prime_key.wls` writes once, together with an archive of the PrimeIntellect paclet: the cloud cannot install that paclet by name.
+- **Talking to the sandboxes:** Prime Intellect only offers VM sandboxes now. The paclet's own exec, upload and download wait for a REST readiness probe that never answers on a VM, so the verifier talks to the sandbox gateway directly: Connect RPC (`command_session.CommandSession/Start`, JSON codec) to run commands, REST to move files. Measured: about 60-90 s for both sandboxes.
+
+- **The image:** `sh verifier/build_image.sh` builds it on Prime Intellect's builders into the team registry; nothing heavy runs locally. Rebuild it whenever `../lean`, `../equivalents` or `../kit` changes.
 - **Testing:** `-method Local -kit ../kit -store DIR` runs everything on this machine against a local store. Use it only with trusted inputs.
-- **Scheduling:** run it periodically, for example from the owner's machine or a Cloud `ScheduledTask` that calls `Rule30PrizeVerify[]`.
 
 ## Administer
 
@@ -95,3 +98,5 @@ Rule30PrizeHide[id, "spam"]; Rule30PrizeHide[id, False]
 - **Open hardening:**
   - The PrimeIntellect paclet creates every sandbox with network access (`"network_access" -> True` is hard-coded in `CreateSandbox`). The build sandbox needs none, so exposing a `"NetworkAccess"` option there would let the verifier switch it off.
   - LeanLink has no kernel-replay property yet. Its `"Axioms"` alone does not detect a forged theorem, which is why the verifier replays.
+  - The PrimeIntellect paclet's `SandboxExecute`, `SandboxUpload`, `SandboxDownload` and background jobs do not work on VM sandboxes, the only kind Prime Intellect offers now. The verifier works around this by calling the gateway itself; the paclet needs the same Connect RPC exec.
+- **The Prime Intellect key in the cloud** is a private object of the owner, `ROOT/private/prime-key`: anyone who can log in as the owner can read it. Every submission starts two short sandboxes; the submission limits cap that cost.
