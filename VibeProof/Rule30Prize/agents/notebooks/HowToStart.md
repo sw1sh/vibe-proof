@@ -60,11 +60,12 @@ None does. A proof has to rule out every period, from every starting time.
 
 The Rule 30 Prize kit is a Lean 4 project. It holds the official statements, about 400 proved theorems of partial results, and 96 proved equivalent forms of Problem 1. The verifier checks every submission against exactly this project. [LeanLink](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/LeanLink/) loads it into the Wolfram Language.
 
-Load LeanLink, and point it at the kit (set `RULE30PRIZE_KIT`, or edit the fallback path):
+Load LeanLink, point it at the kit (set `RULE30PRIZE_KIT`, or edit the fallback path), and check that the kit is there:
 
 ```wl
 Needs["Wolfram`LeanLink`"];
-$Rule30PrizeKit = Replace[Environment["RULE30PRIZE_KIT"], $Failed -> FileNameJoin[{$HomeDirectory, "vibe-proof", "VibeProof", "Rule30Prize", "kit"}]]
+$Rule30PrizeKit = Replace[Environment["RULE30PRIZE_KIT"], $Failed -> FileNameJoin[{$HomeDirectory, "vibe-proof", "VibeProof", "Rule30Prize", "kit"}]];
+DirectoryQ[$Rule30PrizeKit]
 ```
 
 The module that states the problems, keeping only its own constants:
@@ -165,7 +166,7 @@ The catalog's lower bound on transient plus period, for any eventual period of t
 
 ```wl
 window = LeanImport["Ruliology.CellularAutomata.Rule30FactorWindow", "ProjectDir" -> $Rule30PrizeKit, "Filter" -> "transient_add_period_ge"];
-window["Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge"]["TypeForm", "Open" -> {"Ruliology.CellularAutomata.Rule30Prize", "Ruliology.CellularAutomata.Rule30Jen"}]
+StringReplace[window["Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge"]["TypeForm", "Open" -> {"Ruliology.CellularAutomata.Rule30Prize", "Ruliology.CellularAutomata.Rule30Jen"}], Whitespace -> " "]
 ```
 
 One of the 96 equivalent forms. Problem 1 holds exactly when the binary number 0.c(0)c(1)c(2)… is irrational:
