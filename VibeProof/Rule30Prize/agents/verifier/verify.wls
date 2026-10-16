@@ -41,7 +41,7 @@ results = Rule30PrizeVerify[
     "Method" -> option["method", "PrimeIntellect"],
     "Kit" -> Replace[option["kit", Automatic], k_String :> ExpandFileName[k]],
     "Image" -> option["image", $Rule30PrizeVerifierImage],
-    "VM" -> Replace[option["vm", Automatic], {"true" -> True, "false" -> False}]
+    "VM" -> option["vm", "true"] =!= "false"
 ]
 
 Scan[Print[#id, ": ", #verdict, If[ListQ[#reasons] && #reasons =!= {}, " (" <> StringRiffle[#reasons, "; "] <> ")", ""]]&, results]
