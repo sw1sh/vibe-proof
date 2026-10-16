@@ -8,7 +8,7 @@
        wolframscript -f verify.wls -method Local -kit ../../kit -store DIR
                                                        on this machine, against a local test store
 
-   Options: -root (default Rule30Prize), -n, -image, -vm, -method (PrimeIntellect or Local), -kit,
+   Options: -root (default Rule30Prize), -n, -image, -method (PrimeIntellect or Local), -kit,
    -store (a local directory instead of the cloud: for tests). The Prime Intellect method needs a
    saved ServiceConnect["PrimeIntellect"] connection; the cloud store needs this kernel to be
    connected to the Wolfram Cloud as the submissions' owner. -method Local runs submitted code on
@@ -40,8 +40,7 @@ results = Rule30PrizeVerify[
     "MaxItems" -> ToExpression[option["n", "5"]],
     "Method" -> option["method", "PrimeIntellect"],
     "Kit" -> Replace[option["kit", Automatic], k_String :> ExpandFileName[k]],
-    "Image" -> option["image", $Rule30PrizeVerifierImage],
-    "VM" -> option["vm", "true"] =!= "false"
+    "Image" -> option["image", $Rule30PrizeVerifierImage]
 ]
 
 Scan[Print[#id, ": ", #verdict, If[ListQ[#reasons] && #reasons =!= {}, " (" <> StringRiffle[#reasons, "; "] <> ")", ""]]&, results]
