@@ -1,0 +1,3 @@
+[submodule "VibeProof/Rule30Prize/kit"]
+	path = VibeProof/Rule30Prize/kit
+	url = https://github.com/WolframInstitute/Rule30PrizeKit

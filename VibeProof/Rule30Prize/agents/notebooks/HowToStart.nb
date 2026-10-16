@@ -3,26 +3,26 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Wolfram 15.1' *)
+(* CreatedBy='Wolfram 15.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    846841,      16806]
-NotebookOptionsPosition[    667528,      13428]
-NotebookOutlinePosition[    835758,      16597]
-CellTagsIndexPosition[    835715,      16594]
+NotebookDataLength[    846081,      16791]
+NotebookOptionsPosition[    666980,      13415]
+NotebookOutlinePosition[    835206,      16584]
+CellTagsIndexPosition[    835163,      16581]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell["How to Start on the Rule 30 Prize", "Title",
- CellID->874461601, ExpressionUUID->"22a1a762-10e3-861e-525e-3f4ca097ed64"],
+ CellID->874461601,ExpressionUUID->"22a1a762-10e3-861e-525e-3f4ca097ed64"],
 
 Cell["The Rule 30 Prize kit \[Bullet] 2026", "Author",
- CellID->36768919, ExpressionUUID->"4da796ef-9f57-a4bf-7b5c-0fc91ae30e85"],
+ CellID->36768919,ExpressionUUID->"4da796ef-9f57-a4bf-7b5c-0fc91ae30e85"],
 
 Cell["\<\
 Rule 30 is one line of Boolean logic, yet its center column looks random, and \
@@ -34,10 +34,10 @@ proves a first, known result in the exact form the verifier reads, and it \
 shows what the checks catch. It ends with how to write and submit an essay of \
 your own.\
 \>", "Abstract",
- CellID->1699946459, ExpressionUUID->"1b39f900-6440-cee7-4ac6-f16a0dfa94cd"],
+ CellID->1699946459,ExpressionUUID->"1b39f900-6440-cee7-4ac6-f16a0dfa94cd"],
 
 Cell["The question", "Section",
- CellID->1535504786, ExpressionUUID->"75d93363-5da6-51a4-23e6-ab4d5453238e"],
+ CellID->1535504786,ExpressionUUID->"75d93363-5da6-51a4-23e6-ab4d5453238e"],
 
 Cell[TextData[{
  "Rule 30 updates every cell from itself and its two neighbors: the new color \
@@ -50,10 +50,10 @@ is ",
  "). Started from a single black cell, it grows a pattern that is regular on \
 its left edge and looks random almost everywhere else."
 }], "Text",
- CellID->1208482393, ExpressionUUID->"25a568a6-87a2-527f-535a-810032572145"],
+ CellID->1208482393,ExpressionUUID->"25a568a6-87a2-527f-535a-810032572145"],
 
 Cell["The first 80 steps, with the center column in red:", "CodeText",
- CellID->28909615, ExpressionUUID->"00d7f70d-8d0e-ae34-30ec-ef5724b8f51e"],
+ CellID->28909615,ExpressionUUID->"00d7f70d-8d0e-ae34-30ec-ef5724b8f51e"],
 
 Cell[CellGroupData[{
 
@@ -86,7 +86,7 @@ Cell[BoxData[{
       RowBox[{"2", " ", "->", " ", "StandardRed"}]}], "}"}]}], ",", " ", 
    RowBox[{"ImageSize", " ", "->", " ", "520"}]}], "]"}]}], "Input",
  CellLabel->"In[1]:= ",
- CellID->1443345818, ExpressionUUID->"2f3e8453-9762-68ea-56c5-1e1d22173a30"],
+ CellID->1443345818,ExpressionUUID->"2f3e8453-9762-68ea-56c5-1e1d22173a30"],
 
 Cell[BoxData[
  GraphicsBox[RasterBox[CompressedData["
@@ -194,27 +194,27 @@ o/fZ1PcXSymllFJKKaWUF0l/f7GUUkopv53/Bg7LAJw=
           "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultPlotStyle" -> 
     Automatic}]], "Output",
  CellLabel->"Out[1]= ",
- CellID->542889645, ExpressionUUID->"5902d484-617f-9570-0f31-cdee100bfc5a"]
+ CellID->542889645,ExpressionUUID->"5902d484-617f-9570-0f31-cdee100bfc5a"]
 }, Open  ]],
 
 Cell["\<\
 The Rule 30 Prizes ask three questions about that red column:\
 \>", "Text",
- CellID->684317082, ExpressionUUID->"56e0e12c-de7d-6135-7e9f-f889db08301f"],
+ CellID->684317082,ExpressionUUID->"56e0e12c-de7d-6135-7e9f-f889db08301f"],
 
 Cell["Does the center column always remain non-periodic?", "ItemNumbered",
- CellID->528485616, ExpressionUUID->"5708d032-2150-04f2-7d37-ca7c50e56ed8"],
+ CellID->528485616,ExpressionUUID->"5708d032-2150-04f2-7d37-ca7c50e56ed8"],
 
 Cell["\<\
 Does each color of cell occur on average equally often in the center column?\
 \>", "ItemNumbered",
- CellID->1392207227, ExpressionUUID->"3b7807e8-9504-b25a-6907-9eb21cb600a0"],
+ CellID->1392207227,ExpressionUUID->"3b7807e8-9504-b25a-6907-9eb21cb600a0"],
 
 Cell["\<\
 Does computing the nth cell of the center column require at least O(n) \
 computational effort?\
 \>", "ItemNumbered",
- CellID->705466992, ExpressionUUID->"166f8969-5e31-e8e5-3e14-21335bc5bacf"],
+ CellID->705466992,ExpressionUUID->"166f8969-5e31-e8e5-3e14-21335bc5bacf"],
 
 Cell[TextData[{
  "Each carries a $10,000 prize, under the rules at ",
@@ -224,18 +224,18 @@ Cell[TextData[{
     URL["https://rule30prize.org/"], None}],
  ". All three have been open since 2019."
 }], "Text",
- CellID->1350516518, ExpressionUUID->"234f1fb7-07c6-bba9-5174-96f1b27009f3"],
+ CellID->1350516518,ExpressionUUID->"234f1fb7-07c6-bba9-5174-96f1b27009f3"],
 
 Cell["The center column", "Section",
- CellID->907546795, ExpressionUUID->"6ee45b93-a0df-d1f6-169c-52dcd16ba3dc"],
+ CellID->907546795,ExpressionUUID->"6ee45b93-a0df-d1f6-169c-52dcd16ba3dc"],
 
 Cell["The column itself is cheap to compute far out.", "Text",
- CellID->814772321, ExpressionUUID->"0a3edd72-e0d3-62fb-3bc5-d53f916630c1"],
+ CellID->814772321,ExpressionUUID->"0a3edd72-e0d3-62fb-3bc5-d53f916630c1"],
 
 Cell["\<\
 The first 100,001 cells of the center column, and the first 40 of them:\
 \>", "CodeText",
- CellID->1054628905, ExpressionUUID->"6ec9a758-58be-624c-16f6-3f02594b3096"],
+ CellID->1054628905,ExpressionUUID->"6ec9a758-58be-624c-16f6-3f02594b3096"],
 
 Cell[CellGroupData[{
 
@@ -255,7 +255,7 @@ Cell[BoxData[{
  RowBox[{"Take", "[", 
   RowBox[{"center", ",", " ", "40"}], "]"}]}], "Input",
  CellLabel->"In[2]:= ",
- CellID->1347158791, ExpressionUUID->"23253b8d-1c99-a6bf-52da-b2d7952d0c85"],
+ CellID->1347158791,ExpressionUUID->"23253b8d-1c99-a6bf-52da-b2d7952d0c85"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -267,7 +267,7 @@ Cell[BoxData[
     ",", "0", ",", "0", ",", "1", ",", "1", ",", "1", ",", "0", ",", "1", ",",
     "0", ",", "1"}], "}"}]], "Output",
  CellLabel->"Out[2]= ",
- CellID->978705560, ExpressionUUID->"6e84829b-9667-6594-16bb-1bc523124ffe"]
+ CellID->978705560,ExpressionUUID->"6e84829b-9667-6594-16bb-1bc523124ffe"]
 }, Open  ]],
 
 Cell["\<\
@@ -275,7 +275,7 @@ Problem 2 asks whether black and white are equally frequent. Count +1 for \
 black and -1 for white, and the running total wanders like a random walk \
 around zero. The walk:\
 \>", "CodeText",
- CellID->17830494, ExpressionUUID->"569e173f-6b36-b240-7ea5-8f790ec000aa"],
+ CellID->17830494,ExpressionUUID->"569e173f-6b36-b240-7ea5-8f790ec000aa"],
 
 Cell[CellGroupData[{
 
@@ -289,7 +289,7 @@ Cell[BoxData[
    " ", 
    RowBox[{"ImageSize", " ", "->", " ", "520"}]}], "]"}]], "Input",
  CellLabel->"In[3]:= ",
- CellID->506665461, ExpressionUUID->"15a3e88e-0b57-fa6e-4350-01e8aee3c8b4"],
+ CellID->506665461,ExpressionUUID->"15a3e88e-0b57-fa6e-4350-01e8aee3c8b4"],
 
 Cell[BoxData[
  GraphicsBox[{{}, {{}, {}, 
@@ -5948,19 +5948,19 @@ fGXnl+AZXuAVvsEbvL/C/r+y6+/+xv7//X//Hw0UodM=
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellLabel->"Out[3]= ",
- CellID->855724595, ExpressionUUID->"779c57de-bb93-d239-1da4-4e983e27a103"]
+ CellID->855724595,ExpressionUUID->"779c57de-bb93-d239-1da4-4e983e27a103"]
 }, Open  ]],
 
 Cell["\<\
 Problem 1 asks whether the column is eventually periodic. Here is a quick \
 experiment, which proves nothing.\
 \>", "Text",
- CellID->943101875, ExpressionUUID->"2867ea9b-6e8d-517b-581c-03c50b382041"],
+ CellID->943101875,ExpressionUUID->"2867ea9b-6e8d-517b-581c-03c50b382041"],
 
 Cell["\<\
 Periods from 1 to 1000 that fit the second half of the first 100,001 cells:\
 \>", "CodeText",
- CellID->67888809, ExpressionUUID->"76dfbc62-92ac-7b6e-1ee4-364c275949b4"],
+ CellID->67888809,ExpressionUUID->"76dfbc62-92ac-7b6e-1ee4-364c275949b4"],
 
 Cell[CellGroupData[{
 
@@ -5982,27 +5982,31 @@ Cell[BoxData[
         RowBox[{"50001", " ", "+", " ", "#"}], " ", ";;"}], "]"}], "]"}]}], 
     "&"}]}], "]"}]], "Input",
  CellLabel->"In[4]:= ",
- CellID->1801257020, ExpressionUUID->"0df4b6a5-173c-e15a-3b8b-2f0fa2ceb3a0"],
+ CellID->1801257020,ExpressionUUID->"0df4b6a5-173c-e15a-3b8b-2f0fa2ceb3a0"],
 
 Cell[BoxData[
  RowBox[{"{", "}"}]], "Output",
  CellLabel->"Out[4]= ",
- CellID->358626973, ExpressionUUID->"4d620fc7-5cf2-d9d8-7b11-a6a15484ab22"]
+ CellID->358626973,ExpressionUUID->"4d620fc7-5cf2-d9d8-7b11-a6a15484ab22"]
 }, Open  ]],
 
 Cell["\<\
 None does. A proof has to rule out every period, from every starting time.\
 \>", "Text",
- CellID->876231958, ExpressionUUID->"741b091d-feb2-1a39-1c38-a146fb476903"],
+ CellID->876231958,ExpressionUUID->"741b091d-feb2-1a39-1c38-a146fb476903"],
 
 Cell["The official statements in Lean", "Section",
- CellID->1020575516, ExpressionUUID->"3bf5a20e-c541-e06e-698a-446becf5b2b4"],
+ CellID->1020575516,ExpressionUUID->"3bf5a20e-c541-e06e-698a-446becf5b2b4"],
 
 Cell[TextData[{
- "The Rule 30 Prize kit is a Lean 4 project. It holds the official \
-statements, about 400 proved theorems of partial results, and 96 proved \
-equivalent forms of Problem 1. The verifier checks every submission against \
-exactly this project. ",
+ "The Rule 30 Prize kit, ",
+ ButtonBox["WolframInstitute/Rule30PrizeKit",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/WolframInstitute/Rule30PrizeKit"], None}],
+ ", is a Lean 4 project. It holds the official statements, about 400 proved \
+theorems of partial results, and 96 proved equivalent forms of Problem 1. The \
+verifier checks every submission against exactly this project. ",
  ButtonBox["LeanLink",
   BaseStyle->"Hyperlink",
   ButtonData->{
@@ -6010,16 +6014,16 @@ exactly this project. ",
 Wolfram/LeanLink/"], None}],
  " loads it into the Wolfram Language."
 }], "Text",
- CellID->1967685850, ExpressionUUID->"07964fa7-8d1e-ff14-2dae-660124a8c27e"],
+ CellID->1967685850,ExpressionUUID->"07964fa7-8d1e-ff14-2dae-660124a8c27e"],
 
 Cell[TextData[{
  "Load LeanLink, point it at the kit (set ",
  Cell[BoxData["RULE30PRIZE_KIT"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "3e367b18-9aa8-58f9-67ce-73421f5d2ac3"],
  ", or edit the fallback path), and check that the kit is there:"
 }], "CodeText",
- CellID->1044562475, ExpressionUUID->"1dbaaaf7-1388-e538-4b59-43b1a622cc02"],
+ CellID->1044562475,ExpressionUUID->"1dbaaaf7-1388-e538-4b59-43b1a622cc02"],
 
 Cell[CellGroupData[{
 
@@ -6034,22 +6038,21 @@ Cell[BoxData[{
      RowBox[{"$Failed", " ", "->", " ", 
       RowBox[{"FileNameJoin", "[", 
        RowBox[{"{", 
-        RowBox[{
-        "$HomeDirectory", ",", " ", "\"\<rule30prize\>\"", ",", 
-         " ", "\"\<kit\>\""}], "}"}], "]"}]}]}], "]"}]}], ";"}], "\n", 
+        RowBox[{"$HomeDirectory", ",", " ", "\"\<Rule30PrizeKit\>\""}], "}"}],
+        "]"}]}]}], "]"}]}], ";"}], "\n", 
  RowBox[{"DirectoryQ", "[", "$Rule30PrizeKit", "]"}]}], "Input",
  CellLabel->"In[5]:= ",
- CellID->1772362660, ExpressionUUID->"77d99fdb-a351-2d53-1de6-1684d6e477b9"],
+ CellID->1772362660,ExpressionUUID->"77d99fdb-a351-2d53-1de6-1684d6e477b9"],
 
 Cell[BoxData["True"], "Output",
  CellLabel->"Out[5]= ",
- CellID->35498422, ExpressionUUID->"04646437-faee-7dfc-2c1c-7e70fe9b47c6"]
+ CellID->35498422,ExpressionUUID->"04646437-faee-7dfc-2c1c-7e70fe9b47c6"]
 }, Open  ]],
 
 Cell["\<\
 The module that states the problems, keeping only its own constants:\
 \>", "CodeText",
- CellID->1384978530, ExpressionUUID->"1cbde497-e826-5557-4442-fdd089d33fbd"],
+ CellID->1384978530,ExpressionUUID->"1cbde497-e826-5557-4442-fdd089d33fbd"],
 
 Cell[CellGroupData[{
 
@@ -6062,7 +6065,7 @@ Cell[BoxData[
     RowBox[{"\"\<Filter\>\"", " ", "->", " ", "\"\<Rule30Prize.\>\""}]}], 
    "]"}]}]], "Input",
  CellLabel->"In[6]:= ",
- CellID->1407158826, ExpressionUUID->"6ecb37d0-fbcc-3e82-16c8-ae9dfe7e84e8"],
+ CellID->1407158826,ExpressionUUID->"6ecb37d0-fbcc-3e82-16c8-ae9dfe7e84e8"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6262,17 +6265,17 @@ proof_1_1", "Kind" -> "theorem", "_Handle" -> 1|>], "_Handle" -> 1|>],
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellLabel->"Out[6]= ",
- CellID->1138490425, ExpressionUUID->"4c358d3e-86d3-ec5f-75ca-25783367b6a5"]
+ CellID->1138490425,ExpressionUUID->"4c358d3e-86d3-ec5f-75ca-25783367b6a5"]
 }, Open  ]],
 
 Cell[TextData[{
  Cell[BoxData["Problem1"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "1f908cf3-3c70-d55a-45af-25bdb50abfa0"],
  " is the statement that the center column is not eventually periodic. Its \
 definition, as Lean prints it:"
 }], "CodeText",
- CellID->1609367578, ExpressionUUID->"5dac66ba-272d-3627-0b54-7fe452d99d0d"],
+ CellID->1609367578,ExpressionUUID->"5dac66ba-272d-3627-0b54-7fe452d99d0d"],
 
 Cell[CellGroupData[{
 
@@ -6288,22 +6291,22 @@ Cell[BoxData[
       " ", "\"\<Ruliology.CellularAutomata.Rule30Jen\>\""}], "}"}]}]}], 
   "]"}]], "Input",
  CellLabel->"In[7]:= ",
- CellID->692927338, ExpressionUUID->"110914de-bbdd-83a1-4736-8d983e69d18b"],
+ CellID->692927338,ExpressionUUID->"110914de-bbdd-83a1-4736-8d983e69d18b"],
 
 Cell[BoxData["\<\"\[Not]EventuallyPeriodic center\"\>"], "Output",
  CellLabel->"Out[7]= ",
- CellID->160879640, ExpressionUUID->"76d004f9-29e5-6665-1eef-9da34f904d4f"]
+ CellID->160879640,ExpressionUUID->"76d004f9-29e5-6665-1eef-9da34f904d4f"]
 }, Open  ]],
 
 Cell[TextData[{
  Cell[BoxData["Problem2"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "2c76c797-c249-79ca-540d-ded0f7fc4b10"],
  " says that for every k > 0, eventually k \[CenterDot] |2 \[CenterDot] \
 (black cells among the first n) \[Minus] n| \[LessEqual] n: the black density \
 is 1/2. Its definition:"
 }], "CodeText",
- CellID->1657269721, ExpressionUUID->"35077f55-9291-6519-633d-771f27244c63"],
+ CellID->1657269721,ExpressionUUID->"35077f55-9291-6519-633d-771f27244c63"],
 
 Cell[CellGroupData[{
 
@@ -6317,14 +6320,14 @@ Cell[BoxData[
     RowBox[{"{", "\"\<Ruliology.CellularAutomata.Rule30Prize\>\"", "}"}]}]}], 
   "]"}]], "Input",
  CellLabel->"In[8]:= ",
- CellID->2048061839, ExpressionUUID->"4ebf3687-f906-130d-7644-afe0f8b37e57"],
+ CellID->2048061839,ExpressionUUID->"4ebf3687-f906-130d-7644-afe0f8b37e57"],
 
 Cell[BoxData["\<\"\[ForAll] (k : Nat), 0 < k \[RightArrow] \[Exists] N, \
 \[ForAll] (n : Nat), N \[LessEqual] n \[RightArrow] k * (2 * \
 \[UpArrow](blackCount n) - \[UpArrow]n).natAbs \[LessEqual] n\"\>"], "Output",\
 
  CellLabel->"Out[8]= ",
- CellID->1680809496, ExpressionUUID->"65de4a87-3471-cd9f-13e6-63e1bd0597e5"]
+ CellID->1680809496,ExpressionUUID->"65de4a87-3471-cd9f-13e6-63e1bd0597e5"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -6332,16 +6335,16 @@ Cell[TextData[{
 cell from scratch, which takes about 3^t steps at time t. For a few cells it \
 is fast enough to compare with ",
  Cell[BoxData["CellularAutomaton"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "7bedd9bd-1d84-ddaa-2992-d0e79436a7f0"],
  "."
 }], "Text",
- CellID->496109794, ExpressionUUID->"4c37f35a-e1a6-07fe-75cc-eb0790536dc4"],
+ CellID->496109794,ExpressionUUID->"4c37f35a-e1a6-07fe-75cc-eb0790536dc4"],
 
 Cell["\<\
 The first 12 cells, computed by Lean, against the Wolfram Language's:\
 \>", "CodeText",
- CellID->108435171, ExpressionUUID->"02f88238-86c8-66df-3287-2462337d4c25"],
+ CellID->108435171,ExpressionUUID->"02f88238-86c8-66df-3287-2462337d4c25"],
 
 Cell[CellGroupData[{
 
@@ -6364,15 +6367,15 @@ Ruliology.CellularAutomata.Rule30Prize.center\>\"", ",", " ",
       RowBox[{"1", " ", "->", " ", "True"}], ",", " ", 
       RowBox[{"0", " ", "->", " ", "False"}]}], "}"}]}], ")"}]}]], "Input",
  CellLabel->"In[9]:= ",
- CellID->525840340, ExpressionUUID->"034d641c-5834-e412-3173-7e4659c6cf78"],
+ CellID->525840340,ExpressionUUID->"034d641c-5834-e412-3173-7e4659c6cf78"],
 
 Cell[BoxData["True"], "Output",
  CellLabel->"Out[9]= ",
- CellID->1708324045, ExpressionUUID->"52ce4f6a-032d-a48b-02f6-6734b6d90ed1"]
+ CellID->1708324045,ExpressionUUID->"52ce4f6a-032d-a48b-02f6-6734b6d90ed1"]
 }, Open  ]],
 
 Cell["A first result, in the submission format", "Section",
- CellID->203008389, ExpressionUUID->"5bfe104a-50de-a555-0985-8a1461680fbf"],
+ CellID->203008389,ExpressionUUID->"5bfe104a-50de-a555-0985-8a1461680fbf"],
 
 Cell[TextData[{
  "The verifier reads exactly one cell of a submitted notebook: ",
@@ -6380,24 +6383,24 @@ Cell[TextData[{
   RowBox[{"rule30Submission", " ", "=", " ", 
    RowBox[{"LeanImportString", "[", 
     RowBox[{"\"\<...\>\"", ",", " ", "..."}], "]"}]}]], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "134534fb-1061-d656-417a-ada5a115bcbc"],
  ". The verifier takes the literal Lean source from that cell, without \
 evaluating anything, and rebuilds it in the kit. The same cell loads the \
 source into this notebook as a ",
  Cell[BoxData["LeanEnvironment"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "2cd98fd2-34e7-e188-54e6-269cbc93b3d2"],
  ", so the essay can examine its own proof."
 }], "Text",
- CellID->1090263105, ExpressionUUID->"6e1c99a5-dcef-9c28-1623-100ed49be772"],
+ CellID->1090263105,ExpressionUUID->"6e1c99a5-dcef-9c28-1623-100ed49be772"],
 
 Cell["\<\
 The cell with a known result, the case of period 1. The center column is \
 never eventually constant, by Jen's theorem that no two columns of rule 30 \
 are both eventually periodic:\
 \>", "CodeText",
- CellID->1560876240, ExpressionUUID->"608e87cc-8fce-afdf-10b5-1e962a78f525"],
+ CellID->1560876240,ExpressionUUID->"608e87cc-8fce-afdf-10b5-1e962a78f525"],
 
 Cell[CellGroupData[{
 
@@ -6413,7 +6416,7 @@ eventually constant: Problem 1 for period 1. -/\ntheorem no_period_one : \
     RowBox[{"\"\<ProjectDir\>\"", " ", "->", " ", "$Rule30PrizeKit"}]}], 
    "]"}]}]], "Input",
  CellLabel->"In[10]:= ",
- CellID->201914069, ExpressionUUID->"2aa912c6-4938-1bb7-5a56-8ba068cd699d"],
+ CellID->201914069,ExpressionUUID->"2aa912c6-4938-1bb7-5a56-8ba068cd699d"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6524,11 +6527,11 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellLabel->"Out[10]= ",
- CellID->607076188, ExpressionUUID->"66b4bee0-d247-b105-0e4b-37cde7f3006f"]
+ CellID->607076188,ExpressionUUID->"66b4bee0-d247-b105-0e4b-37cde7f3006f"]
 }, Open  ]],
 
 Cell["The theorem's statement, as Lean prints it:", "CodeText",
- CellID->807053435, ExpressionUUID->"337c2d89-644e-5b5e-6103-c4d30dfb29a4"],
+ CellID->807053435,ExpressionUUID->"337c2d89-644e-5b5e-6103-c4d30dfb29a4"],
 
 Cell[CellGroupData[{
 
@@ -6541,18 +6544,18 @@ Cell[BoxData[
     RowBox[{"{", "\"\<Ruliology.CellularAutomata.Rule30Prize\>\"", "}"}]}]}], 
   "]"}]], "Input",
  CellLabel->"In[11]:= ",
- CellID->832633147, ExpressionUUID->"5f7c2741-1c81-ec9b-0503-bf2b9535b6e1"],
+ CellID->832633147,ExpressionUUID->"5f7c2741-1c81-ec9b-0503-bf2b9535b6e1"],
 
 Cell[BoxData["\<\"\[Not]\[Exists] N, \[ForAll] (t : \:2115), N \[LessEqual] t \
 \[RightArrow] center (t + 1) = center t\"\>"], "Output",
  CellLabel->"Out[11]= ",
- CellID->1403310832, ExpressionUUID->"644cc522-c7c4-9b18-0c73-dc8ff276e662"]
+ CellID->1403310832,ExpressionUUID->"644cc522-c7c4-9b18-0c73-dc8ff276e662"]
 }, Open  ]],
 
 Cell["\<\
 The axioms it depends on are the three standard ones and nothing else:\
 \>", "CodeText",
- CellID->1828793009, ExpressionUUID->"2de8c8f9-eaf3-8e90-5b97-e1a28e87d4fa"],
+ CellID->1828793009,ExpressionUUID->"2de8c8f9-eaf3-8e90-5b97-e1a28e87d4fa"],
 
 Cell[CellGroupData[{
 
@@ -6562,18 +6565,18 @@ Cell[BoxData[
   "rule30Submission", "[", "\"\<Rule30Submission.no_period_one\>\"", "]"}], 
   "[", "\"\<Axioms\>\"", "]"}]], "Input",
  CellLabel->"In[12]:= ",
- CellID->1491197753, ExpressionUUID->"6801f052-da94-0b6f-183e-ea1fdf2159b5"],
+ CellID->1491197753,ExpressionUUID->"6801f052-da94-0b6f-183e-ea1fdf2159b5"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"\<\"Classical.choice\"\>", ",", "\<\"Quot.sound\"\>", 
    ",", "\<\"propext\"\>"}], "}"}]], "Output",
  CellLabel->"Out[12]= ",
- CellID->518839321, ExpressionUUID->"0daf8e98-7628-e40b-3b54-27c203c2cf51"]
+ CellID->518839321,ExpressionUUID->"0daf8e98-7628-e40b-3b54-27c203c2cf51"]
 }, Open  ]],
 
 Cell["The lemmas it rests on, two levels down:", "CodeText",
- CellID->762269937, ExpressionUUID->"7b6211f5-475c-1194-2911-88bf72e963fe"],
+ CellID->762269937,ExpressionUUID->"7b6211f5-475c-1194-2911-88bf72e963fe"],
 
 Cell[CellGroupData[{
 
@@ -6584,7 +6587,7 @@ Cell[BoxData[
   RowBox[{"\"\<CallGraph\>\"", ",", " ", 
    RowBox[{"\"\<Depth\>\"", " ", "->", " ", "2"}]}], "]"}]], "Input",
  CellLabel->"In[13]:= ",
- CellID->1596700196, ExpressionUUID->"7c8f7bdf-2493-8d8a-24b5-72994d27d7d0"],
+ CellID->1596700196,ExpressionUUID->"7c8f7bdf-2493-8d8a-24b5-72994d27d7d0"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -13083,38 +13086,38 @@ constant (theorem)", "Tooltip"]& ], "Text",
   FrameTicks->None,
   ImageSize->1200]], "Output",
  CellLabel->"Out[13]= ",
- CellID->1663427655, ExpressionUUID->"14e8dcaf-74c9-37ba-3c97-d5097d7d9d80"]
+ CellID->1663427655,ExpressionUUID->"14e8dcaf-74c9-37ba-3c97-d5097d7d9d80"]
 }, Open  ]],
 
 Cell[TextData[{
  "A proof of Problem 1 has the same shape: a theorem ",
  Cell[BoxData[
   RowBox[{"Rule30Submission", ".", "problem1"}]], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "5d5cbd3a-e88d-ee42-0b63-35678939b4a8"],
  " whose type is exactly ",
  Cell[BoxData["Problem1"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "3b7fe4cc-5889-7f4e-6904-fd96593c4594"],
  ". The kit's README lists the four official targets, the disproofs \
 included."
 }], "Text",
- CellID->2118931930, ExpressionUUID->"6cb5c01f-62f5-68e0-144a-da5916803aca"],
+ CellID->2118931930,ExpressionUUID->"6cb5c01f-62f5-68e0-144a-da5916803aca"],
 
 Cell["What the checks catch", "Section",
- CellID->1039057480, ExpressionUUID->"55f417ec-7166-d78d-038b-8eb60010bdd7"],
+ CellID->1039057480,ExpressionUUID->"55f417ec-7166-d78d-038b-8eb60010bdd7"],
 
 Cell["Suppose a claimed proof of Problem 1 has a gap.", "Text",
- CellID->1411198270, ExpressionUUID->"4b6e5dad-9702-0c1f-7916-54f722b75765"],
+ CellID->1411198270,ExpressionUUID->"4b6e5dad-9702-0c1f-7916-54f722b75765"],
 
 Cell[TextData[{
  "A theorem with the official type, proved by ",
  Cell[BoxData["sorry"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "1d359769-845f-cd94-44ca-0f332deb97fe"],
  ":"
 }], "CodeText",
- CellID->1703453532, ExpressionUUID->"2055bfee-d4b5-7aa2-506a-36cbdd404888"],
+ CellID->1703453532,ExpressionUUID->"2055bfee-d4b5-7aa2-506a-36cbdd404888"],
 
 Cell[BoxData[
  RowBox[{
@@ -13126,12 +13129,12 @@ sorry\nend Rule30Submission\n\>\"", ",", " ",
      RowBox[{"\"\<ProjectDir\>\"", " ", "->", " ", "$Rule30PrizeKit"}]}], 
     "]"}]}], ";"}]], "Input",
  CellLabel->"In[14]:= ",
- CellID->1477609488, ExpressionUUID->"64c30c0d-1857-1b13-0cf0-a65799e26679"],
+ CellID->1477609488,ExpressionUUID->"64c30c0d-1857-1b13-0cf0-a65799e26679"],
 
 Cell["\<\
 Its type is exactly the official statement, and its axioms give it away:\
 \>", "CodeText",
- CellID->1030824397, ExpressionUUID->"46632a09-cc5f-b0ef-6e10-cc52e5eb0235"],
+ CellID->1030824397,ExpressionUUID->"46632a09-cc5f-b0ef-6e10-cc52e5eb0235"],
 
 Cell[CellGroupData[{
 
@@ -13150,14 +13153,14 @@ Cell[BoxData[
     RowBox[{"gap", "[", "\"\<Rule30Submission.problem1\>\"", "]"}], 
     "[", "\"\<Axioms\>\"", "]"}]}], "}"}]], "Input",
  CellLabel->"In[15]:= ",
- CellID->1571214103, ExpressionUUID->"6ea251ed-865f-e03c-1652-48b733ebb306"],
+ CellID->1571214103,ExpressionUUID->"6ea251ed-865f-e03c-1652-48b733ebb306"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"True", ",", 
    RowBox[{"{", "\<\"sorryAx\"\>", "}"}]}], "}"}]], "Output",
  CellLabel->"Out[15]= ",
- CellID->195627410, ExpressionUUID->"25a0bfbe-b1d4-2428-535f-36fbc0668f72"]
+ CellID->195627410,ExpressionUUID->"25a0bfbe-b1d4-2428-535f-36fbc0668f72"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -13165,26 +13168,26 @@ Cell[TextData[{
 a fresh sandbox and replays every declaration through the Lean kernel. That \
 catches a theorem added without type checking, whose axiom list looks clean. \
 The kit's ",
- Cell["tests/T05SkipKernel.lean", "InlineCode", ExpressionUUID->
+ Cell["tests/T05SkipKernel.lean", "InlineCode",ExpressionUUID->
   "04786d0e-016a-d127-2c07-8568b01ca00d"],
  " is such a forgery."
 }], "Text",
- CellID->144223354, ExpressionUUID->"2d15b43a-cd49-5244-5b2a-2e67e4fc20ae"],
+ CellID->144223354,ExpressionUUID->"2d15b43a-cd49-5244-5b2a-2e67e4fc20ae"],
 
 Cell["Building on what is known", "Section",
- CellID->1443527617, ExpressionUUID->"2d1ff276-b82a-c3ca-5b24-f43039dc9110"],
+ CellID->1443527617,ExpressionUUID->"2d1ff276-b82a-c3ca-5b24-f43039dc9110"],
 
 Cell["\<\
 Much is already proved. A submission should build on it, and must not present \
 it as new.\
 \>", "Text",
- CellID->311511756, ExpressionUUID->"14fd1512-f616-8834-3c82-8d5f83a0db1e"],
+ CellID->311511756,ExpressionUUID->"14fd1512-f616-8834-3c82-8d5f83a0db1e"],
 
 Cell["\<\
 The catalog's lower bound on transient plus period, for any eventual period \
 of the center column:\
 \>", "CodeText",
- CellID->1381425643, ExpressionUUID->"66c67103-72a1-9427-0efe-696d0755ff0d"],
+ CellID->1381425643,ExpressionUUID->"66c67103-72a1-9427-0efe-696d0755ff0d"],
 
 Cell[CellGroupData[{
 
@@ -13212,21 +13215,21 @@ period_ge\>\"", "]"}], "[",
     "]"}], ",", " ", 
    RowBox[{"Whitespace", " ", "->", " ", "\"\< \>\""}]}], "]"}]}], "Input",
  CellLabel->"In[16]:= ",
- CellID->2070168666, ExpressionUUID->"48c794f4-84f6-2bfc-78fc-0dbe2c8379c6"],
+ CellID->2070168666,ExpressionUUID->"48c794f4-84f6-2bfc-78fc-0dbe2c8379c6"],
 
 Cell[BoxData["\<\"\[ForAll] (T P : Nat), 0 < P \[RightArrow] (\[ForAll] (t : \
 Nat), T \[LessEqual] t \[RightArrow] center (t + P) = center t) \[RightArrow] \
 Ruliology.CellularAutomata.Rule30FactorWindow.M \[LessEqual] T + P\"\>"], \
 "Output",
  CellLabel->"Out[16]= ",
- CellID->460230490, ExpressionUUID->"58ee7ecb-1370-1005-0896-7795a605636f"]
+ CellID->460230490,ExpressionUUID->"58ee7ecb-1370-1005-0896-7795a605636f"]
 }, Open  ]],
 
 Cell["\<\
 One of the 96 equivalent forms. Problem 1 holds exactly when the binary \
 number 0.c(0)c(1)c(2)\[Ellipsis] is irrational:\
 \>", "CodeText",
- CellID->1717363484, ExpressionUUID->"11d04a92-cbef-a8a5-47e0-63dfed9bfa8f"],
+ CellID->1717363484,ExpressionUUID->"11d04a92-cbef-a8a5-47e0-63dfed9bfa8f"],
 
 Cell[CellGroupData[{
 
@@ -13245,43 +13248,43 @@ Cell[BoxData[{
    "[", "\"\<Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_\
 binary\>\"", "]"}], "[", "\"\<TypeForm\>\"", "]"}]}], "Input",
  CellLabel->"In[17]:= ",
- CellID->1452928456, ExpressionUUID->"7d9821c9-0e61-bc6d-2ba7-b893ab1506b7"],
+ CellID->1452928456,ExpressionUUID->"7d9821c9-0e61-bc6d-2ba7-b893ab1506b7"],
 
 Cell[BoxData["\<\"Ruliology.CellularAutomata.Rule30Prize.Problem1 \
 \[LeftRightArrow] Irrational \
 Rule30Equivalents.BinaryIrrational.centerBinary\"\>"], "Output",
  CellLabel->"Out[17]= ",
- CellID->1084469850, ExpressionUUID->"3181a460-bc62-f1ee-67be-3e4a3514c334"]
+ CellID->1084469850,ExpressionUUID->"3181a460-bc62-f1ee-67be-3e4a3514c334"]
 }, Open  ]],
 
 Cell[TextData[{
  "The rest of what is known, period by period, is in the agent instructions \
-(skill.md) and in the write-up of a 2026 attempt, ",
- Cell["rule30prize/writeup/rule30-state.html", "InlineCode", ExpressionUUID->
+(skill.md) and in the kit's ",
+ Cell["lean/README.md", "InlineCode",ExpressionUUID->
   "3937e1d4-04c3-e55a-68cc-f89ead77cfa0"],
- " in the kit archive. Periods 1 to 4096 are excluded for short transients. \
-Period 2 reduces to an open statement about half of the pattern. Rules 90, \
-150 and 210 share every structural fact used so far, yet their center columns \
-are eventually constant, so a proof has to use something they lack."
+ ". Periods 1 to 4096 are excluded for short transients. Period 2 reduces to \
+an open statement about half of the pattern. Rules 90, 150 and 210 share \
+every structural fact used so far, yet their center columns are eventually \
+constant, so a proof has to use something they lack."
 }], "Text",
- CellID->1536527082, ExpressionUUID->"6b45e796-37a7-eecc-197a-fed04253b416"],
+ CellID->1536527082,ExpressionUUID->"6b45e796-37a7-eecc-197a-fed04253b416"],
 
 Cell["Your essay, and your submission", "Section",
- CellID->1621535814, ExpressionUUID->"5e187950-8ca2-2ab2-0638-711a25577898"],
+ CellID->1621535814,ExpressionUUID->"5e187950-8ca2-2ab2-0638-711a25577898"],
 
 Cell[TextData[{
  "Your proof lives in the kit's ",
- Cell["Rule30Submission.lean", "InlineCode", ExpressionUUID->
+ Cell["Rule30Submission.lean", "InlineCode",ExpressionUUID->
   "250a2d7c-9b81-05b0-5309-c5261e346f9a"],
  ". Build and check it there, the way the verifier will:"
 }], "CodeText",
- CellID->1193935837, ExpressionUUID->"15a9104d-5625-6af3-4356-8a1763d038d9"],
+ CellID->1193935837,ExpressionUUID->"15a9104d-5625-6af3-4356-8a1763d038d9"],
 
 Cell["\<\
 lake build Rule30Submission && lake env lean --run Check.lean \
 Rule30Submission --claim problem1\
 \>", "Program",
- CellID->105329933, ExpressionUUID->"58c17d8b-1b7e-6f79-08ff-74d59e0b3243"],
+ CellID->105329933,ExpressionUUID->"58c17d8b-1b7e-6f79-08ff-74d59e0b3243"],
 
 Cell[TextData[{
  "Then write the essay as markdown, with sections like this one's, and \
@@ -13292,12 +13295,12 @@ convert it with ",
     URL["https://github.com/WolframInstitute/MarkdownToNotebook"], None}],
  ". The ",
  Cell[BoxData["rule30Submission"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "43821c38-6720-b4f9-71b1-966212da1ec3"],
  " cell must hold the source as a literal string. This prints it from your \
 file:"
 }], "CodeText",
- CellID->1234416869, ExpressionUUID->"341c54d9-3079-6bba-5c24-4d83410c3980"],
+ CellID->1234416869,ExpressionUUID->"341c54d9-3079-6bba-5c24-4d83410c3980"],
 
 Cell[BoxData[{
  RowBox[{
@@ -13316,13 +13319,13 @@ Cell[BoxData[{
     RowBox[{"CharacterEncoding", " ", "->", " ", "\"\<Unicode\>\""}]}], "]"}],
    " ", "<>", 
   " ", "\"\<, \\\"ProjectDir\\\" -> $Rule30PrizeKit]\>\""}]}], "Input",
- CellID->240380995, ExpressionUUID->"1dbf9c2b-d84a-d79b-4b44-1674d9fcbde1"],
+ CellID->240380995,ExpressionUUID->"1dbf9c2b-d84a-d79b-4b44-1674d9fcbde1"],
 
 Cell[TextData[{
  "Once your human agrees, submit the notebook through the API. This works \
 from the local Wolfram MCP's ",
  Cell[BoxData["WolframLanguageEvaluator"], "InlineFormula",
-  FontSize->0.9 Inherited, ExpressionUUID->
+  FontSize->0.9 Inherited,ExpressionUUID->
   "0f449897-1a0e-51e7-357b-11d19fbb23cd"],
  "; ",
  ButtonBox["skill.md",
@@ -13332,7 +13335,7 @@ from the local Wolfram MCP's ",
 md"], None}],
  " has the details:"
 }], "CodeText",
- CellID->1771870337, ExpressionUUID->"6d5a63ab-93b9-14f3-1b7a-7af5264c7ed9"],
+ CellID->1771870337,ExpressionUUID->"6d5a63ab-93b9-14f3-1b7a-7af5264c7ed9"],
 
 Cell[BoxData[
  RowBox[{"URLExecute", "[", 
@@ -13365,10 +13368,10 @@ Rule30Prize/api/submit\>\"", ",", " ",
           RowBox[{"\"\<consent\>\"", " ", "->", " ", "\"\<true\>\""}]}], 
          "}"}]}]}], "|>"}]}], "]"}], ",", " ", "\"\<RawJSON\>\""}], 
   "]"}]], "Input",
- CellID->305160771, ExpressionUUID->"5077c06e-c394-b43c-000c-da4bf6261f06"],
+ CellID->305160771,ExpressionUUID->"5077c06e-c394-b43c-000c-da4bf6261f06"],
 
 Cell["What this essay does not do", "Section",
- CellID->1896945989, ExpressionUUID->"07359582-e823-44a1-2eca-0cef89d62e8b"],
+ CellID->1896945989,ExpressionUUID->"07359582-e823-44a1-2eca-0cef89d62e8b"],
 
 Cell["\<\
 It proves nothing new. The period-1 result is Jen's theorem from 1986, and \
@@ -13376,10 +13379,10 @@ the experiments with periods prove nothing. The essay only sets up the tools, \
 and shows the form in which a new result reaches the verifier and the \
 reviewers.\
 \>", "Text",
- CellID->653417278, ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662"],
+ CellID->653417278,ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662"],
 
 Cell["References", "Section",
- CellID->1067269536, ExpressionUUID->"68c76573-72ce-0c1a-18fd-7d3d077b5760"],
+ CellID->1067269536,ExpressionUUID->"68c76573-72ce-0c1a-18fd-7d3d077b5760"],
 
 Cell[TextData[{
  "[1] S. Wolfram, ",
@@ -13390,14 +13393,14 @@ Cell[TextData[{
 prizes/"], None}], "TI"],
  ", Wolfram Writings, 2019."
 }], "Text",
- CellID->49659130, ExpressionUUID->"6184d2f2-049e-728e-17bb-cbbcad2b40d4"],
+ CellID->49659130,ExpressionUUID->"6184d2f2-049e-728e-17bb-cbbcad2b40d4"],
 
 Cell[TextData[{
  "[2] E. Jen, ",
  StyleBox["Global properties of cellular automata", "TI"],
  ", Journal of Statistical Physics 43 (1986) 219-242."
 }], "Text",
- CellID->464508221, ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673"],
+ CellID->464508221,ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673"],
 
 Cell[TextData[{
  "[3] Google DeepMind, ",
@@ -13408,23 +13411,7 @@ Cell[TextData[{
 FormalConjectures/Other/Rule30.lean"], None}], "TI"],
  ", 2026."
 }], "Text",
- CellID->1361313038, ExpressionUUID->"19bb1c5e-57ab-6e36-4f58-9618625e351c"],
-
-Cell[TextData[{
- "[4] ",
- StyleBox["Rule 30 Prize, Problem 1: the state of an attempt", "TI"],
- ", 2026: ",
- Cell["rule30prize/writeup/rule30-state.html", "InlineCode", ExpressionUUID->
-  "5c8dcc56-7aa9-964a-04b2-e6107f5dfc90"],
- " in the ",
- ButtonBox["kit archive",
-  BaseStyle->"Hyperlink",
-  ButtonData->{
-    URL["https://www.wolframcloud.com/obj/wolframinstitute/Rule30Prize/\
-rule30prize-kit.tar.gz"], None}],
- "."
-}], "Text",
- CellID->1907680634, ExpressionUUID->"30baa1c8-66ad-75e0-6059-389213585fca"]
+ CellID->1361313038,ExpressionUUID->"19bb1c5e-57ab-6e36-4f58-9618625e351c"]
 },
 WindowSize->Automatic,
 WindowMargins->{{624, Automatic}, {Automatic, 173}},
@@ -13469,7 +13456,7 @@ Fu6DuJJG2H9mK2QZ3X1Y8rjKVdsLU11Qbnfn/Mae/TiO1RZHs2bny+6Vwq5Sfi8TnHKi+1+K4NOh"]\
     "DefaultContentMethod" -> "Tagged", "HintPods" -> True, "LoadingMethod" -> 
     "Paclet", "PacletName" -> "ComputationalEssays"}, "ToolsOpen" -> True, 
   "StatusMessage" -> ""},
-FrontEndVersion->"15.1 for Mac OS X ARM (64-bit) (August 7, 2026)",
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[StyleDefinitions -> "Default.nb"]], 
@@ -16581,7 +16568,7 @@ later."]]]]],
    Cell[
     StyleData["DockedCell"], CellFrameColor -> GrayLevel[0.75], Background -> 
     RGBColor[0.89804, 0.89804, 0.89804]]}, Visible -> False, FrontEndVersion -> 
-  "15.1 for Mac OS X ARM (64-bit) (August 7, 2026)", StyleDefinitions -> 
+  "15.0 for Mac OS X ARM (64-bit) (May 19, 2026)", StyleDefinitions -> 
   "PrivateStylesheetFormatting.nb"],
 ExpressionUUID->"52535901-cb26-8b9c-0261-516aeed0d9e6"
 ]
@@ -16596,218 +16583,216 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 126, 1, 70, "Title", ExpressionUUID->"323a4b1c-b138-a791-63da-6359c0b20dfb",
+Cell[554, 20, 125, 1, 70, "Title",ExpressionUUID->"22a1a762-10e3-861e-525e-3f4ca097ed64",
  CellID->874461601],
-Cell[683, 23, 129, 1, 70, "Author", ExpressionUUID->"7421cf44-a1ac-4319-1dde-e721d0592e63",
+Cell[682, 23, 128, 1, 70, "Author",ExpressionUUID->"4da796ef-9f57-a4bf-7b5c-0fc91ae30e85",
  CellID->36768919],
-Cell[815, 26, 660, 10, 70, "Abstract", ExpressionUUID->"511b3347-8d7d-ab60-0738-ab212409f64a",
+Cell[813, 26, 659, 10, 70, "Abstract",ExpressionUUID->"1b39f900-6440-cee7-4ac6-f16a0dfa94cd",
  CellID->1699946459],
-Cell[1478, 38, 108, 1, 70, "Section", ExpressionUUID->"36c19c85-764d-0b01-5efe-15ef03f8566b",
+Cell[1475, 38, 107, 1, 70, "Section",ExpressionUUID->"75d93363-5da6-51a4-23e6-ab4d5453238e",
  CellID->1535504786],
-Cell[1589, 41, 423, 11, 70, "Text", ExpressionUUID->"6815cd54-0cd7-196f-182a-e51ea5626bb5",
+Cell[1585, 41, 422, 11, 70, "Text",ExpressionUUID->"25a568a6-87a2-527f-535a-810032572145",
  CellID->1208482393],
-Cell[2015, 54, 145, 1, 70, "CodeText", ExpressionUUID->"519775d4-d545-25f2-07ad-6c91dcf18fd8",
+Cell[2010, 54, 144, 1, 70, "CodeText",ExpressionUUID->"00d7f70d-8d0e-ae34-30ec-ef5724b8f51e",
  CellID->28909615],
 Cell[CellGroupData[{
-Cell[2185, 59, 1095, 29, 70, "Input", ExpressionUUID->"5900aac7-5263-773e-0f3f-43a167165a04",
+Cell[2179, 59, 1094, 29, 70, "Input",ExpressionUUID->"2f3e8453-9762-68ea-56c5-1e1d22173a30",
  CellID->1443345818],
-Cell[3283, 90, 6040, 106, 70, "Output", ExpressionUUID->"06ecfdb3-2197-c9b0-2e93-f4fd50239b9a",
+Cell[3276, 90, 6039, 106, 70, "Output",ExpressionUUID->"5902d484-617f-9570-0f31-cdee100bfc5a",
  CellID->542889645]
 }, Open  ]],
-Cell[9338, 199, 161, 3, 70, "Text", ExpressionUUID->"12d95fcb-3316-2212-42e7-569546a37178",
+Cell[9330, 199, 160, 3, 70, "Text",ExpressionUUID->"56e0e12c-de7d-6135-7e9f-f889db08301f",
  CellID->684317082],
-Cell[9502, 204, 150, 1, 70, "ItemNumbered", ExpressionUUID->"733995c2-f5bf-78ee-22c6-0caffc4a4a34",
+Cell[9493, 204, 149, 1, 70, "ItemNumbered",ExpressionUUID->"5708d032-2150-04f2-7d37-ca7c50e56ed8",
  CellID->528485616],
-Cell[9655, 207, 185, 3, 70, "ItemNumbered", ExpressionUUID->"4f8ab258-7e7f-0723-7589-34027b0a6a09",
+Cell[9645, 207, 184, 3, 70, "ItemNumbered",ExpressionUUID->"3b7807e8-9504-b25a-6907-9eb21cb600a0",
  CellID->1392207227],
-Cell[9843, 212, 202, 4, 70, "ItemNumbered", ExpressionUUID->"6b12ee74-9953-131d-1921-003e18e67e67",
+Cell[9832, 212, 201, 4, 70, "ItemNumbered",ExpressionUUID->"166f8969-5e31-e8e5-3e14-21335bc5bacf",
  CellID->705466992],
-Cell[10048, 218, 317, 8, 70, "Text", ExpressionUUID->"65262d3c-fccc-1dc6-0cdd-c579f579672c",
+Cell[10036, 218, 316, 8, 70, "Text",ExpressionUUID->"234f1fb7-07c6-bba9-5174-96f1b27009f3",
  CellID->1350516518],
-Cell[10368, 228, 112, 1, 70, "Section", ExpressionUUID->"5e157ee2-48da-d240-062b-77cc696ca0aa",
+Cell[10355, 228, 111, 1, 70, "Section",ExpressionUUID->"6ee45b93-a0df-d1f6-169c-52dcd16ba3dc",
  CellID->907546795],
-Cell[10483, 231, 138, 1, 70, "Text", ExpressionUUID->"78287f93-0f12-7c52-2828-76ddaaa746b8",
+Cell[10469, 231, 137, 1, 70, "Text",ExpressionUUID->"0a3edd72-e0d3-62fb-3bc5-d53f916630c1",
  CellID->814772321],
-Cell[10624, 234, 176, 3, 70, "CodeText", ExpressionUUID->"08285353-0e0e-39f8-3828-4b1dabb88bc2",
+Cell[10609, 234, 175, 3, 70, "CodeText",ExpressionUUID->"6ec9a758-58be-624c-16f6-3f02594b3096",
  CellID->1054628905],
 Cell[CellGroupData[{
-Cell[10825, 241, 581, 16, 70, "Input", ExpressionUUID->"1daed7d3-93e8-7698-4b55-ce9d259d5ce2",
+Cell[10809, 241, 580, 16, 70, "Input",ExpressionUUID->"23253b8d-1c99-a6bf-52da-b2d7952d0c85",
  CellID->1347158791],
-Cell[11409, 259, 576, 10, 70, "Output", ExpressionUUID->"187adc3d-3961-76c2-4819-d667b8145c28",
+Cell[11392, 259, 575, 10, 70, "Output",ExpressionUUID->"6e84829b-9667-6594-16bb-1bc523124ffe",
  CellID->978705560]
 }, Open  ]],
-Cell[12000, 272, 276, 5, 70, "CodeText", ExpressionUUID->"641c78eb-7f03-7846-0c24-71b57ab64aac",
+Cell[11982, 272, 275, 5, 70, "CodeText",ExpressionUUID->"569e173f-6b36-b240-7ea5-8f790ec000aa",
  CellID->17830494],
 Cell[CellGroupData[{
-Cell[12301, 281, 428, 10, 70, "Input", ExpressionUUID->"5bfcc75d-c21d-6fb0-0983-df06f7a8359a",
+Cell[12282, 281, 427, 10, 70, "Input",ExpressionUUID->"15a3e88e-0b57-fa6e-4350-01e8aee3c8b4",
  CellID->506665461],
-Cell[12732, 293, 342537, 5657, 70, "Output", ExpressionUUID->"112ae6ec-4b5c-6ad2-4729-ffb66ee93838",
+Cell[12712, 293, 342536, 5657, 70, "Output",ExpressionUUID->"779c57de-bb93-d239-1da4-4e983e27a103",
  CellID->855724595]
 }, Open  ]],
-Cell[355284, 5953, 209, 4, 70, "Text", ExpressionUUID->"6121b9de-dddd-aca8-10de-309bd469f6f2",
+Cell[355263, 5953, 208, 4, 70, "Text",ExpressionUUID->"2867ea9b-6e8d-517b-581c-03c50b382041",
  CellID->943101875],
-Cell[355496, 5959, 178, 3, 70, "CodeText", ExpressionUUID->"30209679-023a-ee91-61df-0823b7ccb4fb",
+Cell[355474, 5959, 177, 3, 70, "CodeText",ExpressionUUID->"76dfbc62-92ac-7b6e-1ee4-364c275949b4",
  CellID->67888809],
 Cell[CellGroupData[{
-Cell[355699, 5966, 596, 18, 70, "Input", ExpressionUUID->"29bc1606-c22d-409d-5f43-8863f7d812e7",
+Cell[355676, 5966, 595, 18, 70, "Input",ExpressionUUID->"0df4b6a5-173c-e15a-3b8b-2f0fa2ceb3a0",
  CellID->1801257020],
-Cell[356298, 5986, 145, 3, 70, "Output", ExpressionUUID->"7bf1e1bf-5b3e-c64b-298e-f8f95ec8ac91",
+Cell[356274, 5986, 144, 3, 70, "Output",ExpressionUUID->"4d620fc7-5cf2-d9d8-7b11-a6a15484ab22",
  CellID->358626973]
 }, Open  ]],
-Cell[356458, 5992, 174, 3, 70, "Text", ExpressionUUID->"3119d855-3ffd-7401-6726-d21fb9885f6b",
+Cell[356433, 5992, 173, 3, 70, "Text",ExpressionUUID->"741b091d-feb2-1a39-1c38-a146fb476903",
  CellID->876231958],
-Cell[356635, 5997, 127, 1, 70, "Section", ExpressionUUID->"62a6d1b5-4e36-fa69-125d-c8ff6bc0c8b3",
+Cell[356609, 5997, 126, 1, 70, "Section",ExpressionUUID->"3bf5a20e-c541-e06e-698a-446becf5b2b4",
  CellID->1020575516],
-Cell[356765, 6000, 557, 12, 70, "Text", ExpressionUUID->"7c41cdc9-5ab3-1ef5-247e-e4935f4664df",
+Cell[356738, 6000, 721, 16, 70, "Text",ExpressionUUID->"07964fa7-8d1e-ff14-2dae-660124a8c27e",
  CellID->1967685850],
-Cell[357325, 6014, 357, 7, 70, "CodeText", ExpressionUUID->"51fce014-dca1-0630-0783-fa51d5546d1a",
+Cell[357462, 6018, 355, 7, 70, "CodeText",ExpressionUUID->"1dbaaaf7-1388-e538-4b59-43b1a622cc02",
  CellID->1044562475],
 Cell[CellGroupData[{
-Cell[357707, 6025, 690, 16, 70, "Input", ExpressionUUID->"657c1c65-980e-511d-1303-964f19bb2067",
+Cell[357842, 6029, 656, 15, 70, "Input",ExpressionUUID->"77d99fdb-a351-2d53-1de6-1684d6e477b9",
  CellID->1772362660],
-Cell[358400, 6043, 130, 2, 70, "Output", ExpressionUUID->"0f15dbd5-5f35-596c-352a-d29f5ac02bb6",
+Cell[358501, 6046, 129, 2, 70, "Output",ExpressionUUID->"04646437-faee-7dfc-2c1c-7e70fe9b47c6",
  CellID->35498422]
 }, Open  ]],
-Cell[358545, 6048, 173, 3, 70, "CodeText", ExpressionUUID->"7e9b7e66-629a-1114-26b9-7040172f607e",
+Cell[358645, 6051, 172, 3, 70, "CodeText",ExpressionUUID->"1cbde497-e826-5557-4442-fdd089d33fbd",
  CellID->1384978530],
 Cell[CellGroupData[{
-Cell[358743, 6055, 439, 9, 70, "Input", ExpressionUUID->"585a51e6-774f-2dd2-087a-48c002fa7738",
+Cell[358842, 6058, 438, 9, 70, "Input",ExpressionUUID->"6ecb37d0-fbcc-3e82-16c8-ae9dfe7e84e8",
  CellID->1407158826],
-Cell[359185, 6066, 9451, 198, 70, "Output", ExpressionUUID->"1d7c0b5b-c40c-ea6a-4b03-a304edbeb8b0",
+Cell[359283, 6069, 9450, 198, 70, "Output",ExpressionUUID->"4c358d3e-86d3-ec5f-75ca-25783367b6a5",
  CellID->1138490425]
 }, Open  ]],
-Cell[368651, 6267, 348, 7, 70, "CodeText", ExpressionUUID->"370294fd-9e49-2d35-5d31-0da71bfc741f",
+Cell[368748, 6270, 346, 7, 70, "CodeText",ExpressionUUID->"5dac66ba-272d-3627-0b54-7fe452d99d0d",
  CellID->1609367578],
 Cell[CellGroupData[{
-Cell[369024, 6278, 495, 12, 70, "Input", ExpressionUUID->"2845529c-454d-b13b-587b-4bc66cf90001",
+Cell[369119, 6281, 494, 12, 70, "Input",ExpressionUUID->"110914de-bbdd-83a1-4736-8d983e69d18b",
  CellID->692927338],
-Cell[369522, 6292, 166, 2, 70, "Output", ExpressionUUID->"7519012f-e657-215b-2326-988893e273a1",
+Cell[369616, 6295, 165, 2, 70, "Output",ExpressionUUID->"76d004f9-29e5-6665-1eef-9da34f904d4f",
  CellID->160879640]
 }, Open  ]],
-Cell[369703, 6297, 418, 8, 70, "CodeText", ExpressionUUID->"594776df-9e75-d16a-0f7d-6f991b01a3b0",
+Cell[369796, 6300, 416, 8, 70, "CodeText",ExpressionUUID->"35077f55-9291-6519-633d-771f27244c63",
  CellID->1657269721],
 Cell[CellGroupData[{
-Cell[370146, 6309, 415, 10, 70, "Input", ExpressionUUID->"6405505f-4b92-3bd6-0c3b-4a196e24893c",
+Cell[370237, 6312, 414, 10, 70, "Input",ExpressionUUID->"4ebf3687-f906-130d-7644-afe0f8b37e57",
  CellID->2048061839],
-Cell[370564, 6321, 318, 5, 70, "Output", ExpressionUUID->"6878c7f8-419e-9db5-1807-dea27028e79f",
+Cell[370654, 6324, 317, 5, 70, "Output",ExpressionUUID->"65de4a87-3471-cd9f-13e6-63e1bd0597e5",
  CellID->1680809496]
 }, Open  ]],
-Cell[370897, 6329, 438, 9, 70, "Text", ExpressionUUID->"48a3d607-c312-9dd3-7850-c860f6a4e739",
+Cell[370986, 6332, 436, 9, 70, "Text",ExpressionUUID->"4c37f35a-e1a6-07fe-75cc-eb0790536dc4",
  CellID->496109794],
-Cell[371338, 6340, 173, 3, 70, "CodeText", ExpressionUUID->"539491e8-328f-8d7b-01ab-08b2473bd441",
+Cell[371425, 6343, 172, 3, 70, "CodeText",ExpressionUUID->"02f88238-86c8-66df-3287-2462337d4c25",
  CellID->108435171],
 Cell[CellGroupData[{
-Cell[371536, 6347, 782, 19, 70, "Input", ExpressionUUID->"7fcf59b5-a5ca-2155-25f5-50fecc7f73bf",
+Cell[371622, 6350, 781, 19, 70, "Input",ExpressionUUID->"034d641c-5834-e412-3173-7e4659c6cf78",
  CellID->525840340],
-Cell[372321, 6368, 132, 2, 70, "Output", ExpressionUUID->"023f49e2-a747-9723-33c5-60cfd2f3fa09",
+Cell[372406, 6371, 131, 2, 70, "Output",ExpressionUUID->"52ce4f6a-032d-a48b-02f6-6734b6d90ed1",
  CellID->1708324045]
 }, Open  ]],
-Cell[372468, 6373, 135, 1, 70, "Section", ExpressionUUID->"21aa1c49-e16c-f406-57a9-9612901edf6c",
+Cell[372552, 6376, 134, 1, 70, "Section",ExpressionUUID->"5bfe104a-50de-a555-0985-8a1461680fbf",
  CellID->203008389],
-Cell[372606, 6376, 793, 16, 70, "Text", ExpressionUUID->"289b85cd-827f-9a9c-58b8-1c97370be8e6",
+Cell[372689, 6379, 790, 16, 70, "Text",ExpressionUUID->"6e1c99a5-dcef-9c28-1623-100ed49be772",
  CellID->1090263105],
-Cell[373402, 6394, 286, 5, 70, "CodeText", ExpressionUUID->"12f3dbee-abc4-6375-4280-d2cbce714e5f",
+Cell[373482, 6397, 285, 5, 70, "CodeText",ExpressionUUID->"608e87cc-8fce-afdf-10b5-1e962a78f525",
  CellID->1560876240],
 Cell[CellGroupData[{
-Cell[373713, 6403, 693, 12, 70, "Input", ExpressionUUID->"7ed5da6f-a344-b859-26ea-dc48d6f60aa3",
+Cell[373792, 6406, 692, 12, 70, "Input",ExpressionUUID->"2aa912c6-4938-1bb7-5a56-8ba068cd699d",
  CellID->201914069],
-Cell[374409, 6417, 5031, 109, 70, "Output", ExpressionUUID->"2cfa2c34-ef50-7d46-5499-c6718ae547ac",
+Cell[374487, 6420, 5030, 109, 70, "Output",ExpressionUUID->"66b4bee0-d247-b105-0e4b-37cde7f3006f",
  CellID->607076188]
 }, Open  ]],
-Cell[379455, 6529, 139, 1, 70, "CodeText", ExpressionUUID->"362a4e41-4988-041f-5e2a-602b683d6f65",
+Cell[379532, 6532, 138, 1, 70, "CodeText",ExpressionUUID->"337c2d89-644e-5b5e-6103-c4d30dfb29a4",
  CellID->807053435],
 Cell[CellGroupData[{
-Cell[379619, 6534, 400, 9, 70, "Input", ExpressionUUID->"01ed6b92-5a5f-fa78-3792-82dc5febc942",
+Cell[379695, 6537, 399, 9, 70, "Input",ExpressionUUID->"5f7c2741-1c81-ec9b-0503-bf2b9535b6e1",
  CellID->832633147],
-Cell[380022, 6545, 238, 3, 70, "Output", ExpressionUUID->"107fa29c-d013-1000-4004-3bd9e1a6636a",
+Cell[380097, 6548, 237, 3, 70, "Output",ExpressionUUID->"644cc522-c7c4-9b18-0c73-dc8ff276e662",
  CellID->1403310832]
 }, Open  ]],
-Cell[380275, 6551, 175, 3, 70, "CodeText", ExpressionUUID->"6798df62-4cc7-e4e1-0da7-d74c6573cecb",
+Cell[380349, 6554, 174, 3, 70, "CodeText",ExpressionUUID->"2de8c8f9-eaf3-8e90-5b97-e1a28e87d4fa",
  CellID->1828793009],
 Cell[CellGroupData[{
-Cell[380475, 6558, 255, 6, 70, "Input", ExpressionUUID->"49f5450b-e8d1-97dd-7f8b-5d548965fd27",
+Cell[380548, 6561, 254, 6, 70, "Input",ExpressionUUID->"6801f052-da94-0b6f-183e-ea1fdf2159b5",
  CellID->1491197753],
-Cell[380733, 6566, 242, 5, 70, "Output", ExpressionUUID->"2570a8a5-7a6f-59e7-530f-410f7f1a2bcd",
+Cell[380805, 6569, 241, 5, 70, "Output",ExpressionUUID->"0daf8e98-7628-e40b-3b54-27c203c2cf51",
  CellID->518839321]
 }, Open  ]],
-Cell[380990, 6574, 136, 1, 70, "CodeText", ExpressionUUID->"0b990c23-b656-01a6-39a6-a58cc3e3538c",
+Cell[381061, 6577, 135, 1, 70, "CodeText",ExpressionUUID->"7b6211f5-475c-1194-2911-88bf72e963fe",
  CellID->762269937],
 Cell[CellGroupData[{
-Cell[381151, 6579, 330, 7, 70, "Input", ExpressionUUID->"52243646-2fbd-210e-03db-a8204a487054",
+Cell[381221, 6582, 329, 7, 70, "Input",ExpressionUUID->"7c8f7bdf-2493-8d8a-24b5-72994d27d7d0",
  CellID->1596700196],
-Cell[381484, 6588, 273091, 6497, 70, "Output", ExpressionUUID->"1acd7f4d-3da3-7753-4af3-7717b4565db9",
+Cell[381553, 6591, 273090, 6497, 70, "Output",ExpressionUUID->"14e8dcaf-74c9-37ba-3c97-d5097d7d9d80",
  CellID->1663427655]
 }, Open  ]],
-Cell[654590, 13088, 569, 13, 70, "Text", ExpressionUUID->"062d91f0-6326-41c0-2fd2-08ba16d3132a",
+Cell[654658, 13091, 566, 13, 70, "Text",ExpressionUUID->"6cb5c01f-62f5-68e0-144a-da5916803aca",
  CellID->2118931930],
-Cell[655162, 13103, 117, 1, 70, "Section", ExpressionUUID->"1ac7f74a-ce09-be58-4afc-ef17ebbd04a2",
+Cell[655227, 13106, 116, 1, 70, "Section",ExpressionUUID->"55f417ec-7166-d78d-038b-8eb60010bdd7",
  CellID->1039057480],
-Cell[655282, 13106, 140, 1, 70, "Text", ExpressionUUID->"6f6ad260-8ee1-565a-1569-d44a2a943ca0",
+Cell[655346, 13109, 139, 1, 70, "Text",ExpressionUUID->"4b6e5dad-9702-0c1f-7916-54f722b75765",
  CellID->1411198270],
-Cell[655425, 13109, 290, 7, 70, "CodeText", ExpressionUUID->"612fd791-c81e-86f2-10d4-cedae9a8ecd8",
+Cell[655488, 13112, 288, 7, 70, "CodeText",ExpressionUUID->"2055bfee-d4b5-7aa2-506a-36cbdd404888",
  CellID->1703453532],
-Cell[655718, 13118, 498, 10, 70, "Input", ExpressionUUID->"26dca2d1-2715-746d-4ee3-3b9b52a05eb7",
+Cell[655779, 13121, 497, 10, 70, "Input",ExpressionUUID->"64c30c0d-1857-1b13-0cf0-a65799e26679",
  CellID->1477609488],
-Cell[656219, 13130, 177, 3, 70, "CodeText", ExpressionUUID->"296a77cd-8fa3-dd44-5f6a-6e972a57a7ae",
+Cell[656279, 13133, 176, 3, 70, "CodeText",ExpressionUUID->"46632a09-cc5f-b0ef-6e10-cc52e5eb0235",
  CellID->1030824397],
 Cell[CellGroupData[{
-Cell[656421, 13137, 590, 15, 70, "Input", ExpressionUUID->"6b853673-18d0-d9fa-19ba-a83d996aabc0",
+Cell[656480, 13140, 589, 15, 70, "Input",ExpressionUUID->"6ea251ed-865f-e03c-1652-48b733ebb306",
  CellID->1571214103],
-Cell[657014, 13154, 215, 5, 70, "Output", ExpressionUUID->"25b5b884-ef74-61b3-534a-31e18a013399",
+Cell[657072, 13157, 214, 5, 70, "Output",ExpressionUUID->"25a0bfbe-b1d4-2428-535f-36fbc0668f72",
  CellID->195627410]
 }, Open  ]],
-Cell[657244, 13162, 483, 9, 70, "Text", ExpressionUUID->"574a2197-51ef-7938-7d49-b8d1679a4802",
+Cell[657301, 13165, 481, 9, 70, "Text",ExpressionUUID->"2d15b43a-cd49-5244-5b2a-2e67e4fc20ae",
  CellID->144223354],
-Cell[657730, 13173, 121, 1, 70, "Section", ExpressionUUID->"6e85e9ed-427b-8528-16ba-00b7770fec72",
+Cell[657785, 13176, 120, 1, 70, "Section",ExpressionUUID->"2d1ff276-b82a-c3ca-5b24-f43039dc9110",
  CellID->1443527617],
-Cell[657854, 13176, 190, 4, 70, "Text", ExpressionUUID->"73b76025-96bb-3fff-214d-798f234f85c5",
+Cell[657908, 13179, 189, 4, 70, "Text",ExpressionUUID->"14fd1512-f616-8834-3c82-8d5f83a0db1e",
  CellID->311511756],
-Cell[658047, 13182, 204, 4, 70, "CodeText", ExpressionUUID->"31f4c073-8ff6-126f-678b-da3d298360b5",
+Cell[658100, 13185, 203, 4, 70, "CodeText",ExpressionUUID->"66c67103-72a1-9427-0efe-696d0755ff0d",
  CellID->1381425643],
 Cell[CellGroupData[{
-Cell[658276, 13190, 1020, 24, 70, "Input", ExpressionUUID->"72ff7667-e560-b2c0-2285-68408c1a002a",
+Cell[658328, 13193, 1019, 24, 70, "Input",ExpressionUUID->"48c794f4-84f6-2bfc-78fc-0dbe2c8379c6",
  CellID->2070168666],
-Cell[659299, 13216, 345, 5, 70, "Output", ExpressionUUID->"7c9be80e-0554-61c1-24b8-0268ace1332b",
+Cell[659350, 13219, 344, 5, 70, "Output",ExpressionUUID->"58ee7ecb-1370-1005-0896-7795a605636f",
  CellID->460230490]
 }, Open  ]],
-Cell[659659, 13224, 226, 4, 70, "CodeText", ExpressionUUID->"106b7ad8-6378-599b-4069-7382160d2be1",
+Cell[659709, 13227, 225, 4, 70, "CodeText",ExpressionUUID->"11d04a92-cbef-a8a5-47e0-63dfed9bfa8f",
  CellID->1717363484],
 Cell[CellGroupData[{
-Cell[659910, 13232, 653, 15, 70, "Input", ExpressionUUID->"7e6f7c7a-fa8f-2da1-2615-7627ff3a778b",
+Cell[659959, 13235, 652, 15, 70, "Input",ExpressionUUID->"7d9821c9-0e61-bc6d-2ba7-b893ab1506b7",
  CellID->1452928456],
-Cell[660566, 13249, 265, 4, 70, "Output", ExpressionUUID->"304452a4-201b-d64c-607c-4b0e51afbc96",
+Cell[660614, 13252, 264, 4, 70, "Output",ExpressionUUID->"3181a460-bc62-f1ee-67be-3e4a3514c334",
  CellID->1084469850]
 }, Open  ]],
-Cell[660846, 13256, 660, 10, 70, "Text", ExpressionUUID->"6beff1f8-c64a-83a6-1994-e8a5f3fcd18c",
+Cell[660893, 13259, 594, 10, 70, "Text",ExpressionUUID->"6b45e796-37a7-eecc-197a-fed04253b416",
  CellID->1536527082],
-Cell[661509, 13268, 127, 1, 70, "Section", ExpressionUUID->"4b5b9263-9199-4e16-7978-144d202c157c",
+Cell[661490, 13271, 126, 1, 70, "Section",ExpressionUUID->"5e187950-8ca2-2ab2-0638-711a25577898",
  CellID->1621535814],
-Cell[661639, 13271, 306, 6, 70, "CodeText", ExpressionUUID->"475d7054-346c-a3cc-6d63-6a1ebd1ef116",
+Cell[661619, 13274, 304, 6, 70, "CodeText",ExpressionUUID->"15a9104d-5625-6af3-4356-8a1763d038d9",
  CellID->1193935837],
-Cell[661948, 13279, 200, 4, 70, "Program", ExpressionUUID->"2ef71510-aa09-eca9-568c-8d5dcfbdb6f3",
+Cell[661926, 13282, 199, 4, 70, "Program",ExpressionUUID->"58c17d8b-1b7e-6f79-08ff-74d59e0b3243",
  CellID->105329933],
-Cell[662151, 13285, 584, 14, 70, "CodeText", ExpressionUUID->"3343f580-98d5-e31c-6170-ecea1961ce66",
+Cell[662128, 13288, 582, 14, 70, "CodeText",ExpressionUUID->"341c54d9-3079-6bba-5c24-4d83410c3980",
  CellID->1234416869],
-Cell[662738, 13301, 785, 17, 70, "Input", ExpressionUUID->"20a7420b-376a-b23f-505d-6455421c0105",
+Cell[662713, 13304, 784, 17, 70, "Input",ExpressionUUID->"1dbf9c2b-d84a-d79b-4b44-1674d9fcbde1",
  CellID->240380995],
-Cell[663526, 13320, 549, 14, 70, "CodeText", ExpressionUUID->"6af863a9-1098-c609-1a98-7af3a112ad53",
+Cell[663500, 13323, 547, 14, 70, "CodeText",ExpressionUUID->"6d5a63ab-93b9-14f3-1b7a-7af5264c7ed9",
  CellID->1771870337],
-Cell[664078, 13336, 1395, 31, 70, "Input", ExpressionUUID->"055bc2ad-6b92-a3be-3378-dbf70e24f184",
+Cell[664050, 13339, 1394, 31, 70, "Input",ExpressionUUID->"5077c06e-c394-b43c-000c-da4bf6261f06",
  CellID->305160771],
-Cell[665476, 13369, 123, 1, 70, "Section", ExpressionUUID->"2b0fb60e-2211-365f-5934-286857a59ca5",
+Cell[665447, 13372, 122, 1, 70, "Section",ExpressionUUID->"07359582-e823-44a1-2eca-0cef89d62e8b",
  CellID->1896945989],
-Cell[665602, 13372, 339, 6, 70, "Text", ExpressionUUID->"201a2509-bdd9-2fa1-5039-bd53346c758b",
+Cell[665572, 13375, 338, 6, 70, "Text",ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662",
  CellID->653417278],
-Cell[665944, 13380, 106, 1, 70, "Section", ExpressionUUID->"7085d256-6adc-aa08-20ba-d4100f6ef952",
+Cell[665913, 13383, 105, 1, 70, "Section",ExpressionUUID->"68c76573-72ce-0c1a-18fd-7d3d077b5760",
  CellID->1067269536],
-Cell[666053, 13383, 351, 9, 70, "Text", ExpressionUUID->"5f932952-49a5-d34f-05a0-c11c6851a195",
+Cell[666021, 13386, 350, 9, 70, "Text",ExpressionUUID->"6184d2f2-049e-728e-17bb-cbbcad2b40d4",
  CellID->49659130],
-Cell[666407, 13394, 234, 5, 70, "Text", ExpressionUUID->"160f17c4-d31a-fe19-3e34-8ea1e6acc563",
+Cell[666374, 13397, 233, 5, 70, "Text",ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673",
  CellID->464508221],
-Cell[666644, 13401, 367, 9, 70, "Text", ExpressionUUID->"10beb8bd-bdb6-ee93-4045-31e73440b4f9",
- CellID->1361313038],
-Cell[667014, 13412, 510, 14, 70, "Text", ExpressionUUID->"3fdc991b-fead-14b0-65e3-1144fb587e9a",
- CellID->1907680634]
+Cell[666610, 13404, 366, 9, 70, "Text",ExpressionUUID->"19bb1c5e-57ab-6e36-4f58-9618625e351c",
+ CellID->1361313038]
 }
 ]
 *)

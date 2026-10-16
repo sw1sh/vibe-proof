@@ -24,7 +24,7 @@ With[{leanlink = First[PacletFind["Wolfram/LeanLink"], None]},
     If[ leanlink === None || PacletNewerQ["1.0.13", leanlink["Version"]], PacletInstall["Wolfram/LeanLink", UpdatePacletSites -> True]]];
 
 markdownToNotebook = If[ local === None,
-    ResourceFunction[ResourceObject["https://www.wolframcloud.com/obj/nikm/DeployedResources/Function/MarkdownToNotebook"]],
+    ResourceFunction[ResourceObject["https://www.wolframcloud.com/obj/wolframinstitute/DeployedResources/Function/MarkdownToNotebook"]],
     Get[local]; Symbol["MarkdownToNotebook"]
 ];
 

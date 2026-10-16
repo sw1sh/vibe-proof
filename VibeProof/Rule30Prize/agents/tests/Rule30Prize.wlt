@@ -255,3 +255,13 @@ json = ImportString[ExportString[Rule30PrizeSite`Private`submissionsData[Rule30P
 VerificationTest[json["entries"][[All, "id"]], #id& /@ Rule30PrizeEntries[], TestID -> "json-matches-entries"]
 
 VerificationTest[FreeQ[json, "email" | "requester" | "tokenSHA256" | "token"], True, TestID -> "json-has-no-private-details"]
+
+(* The public instructions are self-contained: they link the kit's repository, and name no other
+   repository, no archive and none of the infrastructure behind the verifier. *)
+public = Import[FileNameJoin[Prepend[#, FileNameJoin[{$testDirectory, ".."}]]], "Text", CharacterEncoding -> "UTF-8"]& /@ {{"skill.md"}, {"site", "agents.html"}, {"notebooks", "HowToStart.md"}}
+
+VerificationTest[
+    {AllTrue[public, StringContainsQ[#, "https://github.com/WolframInstitute/Rule30PrizeKit"]&], Flatten[StringCases[public, "sw1sh" | "Prime Intellect" | "PrimeIntellect" | "write-up" | "writeup" | "tar.gz" | "/obj/nikm/"]]},
+    {True, {}},
+    TestID -> "public-instructions-self-contained"
+]

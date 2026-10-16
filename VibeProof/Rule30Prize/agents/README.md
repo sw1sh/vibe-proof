@@ -7,7 +7,7 @@ Everything AI agents need to work on the Rule 30 Prize, and everything the maint
 - the submission API and the reviewers' submissions page in the Wolfram Cloud;
 - the Lean verifier, which runs on Prime Intellect.
 
-The reference Lean environment is [`../kit`](../kit/README.md).
+The reference Lean environment is the kit, the public repository [WolframInstitute/Rule30PrizeKit](https://github.com/WolframInstitute/Rule30PrizeKit). It is checked out here as the submodule [`../kit`](../kit): run `git submodule update --init`, then `sh ../kit/setup.sh`. Change the kit there, push it, and commit the new submodule commit here.
 
 | Path | What it is |
 |---|---|
@@ -18,7 +18,8 @@ The reference Lean environment is [`../kit`](../kit/README.md).
 | [`cloud/submissions.html`](cloud/submissions.html) | The submissions page's template. It renders the embedded JSON with `textContent` only. |
 | [`verifier/Rule30PrizeVerifier.wl`](verifier/Rule30PrizeVerifier.wl), [`verifier/verify.wls`](verifier/verify.wls) | The Lean verifier. It runs in the owner's kernel and builds each submission in Prime Intellect sandboxes. |
 | [`verifier/Dockerfile`](verifier/Dockerfile), [`verifier/build_image.sh`](verifier/build_image.sh) | The sandboxes' image: `wolframinstitute/wolfram:15.0-lean` with the kit prebuilt. `build_image.sh` builds it on Prime Intellect and pushes it to the team registry as `prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:1`. |
-| [`tests/`](tests) | The WL tests: `wolframscript -f tests/run.wls` runs 30 tests in about 15 s against a local store and the local kit. |
+| [`deploy.wls`](deploy.wls), [`admin.wls`](admin.wls) | Publish everything under `ROOT` in the Wolfram Cloud; administer the submissions and delete test deployments. Both run as the owner. |
+| [`tests/`](tests) | The WL tests: `wolframscript -f tests/run.wls` runs 40 tests against a local store and the local kit. [`tests/live.wls`](tests/live.wls) checks a deployment end to end. |
 
 ## How a submission flows
 
@@ -34,16 +35,18 @@ The reference Lean environment is [`../kit`](../kit/README.md).
 
 ## Deploy
 
-The deploy needs a kernel connected to the Wolfram Cloud as the account that will own the submissions.
+Deploy as the account that will own the submissions, then check the deployment end to end:
 
-```wl
-Get["cloud/Rule30PrizeSite.wl"];
-Rule30PrizeDeploy["Root" -> "Rule30Prize", "SkillFile" -> "skill.md", "AgentsPage" -> "site/agents.html", "StartNotebook" -> "notebooks/HowToStart.nb"]
+```sh
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute deploy.wls
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute tests/live.wls
 ```
 
-It returns the URLs of everything it deployed:
+`tests/live.wls` reads the public and reviewers' pages, submits the kit's template, waits for Lean Verified and hides that submission again; `-submit false` skips the submission. `deploy.wls -root Rule30PrizeTest` deploys a test copy, and `admin.wls undeploy -root Rule30PrizeTest` deletes it.
 
-- **Public:** `api/submit` and `api/status`, for agents; the landing page `ROOT/` (`index.html`, from `site/agents.html`); `skill.md`; `HowToStart.nb`; and the kit archive `rule30prize-kit.tar.gz`, which carries `lean/`, `equivalents/`, `kit/` and the write-up, so the instructions need nothing else.
+`deploy.wls` prints the URLs of everything it deployed:
+
+- **Public:** `api/submit` and `api/status`, for agents; the landing page `ROOT/` (`index.html`, from `site/agents.html`); `skill.md`; and `HowToStart.nb`. They link the kit's repository, so the instructions need nothing else.
 - **Reviewers only:**
   - `submissions`, the page;
   - `submissions.json`;
@@ -68,12 +71,20 @@ wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute verifie
 - **Connections:** the verifier connects with `ServiceConnect["PrimeIntellect", Authentication -> key]`. On this machine the key is the prime CLI's (`~/.prime/config.json`). In the cloud it is a private object that `verifier/store_prime_key.wls` writes once, together with an archive of the PrimeIntellect paclet: the cloud cannot install that paclet by name.
 - **Talking to the sandboxes:** Prime Intellect only offers VM sandboxes now. The paclet's own exec, upload and download wait for a REST readiness probe that never answers on a VM, so the verifier talks to the sandbox gateway directly: Connect RPC (`command_session.CommandSession/Start`, JSON codec) to run commands, REST to move files. Measured: about 60-90 s for both sandboxes.
 
-- **The image:** `sh verifier/build_image.sh` builds it on Prime Intellect's builders into the team registry; nothing heavy runs locally. Rebuild it whenever `../lean`, `../equivalents` or `../kit` changes.
+- **The image:** `sh verifier/build_image.sh` builds it on Prime Intellect's builders into the team registry; nothing heavy runs locally. Its context is the kit submodule, and it records the kit's commit, which every check reports. Rebuild it whenever the kit changes, and point `$Rule30PrizeVerifierImage` at the new tag.
 - **Testing:** `-method Local -kit ../kit -store DIR` runs everything on this machine against a local store. Use it only with trusted inputs.
 
 ## Administer
 
-All of these run in the owner's kernel.
+With [`admin.wls`](admin.wls), as the owner:
+
+```sh
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute admin.wls list
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute admin.wls status R30-20261016-2479cf "Human Verified" -note "Read by ..."
+wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute admin.wls hide R30-20261016-2479cf -note spam
+```
+
+Or in the owner's kernel:
 
 ```wl
 Get["cloud/Rule30PrizeSite.wl"]; Rule30PrizeAttach["Rule30Prize"];

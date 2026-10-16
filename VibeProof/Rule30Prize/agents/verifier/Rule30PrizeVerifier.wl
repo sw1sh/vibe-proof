@@ -10,8 +10,9 @@
        Rule30PrizeVerify["Method" -> "Local", "Kit" -> kit]    (* this machine: trusted inputs only *)
 
    Each queued submission builds in a fresh Prime Intellect microVM sandbox, started from the
-   verifier image: wolframinstitute/wolfram:15.0-lean with the Rule 30 Prize kit prebuilt
-   (Dockerfile, built by build_image.sh into the team's registry). Only the
+   verifier image: wolframinstitute/wolfram:15.0-lean with the Rule 30 Prize kit
+   (WolframInstitute/Rule30PrizeKit) prebuilt; Dockerfile, built by build_image.sh into the team's
+   registry. Only the
    compiled .olean comes out of it. A second fresh sandbox runs the kit's Check.lean on that file: the
    kernel replay, the statement and the axioms. No submitted code runs where the checker runs. Neither
    sandbox holds a credential, and Lean needs no Wolfram license, so they need none either. The
@@ -41,9 +42,8 @@ $verifierDirectory = DirectoryName[$InputFileName]
    there, deploy.wls sets this). *)
 $Rule30PrizePrimeAccess = None
 
-(* Paths inside the verifier image; Dockerfile writes /opt/rule30/env.sh. *)
-$imageKit = "/opt/rule30/VibeProof/Rule30Prize/kit"
-
+(* The verifier image's environment, which the Dockerfile writes: RULE30_KIT (the kit), RULE30_LEAN,
+   LEAN_SYSROOT and LEAN_PATH (with /work first). *)
 $imageEnv = "/opt/rule30/env.sh"
 
 $officialTargets = {"Rule30Submission.problem1", "Rule30Submission.not_problem1", "Rule30Submission.problem2", "Rule30Submission.not_problem2"}
@@ -297,7 +297,7 @@ checkRemote[so_, oleans_Association, cargs_List, opts_Association] := withSandbo
         gatewayExecute[so, sid, "mkdir -p /work"];
         KeyValueMap[gatewayUpload[so, sid, "/work/" <> #1, #2]&, oleans];
         out = gatewayExecute[so, sid,
-            imageCommand["\"$RULE30_LEAN\" --short-version; cat /opt/rule30/commit; cd /work && timeout -k 30 " <> ToString[opts["CheckTimeout"]] <> " \"$RULE30_LEAN\" --run " <> $imageKit <> "/Check.lean Rule30Submission " <> StringRiffle[shellQuote /@ cargs, " "]],
+            imageCommand["\"$RULE30_LEAN\" --short-version; cat /opt/rule30/commit; cd /work && timeout -k 30 " <> ToString[opts["CheckTimeout"]] <> " \"$RULE30_LEAN\" --run \"$RULE30_KIT\"/Check.lean Rule30Submission " <> StringRiffle[shellQuote /@ cargs, " "]],
             opts["CheckTimeout"] + 60
         ];
         Replace[checkerResult[out["StandardOutput"]], {

@@ -630,7 +630,7 @@ Rule30PrizeDeploy[opts : OptionsPattern[]] := Block[{attached, urls},
         "api/file" -> CloudDeploy[APIFunction[{"id" -> "String", "kind" -> "String"}, forReviewers[fileResponse[#id, #kind]]&], CloudObject[$rootURL <> "/api/file"], Permissions -> $reviewerPermissions]
     |>;
     (* skill.md is public and names the deployment as {{ROOT}}. deploy.wls publishes the other
-       public pages: the landing page, the starter notebook and the kit archive. *)
+       public pages: the landing page and the starter notebook. *)
     If[StringQ[OptionValue["SkillFile"]], urls["skill.md"] = publishText["skill.md", StringReplace[Import[OptionValue["SkillFile"], "Text", CharacterEncoding -> "UTF-8"], "{{ROOT}}" -> $rootURL], "text/plain; charset=utf-8"]];
     Map[First, urls]
 ]

@@ -1,6 +1,7 @@
 # Track only VibeProof/HofstadterQ, VibeProof/Rule30Prize and this file; ignore everything else.
 /*
 !/.gitignore
+!/.gitmodules
 !/VibeProof/
 /VibeProof/*
 !/VibeProof/HofstadterQ/

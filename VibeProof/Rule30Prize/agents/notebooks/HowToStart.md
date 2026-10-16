@@ -6,7 +6,7 @@ Date: 2026
 Description: A computational essay that sets up the Wolfram Language, Lean 4 and LeanLink for work on the Rule 30 Prize problems, and shows the submission format that the verifier reads
 Abstract: Rule 30 is one line of Boolean logic, yet its center column looks random, and nobody can prove anything about that randomness. This essay sets up the tools for the three Rule 30 Prize problems. It computes the pattern and its center column in the Wolfram Language. It loads the official Lean statements with LeanLink and checks that Lean's definition computes the same column. It proves a first, known result in the exact form the verifier reads, and it shows what the checks catch. It ends with how to write and submit an essay of your own.
 Keywords: [rule 30, cellular automaton, Rule 30 Prize, Lean 4, LeanLink, formal proof, computational essay]
-Sources: ["[Announcing the Rule 30 Prizes](https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/)", "[The Rule 30 Prize kit]({{ROOT}}/rule30prize-kit.tar.gz)"]
+Sources: ["[Announcing the Rule 30 Prizes](https://writings.stephenwolfram.com/2019/10/announcing-the-rule-30-prizes/)", "[The Rule 30 Prize kit](https://github.com/WolframInstitute/Rule30PrizeKit)"]
 Links: ["[Rule 30 Prizes](https://rule30prize.org/)", "[What Is a Computational Essay?](https://writings.stephenwolfram.com/2017/11/what-is-a-computational-essay/)"]
 ---
 
@@ -58,13 +58,13 @@ None does. A proof has to rule out every period, from every starting time.
 
 ## The official statements in Lean
 
-The Rule 30 Prize kit is a Lean 4 project. It holds the official statements, about 400 proved theorems of partial results, and 96 proved equivalent forms of Problem 1. The verifier checks every submission against exactly this project. [LeanLink](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/LeanLink/) loads it into the Wolfram Language.
+The Rule 30 Prize kit, [WolframInstitute/Rule30PrizeKit](https://github.com/WolframInstitute/Rule30PrizeKit), is a Lean 4 project. It holds the official statements, about 400 proved theorems of partial results, and 96 proved equivalent forms of Problem 1. The verifier checks every submission against exactly this project. [LeanLink](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/LeanLink/) loads it into the Wolfram Language.
 
 Load LeanLink, point it at the kit (set `RULE30PRIZE_KIT`, or edit the fallback path), and check that the kit is there:
 
 ```wl
 Needs["Wolfram`LeanLink`"];
-$Rule30PrizeKit = Replace[Environment["RULE30PRIZE_KIT"], $Failed -> FileNameJoin[{$HomeDirectory, "rule30prize", "kit"}]];
+$Rule30PrizeKit = Replace[Environment["RULE30PRIZE_KIT"], $Failed -> FileNameJoin[{$HomeDirectory, "Rule30PrizeKit"}]];
 DirectoryQ[$Rule30PrizeKit]
 ```
 
@@ -176,7 +176,7 @@ equivalent = LeanImport["Rule30Equivalents.BinaryIrrational", "ProjectDir" -> $R
 equivalent["Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_binary"]["TypeForm"]
 ```
 
-The rest of what is known, period by period, is in the agent instructions (skill.md) and in the write-up of a 2026 attempt, `rule30prize/writeup/rule30-state.html` in the kit archive. Periods 1 to 4096 are excluded for short transients. Period 2 reduces to an open statement about half of the pattern. Rules 90, 150 and 210 share every structural fact used so far, yet their center columns are eventually constant, so a proof has to use something they lack.
+The rest of what is known, period by period, is in the agent instructions (skill.md) and in the kit's `lean/README.md`. Periods 1 to 4096 are excluded for short transients. Period 2 reduces to an open statement about half of the pattern. Rules 90, 150 and 210 share every structural fact used so far, yet their center columns are eventually constant, so a proof has to use something they lack.
 
 ## Your essay, and your submission
 
@@ -214,5 +214,3 @@ It proves nothing new. The period-1 result is Jen's theorem from 1986, and the e
 [2] E. Jen, *Global properties of cellular automata*, Journal of Statistical Physics 43 (1986) 219-242.
 
 [3] Google DeepMind, [*formal-conjectures: Rule30.lean*](https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Other/Rule30.lean), 2026.
-
-[4] *Rule 30 Prize, Problem 1: the state of an attempt*, 2026: `rule30prize/writeup/rule30-state.html` in the [kit archive]({{ROOT}}/rule30prize-kit.tar.gz).

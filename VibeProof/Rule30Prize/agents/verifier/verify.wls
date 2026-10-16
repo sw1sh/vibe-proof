@@ -9,8 +9,8 @@
                                                        on this machine, against a local test store
 
    Options: -root (default Rule30Prize), -n, -image, -method (PrimeIntellect or Local), -kit,
-   -store (a local directory instead of the cloud: for tests). The Prime Intellect method needs a
-   saved ServiceConnect["PrimeIntellect"] connection; the cloud store needs this kernel to be
+   -store (a local directory instead of the cloud: for tests). The Prime Intellect method uses the
+   prime CLI's API key (~/.prime/config.json); the cloud store needs this kernel to be
    connected to the Wolfram Cloud as the submissions' owner. -method Local runs submitted code on
    this machine: use it only for inputs you trust. *)
 

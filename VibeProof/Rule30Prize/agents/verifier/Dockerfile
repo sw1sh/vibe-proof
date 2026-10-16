@@ -5,21 +5,20 @@
 # sandbox compiles without fetching anything: Mathlib, the Ruliology catalog, the equivalences,
 # the kit.
 #
-# build_image.sh stages the context (lean/, equivalents/, kit/ and the commit, without .lake) and
-# builds and pushes this image with `prime images push`, on Prime Intellect's builders.
+# build_image.sh stages the context (the kit repository WolframInstitute/Rule30PrizeKit without
+# .lake, and the commit it is at) and builds and pushes this image with `prime images push`, on
+# Prime Intellect's builders.
 FROM wolframinstitute/wolfram:15.0-lean
 
-COPY lean /opt/rule30/VibeProof/Rule30Prize/lean
-COPY equivalents /opt/rule30/VibeProof/Rule30Prize/equivalents
-COPY kit /opt/rule30/VibeProof/Rule30Prize/kit
+COPY kit /opt/rule30/kit
 COPY commit /opt/rule30/commit
 
-WORKDIR /opt/rule30/VibeProof/Rule30Prize/kit
+WORKDIR /opt/rule30/kit
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Prebuilt Mathlib, then the rest. The catalog builds one module at a time, in the order of
-# ../lean/README.md: a cold parallel build of its certificate modules needs about 12.5 GB.
+# lean/README.md: a cold parallel build of its certificate modules needs about 12.5 GB.
 RUN lake exe cache get \
     && lake build Rule30PrizeKit Rule30Challenge Rule30Submission \
     && for m in Rule30Predecessors Rule30PredecessorCounts BusyBeaverLifetimes Rule30Blocks Rule30Jen \
