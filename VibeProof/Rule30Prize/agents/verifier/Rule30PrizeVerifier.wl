@@ -33,7 +33,7 @@ $Rule30PrizePrimeAccess::usage = "$Rule30PrizePrimeAccess gives the cloud object
 Begin["`Private`"]
 
 (* Built by build_image.sh into the team's Prime Intellect registry, as a VM sandbox image. *)
-$Rule30PrizeVerifierImage = "prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:1"
+$Rule30PrizeVerifierImage = "prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:2"
 
 $verifierDirectory = DirectoryName[$InputFileName]
 

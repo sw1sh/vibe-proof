@@ -82,7 +82,7 @@ $Rule30PrizeOnSubmit = None
 (* A check that has been running this long without a result is presumed dead, and queued again. *)
 $staleRunSeconds = 7200
 
-$kitVersion = "1"
+$kitVersion = "2"
 
 $maxNotebookBytes = 30 * 2^20
 

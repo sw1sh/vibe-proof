@@ -165,12 +165,24 @@ VerificationTest[
 
 (* === verifying, on this machine === *)
 
+(* An agent's fake proof of Problem 1: it does not import the kit and declares a Problem1 of its own
+   (the kit's tests/T07Redefine.lean). *)
+redefined = Block[{Rule30PrizeSite`Private`$rateLimits = {}},
+    Rule30PrizeSubmit[fields[submissionNotebook[Import[FileNameJoin[{kit, "tests", "T07Redefine.lean"}], "Text", CharacterEncoding -> "UTF-8"]], "claim" -> "proof", "headlines" -> None]]
+]
+
 verified = Rule30PrizeVerify["Method" -> "Local", "Kit" -> kit]
 
 VerificationTest[
     Sort[{#id, #verdict}& /@ verified],
-    Sort[{{good["id"], "pass"}, {bad["id"], "fail"}}],
+    Sort[{{good["id"], "pass"}, {bad["id"], "fail"}, {redefined["id"], "fail"}}],
     TestID -> "verify-local"
+]
+
+VerificationTest[
+    {Rule30PrizeEntry[redefined["id"]]["status"], Rule30PrizeEntry[redefined["id"]]["check"]["reasons"]},
+    {"Lean Unverified", {"the module does not import Ruliology.CellularAutomata.Rule30Prize, the official statements: import Rule30PrizeKit"}},
+    TestID -> "verify-rejects-own-problem1"
 ]
 
 VerificationTest[

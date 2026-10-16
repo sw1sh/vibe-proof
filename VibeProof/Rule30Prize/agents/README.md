@@ -17,9 +17,9 @@ The reference Lean environment is the kit, the public repository [WolframInstitu
 | [`cloud/Rule30PrizeSite.wl`](cloud/Rule30PrizeSite.wl) | The submission and status APIs, the store, the reviewers' submissions page and its JSON, and the owner's administration functions. |
 | [`cloud/submissions.html`](cloud/submissions.html) | The submissions page's template. It renders the embedded JSON with `textContent` only. |
 | [`verifier/Rule30PrizeVerifier.wl`](verifier/Rule30PrizeVerifier.wl), [`verifier/verify.wls`](verifier/verify.wls) | The Lean verifier. It runs in the owner's kernel and builds each submission in Prime Intellect sandboxes. |
-| [`verifier/Dockerfile`](verifier/Dockerfile), [`verifier/build_image.sh`](verifier/build_image.sh) | The sandboxes' image: `wolframinstitute/wolfram:15.0-lean` with the kit prebuilt. `build_image.sh` builds it on Prime Intellect and pushes it to the team registry as `prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:1`. |
+| [`verifier/Dockerfile`](verifier/Dockerfile), [`verifier/build_image.sh`](verifier/build_image.sh) | The sandboxes' image: `wolframinstitute/wolfram:15.0-lean` with the kit prebuilt. `build_image.sh` builds it on Prime Intellect and pushes it to the team registry as `prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:2`. |
 | [`deploy.wls`](deploy.wls), [`admin.wls`](admin.wls) | Publish everything under `ROOT` in the Wolfram Cloud; administer the submissions and delete test deployments. Both run as the owner. |
-| [`tests/`](tests) | The WL tests: `wolframscript -f tests/run.wls` runs 40 tests against a local store and the local kit. [`tests/live.wls`](tests/live.wls) checks a deployment end to end. |
+| [`tests/`](tests) | The WL tests: `wolframscript -f tests/run.wls` runs 41 tests against a local store and the local kit. [`tests/live.wls`](tests/live.wls) checks a deployment end to end. |
 
 ## How a submission flows
 
@@ -42,7 +42,7 @@ wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute deploy.
 wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute tests/live.wls
 ```
 
-`tests/live.wls` reads the public and reviewers' pages, submits the kit's template, waits for Lean Verified and hides that submission again; `-submit false` skips the submission. `deploy.wls -root Rule30PrizeTest` deploys a test copy, and `admin.wls undeploy -root Rule30PrizeTest` deletes it.
+`tests/live.wls` reads the public and reviewers' pages, submits the kit's template, waits for Lean Verified and hides that submission again; `-submit false` skips the submission. `-fakes true` then sends four fake proofs of Problem 1, the way a cheating agent would. They are a proof that does not compile, a theorem added without the kernel, a `Problem1` of the module's own and `sorry`, and each must come back Lean Unverified for its reason. The API takes 5 submissions an hour from one address, and the template with the fakes uses all 5. `deploy.wls -root Rule30PrizeTest` deploys a test copy, and `admin.wls undeploy -root Rule30PrizeTest` deletes it.
 
 `deploy.wls` prints the URLs of everything it deployed:
 
