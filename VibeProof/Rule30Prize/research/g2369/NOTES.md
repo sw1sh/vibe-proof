@@ -219,6 +219,23 @@ same rule-30 array, so the readouts are the same readout problem.
 - Conclusion: the content of the conjecture beyond FinConf lives on edge rules that no rule-30
   boundary produces.
 
+**The depth ≤ 2 matches are shift identities** (kit `FrozenBoundaryCore.lean`). When α = 0, bit 0
+is frozen and bit 1 flips by a constant, so the bulk sees a fixed edge.
+- (0,0,γ) is Φ on even seeds, and (0,β,0) is Φ on odd seeds.
+- (0,1,γ)(2z) = 2·b(z): bit 0 is white and bit 1 blinks.
+- (0,β,1)(2y+1) = 2·Φ(y) + 1 for odd y: bits 0 and 1 are black.
+- (0,β,1)(4z+1) = 4·b(z) + 1: bit 0 is black and bit 1 white.
+- (1,0,1)(2y+e) = 2·Φ(y) + 1 − e for odd y: bit 1 is black and bit 0 blinks.
+- `transfer`: if gᵗ(x) = 2ʲ·hᵗ(y) + eₜ with eₜ < 2ʲ, the readouts of g after j steps are readouts
+  of h.
+
+Hence `frozenBoundaryConjecture_iff_core`: the frozen-boundary conjecture ⇔ FinConf ∧ the
+white-blinking edge of (1,0,1) (x₁ = 0) ∧ the step (1,1,1).
+- The other 3/16 of the residues of (1,0,1), which match finite seeds at depth 4 or 5, are not
+  described by any rule mod 16. They match on some cycles mod 2¹² and not on others, with the same
+  residues mod 16 on both sides.
+- So proving them would mean checking cycles one by one, and they stay numerical.
+
 **Proved for all 8 steps** (period 1 and adjacent Jen).
 - The readouts obey rule 30's column relations in the bulk (`readout_left`, `readout_right`).
 - Once x ≥ 4, the top bit rises by exactly 2 per step (`iterate_top`), which plays the role of
