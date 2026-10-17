@@ -231,6 +231,67 @@ same rule-30 array, so the readouts are the same readout problem.
 So the conjecture now stands where FinConf stood: period 1 is proved uniformly, and period 2 is
 the frontier.
 
+## 7. Period 2 for the frozen boundaries
+
+Lean: kit `equivalents/Rule30Equivalents/FrozenBoundaryPeriodTwo.lean`. Script: `period2_frozen.py`.
+
+**Exact death.** Every step is triangular: bit i of g(x) is x_i plus a function of the bits below
+i.
+- So a seed is determined by its right part (the bits below d) and its readout d
+  (`eq_of_readout_eq`).
+- Two seeds that first differ at bit d + m have the same readout before time m and different
+  readouts at time m (`exact_death`).
+- For each right part and each target sequence there is exactly one 2-adic seed with that readout.
+  At period 2 the question is whether the seed forced by the target 1010… is a natural number.
+
+**Computing the forced seed.** Suppose readout d alternates.
+- The right part evolves on its own: R_{t+1} = g(R_t + alt(t)·2^{t+d}) mod 2^{t+d+1}.
+- Readout d − 1 is u(t) = bit t + d − 1 of R_t.
+- The columns above d follow sideways from `readout_left`:
+  col_{k+1}(t) = col_k(t+1) ⊕ (col_k(t) ∨ col_{k−1}(t)).
+- So the forced row to depth N costs O(N) big-integer operations. Truncations of it alternate up
+  to the truncation depth (checked).
+
+**Reduction to Q01 (all 8 steps).**
+- At a black step of the alternating readout, `readout_left` forces the cell to its left black.
+  So the `or` that the left part sees is black whatever the right part holds.
+- The left part therefore evolves as the zero-boundary left half (`zbl_of_alternating`). It is
+  finitely supported, and column −1 is black at every even step (`inX_of_alternating`).
+- Q01 forbids exactly this (`frozenBoundary_period_two_of_Q01`). It is the argument of
+  `Q01_no_leftfinite_alternating` for left-finite rule-30 configurations, and it never looks at the
+  right part.
+
+**The genuine boundaries.** For Φ the period-2 question is exactly CQ01
+(`alternationFree_white_iff_CQ01`; a finite configuration is encoded as a number by `enc`). The
+states a and b follow, through 2y + 1 and ι.
+
+**Data** (`period2_frozen.py`).
+- **Forced rows.** For all 8 steps, d ≤ 8 and every right part, the forced row has black cells
+  throughout to depth 1200.
+  - The longest white run is 19 for (1,1,1) and 16 for every other step.
+  - To depth 12000 with d = 1, the longest white run is 10 to 14 and about half the cells are
+    black, as in a random row.
+- **The driven column.** The driven column u is locally periodic with period 10 (1001101000),
+  interrupted by defects that arrive from the right part. For (1,1,1), d = 5, ρ = 7, about 8% of
+  its positions differ from the value 10 steps earlier.
+  - It is eventually periodic for only 5 to 12 of the 254 right parts with d ≤ 7, depending on
+    the step.
+  - So the absorption route (`not_finSupp_Psi_of_eventuallyPeriodic`, here
+    `not_adjacent_readouts`) does not apply in general.
+- **Matching against finite seeds.** Compare the last 700 of 1400 bits of u with the driven
+  columns of finite seeds (d ≤ 9).
+  - (1,1,1): 12 of 254 right parts match.
+  - (1,0,1): 181 of 254 match, close to its reducible 11/16.
+  - Φ: 254 of 254 match.
+  - With 250-bit windows almost everything matches, so short windows prove nothing.
+
+**Conclusion.** Period 2 for the frozen boundaries stands where period 2 stands for left-finite
+configurations.
+- Q01 settles all 8 steps, and for the genuine ones the period-2 question is exactly CQ01.
+- The step (1,1,1) has a period-2 question of its own, between the two: Q01 implies it, and no
+  link to CQ01 is known.
+- Nothing in the computations points to a counterexample.
+
 ## References
 
 - [BGK+08] I. Bondarenko, R. Grigorchuk, R. Kravchenko, Ye. Muntyan, V. Nekrashevych, D. Savchuk,
