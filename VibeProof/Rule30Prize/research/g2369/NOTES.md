@@ -148,6 +148,38 @@ The finitary filtration Mⱼ = ⟨Φⁱ σ Φ⁻ⁱ, Φⁱ τ Φ⁻ⁱ : i ≤ j
   center column is the root bit of the section of Φᵗ at the vertex 10^{t−1}. An amenable G with
   locally finite N does not seem to constrain that orbit.
 
+## 5. Does the group constrain finite-seed orbits?
+
+No. Every fact above is uniform in the starting point and concerns fixed bit positions or the whole
+group. The center column reads bit t at time t. In group terms, c(t) is the root bit of the section
+of Φᵗ along the seed's path. That section is ℓₜ Φᵗ with ℓₜ ∈ L finitary of depth up to 2t, and the
+finite groups Mⱼ that ℓₜ lives in grow without bound.
+
+**Exact reduction.** Φ fixes the lowest bit and continues as the state a = τΦ, so
+Φ(2y + 1) = 2·a(y) + 1, checked for y < 2¹⁶. Hence c(t) = bit t − 1 of aᵗ(0), checked for t ≤ 3000.
+The center column of the seed is the column at distance t − 1 from a black wall, read on the
+half-line that starts white.
+
+**Testing the natural strengthening** (`frozen_readouts.py`, `m1_readouts.py`). A group-level
+argument cannot single out Φ among the elements ℓΦ, ℓ ∈ L. So it would have to show that their
+diagonal readouts t ↦ bit t of (ℓΦ)ᵗ(a) are all aperiodic.
+- **The 8 frozen-boundary steps fΦ, f ∈ Aut(T₂).** For seeds 1, 3 and 5 and t < 4000, there is no
+  eventual period up to 600, and every density is about 0.5.
+- **All 4096 forcings ℓ ∈ M₁ (depth 4), seed 1, t < 1500.**
+  - 384 readouts are eventually periodic. Each is degenerate: ℓ undoes Φ on the seed, so the orbit
+    of 1 stays at 1.
+  - All 3712 forcings whose orbits keep growing have readouts with no eventual period up to 300.
+
+**Conjecture.** For every finitary ℓ in G2369 and every finite seed a whose orbit under ℓΦ is
+unbounded, the diagonal readout of ℓΦ on a is not eventually periodic. This contains Problem 1 and
+FinConf (ℓ = 1).
+- What makes it interesting: the family {ℓΦ} is closed under sections. The section of ℓΦ is ℓ′Φ with
+  depth(ℓ′) ≤ max(depth ℓ − 1, 2), so deep sections fall into the 8 frozen-boundary steps. Taking
+  sections moves the seed's bits into the forcing.
+- Why it does not close by induction: G2369 is not contracting, and sections of powers produce
+  readouts along lines of slope 2 and more. For example, a has nontrivial root action, so aᵗ splits
+  into (ab)^{t/2}.
+
 ## References
 
 - [BGK+08] I. Bondarenko, R. Grigorchuk, R. Kravchenko, Ye. Muntyan, V. Nekrashevych, D. Savchuk,
