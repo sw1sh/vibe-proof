@@ -309,6 +309,66 @@ configurations.
   link to CQ01 is known.
 - Nothing in the computations points to a counterexample.
 
+## 8. Where the frozen-boundary track ends
+
+Lean: kit `FrozenBoundary`, `FrozenBoundaryPeriodTwo`, `FrozenBoundaryCore`. Scripts:
+`period2_frozen.py`, `core_scan.py`.
+
+**Status.**
+- The conjecture ⇔ FinConf ∧ the core (`frozenBoundaryConjecture_iff_core`). The core is the
+  white-blinking edge of (1,0,1) together with the step (1,1,1).
+- **The core is rule 30 with a switching boundary.** Above the two edge bits:
+  - (1,0,1) applies Φ and b in turn: (1,0,1)(4y) = 4Φ(y) + 1 and (1,0,1)(4y+1) = 4b(y).
+  - (1,1,1) cycles Φ, a, a, b through the edge states 0 → 3 → 2 → 1 → 0.
+  - So their two- and four-step maps are b∘Φ = σΦ² and b∘a∘a∘Φ, elements of G2369
+    (`step_101_two_steps`, `step_111_four_steps`). FinConf is the case of a boundary that never
+    switches.
+- Proved for all 8 steps: period 1, adjacent Jen and exact death. Period 2 follows from Q01.
+- **Data.** `core_scan.py` forces a seed for every non-constant word of period ≤ 8, offset 2–6 and
+  right part, for both core pieces and for Φ as a control. None is finite (depth 300, longest white
+  tail 20). For alternation (§7), forced seeds are infinite to depth 12000.
+
+**Is it more attackable than FinConf? No.**
+- It is strictly stronger: the conjecture is FinConf plus the core.
+- The core is not easier on its own, either.
+  - Its left side is the same as FinConf's (rule 30, finite to the left), so every left-side
+    argument applies to it.
+  - The right-side arguments of FinConf have no counterpart, because the core's right part is
+    driven by a non-genuine edge. These include `no_white_run_11_finite`, which uses the right edge
+    of a finite configuration, and the ether and absorption reductions of periods 3 and 4.
+
+**What it is good for: sorting proof methods.**
+- An argument is *boundary-blind* if it uses only the column, its left side and a bounded
+  neighbourhood in the bulk. Examples are Jen, Condrey's period-1 argument and the reduction of
+  period 2 to Q01. Such an argument proves its statement for all 8 steps at once, so it must also
+  prove the core.
+- The black-run exclusions (Theorems B and D) look boundary-blind as well. They use a bounded
+  right neighbourhood and masked Jen, both of which live in the bulk for large t. Porting them
+  would mean restating the kit's black-run modules for a region where rule 30 holds, rather than
+  for `evol` on the whole line.
+- An argument that uses the white right half is *boundary-aware*.
+- A core counterexample would be a barrier: boundary-blind methods could not settle FinConf at that
+  period.
+  - At period 2 no such counterexample exists unless Q01 fails.
+  - The scan found none up to period 8.
+
+**Connections that were checked and do not help.**
+- *G2369.* The core's maps have the form n·Φᵏ with n finitary. But the readout sees every edge
+  event at half speed (an edge change at time τ reaches column −d at time 2τ + d), so the group
+  structure does not separate the readout from the edge.
+- *Embeddings into finite seeds.* No ι-type embedding exists:
+  - none with two extra bits (a direct check);
+  - none beyond 3/8 of the white-blinking cycles, by the diagonal-pair search.
+- *The two core pieces.* They do not reduce to each other: they share 7 diagonal-pair classes, all
+  at depth ≥ 8.
+- *Generalizations.* Every finitary twist fΦ is rule 30 with a periodic edge driver, which gives a
+  "periodic-edge conjecture". It is stronger still, so it is not more attackable either.
+
+**Conclusion.** The frozen-boundary conjecture is FinConf plus a two-piece core: rule 30 with a
+periodically switching boundary. The core shares all of FinConf's left-side results and none of its
+right-side ones. Further work pays only as an audit of methods, for example porting the
+boundary-blind black-run exclusions. It is not a route to Problem 1.
+
 ## References
 
 - [BGK+08] I. Bondarenko, R. Grigorchuk, R. Kravchenko, Ye. Muntyan, V. Nekrashevych, D. Savchuk,
