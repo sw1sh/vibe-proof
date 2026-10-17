@@ -21,10 +21,10 @@ Every Lean result uses only `propext`, `Classical.choice` and `Quot.sound`. None
 | Period 1 | **Proved** for every column | `Rule30Prize.no_column_eventually_constant`, `center_not_eventually_period_one` |
 | Small periods | **Proved:** no eventual period P ≤ 4096 with transient ≤ 8192 | `Rule30Window` |
 | Any period | **Proved:** T + P ≥ 16359 | `Rule30FactorWindow` |
-| Period 2 | Reduced to Q01, a statement about the zero-boundary left half. Q01 is **open** in general. It is proved in Lean for every start of width ≤ 52, and ≤ 56 in `research/kernel-certify-r2/t1`. | `Rule30PeriodTwo`, `Rule30ZeroBoundary*`, `Rule30ZeroBoundaryWidth52`, `Rule30PeriodTwoWidth5/6` |
+| Period 2 | Reduced to Q01, a statement about the zero-boundary left half. Q01 is **open** in general. It is proved in Lean for every start of width ≤ 52, and ≤ 56 in a module the default build skips. | `Rule30PeriodTwo`, `Rule30ZeroBoundary*`, `Rule30ZeroBoundaryWidth52`, `Rule30ZeroBoundaryWidth56`, `Rule30PeriodTwoWidth5/6` |
 | Least period 3 | Reduced. 001 needs one of AbsorptionT t001, Q001 or C3s001. 011 needs C3w(011). All four are **open**. | `Rule30EtherThree*` |
 | Least period 4 | Reduced to Absorption, the ether-and-wall trap, which is **open**. The pure ether lies in no trap of width ≤ 20. | `Rule30Ether`, `Rule30PeriodFourSkeleton`, `Rule30EtherTrapWidth20` |
-| Longer periods | **Open.** Some words are excluded, for example by long black runs and 30 certified words. | `Rule30BlackRuns`, `Rule30BlackRunBlocks`, `Rule30StripCertificateTable` |
+| Longer periods | **Open.** Some words are excluded, for example by long black runs and 30 certified words. | `Rule30BlackRuns`, `Rule30BlackRunBlocks`, `Rule30StripCertificateTable`, `Rule30WhiteRunEight` |
 
 Barriers are also proved:
 - Rules 90, 150 and 210 share every structural fact the argument uses, yet their center columns are eventually constant (`Rule30Realization`).
@@ -75,7 +75,7 @@ Barriers are also proved:
 - **Round 1, generalize-jen:** the corollary C3 has an off-by-one in its gap threshold. `verify-c3-doubling/C3Check.lean` (`sx_not_cover`) refutes it in Lean, and it never reached the catalog.
 - **Round 1, complexity:** the agent claimed that every word of length n ≤ 20 occurs in the center column, p_c(n) = 2^n. This fails at n = 20: 96 of the 2^20 words are absent from the first 10^7 bits (`mh-rigor-verify/recount.py`).
 - **bv_decide files:** `verify-white0r11-rederive/BV*.lean` and `verify-white0r11-rederive/r6/R6Full.lean` use `bv_decide`, which trusts the compiler through `Lean.ofReduceBool`. They are below the catalog's standard, and none is in `lean/`.
-- **Not integrated:** `verify-white0r11-rigor/StandaloneGe8.lean` is checked and strengthens `Rule30BlackRuns.no_white_run_11` from r ≥ 10 to r ≥ 8.
+- **Integrated later:** `verify-white0r11-rigor/StandaloneGe8.lean` is checked and strengthens `Rule30BlackRuns.no_white_run_11` from r ≥ 10 to r ≥ 8. It stayed out of the catalog; since 2026-10-17 it is the kit's `Rule30WhiteRunEight`, as is the width-56 check of `kernel-certify-r2/t1` (`Rule30ZeroBoundaryWidth56`).
 - **Final batch:** some claims in the workers' summaries were refuted or narrowed, and each `REPORT.md` lists them under "Refuted or unverified claims". For example, p3-ether's "no wall exists" holds only up to width 12 in Lean and width 28 by search.
 
 ## Not committed
@@ -98,4 +98,4 @@ Downloads, build outputs and binaries were never copied here.
 ## Rebuilding
 
 - **The Lean:** see the kit's README. From `kit/`: `sh setup.sh`, then `lake build`.
-- **Q01 for width ≤ 56:** build the kit first, then run `zsh research/kernel-certify-r2/t1/buildall56.sh`. It compiles 64 chunk files one at a time, at about 5.4 s and 1.5 GB each, about 6 minutes in total. New logs go to `t1/build/logs/`, which git ignores.
+- **Q01 for width ≤ 56:** the kit's `Rule30ZeroBoundaryWidth56`; its `lean/README.md` says how to build it, one chunk module at a time, about 6 minutes in all. The archived run can also be replayed: `zsh research/kernel-certify-r2/t1/buildall56.sh` compiles its 64 chunk files against the kit's `lean/`, at about 5.4 s and 1.5 GB each. New logs go to `t1/build/logs/`, which git ignores.
