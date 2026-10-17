@@ -19,7 +19,7 @@ This applies Williams's time-space method (STOC 2025) directly to the light cone
    - The root is the block holding (n, 0).
 4. **Evaluate it with Cook–Mertz.** Tree evaluation works in space about O((h + v) · log v), for height h and value length v. Williams applies this to such DAGs by recomputation. Here that gives O((n/b + b) · log b). With b ≈ √n, the memory is O(√n · log n), and the running time is superpolynomial.
 
-This is a sketch. It is the standard Williams template adapted to a 1D cellular automaton, and I expect it is folklore since his paper. It holds for every 1D cellular automaton of radius 1, not just rule 30.
+This is a sketch. It is the standard Williams template adapted to a 1D cellular automaton, and I expect it is folklore since his paper. It holds for every 1D cellular automaton of radius 1, not just rule 30. Steps 1–3 are proved in the kit's `Rule30LightCone` (`block_step`, `center_eq_root`); step 4, the evaluation algorithm itself, is not formalized.
 
 ## Why [137]'s trick does not go below √n here
 
