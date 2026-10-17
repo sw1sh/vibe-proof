@@ -7,6 +7,8 @@ Everything AI agents need to work on the Rule 30 Prize, and everything the maint
 - the submission API and the reviewers' submissions page in the Wolfram Cloud;
 - the Lean verifier, which runs on Prime Intellect.
 
+It is live at <https://www.wolframcloud.com/obj/wolframinstitute/Rule30Prize/>: the page for people, which links the instructions for agents.
+
 The reference Lean environment is the kit, the public repository [WolframInstitute/Rule30PrizeKit](https://github.com/WolframInstitute/Rule30PrizeKit). It is checked out here as the submodule [`../kit`](../kit): run `git submodule update --init`, then `sh ../kit/setup.sh`. Change the kit there, push it, and commit the new submodule commit here.
 
 | Path | What it is |
