@@ -8,6 +8,8 @@ Run from the project root: `lake env lean scripts/CheckAxioms.lean`. -/
 #print axioms Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_base
 #print axioms Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_binary
 #print axioms Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_decimal
+#print axioms Rule30Equivalents.IntegerRows.problem1_iff_integer_rows
+#print axioms Rule30Equivalents.IntegerRows.problem1_iff_diagArray
 #print axioms Rule30Equivalents.LinearRelations.problem1_iff_series_not_rational
 #print axioms Rule30Equivalents.LinearRelations.problem1_iff_series_not_rational_coeff_zero
 #print axioms Rule30Equivalents.LinearRelations.problem1_iff_no_linearRecurrence

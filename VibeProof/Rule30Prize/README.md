@@ -32,7 +32,7 @@ Barriers are also proved:
 
 ## Layout
 
-- **[`equivalents/`](equivalents/README.md):** statements proved equivalent to Problem 1 in Lean 4 + Mathlib. There are 27 forms, as 96 `problem1_iff_*` theorems, for example the irrationality of the binary number 0.c(0)c(1)c(2)…. The folder also has a [catalog](equivalents/CATALOG.md) of all 53 known equivalent forms and a [portfolio](equivalents/TECHNIQUES.md) of recent proof techniques.
+- **[`equivalents/`](equivalents/README.md):** statements proved equivalent to Problem 1 in Lean 4 + Mathlib. There are 29 forms, as 98 `problem1_iff_*` theorems, for example the irrationality of the binary number 0.c(0)c(1)c(2)…. The folder also has a [catalog](equivalents/CATALOG.md) of all 53 known equivalent forms and a [portfolio](equivalents/TECHNIQUES.md) of recent proof techniques.
 - **[`lean/`](lean/README.md):** a standalone Lake project. It holds byte-identical copies of the 54 Rule 30 modules of the `ruliology-lean` catalog, which git does not track, with SHA-256 sums and a module guide.
 - **[`writeup/rule30-state.html`](writeup/rule30-state.html):** the full write-up, a self-contained page. Read it at <https://sw1sh.github.io/vibe-proof/rule30-prize/>.
   - Section 9 covers the final batch.

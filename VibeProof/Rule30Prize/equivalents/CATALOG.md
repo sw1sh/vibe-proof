@@ -142,8 +142,8 @@ files. The rows follow the order of Section 3.
 | 53 | mathlib-bridges | bookkeeping | the same, in Mathlib's vocabulary: `Filter.atTop` and `List.HasPeriod` forms | Proved (library) | `WordsAutomata.problem1_iff_filter`, `WordsAutomata.problem1_iff_no_hasPeriod_tail` |
 | 8 | fc-bridge | bookkeeping | the formal-conjectures statement; Wolfram's 2019 statement, read as intended | Proved (library) | `TransformsSeeds.problem1_iff_fc`, `TransformsSeeds.problem1_iff_wolfram` |
 | 14 | pi2-normal-form | logic | for all T and P ≥ 1 some t ≥ T has c(t+P) ≠ c(t); no eventual period k!; Diophantine form | Proved (library) for the first two; Stated (Diophantine) | `TransformsSeeds.problem1_iff_pi2`, `TransformsSeeds.problem1_iff_factorial_periods`, `center_diophFn` |
-| 25 | nks-integer-rows | bookkeeping | t ↦ bit t of a(t), where a(t+1) = a(t) ⊕ (2a(t) ∨ 4a(t)), is not EP | Stated | `problem1_iff_nksRow` |
-| 26 | diagonal-array | CA / odometer | the main diagonal of the right-diagonal array is not EP | Stated | `problem1_iff_diagArray` |
+| 25 | nks-integer-rows | bookkeeping | t ↦ bit t of a(t), where a(t+1) = a(t) ⊕ (2a(t) ∨ 4a(t)), is not EP | Proved (library) | `IntegerRows.problem1_iff_integer_rows` |
+| 26 | diagonal-array | CA / odometer | the main diagonal of the right-diagonal array is not EP | Proved (library) | `IntegerRows.problem1_iff_diagArray`, `IntegerRows.diagArray_row_periodic` |
 | 1 | binary-irrational | real numbers | x₂ = 0.c(0)c(1)c(2)…₂ is irrational | Proved (library) | `BinaryIrrational.problem1_iff_irrational_binary` |
 | 2 | base-b-irrational | real numbers | 0.c(0)c(1)… read in any integer base B ≥ 2 is irrational | Proved (library); Scratch proof (`Real.ofDigits`); Stated (Cantor function) | `BinaryIrrational.problem1_iff_irrational_base`, `BinaryIrrational.problem1_iff_irrational_decimal` |
 | 16 | integer-digits | real numbers, without reals | no fraction p/q has binary digits c | Proved (library) | `NumberTheory.problem1_iff_not_rational_digits` |
@@ -192,10 +192,10 @@ files. The rows follow the order of Section 3.
 | 46 | durand-cobham | automata | c is not both α- and β-substitutive, for multiplicatively independent Perron numbers α, β | Sketch | none |
 | 43 | gap-theorems | complexity theory | no one-tape TM decides {1ⁿ : c(n) = 1} in time o(n log n); no TM does it in space o(log log n) | Sketch | `problem1_iff_no_fast_unary_decider` (sketch) |
 
-**Summary.** Of the 53 equivalent forms, 27 are proved in the library: 6 in batch 1 and 21 in
-batch 2. One more, [7], is proved in the core catalog and also has a library proof. For [14] only
-the Diophantine part is merely stated. 3 forms have scratch proofs, 20 are stated, and 2 are
-sketches.
+**Summary.** Of the 53 equivalent forms, 29 are proved in the library: 6 in batch 1, 21 in
+batch 2, and [25] and [26] in [IntegerRows](Rule30Equivalents/IntegerRows.lean). One more,
+[7], is proved in the core catalog and also has a library proof. For [14] only the Diophantine
+part is merely stated. 3 forms have scratch proofs, 18 are stated, and 2 are sketches.
 
 **Next targets after batch 2.** The critic's suggestions that batch 2 does not cover:
 

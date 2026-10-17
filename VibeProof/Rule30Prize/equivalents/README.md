@@ -10,7 +10,7 @@ theorem problem1_iff_irrational_binary : Rule30Prize.Problem1 ↔ Irrational cen
 ```
 
 **Status:**
-- 27 of the 53 equivalent forms in [CATALOG.md](CATALOG.md) are proved here, as 96 theorems named `problem1_iff_*`.
+- 29 of the 53 equivalent forms in [CATALOG.md](CATALOG.md) are proved here, as 98 theorems named `problem1_iff_*`.
 - Every one uses only `propext`, `Classical.choice` and `Quot.sound`. None uses `sorry` or `native_decide`.
 - For each module, an independent verifier recompiled the file, checked its axioms and restated its main theorems.
 
@@ -26,6 +26,7 @@ theorem problem1_iff_irrational_binary : Rule30Prize.Problem1 ↔ Irrational cen
 | [ShiftOrbit](Rule30Equivalents/ShiftOrbit.lean) | the shift orbit of c is infinite, and c is not preperiodic. Morse–Hedlund: c has at least n + 1 distinct blocks of every length n | `problem1_iff_infinite_shifts`, `problem1_iff_ncard_factors`, `problem1_iff_strictMono_ncard_factors` |
 | [WordsAutomata](Rule30Equivalents/WordsAutomata.lean) | each of:<br>- no word repeats forever, and there is a right-special block of every length;<br>- the tail complexity is at least n + 1;<br>- the orbit closure and the ω-limit set are infinite;<br>- every finite-state predictor errs infinitely often, and no feedback shift register generates c | `problem1_iff_no_eventual_word`, `problem1_iff_right_special`, `problem1_iff_omegaLimit_infinite`, `problem1_iff_unpredictable` |
 | [TransformsSeeds](Rule30Equivalents/TransformsSeeds.lean) | each of:<br>- the same for shifts of c, its XOR derivative, its running parity, and its decimations;<br>- the Π₂ form, and periods restricted to factorials;<br>- the formal-conjectures statement, and Wolfram's 2019 statement read as intended (the literal reading is degenerate);<br>- every stripe seed 1, 11, 101, 1011, … has exactly the center column c | `problem1_iff_xor_derivative`, `problem1_iff_decimation`, `problem1_iff_fc`, `problem1_iff_wolfram`, `problem1_iff_stripeSeed` |
+| [IntegerRows](Rule30Equivalents/IntegerRows.lean) | the integer recurrence a(0) = 1, a(t+1) = a(t) XOR (2a(t) OR 4a(t)) (OEIS A110240): bit t of a(t) is not eventually periodic. Equivalently, the main diagonal of the bit array (j, t) ↦ bit j of a(t) is not eventually periodic, although every row j of that array is periodic with period dividing 2^j | `problem1_iff_integer_rows`, `problem1_iff_diagArray`, `diagArray_row_periodic` |
 | [Symmetry](Rule30Equivalents/Symmetry.lean) | the same question for rule 86 (black seed), for rules 135 and 149 (white seed), and for the complemented column | `problem1_iff_rule86`, `problem1_iff_rule135`, `problem1_iff_rule149` |
 | [Basic](Rule30Equivalents/Basic.lean) | — (shared definitions: the center column `c` and `EventuallyPeriodic`) | `problem1_iff_not_eventuallyPeriodic` |
 
