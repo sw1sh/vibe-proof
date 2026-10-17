@@ -19,7 +19,7 @@ Rule 30: new(p) = old(p−1) ⊕ (old(p) ∨ old(p+1)).
 ### 1. Computation and validation ([psi.c](psi.c))
 
 - **Reach.** Ψ(∅) is computed to depth 2^20 in 25 s.
-- **Validation.** I truncated Ψ(∅) to width W, simulated rule 30 by brute force with independent code, and recorded when the center stops alternating. It stops exactly at the first black depth of Ψ(∅) beyond W, for every W tested (5, 10, 20, 40, 64, 100, 200, 300). This is the exact-death identity.
+- **Validation.** I truncated Ψ(∅) to width W, simulated rule 30 by brute force with independent code, and recorded when the center stops alternating. It stops exactly at the first black depth of Ψ(∅) beyond W, for every W tested (5, 10, 20, 40, 64, 100, 200, 300). This is the exact-death identity. It is now a theorem for every right half R and every width: `Rule30PeriodTwoSideways.truncation_death` in the kit, with `exact_death_center` for any left row.
 
 First 64 cells: `1100011011000101000001100010001000011001111110010000111111111101`.
 
@@ -67,7 +67,7 @@ So the formulas are dense and generic, with no sparse, low-degree or recursive s
 
 ## Theory notes
 
-**One candidate.** For R = ∅ there is exactly one possible counterexample: the row Ψ(∅) itself. By the exact-death identity, any finite left row that keeps the alternation must equal Ψ(∅).
+**One candidate.** For R = ∅ there is exactly one possible counterexample: the row Ψ(∅) itself. By the exact-death identity, any finite left row that keeps the alternation must equal Ψ(∅). The kit's `Rule30PeriodTwoSideways` proves this for every R (`Psi_unique`, `CQ01_iff_Psi`) and states the R = ∅ case as `CQ01Empty`.
 
 - So CQ01 at R = ∅ says that one explicit, computable 0/1 sequence is not eventually zero.
 - Since Ψ(∅) has black cells near depth 2^20, a counterexample would need width ≥ about 10^6.

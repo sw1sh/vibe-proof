@@ -21,7 +21,7 @@ Every Lean result uses only `propext`, `Classical.choice` and `Quot.sound`. None
 | Period 1 | **Proved** for every column | `Rule30Prize.no_column_eventually_constant`, `center_not_eventually_period_one` |
 | Small periods | **Proved:** no eventual period P ≤ 4096 with transient ≤ 8192 | `Rule30Window` |
 | Any period | **Proved:** T + P ≥ 16359 | `Rule30FactorWindow` |
-| Period 2 | Reduced to Q01, a statement about the zero-boundary left half. Q01 is **open** in general. It is proved in Lean for every start of width ≤ 52, and ≤ 56 in a module the default build skips. | `Rule30PeriodTwo`, `Rule30ZeroBoundary*`, `Rule30ZeroBoundaryWidth52`, `Rule30ZeroBoundaryWidth56`, `Rule30PeriodTwoWidth5/6` |
+| Period 2 | Reduced to Q01, a statement about the zero-boundary left half. Q01 is **open** in general. It is proved in Lean for every start of width ≤ 52, and ≤ 56 in a module the default build skips. | `Rule30PeriodTwo`, `Rule30PeriodTwoCoupled`, `Rule30PeriodTwoSideways`, `Rule30ZeroBoundary*`, `Rule30ZeroBoundaryWidth52`, `Rule30ZeroBoundaryWidth56`, `Rule30PeriodTwoWidth5/6` |
 | Least period 3 | Reduced. 001 needs one of AbsorptionT t001, Q001 or C3s001. 011 needs C3w(011). All four are **open**. | `Rule30EtherThree*` |
 | Least period 4 | Reduced to Absorption, the ether-and-wall trap, which is **open**. The pure ether lies in no trap of width ≤ 20. | `Rule30Ether`, `Rule30PeriodFourSkeleton`, `Rule30EtherTrapWidth20` |
 | Longer periods | **Open.** Some words are excluded, for example by long black runs and 30 certified words. | `Rule30BlackRuns`, `Rule30BlackRunBlocks`, `Rule30StripCertificateTable`, `Rule30WhiteRunEight` |
