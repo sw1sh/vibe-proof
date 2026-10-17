@@ -3,7 +3,7 @@
 B=${0:A:h}   # this script's directory (the archived t1 folder)
 L=$B/build/logs   # new logs go under build/ (git-ignored); logs/ keeps the original run's logs
 mkdir -p $L
-cd ${B:h:h:h}/lean   # the lean/ snapshot of the catalog (VibeProof/Rule30Prize/lean)
+cd ${B:h:h:h}/kit/lean   # the kit's lean/, formerly the lean/ snapshot of the catalog (VibeProof/Rule30Prize/lean)
 for M in "$@"; do
   F=$B/src/${M//.//}.lean
   O=$B/build/${M//.//}.olean

@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Sequential build of the W=56 chunk files (one Lean process at a time, each under timeout 60).
-# About 64 x 5.4 s = 6 minutes in total; needs the lean/ snapshot built (see VibeProof/Rule30Prize/lean/README.md).
+# About 64 x 5.4 s = 6 minutes in total; needs the kit built (see VibeProof/Rule30Prize/kit/README.md).
 B=${0:A:h}   # this script's directory (the archived t1 folder)
 L=$B/build/logs   # new logs go under build/ (git-ignored); logs/ keeps the original run's logs
 mkdir -p $L

@@ -11,7 +11,7 @@
 **What is still worth salvaging**, in the order the audit recommends (details in the shortlist, §3):
 
 1. **Exact light-cone realizability for the coupled period-2 problem CQ01.** It is checked by SAT at bounded left width, and each long forbidden word goes into Lean as an LRAT certificate that the kernel replays (card D12, item S1). It sees right-half constraints of every length at once. The longest-lived left starts under the old short-word filter die much earlier under it: at width 96, all 103 of them (filtered deaths 110–116) die by time 87, and the one that lasted to 116 under the filter dies at about 57. It measures what a proof of CQ01 has to beat. It does not prove anything about period 2 by itself.
-2. **Axiom-free CC0 Lean by Ralf Stephan with Claude Code** (A1, B3, A5; S2). These are cheap and certain library entries. The Stanley engine turns the `p-recursive` and `fatou` forms of [CATALOG.md](CATALOG.md) into theorems, and shows that holonomic methods cannot apply to Σ c(t)zᵗ. Only some of the files are axiom-free; the others import cited axioms (table in A1). The Hankel and 2-adic forms are already re-derived in [LinearRelations.lean](Rule30Equivalents/LinearRelations.lean) and [TwoAdic.lean](Rule30Equivalents/TwoAdic.lean).
+2. **Axiom-free CC0 Lean by Ralf Stephan with Claude Code** (A1, B3, A5; S2). These are cheap and certain library entries. The Stanley engine turns the `p-recursive` and `fatou` forms of [CATALOG.md](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/CATALOG.md) into theorems, and shows that holonomic methods cannot apply to Σ c(t)zᵗ. Only some of the files are axiom-free; the others import cited axioms (table in A1). The Hankel and 2-adic forms are already re-derived in [LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean) and [TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean).
 3. **A census of excluded period words across three engines** (Berzai's, placego's and ours; C1, F14; S3). The exclusions are unconditional, hold for every finite seed and port to kernel certificates, and the engines complement each other. None of them has reached a primitive word of length 2–7.
 4. **The Duhamel–Cartier decomposition, as a long shot** (B1; S4). It is the only global algebraic handle that lies outside the local barriers. But rule 54 has the same structure and a periodic centre, so any invariant must detect the chirality of rule 30's nonlinear term, and it must use the finiteness of the seed.
 
@@ -25,35 +25,35 @@
 
 ### 0.1 Sources and scope
 
-Compiled 2026-10-15 for the equivalents library (`VibeProof/Rule30Prize/equivalents`, Lean 4.30.0, Mathlib `c5ea003`).
+Compiled 2026-10-15 for the equivalents library, then at `VibeProof/Rule30Prize/equivalents` and now the [`equivalents/`](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/equivalents) folder of the Rule 30 Prize kit (Lean 4.30.0, Mathlib `c5ea003`).
 
 - Six surveys produced 117 technique cards: Rule 30 projects; irrationality and transcendence; words and automata; dynamics and non-periodicity; frontier-AI mathematics; and our own archive.
 - A synthesis merged them, removed duplicates, checked each technique against our barrier theorems and ran its own checks (Appendix B).
 - An independent audit then checked that draft against primary sources (the arXiv API, the GitHub API, erdosproblems.com, 1stproof.org, the Lean release notes and the downloaded sources) and re-ran its computations. This version applies the audit's 18 corrections, adds its 7 missing techniques (C10, D12–D15, E10, E11) and follows its salvage order. Appendix C lists each correction and where it was applied.
-- The raw cards, the draft and the audit are in [research/technique-survey.json](research/technique-survey.json).
+- The raw cards, the draft and the audit are in [research/technique-survey.json](research/equivalents-survey/technique-survey.json).
 - Downloaded third-party code was read but never executed.
 
 ### 0.2 Where the equivalent forms are
 
-[CATALOG.md](CATALOG.md) lists the equivalent, stronger, weaker and related forms of Problem 1 under ids such as `two-adic` or `p-recursive`. The cards below name forms by these ids. The Lean library [Rule30Equivalents/](Rule30Equivalents/) proves `Problem1 ↔ X` for many of them:
+[CATALOG.md](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/CATALOG.md) lists the equivalent, stronger, weaker and related forms of Problem 1 under ids such as `two-adic` or `p-recursive`. The cards below name forms by these ids. The Lean library [Rule30Equivalents/](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/equivalents/Rule30Equivalents) proves `Problem1 ↔ X` for many of them:
 
 | File | Forms (CATALOG.md ids) | Example theorems | Cards |
 |---|---|---|---|
-| [Basic.lean](Rule30Equivalents/Basic.lean) | the definition | `problem1_iff_not_eventuallyPeriodic` | all |
-| [BinaryIrrational.lean](Rule30Equivalents/BinaryIrrational.lean) | `binary-irrational`, `base-b-irrational` | `problem1_iff_irrational_binary`, `problem1_iff_irrational_base` | A3, A4, A9 |
-| [NumberTheory.lean](Rule30Equivalents/NumberTheory.lean) | `continued-fraction`, `dirichlet-liouville`, `circle-rotation`, `integer-digits` | `problem1_iff_cf_not_terminates`, `problem1_iff_liouvilleWith_two`, `problem1_iff_not_rational_digits` | A3, A9 |
-| [TwoAdic.lean](Rule30Equivalents/TwoAdic.lean) | `two-adic`, `fcsr-complexity` | `problem1_iff_padic_irrational`, `problem1_iff_two_adic_complexity` | A2, A6, C10 |
-| [PowerSeriesF2.lean](Rule30Equivalents/PowerSeriesF2.lean) | `series-f2-lfsr` | `problem1_iff_series_not_rational`, `problem1_iff_linear_complexity_unbounded` | B1, B3, F9, F15 |
-| [LinearRelations.lean](Rule30Equivalents/LinearRelations.lean) | `rational-any-field`, `linear-relations`, `hankel` | `problem1_iff_series_not_rational` (any field), `problem1_iff_hankel_det_zmod_two`, `problem1_iff_hankel_det_int` | A1, B3 |
-| [ShiftOrbit.lean](Rule30Equivalents/ShiftOrbit.lean) | `shift-orbit`, `morse-hedlund` | `problem1_iff_injective_shifts`, `problem1_iff_ncard_factors` | A5, B4, C3, F15 |
-| [WordsAutomata.lean](Rule30Equivalents/WordsAutomata.lean) | `eventual-word`, `mathlib-bridges`, `special-factors`, `orbit-closure`, `omega-limit`, `tail-language`, `finite-state-machines`, `nlfsr` | `problem1_iff_no_word`, `problem1_iff_no_primitive_word`, `problem1_iff_right_special`, `problem1_iff_no_feedback_shift_register` | C1, C10, F1–F4, F14 |
-| [TransformsSeeds.lean](Rule30Equivalents/TransformsSeeds.lean) | `fc-bridge`, `pi2-normal-form`, `simple-transforms`, `decimations`, `stripe-seeds` | `problem1_iff_fc`, `problem1_iff_pi2`, `problem1_iff_stripeSeed` | B4, D1 |
-| [Symmetry.lean](Rule30Equivalents/Symmetry.lean) | `symmetric-rules` | `problem1_iff_rule86`, `problem1_iff_rule135` | F1 |
+| [Basic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/Basic.lean) | the definition | `problem1_iff_not_eventuallyPeriodic` | all |
+| [BinaryIrrational.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/BinaryIrrational.lean) | `binary-irrational`, `base-b-irrational` | `problem1_iff_irrational_binary`, `problem1_iff_irrational_base` | A3, A4, A9 |
+| [NumberTheory.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/NumberTheory.lean) | `continued-fraction`, `dirichlet-liouville`, `circle-rotation`, `integer-digits` | `problem1_iff_cf_not_terminates`, `problem1_iff_liouvilleWith_two`, `problem1_iff_not_rational_digits` | A3, A9 |
+| [TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean) | `two-adic`, `fcsr-complexity` | `problem1_iff_padic_irrational`, `problem1_iff_two_adic_complexity` | A2, A6, C10 |
+| [PowerSeriesF2.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/PowerSeriesF2.lean) | `series-f2-lfsr` | `problem1_iff_series_not_rational`, `problem1_iff_linear_complexity_unbounded` | B1, B3, F9, F15 |
+| [LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean) | `rational-any-field`, `linear-relations`, `hankel` | `problem1_iff_series_not_rational` (any field), `problem1_iff_hankel_det_zmod_two`, `problem1_iff_hankel_det_int` | A1, B3 |
+| [ShiftOrbit.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/ShiftOrbit.lean) | `shift-orbit`, `morse-hedlund` | `problem1_iff_injective_shifts`, `problem1_iff_ncard_factors` | A5, B4, C3, F15 |
+| [WordsAutomata.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/WordsAutomata.lean) | `eventual-word`, `mathlib-bridges`, `special-factors`, `orbit-closure`, `omega-limit`, `tail-language`, `finite-state-machines`, `nlfsr` | `problem1_iff_no_word`, `problem1_iff_no_primitive_word`, `problem1_iff_right_special`, `problem1_iff_no_feedback_shift_register` | C1, C10, F1–F4, F14 |
+| [TransformsSeeds.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TransformsSeeds.lean) | `fc-bridge`, `pi2-normal-form`, `simple-transforms`, `decimations`, `stripe-seeds` | `problem1_iff_fc`, `problem1_iff_pi2`, `problem1_iff_stripeSeed` | B4, D1 |
+| [Symmetry.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/Symmetry.lean) | `symmetric-rules` | `problem1_iff_rule86`, `problem1_iff_rule135` | F1 |
 
-- The library was built in two batches: BinaryIrrational, PowerSeriesF2, ShiftOrbit and Symmetry first, then NumberTheory, TwoAdic, LinearRelations, WordsAutomata and TransformsSeeds. [Rule30Equivalents.lean](Rule30Equivalents.lean) imports all ten files. CATALOG.md marks these forms "Proved (library)" after an independent verifier recompiled each module and checked its axioms; [scripts/CheckAxioms.lean](scripts/CheckAxioms.lean) prints the axioms of every `problem1_iff_*` theorem.
+- The library was built in two batches: BinaryIrrational, PowerSeriesF2, ShiftOrbit and Symmetry first, then NumberTheory, TwoAdic, LinearRelations, WordsAutomata and TransformsSeeds. [Rule30Equivalents.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents.lean) imports all ten files. CATALOG.md marks these forms "Proved (library)" after an independent verifier recompiled each module and checked its axioms; [scripts/CheckAxioms.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/scripts/CheckAxioms.lean) prints the axioms of every `problem1_iff_*` theorem.
 - Forms touched here that are not yet in the library: `p-recursive` and `fatou` (A1), `natural-boundary` (A7), `cobham-christol` (B1, B2, B4), `coupled-halves` (D12), `nks-integer-rows` (A2), `return-words` (A3) and `diagonal-array` (F12), all only stated in CATALOG.md, and reflection complexity (C3), which is not in CATALOG.md yet.
 - CATALOG.md also lists the stronger statements (no column eventually periodic, FinConf, NumberLike, LHC, non-automaticity, unbounded runs) and the project's period reductions (Q01, CQ01, Absorption), which are not implied by Problem 1. Most techniques here attack those.
-- The project's core Lean (no Mathlib), with the period reductions and the barrier theorems, is in [../lean/Ruliology/CellularAutomata/](../lean/Ruliology/CellularAutomata/).
+- The project's core Lean (no Mathlib), with the period reductions and the barrier theorems, is in [../lean/Ruliology/CellularAutomata/](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/lean/Ruliology/CellularAutomata).
 
 ### 0.3 Glossary
 
@@ -97,7 +97,7 @@ Proved in Lean (ours):
 - **JointBarrier (two-sided)**: on ℤ, from arbitrary finite configurations, no function of (outermost black positions, centre window, edge windows) decreases at every flip of the centre (`no_joint_local_ranking`). The witnesses are truncations of c7. **This is the only proved barrier for the two-sided setting.**
 - **Edge region**: edge structure, together with windows shorter than the distance to the wall, carries no information (`edge_region_barrier`). Backward trees never die (`barrier_exists`, `barrier_unique`).
 
-All of these are in [Rule30ZeroBoundaryBarriers.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryBarriers.lean), [Rule30Realization.lean](../lean/Ruliology/CellularAutomata/Rule30Realization.lean), [Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean) and [Rule30DrivenLeft.lean](../lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean).
+All of these are in [Rule30ZeroBoundaryBarriers.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryBarriers.lean), [Rule30Realization.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Realization.lean), [Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean) and [Rule30DrivenLeft.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean).
 
 Computed or derived:
 - **C6** (computed): no nontrivial additive conservation law exists for rule 30 up to range 10, or for rule 30² up to range 8.
@@ -204,7 +204,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - `RB.eventuallyPeriodic_of_isPRecursive`: a finite-range w : ℕ → ℚ satisfying a nontrivial recurrence Σ_j Q_j(n)·w(n+j) = 0 is eventually periodic.
   - `eventuallyPeriodic_of_isAlgebraic_of_finite_coeffs`, and `Stanley.pRecursive_of_isAlgebraic` over any field of characteristic 0.
   - The Comparator configuration lists `RB.Gen.not_isPRecursive_word`, `RB.not_isPRecursive_orbit`, `RB.Gen.not_isAlgebraic_wordSeries` and `RB.not_isAlgebraic_orbitSeries`: the parity words of ceiling orbits in rational bases are not P-recursive, and their series are not algebraic.
-- **Forms.** `p-recursive` and `fatou`, both only stated in CATALOG.md. `rational-any-field` over ℚ is already proved: `problem1_iff_series_not_rational ℚ` in [LinearRelations.lean](Rule30Equivalents/LinearRelations.lean).
+- **Forms.** `p-recursive` and `fatou`, both only stated in CATALOG.md. `rational-any-field` over ℚ is already proved: `problem1_iff_series_not_rational ℚ` in [LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean).
 - **Idea.** Past some N, every window recurs infinitely often, so Σ_j Q_j(t)·w(m+j) is a polynomial in t with infinitely many roots. Its top coefficients give a recurrence with constant coefficients, which on a finite alphabet is a finite-state map. Stanley's step: ℚ(X)(f) is a finite extension closed under d/dX, so f, f′, …, f^(d) are linearly dependent.
 - **Transfer.** Port the three Ceiling-Orbits files named below to prove `p-recursive` and `fatou`. This also proves, as a theorem, that holonomic tools (A9) cannot work on f = Σ c(t)zᵗ, because f is D-finite exactly when Problem 1 fails.
 - **Obstacle.**
@@ -226,13 +226,13 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 | Transcendence-Criteria | `ForMathlib/Combinatorics/SubwordComplexity.lean`, `.../InfiniteComplexity.lean` | axiom-free | finite and infinite Morse–Hedlund (A5, B4) |
 | Transcendence-Criteria | `CITED/AlloucheShallitComplexity.lean` | axiom-free | Cobham's linear bound, a theorem (B4) |
 | Transcendence-Criteria | `L90/DivergentAperiodic.lean`, `L90/RationalCycles.lean` | axiom-free (this revision's re-run of the scan) | Lagarias's parity theorem (A6) |
-| Transcendence-Criteria | `B3/DigitPeriodicity.lean` | **imports** `AB/StammeringSequences.lean` (axiom `isStammering_of_automatic`), `BL/Basic.lean` and `BL/ConjugacyMap.lean` | do not port; the 2-adic forms are re-derived in [TwoAdic.lean](Rule30Equivalents/TwoAdic.lean) |
+| Transcendence-Criteria | `B3/DigitPeriodicity.lean` | **imports** `AB/StammeringSequences.lean` (axiom `isStammering_of_automatic`), `BL/Basic.lean` and `BL/ConjugacyMap.lean` | do not port; the 2-adic forms are re-derived in [TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean) |
 | Transcendence-Criteria | `BL/Basic.lean` | **declares** `axiom shiftAut_eq_id_or_V` (line 328) | do not port |
 | Transcendence-Criteria | `RB/EventuallyPeriodic.lean`, `CITED/Stanley.lean` | `CITED/Stanley.lean` still declares `axiom pRecursive_of_isAlgebraic` | use the Ceiling-Orbits copies |
 | Transcendence-Criteria | `AB/*`, `BL/ConjugacyMap.lean`, `CITED/AdamczewskiFaverjon*` (`lemme_2_2`, `lemma_2_8`), `CITED/SubspaceTheorem.lean`, `CITED/Ridout.lean`, `CITED/CorvajaZannierAlgebraic.lean`, `CITED/NairKumarRout.lean` | declare cited axioms | do not port |
 
 #### A2. 2-adic presentations
-*Promise: low. Library value: already realised in [TwoAdic.lean](Rule30Equivalents/TwoAdic.lean). Verification: our library (second batch) for the 2-adic forms; Formal (3rd party) for Stephan's ℤ₂ digit lemma, which imports axioms; preprint or computed for the rest.*
+*Promise: low. Library value: already realised in [TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean). Verification: our library (second batch) for the 2-adic forms; Formal (3rd party) for Stephan's ℤ₂ digit lemma, which imports axioms; preprint or computed for the rest.*
 - **Origin.**
   - Stephan with Claude Code, [rwst/Transcendence-Criteria](https://github.com/rwst/Transcendence-Criteria), 2026-07-18 to 2026-08-06: `B3.not_isEventuallyPeriodic_binaryDigit`, `B3.ratInt_eventuallyPeriodic_binaryDigit`.
   - N. Berzai's remark "the same object over ℤ₂" ([rule30-left-edge](https://github.com/nateberzai-svg/rule30-left-edge), September–October 2026).
@@ -246,7 +246,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - H(a) = a ⊕ (2a ∨ 4a) permutes ℤ/2^k for k ≤ 20. It is not ergodic, since H(0) = 0.
   - wryan2986: a unit-triangular isometry Δ such that eventual periodicity holds iff Δ(S) is rational.
   - Chen–Winterhof: an algebraic 2-adic integer of degree d ≥ 2 has N-th 2-adic complexity ≥ N/d + O(1). A sequence that is both 2-adic algebraic and automatic is eventually periodic.
-- **Forms.** `two-adic` and `fcsr-complexity`, proved in [TwoAdic.lean](Rule30Equivalents/TwoAdic.lean) (`problem1_iff_padic_irrational`, `problem1_iff_two_adic_complexity`, `problem1_iff_no_odd_fraction`). `nks-integer-rows` (stated in CATALOG.md) is the T-function reading.
+- **Forms.** `two-adic` and `fcsr-complexity`, proved in [TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean) (`problem1_iff_padic_irrational`, `problem1_iff_two_adic_complexity`, `problem1_iff_no_odd_fraction`). `nks-integer-rows` (stated in CATALOG.md) is the T-function reading.
 - **Idea.** Read a row as a 2-adic integer. Rule 30 becomes a 1-Lipschitz T-function, and c(t) is digit t of Hᵗ(1).
 - **Transfer.** Done for the library: TwoAdic.lean re-derives the 2-adic forms, so Stephan's `B3/DigitPeriodicity.lean` is not needed. The `nks-integer-rows` form remains.
 - **Obstacle.**
@@ -268,7 +268,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 - **Proved.**
   - If a_n is strictly increasing and limsup a_n^(1/φⁿ) = ∞, then Σ 1/(a_n·a_{n+1}) is irrational. The threshold is sharp.
   - Σ τ(n)/(a₁⋯a_n) is irrational whenever a_n → ∞.
-- **Forms.** `binary-irrational` and `base-b-irrational` ([BinaryIrrational.lean](Rule30Equivalents/BinaryIrrational.lean)); the stronger statement "unbounded runs" and the form `return-words` (stated) in CATALOG.md.
+- **Forms.** `binary-irrational` and `base-b-irrational` ([BinaryIrrational.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/BinaryIrrational.lean)); the stronger statement "unbounded runs" and the form `return-words` (stated) in CATALOG.md.
 - **Idea.** If S = P/Q, then Q·D_N·(S − S_N) is a positive integer for every N. Fast growth pushes it below 1 along a subsequence.
 - **Transfer.**
   - For x = Σ c(t)·2^(−t−1) = a/q, every white run followed by a black cell is shorter than log₂ q + 1. Since no column is eventually constant, "c has runs of unbounded length" implies Problem 1.
@@ -313,7 +313,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - The parity word of x_{n+1} = ⌈3x_n/2⌉ is not eventually periodic, and its factor complexity is ≥ ⌊41(m−1)/24⌋ + 1.
   - The same holds for every coprime p > q ≥ 2.
   - Irrationality of K(3) stays open. The abstract says the headline transcendence results rest on "three cited axioms".
-- **Forms.** `morse-hedlund` ([ShiftOrbit.lean](Rule30Equivalents/ShiftOrbit.lean)); `eventual-word`; the stronger statement NumberLike, which is Kopra's setting.
+- **Forms.** `morse-hedlund` ([ShiftOrbit.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/ShiftOrbit.lean)); `eventual-word`; the stronger statement NumberLike, which is Kopra's setting.
 - **Idea.**
   - A window of length m pins x_n modulo 2^m, so a repeated window costs a factor 2^k in |x_c − x_a|.
   - The state grows only like (3/2)^c, and log₂(3/2) < 1, so long repetitions are impossible.
@@ -405,7 +405,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - The class of such functionals is closed under the Cartier operators Λ₀ and Λ₁, because Λ(z)² = Λ(z²) in characteristic 2. So the 2-kernel of c is the image of an explicit orbit.
   - deg F_t = 2t − 1, with a unique top monomial.
   - Certified negatives: no Mahler relation of depth ≤ 12 and degree ≤ 8000; a census of ≥ 138,672 distinct truncations. The census route is provably closed.
-- **Forms.** `cobham-christol` (non-automaticity, equivalently transcendence over F₂(x): a stronger statement in CATALOG.md); `series-f2-lfsr` ([PowerSeriesF2.lean](Rule30Equivalents/PowerSeriesF2.lean)).
+- **Forms.** `cobham-christol` (non-automaticity, equivalently transcendence over F₂(x): a stronger statement in CATALOG.md); `series-f2-lfsr` ([PowerSeriesF2.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/PowerSeriesF2.lean)).
 - **Idea.** Rule 30 is rule 150 driven by the quadratic source, which is exactly the nonlinearity of the OR. Decimating by 2 maps the Duhamel class to itself, so non-automaticity is equivalent to the Cartier orbit being infinite.
 - **Transfer.** Two routes:
   - find an invariant of the chiral Cartier recursion that takes infinitely many values; or
@@ -443,7 +443,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 - **Artifacts.** arXiv TeX and the Zenodo U-series (CC BY 4.0); Zenodo 18921456 (CC BY-NC-SA 4.0); Fomin's code (MIT) and papers (CC BY 4.0).
 
 #### B3. Kronecker–Hankel criterion and number walls
-*Promise: low as a route. Library value: realised in [LinearRelations.lean](Rule30Equivalents/LinearRelations.lean). Verification: our library (second batch) for the Hankel forms; Formal (3rd party, not rebuilt, axiom-free closure) for Stephan's Kronecker; preprint for the number wall.*
+*Promise: low as a route. Library value: realised in [LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean). Verification: our library (second batch) for the Hankel forms; Formal (3rd party, not rebuilt, axiom-free closure) for Stephan's Kronecker; preprint for the number wall.*
 - **Origin.**
   - Stephan with Claude Code, [rwst/Transcendence-Criteria](https://github.com/rwst/Transcendence-Criteria) (2026-07-18 to 2026-08-06): `isRationalSeries_iff_kroneckerDet_eventually_zero` over integral domains, and `isRationalSeries_iff_isEventuallyPeriodic_coeff`.
   - C. de Souza Cavalcante, Zenodo [21728308](https://zenodo.org/records/21728308) and [22253667](https://zenodo.org/records/22253667) (2026-07-31 and 2026-09-02), answering Shallit's Open Problem 8. Lunnon had already asserted the zero-free wall in OEIS [A301850](https://oeis.org/A301850) in 2018; the paper claims the certificate, the verifier and the lift to the reals.
@@ -451,7 +451,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 - **Proved.**
   - Kronecker: over an integral domain, a power series is rational iff its Hankel determinants vanish for all large n.
   - Cavalcante: every entry in the rows m ≥ 0 of the number wall of a Dakota-based sequence over F₉ is nonzero; a lift gives a 3-valued real sequence with all shifted Hankel determinants nonzero.
-- **Forms.** `hankel` and `rational-any-field`, proved in [LinearRelations.lean](Rule30Equivalents/LinearRelations.lean): `problem1_iff_hankel_det` over any field, `problem1_iff_hankel_det_zmod_two`, `problem1_iff_hankel_det_int`, `problem1_iff_hankel_det_odd`, `problem1_iff_hankel_rank_unbounded`.
+- **Forms.** `hankel` and `rational-any-field`, proved in [LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean): `problem1_iff_hankel_det` over any field, `problem1_iff_hankel_det_zmod_two`, `problem1_iff_hankel_det_int`, `problem1_iff_hankel_det_odd`, `problem1_iff_hankel_rank_unbounded`.
 - **Idea.**
   - Kronecker: a singular Hankel matrix yields a recurrence, which a block-determinant identity propagates.
   - Number walls: the Desnanot–Jacobi recurrence turns the wall of an automatic input into a 2-D substitution tiling, which can be checked finitely.
@@ -473,7 +473,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - Sheng: an executable DFA/NFA/DFAO library with verified automata and DFAO pumping lemmas. It uses `rfl'` and `native_decide`, which our policy rejects.
   - Stephan: `AS.complexity_linear_of_automatic` (Cobham's linear-complexity bound, a theorem, in `CITED/AlloucheShallitComplexity.lean`).
   - Stephan: `ForMathlib/Combinatorics/InfiniteComplexity.lean` proves `pComplexity_lt_succ_of_not_isEventuallyPeriodic` (p(k) < p(k+1) for every word that is not eventually periodic, hence p(n) ≥ n + 1) and `exists_leftSpecial_of_not_isEventuallyPeriodic`. **The draft's claim that our `ShiftOrbit.lean` is the only Lean Morse–Hedlund was wrong.**
-- **Forms.** `fc-bridge`: our library matches the restated formal-conjectures statement verbatim (`problem1_iff_fc` in [TransformsSeeds.lean](Rule30Equivalents/TransformsSeeds.lean)). `morse-hedlund` ([ShiftOrbit.lean](Rule30Equivalents/ShiftOrbit.lean)); `special-factors` (`problem1_iff_right_special` in [WordsAutomata.lean](Rule30Equivalents/WordsAutomata.lean)); `cobham-christol`.
+- **Forms.** `fc-bridge`: our library matches the restated formal-conjectures statement verbatim (`problem1_iff_fc` in [TransformsSeeds.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TransformsSeeds.lean)). `morse-hedlund` ([ShiftOrbit.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/ShiftOrbit.lean)); `special-factors` (`problem1_iff_right_special` in [WordsAutomata.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/WordsAutomata.lean)); `cobham-christol`.
 - **Idea.** Superlinear factor complexity ⇒ not automatic ⇒ (Christol) transcendental over F₂(x).
 - **Transfer.** Cross-check ShiftOrbit.lean against Stephan's InfiniteComplexity.lean. Left-special factors of every length follow from non-periodicity, but the converse fails (01^∞ has them), so that direction is not a new equivalent form.
 - **Obstacle.** We found no formalisation of Christol's theorem, the full Cobham theorem or Sturmian theory.
@@ -522,13 +522,13 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - (a): our re-implementation confirmed that 1^8 0 is uncertified at K = 10, 00000011 is certified at K = 10, and 0^7 1 is certified at K = 12.
   - (b): the finite parts were reproduced.
   - The engines are complementary: our e-forcing generator `certgen.py` finds no certificate for 0^7 1 at K ≤ 12, while Berzai's engine certifies it at K = 12.
-- **Forms.** `eventual-word`, word by word (`problem1_iff_no_word` and `problem1_iff_no_primitive_word` in [WordsAutomata.lean](Rule30Equivalents/WordsAutomata.lean); the core catalog's `Rule30StripCertificates.problem1_iff_no_word`). Each exclusion is a word-by-word case of the stronger statements NumberLike (Berzai) or FinConf (placego).
+- **Forms.** `eventual-word`, word by word (`problem1_iff_no_word` and `problem1_iff_no_primitive_word` in [WordsAutomata.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/WordsAutomata.lean); the core catalog's `Rule30StripCertificates.problem1_iff_no_word`). Each exclusion is a word-by-word case of the stronger statements NumberLike (Berzai) or FinConf (placego).
 - **Idea.** Assume column 0 is eventually w^∞ and make the far right of the strip a free input. If every recurrent strongly connected component forces column 1 at the white letters of w to be eventually periodic, masked Jen finishes the proof.
 - **Transfer.** Grow the excluded set mechanically (all primitive words of period 8–20), cross-certify with all three engines, and port the results as packed-Nat kernel certificates (S3).
 - **Obstacle.**
   - Words are handled one at a time.
   - No primitive word of length ≤ 7 is certified at K ≤ 12 (Berzai) or width ≤ 16 (ours), and length 9 also fails at width ≤ 16. This is the computed local obstruction of §0.5: each strip graph has a component with two cycles whose white-phase outputs do not commute, and Lean's `word_lemma` turns such cycles into an aperiodic path.
-- **Artifacts.** Berzai: MPL-2.0. placego and cochon123: no licence (placego's Lean probes are in `tests/probes/lean`). Ours: [research/generalize-jen/](../research/generalize-jen/) (`strip_scan.py`, `certgen.py`) and [Rule30StripCertificates.lean](../lean/Ruliology/CellularAutomata/Rule30StripCertificates.lean).
+- **Artifacts.** Berzai: MPL-2.0. placego and cochon123: no licence (placego's Lean probes are in `tests/probes/lean`). Ours: [research/generalize-jen/](research/generalize-jen/) (`strip_scan.py`, `certgen.py`) and [Rule30StripCertificates.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30StripCertificates.lean).
 
 #### C2. Zero-entropy interface exclusions beside a period-2 centre
 *Promise: low. Verification: preprint, second-read only within the project.*
@@ -551,7 +551,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 - **Origin.** Allouche, Campbell, Li, Shallit and Stipulanti, [arXiv 2406.09302](https://arxiv.org/abs/2406.09302) (v1 2024-06-13, v4 2025-05-06).
 - **AI.** None; Walnut computes reflection complexity for automatic sequences.
 - **Proved.** x is eventually periodic iff r_x(n) ≤ ⌊(n+1)/2⌋ for some n ≥ 1, where r_x(n) counts length-n factors up to reversal. Otherwise r_x(n) ≥ 1 + ⌊(n+1)/2⌋, with equality iff x is Sturmian.
-- **Forms.** A new form, not yet in CATALOG.md: Problem 1 holds iff r_c(n) ≥ 1 + ⌊(n+1)/2⌋ for all n ≥ 1. It would build on `morse-hedlund` in [ShiftOrbit.lean](Rule30Equivalents/ShiftOrbit.lean).
+- **Forms.** A new form, not yet in CATALOG.md: Problem 1 holds iff r_c(n) ≥ 1 + ⌊(n+1)/2⌋ for all n ≥ 1. It would build on `morse-hedlund` in [ShiftOrbit.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/ShiftOrbit.lean).
 - **Idea.** A Morse–Hedlund bound for factors counted up to reversal.
 - **Transfer.** Add it to CATALOG.md and prove it with the ShiftOrbit machinery.
 - **Obstacle.** It restates the same difficulty.
@@ -655,7 +655,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - By Christol and Mérai–Niederreiter–Winterhof, it is 2-automatic iff its expansion complexity is bounded.
   - Relations between maximum-order, 2-adic and linear complexity.
   - Greenfeld–Moreira–Zelmanov ([arXiv 2408.03403](https://arxiv.org/abs/2408.03403)): every non-decreasing, submultiplicative function of at least linear growth is the complexity of some subshift.
-- **Forms.** `nlfsr`, already proved in register form (`problem1_iff_no_feedback_shift_register` in [WordsAutomata.lean](Rule30Equivalents/WordsAutomata.lean)); `cobham-christol` (expansion complexity; a stronger statement); `fcsr-complexity` and `series-f2-lfsr` through the relations between complexities.
+- **Forms.** `nlfsr`, already proved in register form (`problem1_iff_no_feedback_shift_register` in [WordsAutomata.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/WordsAutomata.lean)); `cobham-christol` (expansion complexity; a stronger statement); `fcsr-complexity` and `series-f2-lfsr` through the relations between complexities.
 - **Idea.** Maximum-order complexity is set by the longest factor that occurs twice with different successors. Bounding it is exactly "right-determinism at a fixed window", the same lemma behind Stephan's infinite Morse–Hedlund (`isEventuallyPeriodic_of_rightDeterministic`).
 - **Transfer.** Two cheap entries: the complexity-profile wording of `nlfsr` (a short bridge from the register form), and "c is not 2-automatic iff its expansion complexity is unbounded" for the stronger statements.
 - **Obstacle.** Equivalences only; they restate the difficulty. By Greenfeld–Moreira–Zelmanov, complexity growth alone cannot force more than Morse–Hedlund does. The data on c (all length-44 windows distinct in 10⁷ bits) say nothing asymptotic.
@@ -737,7 +737,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 
 #### D3. The forced left half: one object studied by three groups
 *Promise: medium as a map of the problem; low as a route. Verification: Lean (ours); preprint (placego, foundry).*
-- **Origin.** Ours: round 2 of the archive ([Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), 2026-10-15). placego: [PERIOD-TWO.md](https://github.com/ghywel/placego/blob/main/PERIOD-TWO.md) and [RECORD-MAP.md](https://github.com/ghywel/placego/blob/main/RECORD-MAP.md), 2026-10-05 to 2026-10-14. Foundry: D2. Duplicates: Kim (Zenodo [22858358](https://zenodo.org/records/22858358), 2026-09-20), Woffinden (Zenodo [22065659](https://zenodo.org/records/22065659), 2026-08-23), eliottcassidy2000 [THM-4048](https://github.com/eliottcassidy2000/math/blob/main/01-canon/theorems/THM-4048-rule30-periodicity-balance-and-model-firewalls.md) (2026-08-24).
+- **Origin.** Ours: round 2 of the archive ([Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), 2026-10-15). placego: [PERIOD-TWO.md](https://github.com/ghywel/placego/blob/main/PERIOD-TWO.md) and [RECORD-MAP.md](https://github.com/ghywel/placego/blob/main/RECORD-MAP.md), 2026-10-05 to 2026-10-14. Foundry: D2. Duplicates: Kim (Zenodo [22858358](https://zenodo.org/records/22858358), 2026-09-20), Woffinden (Zenodo [22065659](https://zenodo.org/records/22065659), 2026-08-23), eliottcassidy2000 [THM-4048](https://github.com/eliottcassidy2000/math/blob/main/01-canon/theorems/THM-4048-rule30-periodicity-balance-and-model-firewalls.md) (2026-08-24).
 - **AI.** Claude Code agents (ours); Claude, GPT and an "Intel" swarm (placego); Codex and Claude (foundry); Claude and ChatGPT as tools (Woffinden); Codex (eliottcassidy2000); not stated (Kim).
 - **Proved.**
   - Ours (Lean): Θ; `two_step_shift` (conjugacy to the full shift on the free bits); Q01 iff Θ is never finitely supported iff BWR; `count_constrained` (2^⌊W/2⌋); `q01_width_le_52` in the catalog, with W ≤ 56 in the archive. Computed: D(W) ≤ 2W + 8 for W ≤ 71, with four codes.
@@ -750,7 +750,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 - **Obstacle.**
   - Θ has no finite description beyond depth about 15: Myhill–Nerode classes grow like 1.79^s, the ANF degree is about k/2, and the statistics look i.i.d.
   - A random-constraint model predicts D(W) ≈ 1.82W and matches the measured survival to 0.2%.
-- **Artifacts.** Ours: [Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), [research/progA-backdet/](../research/progA-backdet/). placego, foundry and eliottcassidy2000: no licence. Kim CC BY 4.0; Woffinden CC BY-NC 4.0.
+- **Artifacts.** Ours: [Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), [research/progA-backdet/](research/progA-backdet/). placego, foundry and eliottcassidy2000: no licence. Kim CC BY 4.0; Woffinden CC BY-NC 4.0.
 
 #### D4. Channel bound and counting form (placego)
 *Promise: low. Verification: preprint; scripts not run by us.*
@@ -818,7 +818,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 
 #### D8. Barrier B7: additive rankings cannot certify Q01
 *Promise: none; it is a filter. Verification: derived here (2026-10-15), not machine-checked. It uses C6 (computed) and B2 (Lean).*
-- **Origin.** Derived in this portfolio on 2026-10-15, after the naive ranking LP of Appendix B.6; script `additive_ranking_lp.py` (scratch path in Appendix A). The draft that first stated it is kept in [research/technique-survey.json](research/technique-survey.json).
+- **Origin.** Derived in this portfolio on 2026-10-15, after the naive ranking LP of Appendix B.6; script `additive_ranking_lp.py` (scratch path in Appendix A). The draft that first stated it is kept in [research/technique-survey.json](research/equivalents-survey/technique-survey.json).
 - **AI.** Claude Code.
 - **Statement.** Consider rankings of the form V(x) = Σ_d h(x_d, …, x_{d+r−1}) + B(wall window) + E(edge window) + a·width, with h of range r ≤ 8. No such V can be ≥ 0 and decrease by ≥ 1 on every surviving double step of the zero-driven left half. The same holds with piecewise-constant weights on finitely many regions anchored at the wall or the edge.
 - **Proof sketch.**
@@ -837,7 +837,7 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
   - global, non-additive rankings (D13).
 - **Explains** the archive's 15 failed monovariants.
 - **Pitfall.** An LP restricted to rows of width ≤ W is always feasible, because V = C − width works at bounded width (Appendix B.6). A numeric test must encode the all-width conditions through de Bruijn potentials.
-- **Artifacts.** The script above; C6's `conslaw*.py` in [research/A-invsearch/](../research/A-invsearch/).
+- **Artifacts.** The script above; C6's `conslaw*.py` in [research/A-invsearch/](research/A-invsearch/).
 
 #### D13. Learned ranking functions with formal checking *(added after the audit)*
 *Promise: low. Verification: peer-reviewed.*
@@ -1119,17 +1119,17 @@ B1, B2 and B6 apply to Q01 only: their witnesses have free bits starting with 11
 
 ### F. Our own salvage
 
-All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [write-up](https://sw1sh.github.io/vibe-proof/rule30-prize/)), produced by Nikolay Murzin with a Claude Code multi-agent workflow: attack agents, rigour, re-derivation and counterexample verifiers, and synthesis and integration agents (model IDs not recorded). Only kernel-checked results with the three standard axioms were accepted. The repository has no licence file. Lean modules are in [../lean/Ruliology/CellularAutomata/](../lean/Ruliology/CellularAutomata/).
+All F cards come from our archive, [VibeProof/Rule30Prize](README.md) (2026-10-15; [write-up](https://sw1sh.github.io/vibe-proof/rule30-prize/)), produced by Nikolay Murzin with a Claude Code multi-agent workflow: attack agents, rigour, re-derivation and counterexample verifiers, and synthesis and integration agents (model IDs not recorded). Only kernel-checked results with the three standard axioms were accepted. The repository has no licence file. Lean modules are in [../lean/Ruliology/CellularAutomata/](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/lean/Ruliology/CellularAutomata).
 
 #### F1. The masked Jen family
 *Promise: medium; it is the interface every word exclusion must reach. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. Round 1: [Rule30MaskedJen.lean](../lean/Ruliology/CellularAutomata/Rule30MaskedJen.lean), [Rule30DrivenLeft.lean](../lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean), [Rule30WhiteSeed.lean](../lean/Ruliology/CellularAutomata/Rule30WhiteSeed.lean), on top of [Rule30Jen.lean](../lean/Ruliology/CellularAutomata/Rule30Jen.lean). Base theorem: [Jen 1986](https://link.springer.com/doi/10.1007/BF01010579).
+- **Origin.** 2026-10-15. Round 1: [Rule30MaskedJen.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30MaskedJen.lean), [Rule30DrivenLeft.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean), [Rule30WhiteSeed.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30WhiteSeed.lean), on top of [Rule30Jen.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Jen.lean). Base theorem: [Jen 1986](https://link.springer.com/doi/10.1007/BF01010579).
 - **AI.** Attack agents found and proved the masked and window forms. A verifier refuted one corollary in Lean (an off-by-one threshold in the doubling-window corollary), which was then repaired (`research/verify-c3-doubling/C3Rescue.lean`).
 - **Proved.**
   - `masked_jen`, `orCol_not_eventuallyPeriodic`, `window_jen`, `finitary_jen`, `periodic_window`.
   - `Rule30DrivenLeft.no_periodic_column`: a finite nonzero left half driven by an eventually periodic boundary has no eventually periodic column.
   - `Rule30WhiteSeed.problem1_30_or_135`.
-- **Forms.** `eventual-word`: every word exclusion ends with this lemma. The weaker statements "Jen's pairs and masked Jen" in CATALOG.md. `symmetric-rules`: [Symmetry.lean](Rule30Equivalents/Symmetry.lean) treats rule 135 from a black seed as a different question.
+- **Forms.** `eventual-word`: every word exclusion ends with this lemma. The weaker statements "Jen's pairs and masked Jen" in CATALOG.md. `symmetric-rules`: [Symmetry.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/Symmetry.lean) treats rule 135 from a black seed as a different question.
 - **Idea.** If column i has period P, column i+1 cannot also have period P on the white times of column i: left-permutivity carries a defect.
 - **Transfer.** Any external technique must deliver column 1 eventually periodic at the white phases of w. Condrey's time-shift defect, Kim's identity L_{t+p} ⊕ L_t = (1 ⊕ C_t)(R_{t+p} ⊕ R_t) and the transferred Antihydra argument (A6) all land here.
 - **Obstacle.** It needs a second periodic object, and under 0101 driving the output of the true right half has positive entropy.
@@ -1137,7 +1137,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F2. Effective boundary and the reductions
 *Promise: medium. Verification: Lean (ours) for every implication; all hypotheses are open.*
-- **Origin.** 2026-10-15. Round 1 (small-periods agent; verifier verify-C1-effbdry-rigor), extended in round 2 and the final batch: [Rule30PeriodTwo.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwo.lean), [Rule30PeriodFourSkeleton.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodFourSkeleton.lean), [Rule30EtherThreeLeft.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThreeLeft.lean), [Rule30PeriodTwoCoupled.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoCoupled.lean).
+- **Origin.** 2026-10-15. Round 1 (small-periods agent; verifier verify-C1-effbdry-rigor), extended in round 2 and the final batch: [Rule30PeriodTwo.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwo.lean), [Rule30PeriodFourSkeleton.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodFourSkeleton.lean), [Rule30EtherThreeLeft.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThreeLeft.lean), [Rule30PeriodTwoCoupled.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoCoupled.lean).
 - **AI.** Found and proved by round-1 agents and adversarially verified; the derived reductions were written in round 2 and the final batch.
 - **Proved.**
   - `effective_boundary`, `effective_step`.
@@ -1148,11 +1148,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** The left half sees column 0 only through c(t) ∧ c(t+1). For a period word with no cyclically adjacent 1s, the left half after the onset is the autonomous ZBL started from a finite row.
 - **Transfer.** This is where any "a finite orbit cannot satisfy a constraint forever" technique plugs in, word by word. D2 adds Q01_lang; D12 measures CQ01 directly.
 - **Obstacle.** The constrained ZBL is conjugate to the full shift, and its survival statistics match an unbiased coin within 0.2%.
-- **Artifacts.** The Lean files above; death-time searches in [research/progA-backdet/](../research/progA-backdet/) and [research/A-invsearch/](../research/A-invsearch/).
+- **Artifacts.** The Lean files above; death-time searches in [research/progA-backdet/](research/progA-backdet/) and [research/A-invsearch/](research/A-invsearch/).
 
 #### F3. Traps and Absorption (least period 4; the word 001)
 *Promise: medium. The best partial target is Absorption(0111). Verification: Lean (ours) for the traps; computed for entry.*
-- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30Ether.lean](../lean/Ruliology/CellularAutomata/Rule30Ether.lean), [Rule30EtherTrap.lean](../lean/Ruliology/CellularAutomata/Rule30EtherTrap.lean), [Rule30EtherTrapWidth20.lean](../lean/Ruliology/CellularAutomata/Rule30EtherTrapWidth20.lean), [Rule30EtherThreeTrap.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThreeTrap.lean), [Rule30EtherThreeReach.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThreeReach.lean); `research/verify-p4traps-rigor/P4Traps.lean`.
+- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30Ether.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Ether.lean), [Rule30EtherTrap.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherTrap.lean), [Rule30EtherTrapWidth20.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherTrapWidth20.lean), [Rule30EtherThreeTrap.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThreeTrap.lean), [Rule30EtherThreeReach.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThreeReach.lean); `research/verify-p4traps-rigor/P4Traps.lean`.
 - **AI.** Agents found the traps with C searches. Two round-2 agents independently refuted the round-1 claim that every finite right half enters a single trap.
 - **Proved.**
   - Closed, labelled traps of 109, 188 and 188 states for 0001, 0011 and 0111 (widths 16, 16 and 14).
@@ -1170,11 +1170,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
   - This is a nucleation theorem for a chaotic driven half-line.
   - Entry happens before any signal from the right edge can arrive.
   - Paths that avoid the trap keep the full growth rate (computed). No barrier is proved for Absorption, and nobody has checked whether B7's argument against additive potentials extends to it.
-- **Artifacts.** The Lean files above; [research/B-edge-trap/](../research/B-edge-trap/), [research/p3-ether/](../research/p3-ether/).
+- **Artifacts.** The Lean files above; [research/B-edge-trap/](research/B-edge-trap/), [research/p3-ether/](research/p3-ether/).
 
 #### F4. Ethers and walls
 *Promise: medium. Verification: Lean (ours); the census is computed.*
-- **Origin.** 2026-10-15. Round 2 (p4-edge agent) and the final batch: [Rule30Ether.lean](../lean/Ruliology/CellularAutomata/Rule30Ether.lean), [Rule30EtherThree.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThree.lean), [Rule30EtherThreeNoWall.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.lean), [Rule30PeriodTwoCoupled.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoCoupled.lean).
+- **Origin.** 2026-10-15. Round 2 (p4-edge agent) and the final batch: [Rule30Ether.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Ether.lean), [Rule30EtherThree.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThree.lean), [Rule30EtherThreeNoWall.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThreeNoWall.lean), [Rule30PeriodTwoCoupled.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoCoupled.lean).
 - **AI.** Discovered by an agent analysing why period-4 traps exist. A verifier narrowed an overstated "no wall exists" to widths ≤ 12 (Lean) and ≤ 28 (search).
 - **Proved.**
   - `ether_rule`: the 7×4 ether carries 0001, 0011, 0111 and 0101.
@@ -1186,11 +1186,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** Periodic backgrounds whose columns carry the period words, plus closed walls, explain every trap found.
 - **Transfer.** This is the vocabulary for nucleation: Absorption(w) says every finite right half eventually builds an ether segment plus a wall.
 - **Obstacle.** The ether is also the counter-witness for local methods (JointBarrier) and the likely witness of a CQ01 lasso (D9, D12).
-- **Artifacts.** The Lean files above; [research/B-edge-trap/](../research/B-edge-trap/).
+- **Artifacts.** The Lean files above; [research/B-edge-trap/](research/B-edge-trap/).
 
 #### F5. The zero-boundary left half Θ
 *Promise: medium as a map. Verification: Lean (ours). Details in D3.*
-- **Origin.** 2026-10-15. Round 2, three independent formalisations merged into [Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean).
+- **Origin.** 2026-10-15. Round 2, three independent formalisations merged into [Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean).
 - **AI.** Three agents formalised the same object in three encodings without coordination; an integration agent merged them.
 - **Proved.** Θ, `two_step_shift`, `Q01_iff_Theta`, `Q01_iff_bounded`, `count_constrained`, `backward_det`, `free_bits_no00_no11111`.
 - **Forms.** `eventual-word` for the word 01, through Q01 and CQ01.
@@ -1201,7 +1201,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F6. Epochs, stripe absorption, deviation-front odometer
 *Promise: low. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. Round 2 and the final batch: [Rule30ZeroBoundaryStripe.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripe.lean), [Rule30ZeroBoundaryStripeFront.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFront.lean), [Rule30ZeroBoundaryStripeFamily.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFamily.lean).
+- **Origin.** 2026-10-15. Round 2 and the final batch: [Rule30ZeroBoundaryStripe.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripe.lean), [Rule30ZeroBoundaryStripeFront.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFront.lean), [Rule30ZeroBoundaryStripeFamily.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryStripeFamily.lean).
 - **AI.** The synthesis agent noticed that one agent's stripe-absorption theorem proved another agent's open conjecture; a verifier corrected a phase convention.
 - **Proved.**
   - Epoch decomposition: a history dies iff some epoch has odd length.
@@ -1211,11 +1211,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** Track the first deviation from the stripe; it moves one cell toward the wall per step.
 - **Transfer.** Epochs are the formal analogue of Q-tilde's arches. Front positions are max-plus quantities, consistent with B7.
 - **Obstacle.** Two zeros in f already interact over depths [12, 84].
-- **Artifacts.** The Lean files above; [research/A-invsearch/](../research/A-invsearch/).
+- **Artifacts.** The Lean files above; [research/A-invsearch/](research/A-invsearch/).
 
 #### F7. Bit-sliced kernel checkers and packed-Nat certificates
 *Promise: low; infrastructure. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. Final batch and round 1: [Rule30ZeroBoundaryLanes.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.lean), [Rule30ZeroBoundaryWidth52.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryWidth52.lean), [Rule30FactorWindow.lean](../lean/Ruliology/CellularAutomata/Rule30FactorWindow.lean), [Rule30Window.lean](../lean/Ruliology/CellularAutomata/Rule30Window.lean).
+- **Origin.** 2026-10-15. Final batch and round 1: [Rule30ZeroBoundaryLanes.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryLanes.lean), [Rule30ZeroBoundaryWidth52.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryWidth52.lean), [Rule30FactorWindow.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30FactorWindow.lean), [Rule30Window.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Window.lean).
 - **AI.** An agent replaced a per-path kernel DFS by a bit-sliced lane checker and proved it sound; a verifier rebuilt all source files in its own build directory.
 - **Proved.**
   - `q01_of_chunks`, with 2^18 lanes per Nat.
@@ -1226,11 +1226,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** Pack many independent cases into the bits of one natural number, so the kernel's fast Nat operations check them together.
 - **Transfer.** The tool for kernel certificates of finite statements. It fits the short MFWs (the draft planned 2^17 lanes for L = 9). The long MFWs of D12 (L = 18 or 37) need 2^(2L−1) windows, which is infeasible; they go through kernel-only LRAT instead.
 - **Obstacle.** Cost grows exponentially with width.
-- **Artifacts.** The Lean files above; [research/kernel-certify-r2/](../research/kernel-certify-r2/).
+- **Artifacts.** The Lean files above; [research/kernel-certify-r2/](research/kernel-certify-r2/).
 
 #### F8. Barrier theorems
 *Promise: none; they are filters. Verification: Lean (ours), plus C6 (computed) and B7 (derived).*
-- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30Realization.lean](../lean/Ruliology/CellularAutomata/Rule30Realization.lean), [Rule30ZeroBoundaryBarriers.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryBarriers.lean), [Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), [Rule30DrivenLeft.lean](../lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean), [Rule30EtherTrap.lean](../lean/Ruliology/CellularAutomata/Rule30EtherTrap.lean).
+- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30Realization.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Realization.lean), [Rule30ZeroBoundaryBarriers.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundaryBarriers.lean), [Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean), [Rule30DrivenLeft.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30DrivenLeft.lean), [Rule30EtherTrap.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherTrap.lean).
 - **AI.** Each barrier came from an agent whose attack failed and which then proved why; verifiers delimited the scope.
 - **Proved.** `Rule30Realization.barrier`, `column_realizable_unique`, B1, B2, B6, JointBarrier, `edge_region_barrier`, `barrier_exists`/`barrier_unique`, and `word_lemma`; plus C6 (computed), the local obstruction (computed) and B7 (derived).
 - **Scope.**
@@ -1242,11 +1242,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** Exhibit a configuration (often infinite) that satisfies everything a method uses yet has the wrong answer.
 - **Transfer.** Screen every external technique against §0.5 before investing in it.
 - **Obstacle.** None.
-- **Artifacts.** The Lean files above; [research/A-invsearch/lean/](../research/A-invsearch/lean/) (`JointBarrier.lean`, `ZBLBarrier.lean`, `ZBLEdgeDFA.lean`).
+- **Artifacts.** The Lean files above; [research/A-invsearch/lean/](research/A-invsearch/lean/) (`JointBarrier.lean`, `ZBLBarrier.lean`, `ZBLEdgeDFA.lean`).
 
 #### F9. Jen with a clock
 *Promise: low. Verification: Lean (ours). The same result is placego's Theorem A, whose `TheoremA.lean` we did not rebuild.*
-- **Origin.** 2026-10-15. Round 2 ([Rule30ZeroBoundary.lean](../lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean)); placego [PERIOD-TWO.md](https://github.com/ghywel/placego/blob/main/PERIOD-TWO.md) §2 and [TheoremA.lean](https://github.com/ghywel/placego/blob/main/tests/probes/lean/TheoremA.lean) (2026-10-05/09; Claude Local with GPT second reads).
+- **Origin.** 2026-10-15. Round 2 ([Rule30ZeroBoundary.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30ZeroBoundary.lean)); placego [PERIOD-TWO.md](https://github.com/ghywel/placego/blob/main/PERIOD-TWO.md) §2 and [TheoremA.lean](https://github.com/ghywel/placego/blob/main/tests/probes/lean/TheoremA.lean) (2026-10-05/09; Claude Local with GPT second reads).
 - **AI.** Agents on both sides.
 - **Proved.**
   - `jen_clock`: l + 2 ≤ T + m + 2P.
@@ -1260,7 +1260,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F10. Hidden slowness and exact-fit interleaving (Q-tilde, OEIS A394051)
 *Promise: low; methodological. Verification: Lean (ours; 1,436 lines; standard axioms re-printed).*
-- **Origin.** [VibeProof/HofstadterQ/lean](../../HofstadterQ/lean/) (2026-10-15), formalising B. Cloitre, [arXiv 2604.06237](https://arxiv.org/abs/2604.06237) (v3 2026-07-22). Independent proof by M. Mantovanelli, [arXiv 2603.29622](https://arxiv.org/abs/2603.29622).
+- **Origin.** [VibeProof/HofstadterQ/lean](../HofstadterQ/lean/) (2026-10-15), formalising B. Cloitre, [arXiv 2604.06237](https://arxiv.org/abs/2604.06237) (v3 2026-07-22). Independent proof by M. Mantovanelli, [arXiv 2603.29622](https://arxiv.org/abs/2603.29622).
 - **AI.** Cloitre's v3 PDF says ChatGPT 5.5 and 5.6 were used for editing, organisation and exploratory computation. Mantovanelli's v3 declares ChatGPT use and says his v2 finite-state closure "left a semantic gap". Our Lean was written with Claude Code in one session.
 - **Proved.** `QTilde.qtilde_wellDefined`, `isQTilde_unique`, `Qt_bounds`.
 - **Forms.** No rule-30 form directly; methodological for the period-2 left problem and the word forms.
@@ -1271,7 +1271,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F11. The period-2 block law
 *Promise: medium. Verification: computed (two codes, six runs). The Lean partial laws are now implied by the light-cone language (D2).*
-- **Origin.** 2026-10-15. The round-2 synthesis measurement ([research/synth-r2/](../research/synth-r2/)), cross-validated by an independent code in the write-up phase; partial Lean laws in [Rule30PeriodTwoWidth5.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth5.lean) and [Rule30PeriodTwoWidth6.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth6.lean).
+- **Origin.** 2026-10-15. The round-2 synthesis measurement ([research/synth-r2/](research/synth-r2/)), cross-validated by an independent code in the write-up phase; partial Lean laws in [Rule30PeriodTwoWidth5.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth5.lean) and [Rule30PeriodTwoWidth6.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth6.lean).
 - **AI.** Found by the synthesis agent; re-implemented and re-analysed by later agents.
 - **Computed.**
   - After at most 27 samples, every gap between ones of u is 3 or 5, every 100 is isolated, and the density is 3/14.
@@ -1289,18 +1289,18 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F12. Power-of-two right-diagonal periods
 *Promise: low. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. [Rule30Diagonals.lean](../lean/Ruliology/CellularAutomata/Rule30Diagonals.lean), [Rule30RightPeriods.lean](../lean/Ruliology/CellularAutomata/Rule30RightPeriods.lean); reproves and extends E. S. Rowland, [Complex Systems 16(3) (2006)](https://www.complex-systems.com/abstracts/v16_i03_a04/).
+- **Origin.** 2026-10-15. [Rule30Diagonals.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Diagonals.lean), [Rule30RightPeriods.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30RightPeriods.lean); reproves and extends E. S. Rowland, [Complex Systems 16(3) (2006)](https://www.complex-systems.com/abstracts/v16_i03_a04/).
 - **AI.** An agent found and proved the structure theory, and refuted its own guessed lower bound with kernel-checked counterexamples.
 - **Proved.** `e_step`, `rows_at_powers_of_two`, `restart`, `center_black_lt` (c(t) = 1 ⇒ 2^(e_t) > t), `no_three`. That the right-diagonal periods are unbounded is older: Gravner and Griffeath, Theoret. Comput. Sci. 466 (2012) 64–86, Prop. 3.3.
 - **Forms.** `diagonal-array` and `nks-integer-rows` (stated in CATALOG.md); vocabulary only for `two-adic` and `cobham-christol`, which F-OR bars.
 - **Idea.** The period of each right diagonal doubles exactly when one cell is black.
 - **Transfer.** None for c.
 - **Obstacle.** Rules 60, 90, 150 and 210 share all of it, and it never reaches the centre.
-- **Artifacts.** The Lean files above; [research/diagonal/](../research/diagonal/).
+- **Artifacts.** The Lean files above; [research/diagonal/](research/diagonal/).
 
 #### F13. Skeletons and bad-class language certificates
 *Promise: low. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30PeriodFourSkeleton.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodFourSkeleton.lean), [Rule30EtherThreeSkeleton.lean](../lean/Ruliology/CellularAutomata/Rule30EtherThreeSkeleton.lean), [Rule30PeriodTwoLanguage.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean), [Rule30PeriodTwoWidth5.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth5.lean), [Rule30PeriodTwoWidth6.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth6.lean).
+- **Origin.** 2026-10-15. Rounds 1–2 and the final batch: [Rule30PeriodFourSkeleton.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodFourSkeleton.lean), [Rule30EtherThreeSkeleton.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30EtherThreeSkeleton.lean), [Rule30PeriodTwoLanguage.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean), [Rule30PeriodTwoWidth5.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth5.lean), [Rule30PeriodTwoWidth6.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoWidth6.lean).
 - **AI.** Agents computed the bad components and exported certificates; a verifier recomputed them.
 - **Proved.**
   - `Cert.sound_bad`.
@@ -1312,11 +1312,11 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 - **Idea.** If c is eventually w-periodic, the true strip eventually stays in an exempt class, so anything true on that class holds eventually.
 - **Transfer.** For period 2, the exact light-cone language implies the width-5 and width-6 laws (Appendix B.2), so prefer it.
 - **Obstacle.** The restricted languages still grow, so no finite description follows.
-- **Artifacts.** The Lean files above; [research/progB-avoid/](../research/progB-avoid/).
+- **Artifacts.** The Lean files above; [research/progB-avoid/](research/progB-avoid/).
 
 #### F14. The nine-black shield and black-run families
 *Promise: low. Verification: Lean (ours).*
-- **Origin.** 2026-10-15. Round 1: [Rule30BlackRuns.lean](../lean/Ruliology/CellularAutomata/Rule30BlackRuns.lean), [Rule30BlackRunBlocks.lean](../lean/Ruliology/CellularAutomata/Rule30BlackRunBlocks.lean).
+- **Origin.** 2026-10-15. Round 1: [Rule30BlackRuns.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30BlackRuns.lean), [Rule30BlackRunBlocks.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30BlackRunBlocks.lean).
 - **AI.** Found independently by two agents; each theorem had rigour, re-derivation and counterexample verifiers.
 - **Proved.**
   - `nine_black` (optimal) and `black_shield`.
@@ -1331,7 +1331,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F15. Direct certificates for the F₂ and Morse–Hedlund forms
 *Promise: low. Verification: Lean (ours) for the first item; data for the rest.*
-- **Origin.** 2026-10-15. [Rule30Window.lean](../lean/Ruliology/CellularAutomata/Rule30Window.lean), [Rule30FactorWindow.lean](../lean/Ruliology/CellularAutomata/Rule30FactorWindow.lean), [research/gf2-algebra/](../research/gf2-algebra/), [research/complexity/](../research/complexity/).
+- **Origin.** 2026-10-15. [Rule30Window.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30Window.lean), [Rule30FactorWindow.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30FactorWindow.lean), [research/gf2-algebra/](research/gf2-algebra/), [research/complexity/](research/complexity/).
 - **AI.** Agents wrote the certificates and analyses; a verifier refuted one agent's claim that every word of length ≤ 20 occurs in the first 10⁷ bits.
 - **Proved and measured.**
   - Lean: T + P ≥ 16359.
@@ -1348,7 +1348,7 @@ All F cards come from our archive, [VibeProof/Rule30Prize](../) (2026-10-15; [wr
 
 #### F16. The adversarial multi-agent workflow
 *Promise: low; a method, not mathematics. Verification: process record.*
-- **Origin.** 2026-10-15. [research/workflows/](../research/workflows/) and [research/results/](../research/results/).
+- **Origin.** 2026-10-15. [research/workflows/](research/workflows/) and [research/results/](research/results/).
 - **AI.** Entirely AI-run under human direction.
 - **Scale.** About 100 Claude Code agents produced 393 indexed theorems; 5,353 constants were checked with 0 axiom violations.
 - **Verifiers caught:**
@@ -1405,7 +1405,7 @@ cc -O3 -o /tmp/ulang16 $A/scripts/ulang_indep.c && timeout 60 /tmp/ulang16 16   
 Then build a DFS that checks exact realizability incrementally (z3's incremental solver, keyed on u-prefixes) and computes D_exact(W) for growing W within the laptop limit. Record every MFW from the UNSAT cores, as `minforb.py` does for one start at a time.
 
 **Lean step.**
-1. State CQ01 at bounded left width and the light-cone realizability predicate (extending [Rule30PeriodTwoLanguage.lean](../lean/Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean)).
+1. State CQ01 at bounded left width and the light-cone realizability predicate (extending [Rule30PeriodTwoLanguage.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/lean/Ruliology/CellularAutomata/Rule30PeriodTwoLanguage.lean)).
 2. Build or find an LRAT/RUP checker proved sound in Lean that the kernel can evaluate with `decide` on packed-Nat clause tables, in the style of `Rule30ZeroBoundaryLanes`. Start with the length-18 MFW (a cone of 35 cells).
 3. Prove each harvested MFW forbidden by a kernel-replayed certificate.
 
@@ -1418,7 +1418,7 @@ Then build a DFS that checks exact realizability incrementally (z3's incremental
 ### S2 (medium, library). Axiom-free CC0 equivalences (A1, B3, A5, A2, B4, C3, C10)
 **Why.** These are certain wins for the library. The Stanley engine turns `p-recursive` and `fatou` into theorems and also proves that holonomic methods cannot apply to f.
 
-**Already done in our library:** Kronecker–Hankel ([LinearRelations.lean](Rule30Equivalents/LinearRelations.lean)), the 2-adic forms by re-derivation ([TwoAdic.lean](Rule30Equivalents/TwoAdic.lean)), Morse–Hedlund ([ShiftOrbit.lean](Rule30Equivalents/ShiftOrbit.lean)) and the register form of `nlfsr` ([WordsAutomata.lean](Rule30Equivalents/WordsAutomata.lean)).
+**Already done in our library:** Kronecker–Hankel ([LinearRelations.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/LinearRelations.lean)), the 2-adic forms by re-derivation ([TwoAdic.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/TwoAdic.lean)), Morse–Hedlund ([ShiftOrbit.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/ShiftOrbit.lean)) and the register form of `nlfsr` ([WordsAutomata.lean](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/Rule30Equivalents/WordsAutomata.lean)).
 
 **First experiment.** Write a stub file and compile it with `cd $E && timeout 60 lake env lean <stub>.lean` (about 12 s). It holds these statements, each with `sorry`:
 - `p-recursive`: CATALOG.md's `problem1_iff_not_pRecursive`;
@@ -1605,9 +1605,9 @@ All scratch paths are outside the repository; copy what you keep into `research/
   - `scripts/ulang_indep.c` (independent light-cone enumerator, L ≤ 16), `scripts/subsume_indep.py`, `scripts/dfs_lang21.c` (21 MFWs), `scripts/dfs_dump.c` (dumps DFS leaves), `scripts/realize.py`, `scripts/minforb.py`, `scripts/exact_deaths.py`, `scripts/check_realize.py`, `scripts/import_closure.py`, `scripts/eca_centres.py`;
   - `leaves96.txt` (the 103 W = 96 leaves with filtered death 110–116);
   - downloaded data in `dl_*` (untrusted, never executed).
-- Raw survey cards, the draft and the audit: [research/technique-survey.json](research/technique-survey.json).
-- Our archive: [../lean/](../lean/), [../research/](../research/), [../writeup/rule30-state.html](../writeup/rule30-state.html).
-- The equivalent forms: [CATALOG.md](CATALOG.md) and [Rule30Equivalents/](Rule30Equivalents/).
+- Raw survey cards, the draft and the audit: [research/technique-survey.json](research/equivalents-survey/technique-survey.json).
+- Our archive: [../lean/](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/lean), [../research/](research/), [../writeup/rule30-state.html](writeup/rule30-state.html).
+- The equivalent forms: [CATALOG.md](https://github.com/WolframInstitute/Rule30PrizeKit/blob/main/equivalents/CATALOG.md) and [Rule30Equivalents/](https://github.com/WolframInstitute/Rule30PrizeKit/tree/main/equivalents/Rule30Equivalents).
 
 ## Appendix B. Checks run (2026-10-15, laptop, every run under 60 s)
 
@@ -1644,7 +1644,7 @@ All scratch paths are outside the repository; copy what you keep into `research/
 
 ## Appendix C. Audit corrections applied
 
-The audit is `.audit` in [research/technique-survey.json](research/technique-survey.json). Card ids are those of this file.
+The audit is `.audit` in [research/technique-survey.json](research/equivalents-survey/technique-survey.json). Card ids are those of this file.
 
 1. The light-cone results were confirmed and extended to L = 16 (count 316, two MFWs; 32 s rather than the projected 80 s) → D2, Appendix B.8.
 2. The draft's first shortlist item was aimed along the wrong axis; exact realizability replaces it, and its kill rule was wrong → Summary, D2, D12, S1, S9.
