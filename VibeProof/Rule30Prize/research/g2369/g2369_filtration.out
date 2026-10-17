@@ -1,0 +1,5 @@
+GAP 4.16.1
+j=0 D=2  log2|M_j| = 3  log2|Aut(T_D)| = 3  AbInv(M_j) = {2, 2}  nilpotency class = 2
+j=1 D=4  log2|M_j| = 12  log2|Aut(T_D)| = 15  AbInv(M_j) = {2, 2, 2, 2}  nilpotency class = 5
+j=2 D=6  log2|M_j| = 45  log2|Aut(T_D)| = 63  AbInv(M_j) = {2, 2, 2, 2, 2, 2}  nilpotency class = 13
+j=3 D=8  log2|M_j| = 174  log2|Aut(T_D)| = 255  AbInv(M_j) = {2, 2, 2, 2, 2, 2, 2, 2}  nilpotency class = 34
