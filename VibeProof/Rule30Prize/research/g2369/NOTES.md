@@ -180,6 +180,57 @@ FinConf (ℓ = 1).
   readouts along lines of slope 2 and more. For example, a has nontrivial root action, so aᵗ splits
   into (ab)^{t/2}.
 
+## 6. The frozen-boundary conjecture, more deeply
+
+Lean: kit `equivalents/Rule30Equivalents/FrozenBoundary.lean`. Scripts: `classify_drivers.py`,
+`classify_pairs.py`, `classify_pairs2.py`.
+
+**Edge decoupling** (`testBit_step_add_two`, `testBit_step_zero`, `testBit_step_one`). Write the 8
+steps as g = f ∘ Φ, where f flips bit 0 if α, and bit 1 if β (bit 0 = 0) or γ (bit 0 = 1).
+- In the bulk, bit k + 2 of g(x) is x_{k+2} ⊕ (x_{k+1} ∨ x_k), which is rule 30.
+- The two edge cells evolve on their own: x₀ ↦ x₀ ⊕ α, and x₁ ↦ x₁ ⊕ x₀ ⊕ (β or γ). Their period
+  divides 4.
+- The bulk sees the edge only through the drivers x₁ ∨ x₀ (into bit 2) and x₁ (into bit 3).
+- So every instance is rule 30 on a half-line bounded by a diagonal that carries periodic data.
+
+**Which boundaries are genuine.** In rule 30 the cells beyond a speed-1 line evolve on their own.
+A frozen pair (p, q) beyond the edge is genuine only if some rule-30 right half keeps it constant.
+- (0, 0) is genuine: it is the white right half of a finite configuration, and the step is Φ.
+- (1, 0) is genuine: it is the right edge of a finite configuration one cell beyond the frame, and
+  the step is the black wall a.
+- (0, 1) is not genuine: b's boundary cannot be held by any right half. But b still embeds into
+  finite seeds through ι(y) = 4y + 2(y mod 2) + 1, which couples edge bit 1 to bulk bit 2
+  (`Phi_iota`).
+
+Hence `genuineFrozen_iff_finConfRows`: **on the three genuine frozen boundaries Φ, b, a, the
+conjecture is equivalent to FinConf.**
+
+**Classification of all 32 (step, edge state) pairs** (`classify_pairs.py`). The criterion: does
+some pair of consecutive diagonals of the orbit equal, as a periodic sequence up to a time shift, a
+pair of consecutive diagonals of a finite seed's Φ-orbit? Above such a pair the two arrays are the
+same rule-30 array, so the readouts are the same readout problem.
+- Φ, a, b, (0,0,1), (0,1,0) and (0,1,1) reduce on every residue mod 2¹⁰, at depth ≤ 2.
+- (1,0,1) reduces on 11/16 of the residues mod 2¹⁰ and mod 2¹². The rest is the white-blinking
+  edge, where x₁ = 0 and x₀ alternates.
+- (1,1,1), which is Φ followed by complementing the two edge cells, reduces on no residue (target
+  depth ≤ 10, finite-seed depth ≤ 15).
+- An apparent match of (1,1,1) with complemented finite-seed pairs is spurious. Complementing turns
+  rule 30 into rule 135, so such a match does not propagate up the array.
+- Conclusion: the content of the conjecture beyond FinConf lives on edge rules that no rule-30
+  boundary produces.
+
+**Proved for all 8 steps** (period 1 and adjacent Jen).
+- The readouts obey rule 30's column relations in the bulk (`readout_left`, `readout_right`).
+- Once x ≥ 4, the top bit rises by exactly 2 per step (`iterate_top`), which plays the role of
+  the left edge.
+- Jen's argument then gives `not_adjacent_readouts`: no two adjacent readouts are both eventually
+  periodic.
+- Condrey's argument gives `frozenBoundary_period_one`: for every step and every seed with an
+  unbounded orbit, no readout is eventually constant. This includes the irreducible step (1,1,1).
+
+So the conjecture now stands where FinConf stood: period 1 is proved uniformly, and period 2 is
+the frontier.
+
 ## References
 
 - [BGK+08] I. Bondarenko, R. Grigorchuk, R. Kravchenko, Ye. Muntyan, V. Nekrashevych, D. Savchuk,
