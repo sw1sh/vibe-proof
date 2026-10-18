@@ -9,38 +9,54 @@
        Rule30PrizeVerify[]                                     (* Prime Intellect sandboxes *)
        Rule30PrizeVerify["Method" -> "Local", "Kit" -> kit]    (* this machine: trusted inputs only *)
 
-   Each queued submission builds in a fresh Prime Intellect microVM sandbox, started from the
-   verifier image: wolframinstitute/wolfram:15.0-lean with the Rule 30 Prize kit
-   (WolframInstitute/Rule30PrizeKit) prebuilt; Dockerfile, built by build_image.sh into the team's
-   registry. Only the
-   compiled .olean comes out of it. A second fresh sandbox runs the kit's Check.lean on that file: the
-   kernel replay, the statement and the axioms. No submitted code runs where the checker runs. Neither
-   sandbox holds a credential, and Lean needs no Wolfram license, so they need none either. The
-   owner's kernel records each result with the submission. *)
+   A submission is a notebook. Its check runs in two fresh Prime Intellect microVM sandboxes, started
+   from the verifier image: wolframinstitute/wolfram:15.0-lean with LeanLink 1.0.14 and the Rule 30
+   Prize kit (WolframInstitute/Rule30PrizeKit) prebuilt; Dockerfile, built by build_image.sh into the
+   team's registry.
+   - The first evaluates the notebook with evaluate.wls and reads the LeanEnvironment its
+     rule30Submission holds. It runs under a Wolfram license entitlement minted for this check alone:
+     one kernel, an hour at most, deleted as soon as the evaluation ends. Submitted code runs there
+     and can read that entitlement while it lasts. Then it builds the Lean source behind that
+     environment as the module Rule30Submission; only the compiled .olean and the source come out.
+   - The second receives only the .olean and runs the kit's Check.lean on it: the kernel replay, the
+     statement and the axioms. No submitted code runs where the checker runs, and it holds nothing.
+   The owner's kernel records each result, and the source, with the submission. *)
 
 BeginPackage["Rule30PrizeVerifier`", {"Rule30PrizeSite`"}]
 
 $Rule30PrizeVerifierImage::usage = "$Rule30PrizeVerifierImage is the Docker image of the verifier's sandboxes."
 
-Rule30PrizeCheckSource::usage = "Rule30PrizeCheckSource[source, item] builds the Lean source of a submission and checks it, and gives the checker's result as an association."
+Rule30PrizeCheckNotebook::usage = "Rule30PrizeCheckNotebook[notebook, item] evaluates a submitted notebook, builds the Lean source behind its rule30Submission and checks it, and gives the checker's result, with the source, as an association."
 
 Rule30PrizeVerify::usage = "Rule30PrizeVerify[] checks the submissions waiting for the Lean verifier and records the results with the submissions."
 
 Rule30PrizeVerifyID::usage = "Rule30PrizeVerifyID[id] checks one waiting submission and records the result. The submission API starts it in the cloud for each new submission."
+
+Rule30PrizeCloudAccess::usage = "Rule30PrizeCloudAccess[rootURL] points verifications that run in the cloud at the Prime Intellect key and paclet stored under rootURL/private, and the team of the prime CLI here."
 
 $Rule30PrizePrimeAccess::usage = "$Rule30PrizePrimeAccess gives the cloud objects holding the Prime Intellect key and the PrimeIntellect paclet, for verifications that run in the cloud, or None."
 
 Begin["`Private`"]
 
 (* Built by build_image.sh into the team's Prime Intellect registry, as a VM sandbox image. *)
-$Rule30PrizeVerifierImage = "prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:2"
+$Rule30PrizeVerifierImage = "prime/team-cmb8oulik003ooa6q4tnipf18/rule30-verifier:3"
 
 $verifierDirectory = DirectoryName[$InputFileName]
+
+(* The script that evaluates a notebook in the build sandbox, read when this package loads: the
+   deployed submission API carries it into the cloud, where this folder does not exist. *)
+$evaluateScript = ReadByteArray[FileNameJoin[{$verifierDirectory, "evaluate.wls"}]]
 
 (* For verifications that run in the cloud, which has neither the prime CLI nor the PrimeIntellect
    paclet: private cloud objects with the key and the paclet archive (store_prime_key.wls puts them
    there, deploy.wls sets this). *)
 $Rule30PrizePrimeAccess = None
+
+Rule30PrizeCloudAccess[rootURL_String] := ($Rule30PrizePrimeAccess = <|
+    "Key" -> rootURL <> "/private/prime-key",
+    "Paclet" -> rootURL <> "/private/PrimeIntellect.paclet",
+    "TeamID" -> teamID[]
+|>)
 
 (* The verifier image's environment, which the Dockerfile writes: RULE30_KIT (the kit), RULE30_LEAN,
    LEAN_SYSROOT and LEAN_PATH (with /work first). *)
@@ -51,6 +67,9 @@ $officialTargets = {"Rule30Submission.problem1", "Rule30Submission.not_problem1"
 $namePattern = RegularExpression["Rule30Submission(\\.[A-Za-z_][A-Za-z0-9_'!?]*)+"]
 
 $logLimit = 4000
+
+(* Told what the check is doing; verifyItem records it with the submission. *)
+$progress = Function[detail, Null]
 
 failure[tag_String, msg_String] := Failure[tag, <|"MessageTemplate" -> msg|>]
 
@@ -119,27 +138,49 @@ localKit[kit_String] := localKit[kit] = Block[{path = ExpandFileName[kit], leanP
     |>
 ]
 
-checkLocal[source_ByteArray, cargs_List, kitPath_String, timeouts_List] := Block[{kit = localKit[kitPath], work, file, env, build, log, check, result},
+(* What evaluate.wls left: None when it found the source, or the failure to report. *)
+evaluationFailure[exit_, result_, log_String] := Which[
+    MatchQ[exit, 124 | "124"], failed["fail", "evaluating the notebook timed out", lastChars[log]],
+    MatchQ[exit, "" | Null], failed["fail", "the evaluation of the notebook did not finish", lastChars[log]],
+    ! AssociationQ[result], failed["fail", "the notebook could not be evaluated", lastChars[log]],
+    ! TrueQ[result["ok"]], failed["fail", Replace[result["message"], Except[_String] -> "the notebook has no rule30Submission"], lastChars[log]],
+    True, None
+]
+
+checkLocal[notebook_ByteArray, cargs_List, kitPath_String, timeouts_Association] := Block[{kit = localKit[kitPath], work, nb, out, evaluation, stop, source, file, env, build, log, check, result},
     If[FailureQ[kit], Return[failed["error", kit["Message"]], Block]];
     work = CreateDirectory[];
+    nb = FileNameJoin[{work, "submission.nb"}];
+    BinaryWrite[nb, notebook];
+    Close[nb];
+    (* The notebook runs with this machine's license and its whole environment: trusted inputs only. *)
+    out = FileNameJoin[{work, "out"}];
+    evaluation = runCommand[{"wolframscript", "-f", FileNameJoin[{$verifierDirectory, "evaluate.wls"}], nb, out}, work,
+        Join[Association[GetEnvironment[]], <|"RULE30PRIZE_KIT" -> kit["Path"]|>], timeouts["Evaluate"]];
+    stop = evaluationFailure[evaluation["ExitCode"], Quiet @ Import[FileNameJoin[{out, "result.json"}], "RawJSON"], evaluation["StandardOutput"] <> evaluation["StandardError"]];
+    If[ stop =!= None,
+        Quiet @ DeleteDirectory[work, DeleteContents -> True];
+        Return[Join[stop, <|"lean" -> kit["Version"], "kitCommit" -> kit["Commit"], "verifier" -> "local"|>], Block]
+    ];
+    source = ReadByteArray[FileNameJoin[{out, "Rule30Submission.lean"}]];
     file = FileNameJoin[{work, "Rule30Submission.lean"}];
     BinaryWrite[file, source];
     Close[file];
     (* The work folder first: the kit's own build holds the template's Rule30Submission.olean. *)
     (* LEAN_SYSROOT too: without it the checker's findSysroot runs `lean --print-prefix` through elan. *)
     env = <|"PATH" -> Environment["PATH"], "HOME" -> $HomeDirectory, "LEAN_SYSROOT" -> kit["Sysroot"], "LEAN_PATH" -> work <> ":" <> kit["LeanPath"]|>;
-    build = runCommand[{kit["Lean"], "-R", work, "-o", FileNameJoin[{work, "Rule30Submission.olean"}], file}, work, env, First[timeouts]];
+    build = runCommand[{kit["Lean"], "-R", work, "-o", FileNameJoin[{work, "Rule30Submission.olean"}], file}, work, env, timeouts["Build"]];
     log = lastChars[build["StandardOutput"] <> build["StandardError"]];
     result = If[ build["ExitCode"] =!= 0,
         failed["fail", If[build["ExitCode"] === 124, "the build timed out", "the Lean source does not compile"], log],
-        check = runCommand[Join[{kit["Lean"], "--run", FileNameJoin[{kit["Path"], "Check.lean"}], "Rule30Submission"}, cargs], work, env, Last[timeouts]];
+        check = runCommand[Join[{kit["Lean"], "--run", FileNameJoin[{kit["Path"], "Check.lean"}], "Rule30Submission"}, cargs], work, env, timeouts["Check"]];
         Replace[checkerResult[check["StandardOutput"]], {
             r_Association :> Append[r, "log" -> log],
             _ :> failed["error", "the checker gave no result (exit " <> ToString[check["ExitCode"]] <> ")", lastChars[log <> "\n" <> check["StandardError"]]]
         }]
     ];
     Quiet @ DeleteDirectory[work, DeleteContents -> True];
-    Join[result, <|"lean" -> kit["Version"], "kitCommit" -> kit["Commit"], "verifier" -> "local"|>]
+    Join[result, <|"source" -> source, "lean" -> kit["Version"], "kitCommit" -> kit["Commit"], "verifier" -> "local"|>]
 ]
 
 (* === in Prime Intellect sandboxes (Method -> "PrimeIntellect") === *)
@@ -261,32 +302,60 @@ text[b_ByteArray] := ByteArrayToString[b, "UTF-8"]
 
 text[_] := ""
 
-(* Build in one sandbox. The build runs detached, and short polls read its exit code. *)
-buildRemote[so_, source_ByteArray, opts_Association] := withSandbox[so, "rule30-build", opts, Function[sid,
-    Block[{script, deadline, exit = "", log, files},
-        gatewayExecute[so, sid, "mkdir -p /work"];
-        If[gatewayUpload[so, sid, "/work/Rule30Submission.lean", source] === $Failed, Return[failed["error", "could not upload the source to the sandbox"], Block]];
+(* Evaluate the notebook and build the Lean source behind its rule30Submission, in one sandbox. Both
+   run detached, and short polls read their exit codes. The entitlement is deleted as soon as the
+   evaluation ends, before the build. *)
+buildRemote[so_, notebook_ByteArray, ent_, opts_Association] := withSandbox[so, "rule30-build", opts, Function[sid,
+    Block[{script, deadline, state = {"", ""}, built = False, stop, source, exit, log, files},
+        $progress["evaluating the notebook"];
+        gatewayExecute[so, sid, "mkdir -p /work/out"];
+        If[gatewayUpload[so, sid, "/work/submission.nb", notebook] === $Failed, Return[failed["error", "could not upload the notebook to the sandbox"], Block]];
+        gatewayUpload[so, sid, "/work/evaluate.wls", $evaluateScript];
         script = StringRiffle[{
             ". " <> $imageEnv,
             "cd /work",
-            "timeout -k 30 " <> ToString[opts["BuildTimeout"]] <> " \"$RULE30_LEAN\" -R /work -o /work/Rule30Submission.olean /work/Rule30Submission.lean > /work/build.log 2>&1",
-            "echo $? > /work/build.exit"
+            "export RULE30PRIZE_KIT=\"$RULE30_KIT\"",
+            "WOLFRAMSCRIPT_ENTITLEMENTID=" <> shellQuote[ent["EntitlementID"]] <> " timeout -k 30 " <> ToString[opts["EvaluateTimeout"]] <>
+                " wolframscript -f /work/evaluate.wls /work/submission.nb /work/out > /work/evaluate.log 2>&1 < /dev/null",
+            "echo $? > /work/evaluate.exit",
+            "if [ -s /work/out/Rule30Submission.lean ]; then",
+            "  cp /work/out/Rule30Submission.lean /work/Rule30Submission.lean",
+            "  timeout -k 30 " <> ToString[opts["BuildTimeout"]] <> " \"$RULE30_LEAN\" -R /work -o /work/Rule30Submission.olean /work/Rule30Submission.lean > /work/build.log 2>&1",
+            "  echo $? > /work/build.exit",
+            "fi",
+            "echo done > /work/done"
         }, "\n"];
         gatewayUpload[so, sid, "/work/build.sh", StringToByteArray[script, "UTF-8"]];
         gatewayExecute[so, sid, "setsid nohup bash /work/build.sh > /dev/null 2>&1 < /dev/null &"];
-        deadline = AbsoluteTime[] + opts["BuildTimeout"] + 120;
-        While[ exit === "" && AbsoluteTime[] < deadline,
+        deadline = AbsoluteTime[] + opts["EvaluateTimeout"] + opts["BuildTimeout"] + 180;
+        (* state: the evaluation's exit code, then "done" when everything has finished. *)
+        While[ Last[state] =!= "done" && AbsoluteTime[] < deadline,
             Pause[10];
-            exit = StringTrim @ gatewayExecute[so, sid, "cat /work/build.exit 2>/dev/null"]["StandardOutput"]
+            state = PadRight[StringSplit[gatewayExecute[so, sid, "printf '%s|%s' \"$(cat /work/evaluate.exit 2>/dev/null)\" \"$(cat /work/done 2>/dev/null)\""]["StandardOutput"], "|", All], 2, ""];
+            If[ First[state] =!= "" && ! TrueQ[built],
+                built = True;
+                Quiet @ DeleteObject[ent];
+                $progress["building the Lean source"]
+            ]
         ];
+        Quiet @ DeleteObject[ent];
+        stop = evaluationFailure[First[state],
+            Quiet @ ImportString[text @ gatewayDownload[so, sid, "/work/out/result.json"], "RawJSON"],
+            text @ gatewayDownload[so, sid, "/work/evaluate.log"]];
+        If[stop =!= None, Return[stop, Block]];
+        source = gatewayDownload[so, sid, "/work/Rule30Submission.lean"];
+        exit = StringTrim @ gatewayExecute[so, sid, "cat /work/build.exit 2>/dev/null"]["StandardOutput"];
         log = lastChars @ text @ gatewayDownload[so, sid, "/work/build.log"];
-        Which[
-            exit === "", failed["fail", "the build did not finish", log],
-            exit === "124", failed["fail", "the build timed out", log],
-            exit =!= "0", failed["fail", "the Lean source does not compile", log],
-            True,
-                files = Select[StringSplit @ gatewayExecute[so, sid, "cd /work && ls Rule30Submission.olean*"]["StandardOutput"], StringMatchQ[#, "Rule30Submission.olean" ~~ ("" | ".server" | ".private")]&];
-                <|"log" -> log, "oleans" -> AssociationMap[gatewayDownload[so, sid, "/work/" <> #]&, files]|>
+        Append[
+            Which[
+                exit === "", failed["fail", "the build did not finish", log],
+                exit === "124", failed["fail", "the build timed out", log],
+                exit =!= "0", failed["fail", "the Lean source does not compile", log],
+                True,
+                    files = Select[StringSplit @ gatewayExecute[so, sid, "cd /work && ls Rule30Submission.olean*"]["StandardOutput"], StringMatchQ[#, "Rule30Submission.olean" ~~ ("" | ".server" | ".private")]&];
+                    <|"log" -> log, "oleans" -> AssociationMap[gatewayDownload[so, sid, "/work/" <> #]&, files]|>
+            ],
+            "source" -> source
         ]
     ]
 ]]
@@ -328,11 +397,21 @@ primeConnection[] := Block[{key = primeKey[]},
     If[StringQ[key], ServiceConnect["PrimeIntellect", Authentication -> key], ServiceConnect["PrimeIntellect"]]
 ]
 
-checkPrime[source_ByteArray, cargs_List, opts_Association] := Block[{so = primeConnection[], built, result},
+(* A Wolfram license for evaluating one notebook: one kernel, for an hour at most. Minting needs the
+   owner's cloud connection. *)
+mintEntitlement[] := Quiet @ CreateLicenseEntitlement[<|"StandardKernelLimit" -> 1, "ParallelKernelLimit" -> 0,
+    "LicenseExpiration" -> Quantity[1, "Hours"], "EntitlementExpiration" -> Quantity[1, "Hours"]|>]
+
+checkPrime[notebook_ByteArray, cargs_List, opts_Association] := Block[{so = primeConnection[], ent, built, result},
     If[ ! MatchQ[so, _ServiceObject], Return[failed["error", "no Prime Intellect connection: no prime CLI key here, and no key in $Rule30PrizePrimeAccess"], Block]];
-    built = buildRemote[so, source, opts];
+    ent = mintEntitlement[];
+    If[ ! MatchQ[ent, _LicenseEntitlementObject], Return[failed["error", "could not mint a Wolfram license entitlement to evaluate the notebook"], Block]];
+    $progress["starting a sandbox"];
+    built = buildRemote[so, notebook, ent, opts];
+    Quiet @ DeleteObject[ent];
     result = If[ KeyExistsQ[built, "oleans"] && AllTrue[Values[built["oleans"]], ByteArrayQ],
-        Append[checkRemote[so, built["oleans"], cargs, opts], "log" -> built["log"]],
+        $progress["checking the compiled module in a second sandbox"];
+        Join[checkRemote[so, built["oleans"], cargs, opts], KeyTake[built, {"log", "source"}]],
         built
     ];
     Append[result, "verifier" -> "Prime Intellect sandboxes, image " <> opts["Image"]]
@@ -340,7 +419,7 @@ checkPrime[source_ByteArray, cargs_List, opts_Association] := Block[{so = primeC
 
 (* === entry points === *)
 
-Options[Rule30PrizeCheckSource] = {
+Options[Rule30PrizeCheckNotebook] = {
     "Method" -> "PrimeIntellect",
     "Kit" -> Automatic,
     "Image" :> $Rule30PrizeVerifierImage,
@@ -349,30 +428,34 @@ Options[Rule30PrizeCheckSource] = {
     "DiskGB" -> 40,
     "StartTimeout" -> 900,
     "TimeoutMinutes" -> 45,
+    "EvaluateTimeout" -> 900,
     "BuildTimeout" -> 900,
     "CheckTimeout" -> 600
 }
 
-Rule30PrizeCheckSource[source_String, item_Association, opts : OptionsPattern[]] := Rule30PrizeCheckSource[StringToByteArray[source, "UTF-8"], item, opts]
+Rule30PrizeCheckNotebook[File[path_String], item_Association, opts : OptionsPattern[]] := Rule30PrizeCheckNotebook[ReadByteArray[path], item, opts]
 
-Rule30PrizeCheckSource[source_ByteArray, item_Association, opts : OptionsPattern[]] := Block[{cargs = checkerArguments[item]},
+Rule30PrizeCheckNotebook[notebook_ByteArray, item_Association, opts : OptionsPattern[]] := Block[{cargs = checkerArguments[item]},
     Which[
         FailureQ[cargs], failed["error", cargs["Message"]],
-        OptionValue["Method"] === "Local", checkLocal[source, cargs, Replace[OptionValue["Kit"], Automatic :> FileNameJoin[{$verifierDirectory, "..", "..", "kit"}]], {OptionValue["BuildTimeout"], OptionValue["CheckTimeout"]}],
-        True, checkPrime[source, cargs, Association @ Map[# -> OptionValue[#]&, {"Image", "CPUCores", "MemoryGB", "DiskGB", "StartTimeout", "TimeoutMinutes", "BuildTimeout", "CheckTimeout"}]]
+        OptionValue["Method"] === "Local", checkLocal[notebook, cargs, Replace[OptionValue["Kit"], Automatic :> FileNameJoin[{$verifierDirectory, "..", "..", "kit"}]],
+            <|"Evaluate" -> OptionValue["EvaluateTimeout"], "Build" -> OptionValue["BuildTimeout"], "Check" -> OptionValue["CheckTimeout"]|>],
+        True, checkPrime[notebook, cargs, Association @ Map[# -> OptionValue[#]&, {"Image", "CPUCores", "MemoryGB", "DiskGB", "StartTimeout", "TimeoutMinutes", "EvaluateTimeout", "BuildTimeout", "CheckTimeout"}]]
     ]
 ]
 
-Options[Rule30PrizeVerify] = Join[{"MaxItems" -> 5}, Options[Rule30PrizeCheckSource]]
+Options[Rule30PrizeVerify] = Join[{"MaxItems" -> 5}, Options[Rule30PrizeCheckNotebook]]
 
 (* Check one queue item, after claiming it so that no other run checks it at the same time. *)
-verifyItem[item_Association, opts___] := Block[{source = Quiet @ BaseDecode[item["sourceBase64"]], result},
+verifyItem[item_Association, opts___] := Block[{notebook = Quiet @ BaseDecode[item["notebookBase64"]], result},
     If[ ! Rule30PrizeClaimCheck[item["id"]], Return[<|"id" -> item["id"], "verdict" -> None, "reasons" -> {"another run is checking it"}|>, Block]];
-    result = If[ ! ByteArrayQ[source] || Hash[source, "SHA256", "HexString"] =!= item["sourceSHA256"],
-        failed["error", "the stored source does not match its SHA-256"],
-        Rule30PrizeCheckSource[source, item, FilterRules[{opts}, Options[Rule30PrizeCheckSource]]]
+    result = If[ ! ByteArrayQ[notebook] || Hash[notebook, "SHA256", "HexString"] =!= item["notebookSHA256"],
+        failed["error", "the stored notebook does not match its SHA-256"],
+        Block[{$progress = Function[detail, Rule30PrizeProgress[item["id"], detail]]},
+            Rule30PrizeCheckNotebook[notebook, item, FilterRules[{opts}, Options[Rule30PrizeCheckNotebook]]]
+        ]
     ];
-    <|"id" -> item["id"], "verdict" -> result["verdict"], "reasons" -> result["reasons"], "recorded" -> Rule30PrizeRecordCheck[item["id"], item["sourceSHA256"], result]|>
+    <|"id" -> item["id"], "verdict" -> result["verdict"], "reasons" -> result["reasons"], "recorded" -> Rule30PrizeRecordCheck[item["id"], item["notebookSHA256"], result]|>
 ]
 
 Rule30PrizeVerify[opts : OptionsPattern[]] := Map[verifyItem[#, opts]&, Rule30PrizeQueue[OptionValue["MaxItems"]]]

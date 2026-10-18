@@ -11,6 +11,8 @@
    - contact ID                   its private contact details
    - status ID STATUS [-note T]   set its status: "Lean Unverified", "Lean Verified", "Human Verified" or "Prize Claimed"
    - requeue ID                   send it back to the Lean verifier; verifier/verify.wls then checks it
+   - verify ID                    check a waiting submission in the cloud, as the submission API does
+                                  for a new one, and follow it until it has a result
    - hide ID ... [-note REASON]   hide submissions from the page
    - unhide ID                    show a hidden submission again
    - undeploy -root ROOT          delete a test deployment, whose ROOT starts with Rule30PrizeTest: its
@@ -19,6 +21,8 @@
    -root defaults to Rule30Prize. *)
 
 Get[FileNameJoin[{DirectoryName[$InputFileName], "cloud", "Rule30PrizeSite.wl"}]]
+
+Get[FileNameJoin[{DirectoryName[$InputFileName], "verifier", "Rule30PrizeVerifier.wl"}]]
 
 (* Under run-as.wls the command line starts with the account: take what follows this script. *)
 args = Replace[$ScriptCommandLine, {{___, s_String /; StringEndsQ[s, "admin.wls"], rest___} :> {rest}, l_List :> Rest[l]}]
@@ -45,6 +49,22 @@ entryLine[e_Association] := StringRiffle[
     "  "
 ]
 
+(* The cloud task the submission API starts, then its progress every 20 s, for up to 40 minutes. *)
+verifyInCloud[id_String] := Block[{e = Rule30PrizeEntry[id], seen = None, now, deadline = AbsoluteTime[] + 2400},
+    If[FailureQ[e], Return[show[e], Block]];
+    If[ MissingQ[Rule30PrizeQueueItem[id]], Print["not waiting for the verifier (", e["check"]["state"], ", or hidden): requeue or unhide it first"]; Return[False, Block]];
+    Rule30PrizeCloudAccess[First[CloudObject[root]]];
+    CloudSubmit[Rule30PrizeVerifyID[id]];
+    While[ AbsoluteTime[] < deadline,
+        Pause[20];
+        e = Rule30PrizeEntry[id];
+        now = {e["check"]["state"], e["check"]["detail"]};
+        If[now =!= seen, seen = now; Print[DateString["Time"], "  ", StringRiffle[now, ": "]]];
+        If[ ! MemberQ[{"queued", "running"}, First[now]], Break[]]
+    ];
+    show[e]
+]
+
 undeploy[r_String] := If[ ! StringStartsQ[r, "Rule30PrizeTest"],
     Print["undeploy deletes only test deployments, whose root starts with Rule30PrizeTest"]; False,
     Print["deleting ", r, ": ", Quiet @ DeleteDirectory[CloudObject[r], DeleteContents -> True]];
@@ -64,6 +84,7 @@ ok = Replace[words, {
     {"contact", id_} :> show[Rule30PrizeContact[id]],
     {"status", id_, status_} :> show[Rule30PrizeSetStatus[id, status, note]],
     {"requeue", id_} :> show[Rule30PrizeRequeue[id]],
+    {"verify", id_} :> verifyInCloud[id],
     {"hide", ids__} :> And @@ Map[show[Rule30PrizeHide[#, If[note === "", "hidden by a maintainer", note]]]&, {ids}],
     {"unhide", id_} :> show[Rule30PrizeHide[id, False]],
     {"undeploy"} :> undeploy[root],

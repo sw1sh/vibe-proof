@@ -10,7 +10,7 @@
    - With -submit true (the default), it submits the kit's template as a partial result, the way
      skill.md tells agents to, and expects Lean Verified.
    - With -fakes true, it then sends what a cheating agent might: four fake proofs of Problem 1,
-     each caught at a different stage (the build, the kernel replay, the statement and the
+     each caught at a different stage (the evaluation, the kernel replay, the statement and the
      axioms). Each must come back failed, Lean Unverified, for the expected reason.
 
    It sends one submission at a time, waits up to -wait seconds for the verifier and hides the
@@ -53,6 +53,7 @@ submission[title_String, source_String, fields_List] := Block[{file, response, s
     Export[file, Notebook[{
         Cell[title, "Title"],
         Cell["Submitted by agents/tests/live.wls.", "Text"],
+        Cell[BoxData[MakeBoxes[Needs["Wolfram`LeanLink`"]; $Rule30PrizeKit = Environment["RULE30PRIZE_KIT"], StandardForm]], "Input"],
         With[{s = source}, Cell[BoxData[MakeBoxes[rule30Submission = LeanImportString[s, "ProjectDir" -> $Rule30PrizeKit], StandardForm]], "Input"]]
     }], "NB"];
     response = Quiet @ URLExecute[
@@ -92,7 +93,7 @@ rejectedFor[___] := False
 (* The fake proofs: each claims Problem 1 and must fail for its reason. *)
 fakes = {
     {"a proof that does not compile", "import Rule30PrizeKit\n\nnamespace Rule30Submission\n\nopen Ruliology.CellularAutomata.Rule30Prize\n\ntheorem problem1 : Problem1 := by decide\n\nend Rule30Submission\n",
-        "the Lean source does not compile"},
+        "not a LeanEnvironment"},
     {"a theorem added without the kernel", kitTest["T05SkipKernel"], "kernel replay failed"},
     {"a Problem1 of its own", kitTest["T07Redefine"], "does not import Ruliology.CellularAutomata.Rule30Prize"},
     {"sorry", kitTest["T02Sorry"], "uses non-standard axioms: [sorryAx]"}

@@ -3,22 +3,23 @@
 
 kit = FileNameJoin[{$testDirectory, "..", "..", "kit"}]
 
-template = Import[FileNameJoin[{kit, "Rule30Submission.lean"}], "Text", CharacterEncoding -> "UTF-8"]
-
-unicodeSource = StringJoin[
-    "import Rule30PrizeKit\n\n/-! Unicode: \[ForAll] \[Not] \[RightArrow] \:21a6 \:2115 \:27e8\:27e9 \[Lambda], and \"quotes\" and a back\\slash. -/\n\n",
+(* Sources that import only the statements module, not Rule30PrizeKit and Mathlib, so that each
+   local evaluation and build takes seconds. The first has Unicode, quotes and a backslash, which
+   must come back from the notebook unchanged. *)
+template = StringJoin[
+    "import Ruliology.CellularAutomata.Rule30Prize\n\n/-! Unicode: \[ForAll] \[Not] \[RightArrow] \:21a6 \:2115 \:27e8\:27e9 \[Lambda], and \"quotes\" and a back\\slash. -/\n\n",
     "namespace Rule30Submission\n\nopen Ruliology.CellularAutomata.Rule30Prize\n\n",
     "theorem no_period_one : \[Not] \[Exists] N, \[ForAll] t, N \[LessEqual] t \[RightArrow] center (t + 1) = center t :=\n  center_not_eventually_period_one\n\n",
-    "theorem anon : \[Exists] n : \:2115, n = 0 := \:27e80, rfl\:27e9\n\nend Rule30Submission\n"
+    "end Rule30Submission\n"
 ]
 
-sorrySource = "import Rule30PrizeKit\nnamespace Rule30Submission\nopen Ruliology.CellularAutomata.Rule30Prize\ntheorem problem1 : Problem1 := by sorry\nend Rule30Submission\n"
+sorrySource = "import Ruliology.CellularAutomata.Rule30Prize\nnamespace Rule30Submission\nopen Ruliology.CellularAutomata.Rule30Prize\ntheorem problem1 : Problem1 := by sorry\nend Rule30Submission\n"
 
-(* A notebook file whose input cell is `rule30Submission = LeanImportString[src, ...]`, written as
-   the front end writes it: boxes of strings. *)
+(* An essay, as the front end writes it: a setup cell, then rule30Submission = LeanImportString[src, ...]. *)
 submissionNotebook[src_String, extra_List : {}] := Block[{file = FileNameJoin[{$TemporaryDirectory, CreateUUID[] <> ".nb"}]},
     Export[file, Notebook[Join[
         {Cell["An essay", "Title"], Cell["The proof:", "Text"]},
+        {Cell[BoxData[MakeBoxes[Needs["Wolfram`LeanLink`"]; $Rule30PrizeKit = Environment["RULE30PRIZE_KIT"], StandardForm]], "Input"]},
         {With[{s = src}, Cell[BoxData[MakeBoxes[rule30Submission = LeanImportString[s, "ProjectDir" -> $Rule30PrizeKit], StandardForm]], "Input"]]},
         extra
     ]], "NB"];
@@ -34,49 +35,6 @@ fields[nb_, rest___Rule] := Join[
     <|"notebook" -> nb, "problem" -> 1, "claim" -> "partial", "title" -> "Period one", "authors" -> "A. Person; Claude",
       "agent" -> "Claude Code with Claude Opus 5.5", "headlines" -> "Rule30Submission.no_period_one", "consent" -> True|>,
     <|rest|>
-]
-
-(* === reading notebooks without evaluating them === *)
-
-VerificationTest[
-    Rule30PrizeNotebookSource[submissionNotebook[unicodeSource]] === unicodeSource,
-    True,
-    TestID -> "extract-unicode-exact"
-]
-
-VerificationTest[
-    Rule30PrizeNotebookSource[submissionNotebook[template, {Cell[BoxData[MakeBoxes[other = LeanImportString["theorem x : True := trivial"], StandardForm]], "Input"]}]] === template,
-    True,
-    TestID -> "extract-ignores-other-cells"
-]
-
-VerificationTest[
-    Rule30PrizeNotebookSource[submissionNotebook[template, {Cell[BoxData[MakeBoxes[rule30Submission = LeanImportString["x"], StandardForm]], "Input"]}]][[1]],
-    "AmbiguousSource",
-    TestID -> "extract-ambiguous"
-]
-
-VerificationTest[
-    Rule30PrizeNotebookSource[rawFile["Notebook[{Cell[\"no code here\", \"Text\"]}]"]][[1]],
-    "NoSource",
-    TestID -> "extract-none"
-]
-
-VerificationTest[
-    Rule30PrizeNotebookSource[rawFile["this is not a notebook {"]][[1]],
-    "NotNotebook",
-    TestID -> "extract-not-a-notebook"
-]
-
-(* A hostile file: code where boxes belong, and an option that assigns when evaluated. Nothing in it
-   may run. *)
-VerificationTest[
-    Block[{hostile},
-        hostile = rawFile["Notebook[{Cell[BoxData[RowBox[{\"rule30Submission\", \"=\", RowBox[{\"LeanImportString\", \"[\", Set[Global`pwnedCell, True], \"]\"}]}]], \"Input\"], Cell[BoxData[Set[Global`pwnedBoxes, True]], \"Input\"]}, WindowTitle :> (Global`pwnedFile = True)]"];
-        {Rule30PrizeNotebookSource[hostile][[1]], ValueQ[Global`pwnedCell], ValueQ[Global`pwnedBoxes], ValueQ[Global`pwnedFile]}
-    ],
-    {"NoSource", False, False, False},
-    TestID -> "extract-never-evaluates"
 ]
 
 (* === submitting === *)
@@ -115,9 +73,12 @@ bad = Rule30PrizeSubmit[fields[submissionNotebook[sorrySource], "claim" -> "proo
 
 VerificationTest[{bad["ok"], bad["target"]}, {True, "Rule30Submission.problem1"}, TestID -> "submit-proof-claim"]
 
+VerificationTest[Rule30PrizeSubmit[fields[rawFile["this is not a notebook {"]]][[1]], "NotNotebook", TestID -> "submit-needs-a-notebook"]
+
+(* The site reads no source: a notebook of prose waits for the verifier like any other. *)
 nosrc = Rule30PrizeSubmit[fields[rawFile["Notebook[{Cell[\"prose only\", \"Text\"]}]"], "title" -> "No Lean"]]
 
-VerificationTest[nosrc["check"]["state"], "no-source", TestID -> "submit-without-source"]
+VerificationTest[nosrc["check"]["state"], "queued", TestID -> "submit-without-source"]
 
 (* Three submissions so far from this requester; with a limit of three an hour, the next is refused. *)
 VerificationTest[
@@ -128,8 +89,8 @@ VerificationTest[
 
 VerificationTest[
     Sort[#id& /@ Rule30PrizeQueue[10]],
-    Sort[{good["id"], bad["id"]}],
-    TestID -> "queue-holds-sources"
+    Sort[{good["id"], bad["id"], nosrc["id"]}],
+    TestID -> "queue-holds-notebooks"
 ]
 
 (* The deployed API starts each new verification through this hook. *)
@@ -158,9 +119,9 @@ VerificationTest[
 VerificationTest[Rule30PrizeHide[hookedSubmission["id"], "test"]; Rule30PrizeQueueItem[hookedSubmission["id"]], Missing["NotWaiting", hookedSubmission["id"]], TestID -> "hidden-not-queued"]
 
 VerificationTest[
-    ByteArrayToString[BaseDecode[First[Select[Rule30PrizeQueue[10], #id === good["id"]&]]["sourceBase64"]], "UTF-8"] === template,
+    Hash[BaseDecode[First[Select[Rule30PrizeQueue[10], #id === good["id"]&]]["notebookBase64"]], "SHA256", "HexString"] === Rule30PrizeEntry[good["id"]]["notebookSHA256"],
     True,
-    TestID -> "queue-source-bytes"
+    TestID -> "queue-notebook-bytes"
 ]
 
 (* === verifying, on this machine === *)
@@ -175,9 +136,18 @@ verified = Rule30PrizeVerify["Method" -> "Local", "Kit" -> kit]
 
 VerificationTest[
     Sort[{#id, #verdict}& /@ verified],
-    Sort[{{good["id"], "pass"}, {bad["id"], "fail"}, {redefined["id"], "fail"}}],
+    Sort[{{good["id"], "pass"}, {bad["id"], "fail"}, {nosrc["id"], "fail"}, {redefined["id"], "fail"}}],
     TestID -> "verify-local"
 ]
+
+(* The source behind rule30Submission comes back from the evaluation, byte for byte, for reviewers. *)
+VerificationTest[
+    {Rule30PrizeEntry[good["id"]]["sourceSHA256"] === Hash[StringToByteArray[template, "UTF-8"], "SHA256", "HexString"], StringQ[Rule30PrizeEntry[good["id"]]["files"]["lean"]]},
+    {True, True},
+    TestID -> "verify-stores-source"
+]
+
+VerificationTest[Rule30PrizeEntry[nosrc["id"]]["check"]["reasons"], {"The notebook does not set rule30Submission."}, TestID -> "verify-explains-missing-source"]
 
 VerificationTest[
     {Rule30PrizeEntry[redefined["id"]]["status"], Rule30PrizeEntry[redefined["id"]]["check"]["reasons"]},
@@ -210,7 +180,7 @@ VerificationTest[
 VerificationTest[Rule30PrizeSetStatus[good["id"], "Human Verified", "Read by a maintainer."]["status"], "Human Verified", TestID -> "admin-human-verified"]
 
 VerificationTest[
-    Rule30PrizeRecordCheck[good["id"], Rule30PrizeEntry[good["id"]]["sourceSHA256"], <|"verdict" -> "fail", "reasons" -> {"re-check"}|>]["status"],
+    Rule30PrizeRecordCheck[good["id"], Rule30PrizeEntry[good["id"]]["notebookSHA256"], <|"verdict" -> "fail", "reasons" -> {"re-check"}|>]["status"],
     "Human Verified",
     TestID -> "recheck-keeps-human-status"
 ]

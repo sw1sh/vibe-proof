@@ -5,10 +5,34 @@
 # sandbox compiles without fetching anything: Mathlib, the Ruliology catalog, the equivalences,
 # the kit.
 #
-# build_image.sh stages the context (the kit repository WolframInstitute/Rule30PrizeKit without
-# .lake, and the commit it is at) and builds and pushes this image with `prime images push`, on
-# Prime Intellect's builders.
+# build_image.sh stages the context (the committed state of the kit repository
+# WolframInstitute/Rule30PrizeKit, and the commit it is at) and builds and pushes this image with
+# `prime images push`, on Prime Intellect's builders.
 FROM wolframinstitute/wolfram:15.0-lean
+
+# LeanLink 1.0.14, for the submitted notebooks: the verifier evaluates each one and reads the Lean
+# environment its rule30Submission holds. Installed the way the base image installs 1.0.9, which it
+# replaces: a .paclet is a ZIP of its directory, unzipped into root's paclet repository, with the
+# toolchain's runtime libraries linked beside the shim. No license is needed at build time.
+ARG LEANLINK_PACLET=Wolfram__LeanLink-1.0.14
+RUN rm -rf /root/.Wolfram/Paclets/Repository/Wolfram__LeanLink-* \
+    && curl -fsSL --retry 5 --max-time 1200 -o /tmp/ll.paclet \
+        "https://resources.wolframcloud.com/PacletRepository/pacletsitecontent/Paclets/$LEANLINK_PACLET.paclet" \
+    && unzip -tq /tmp/ll.paclet \
+    && unzip -q /tmp/ll.paclet -d /root/.Wolfram/Paclets/Repository/ \
+    && rm /tmp/ll.paclet \
+    && P="/root/.Wolfram/Paclets/Repository/$LEANLINK_PACLET" \
+    && LIB="$P/LibraryResources/Linux-x86-64" TC=/opt/elan/toolchains/leanprover--lean4---v4.30.0/lib/lean \
+    && test -f "$LIB/libLeanLinkShim.so" \
+    && for f in libleanshared.so libleanshared_1.so libleanshared_2.so libInit_shared.so libLake_shared.so; do \
+         if [ -e "$TC/$f" ]; then ln -sf "$TC/$f" "$LIB/$f"; fi; \
+       done \
+    && ! ldd "$LIB/libLeanLinkShim.so" | grep 'not found' \
+    && ln -sfn "$P" /opt/LeanLink/LeanLink
+
+# A front end that a submitted notebook starts itself runs without a display. The verifier
+# evaluates notebooks in the kernel alone.
+ENV QT_QPA_PLATFORM=offscreen
 
 COPY kit /opt/rule30/kit
 COPY commit /opt/rule30/commit

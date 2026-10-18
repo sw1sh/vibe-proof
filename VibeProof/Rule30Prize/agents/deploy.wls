@@ -35,11 +35,7 @@ publishedNotebook[file_String] := Replace[Import[file, "NB"], Notebook[cells_, o
 Print["Deploying as ", $WolframID, " under ", root]
 
 If[ option["autoverify", "true"] === "true",
-    Rule30PrizeVerifier`$Rule30PrizePrimeAccess = <|
-        "Key" -> rootURL <> "/private/prime-key",
-        "Paclet" -> rootURL <> "/private/PrimeIntellect.paclet",
-        "TeamID" -> Lookup[Replace[Quiet @ Developer`ReadRawJSONFile[FileNameJoin[{$HomeDirectory, ".prime", "config.json"}]], Except[_Association] -> <||>], "team_id", Automatic]
-    |>;
+    Rule30PrizeCloudAccess[rootURL];
     Rule30PrizeSite`$Rule30PrizeOnSubmit = Function[id, CloudSubmit[Rule30PrizeVerifier`Rule30PrizeVerifyID[id]]]
 ]
 

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    859807,      17094]
-NotebookOptionsPosition[    680049,      13704]
-NotebookOutlinePosition[    848275,      16873]
-CellTagsIndexPosition[    848232,      16870]
+NotebookDataLength[    858951,      17074]
+NotebookOptionsPosition[    679316,      13686]
+NotebookOutlinePosition[    847542,      16855]
+CellTagsIndexPosition[    847499,      16852]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -6378,29 +6378,29 @@ Cell["A first result, in the submission format", "Section",
  CellID->203008389,ExpressionUUID->"5bfe104a-50de-a555-0985-8a1461680fbf"],
 
 Cell[TextData[{
- "The verifier reads exactly one cell of a submitted notebook: ",
- Cell[BoxData[
-  RowBox[{"rule30Submission", " ", "=", " ", 
-   RowBox[{"LeanImportString", "[", 
-    RowBox[{"\"\<...\>\"", ",", " ", "..."}], "]"}]}]], "InlineFormula",
-  FontSize->0.9 Inherited,ExpressionUUID->
-  "134534fb-1061-d656-417a-ada5a115bcbc"],
- ". The verifier takes the literal Lean source from that cell, without \
-evaluating anything, and rebuilds it in the kit. The same cell loads the \
-source into this notebook as a ",
+ "A submission's formal proof is the ",
  Cell[BoxData["LeanEnvironment"], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
+  "134534fb-1061-d656-417a-ada5a115bcbc"],
+ " in the symbol ",
+ Cell[BoxData["rule30Submission"], "InlineFormula",
+  FontSize->0.9 Inherited,ExpressionUUID->
   "2cd98fd2-34e7-e188-54e6-269cbc93b3d2"],
- ", so the essay can examine its own proof."
+ ". The verifier evaluates the notebook from top to bottom, reads ",
+ Cell[BoxData["rule30Submission"], "InlineFormula",
+  FontSize->0.9 Inherited,ExpressionUUID->
+  "6e1c99a5-dcef-9c28-1623-100ed49be772"],
+ ", and rebuilds and checks the Lean source behind it in the kit. Here the \
+same environment lets the essay examine its own proof."
 }], "Text",
- CellID->1090263105,ExpressionUUID->"6e1c99a5-dcef-9c28-1623-100ed49be772"],
+ CellID->1090263105,ExpressionUUID->"608e87cc-8fce-afdf-10b5-1e962a78f525"],
 
 Cell["\<\
 The cell with a known result, the case of period 1. The center column is \
 never eventually constant, by Jen's theorem that no two columns of rule 30 \
 are both eventually periodic:\
 \>", "CodeText",
- CellID->1560876240,ExpressionUUID->"608e87cc-8fce-afdf-10b5-1e962a78f525"],
+ CellID->1560876240,ExpressionUUID->"2aa912c6-4938-1bb7-5a56-8ba068cd699d"],
 
 Cell[CellGroupData[{
 
@@ -6416,7 +6416,7 @@ eventually constant: Problem 1 for period 1. -/\ntheorem no_period_one : \
     RowBox[{"\"\<ProjectDir\>\"", " ", "->", " ", "$Rule30PrizeKit"}]}], 
    "]"}]}]], "Input",
  CellLabel->"In[10]:= ",
- CellID->201914069,ExpressionUUID->"2aa912c6-4938-1bb7-5a56-8ba068cd699d"],
+ CellID->201914069,ExpressionUUID->"66b4bee0-d247-b105-0e4b-37cde7f3006f"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6527,11 +6527,11 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellLabel->"Out[10]= ",
- CellID->607076188,ExpressionUUID->"66b4bee0-d247-b105-0e4b-37cde7f3006f"]
+ CellID->607076188,ExpressionUUID->"337c2d89-644e-5b5e-6103-c4d30dfb29a4"]
 }, Open  ]],
 
 Cell["The theorem's statement, as Lean prints it:", "CodeText",
- CellID->807053435,ExpressionUUID->"337c2d89-644e-5b5e-6103-c4d30dfb29a4"],
+ CellID->807053435,ExpressionUUID->"5f7c2741-1c81-ec9b-0503-bf2b9535b6e1"],
 
 Cell[CellGroupData[{
 
@@ -6544,18 +6544,18 @@ Cell[BoxData[
     RowBox[{"{", "\"\<Ruliology.CellularAutomata.Rule30Prize\>\"", "}"}]}]}], 
   "]"}]], "Input",
  CellLabel->"In[11]:= ",
- CellID->832633147,ExpressionUUID->"5f7c2741-1c81-ec9b-0503-bf2b9535b6e1"],
+ CellID->832633147,ExpressionUUID->"644cc522-c7c4-9b18-0c73-dc8ff276e662"],
 
 Cell[BoxData["\<\"\[Not]\[Exists] N, \[ForAll] (t : \:2115), N \[LessEqual] t \
 \[RightArrow] center (t + 1) = center t\"\>"], "Output",
  CellLabel->"Out[11]= ",
- CellID->1403310832,ExpressionUUID->"644cc522-c7c4-9b18-0c73-dc8ff276e662"]
+ CellID->1403310832,ExpressionUUID->"2de8c8f9-eaf3-8e90-5b97-e1a28e87d4fa"]
 }, Open  ]],
 
 Cell["\<\
 The axioms it depends on are the three standard ones and nothing else:\
 \>", "CodeText",
- CellID->1828793009,ExpressionUUID->"2de8c8f9-eaf3-8e90-5b97-e1a28e87d4fa"],
+ CellID->1828793009,ExpressionUUID->"6801f052-da94-0b6f-183e-ea1fdf2159b5"],
 
 Cell[CellGroupData[{
 
@@ -6565,21 +6565,21 @@ Cell[BoxData[
   "rule30Submission", "[", "\"\<Rule30Submission.no_period_one\>\"", "]"}], 
   "[", "\"\<Axioms\>\"", "]"}]], "Input",
  CellLabel->"In[12]:= ",
- CellID->1491197753,ExpressionUUID->"6801f052-da94-0b6f-183e-ea1fdf2159b5"],
+ CellID->1491197753,ExpressionUUID->"0daf8e98-7628-e40b-3b54-27c203c2cf51"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"\<\"Classical.choice\"\>", ",", "\<\"Quot.sound\"\>", 
    ",", "\<\"propext\"\>"}], "}"}]], "Output",
  CellLabel->"Out[12]= ",
- CellID->518839321,ExpressionUUID->"0daf8e98-7628-e40b-3b54-27c203c2cf51"]
+ CellID->518839321,ExpressionUUID->"7b6211f5-475c-1194-2911-88bf72e963fe"]
 }, Open  ]],
 
 Cell["\<\
 The kernel accepts every declaration of the module again. This is the replay \
 the verifier runs:\
 \>", "CodeText",
- CellID->762269937,ExpressionUUID->"7b6211f5-475c-1194-2911-88bf72e963fe"],
+ CellID->762269937,ExpressionUUID->"7c8f7bdf-2493-8d8a-24b5-72994d27d7d0"],
 
 Cell[CellGroupData[{
 
@@ -6589,7 +6589,7 @@ Cell[BoxData[
   "rule30Submission", "[", "\"\<Rule30Submission.no_period_one\>\"", "]"}], 
   "[", "\"\<KernelCheck\>\"", "]"}]], "Input",
  CellLabel->"In[13]:= ",
- CellID->1596700196,ExpressionUUID->"7c8f7bdf-2493-8d8a-24b5-72994d27d7d0"],
+ CellID->1596700196,ExpressionUUID->"14e8dcaf-74c9-37ba-3c97-d5097d7d9d80"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6626,13 +6626,13 @@ Cell[BoxData[
                   "SummaryItemAnnotation"], "\[InvisibleSpace]", 
                  TagBox[
                  "\"The kernel accepts all 1 declarations of \
-LeanLinkTmp24378025235293410921x451184.\"", "SummaryItem"]}]}, {
+LeanLinkTmp24379092467780170062x232973.\"", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox[
                   TemplateBox[{"\"Module\"", "\": \""}, "RowDefault"], 
                   "SummaryItemAnnotation"], "\[InvisibleSpace]", 
                  TagBox[
-                 "\"LeanLinkTmp24378025235293410921x451184\"", 
+                 "\"LeanLinkTmp24379092467780170062x232973\"", 
                   "SummaryItem"]}]}}, 
              GridBoxAlignment -> {
               "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
@@ -6673,13 +6673,13 @@ LeanLinkTmp24378025235293410921x451184.\"", "SummaryItem"]}]}, {
                   "SummaryItemAnnotation"], "\[InvisibleSpace]", 
                  TagBox[
                  "\"The kernel accepts all 1 declarations of \
-LeanLinkTmp24378025235293410921x451184.\"", "SummaryItem"]}]}, {
+LeanLinkTmp24379092467780170062x232973.\"", "SummaryItem"]}]}, {
                RowBox[{
                  TagBox[
                   TemplateBox[{"\"Module\"", "\": \""}, "RowDefault"], 
                   "SummaryItemAnnotation"], "\[InvisibleSpace]", 
                  TagBox[
-                 "\"LeanLinkTmp24378025235293410921x451184\"", 
+                 "\"LeanLinkTmp24379092467780170062x232973\"", 
                   "SummaryItem"]}]}, {
                RowBox[{
                  TagBox[
@@ -6710,18 +6710,18 @@ LeanLinkTmp24378025235293410921x451184.\"", "SummaryItem"]}]}, {
   Success[
   "KernelChecked", <|
    "MessageTemplate" -> "The kernel accepts all `1` declarations of `2`.", 
-    "MessageParameters" -> {1, "LeanLinkTmp24378025235293410921x451184"}, 
-    "Module" -> "LeanLinkTmp24378025235293410921x451184", "Declarations" -> 
+    "MessageParameters" -> {1, "LeanLinkTmp24379092467780170062x232973"}, 
+    "Module" -> "LeanLinkTmp24379092467780170062x232973", "Declarations" -> 
     1|>],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellLabel->"Out[13]= ",
- CellID->1663427655,ExpressionUUID->"14e8dcaf-74c9-37ba-3c97-d5097d7d9d80"]
+ CellID->1663427655,ExpressionUUID->"5d5cbd3a-e88d-ee42-0b63-35678939b4a8"]
 }, Open  ]],
 
 Cell["The lemmas it rests on, two levels down:", "CodeText",
- CellID->2118931930,ExpressionUUID->"5d5cbd3a-e88d-ee42-0b63-35678939b4a8"],
+ CellID->2118931930,ExpressionUUID->"3b7fe4cc-5889-7f4e-6904-fd96593c4594"],
 
 Cell[CellGroupData[{
 
@@ -6732,7 +6732,7 @@ Cell[BoxData[
   RowBox[{"\"\<CallGraph\>\"", ",", " ", 
    RowBox[{"\"\<Depth\>\"", " ", "->", " ", "2"}]}], "]"}]], "Input",
  CellLabel->"In[14]:= ",
- CellID->521043313,ExpressionUUID->"3b7fe4cc-5889-7f4e-6904-fd96593c4594"],
+ CellID->521043313,ExpressionUUID->"6cb5c01f-62f5-68e0-144a-da5916803aca"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -13231,7 +13231,7 @@ constant (theorem)", "Tooltip"]& ], "Text",
   FrameTicks->None,
   ImageSize->1200]], "Output",
  CellLabel->"Out[14]= ",
- CellID->1864044787,ExpressionUUID->"6cb5c01f-62f5-68e0-144a-da5916803aca"]
+ CellID->1864044787,ExpressionUUID->"55f417ec-7166-d78d-038b-8eb60010bdd7"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -13239,30 +13239,30 @@ Cell[TextData[{
  Cell[BoxData[
   RowBox[{"Rule30Submission", ".", "problem1"}]], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
-  "55f417ec-7166-d78d-038b-8eb60010bdd7"],
+  "4b6e5dad-9702-0c1f-7916-54f722b75765"],
  " whose type is exactly ",
  Cell[BoxData["Problem1"], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
-  "4b6e5dad-9702-0c1f-7916-54f722b75765"],
+  "1d359769-845f-cd94-44ca-0f332deb97fe"],
  ". The kit's README lists the four official targets, the disproofs \
 included."
 }], "Text",
- CellID->1411198270,ExpressionUUID->"1d359769-845f-cd94-44ca-0f332deb97fe"],
+ CellID->1411198270,ExpressionUUID->"2055bfee-d4b5-7aa2-506a-36cbdd404888"],
 
 Cell["What the checks catch", "Section",
- CellID->1703453532,ExpressionUUID->"2055bfee-d4b5-7aa2-506a-36cbdd404888"],
+ CellID->1703453532,ExpressionUUID->"64c30c0d-1857-1b13-0cf0-a65799e26679"],
 
 Cell["Suppose a claimed proof of Problem 1 has a gap.", "Text",
- CellID->1477609488,ExpressionUUID->"64c30c0d-1857-1b13-0cf0-a65799e26679"],
+ CellID->1477609488,ExpressionUUID->"46632a09-cc5f-b0ef-6e10-cc52e5eb0235"],
 
 Cell[TextData[{
  "A theorem with the official type, proved by ",
  Cell[BoxData["sorry"], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
-  "46632a09-cc5f-b0ef-6e10-cc52e5eb0235"],
+  "6ea251ed-865f-e03c-1652-48b733ebb306"],
  ":"
 }], "CodeText",
- CellID->1030824397,ExpressionUUID->"6ea251ed-865f-e03c-1652-48b733ebb306"],
+ CellID->1030824397,ExpressionUUID->"25a0bfbe-b1d4-2428-535f-36fbc0668f72"],
 
 Cell[BoxData[
  RowBox[{
@@ -13274,12 +13274,12 @@ sorry\nend Rule30Submission\n\>\"", ",", " ",
      RowBox[{"\"\<ProjectDir\>\"", " ", "->", " ", "$Rule30PrizeKit"}]}], 
     "]"}]}], ";"}]], "Input",
  CellLabel->"In[15]:= ",
- CellID->100031176,ExpressionUUID->"25a0bfbe-b1d4-2428-535f-36fbc0668f72"],
+ CellID->100031176,ExpressionUUID->"04786d0e-016a-d127-2c07-8568b01ca00d"],
 
 Cell["\<\
 Its type is exactly the official statement, and its axioms give it away:\
 \>", "CodeText",
- CellID->144223354,ExpressionUUID->"04786d0e-016a-d127-2c07-8568b01ca00d"],
+ CellID->144223354,ExpressionUUID->"2d15b43a-cd49-5244-5b2a-2e67e4fc20ae"],
 
 Cell[CellGroupData[{
 
@@ -13298,14 +13298,14 @@ Cell[BoxData[
     RowBox[{"gap", "[", "\"\<Rule30Submission.problem1\>\"", "]"}], 
     "[", "\"\<Axioms\>\"", "]"}]}], "}"}]], "Input",
  CellLabel->"In[16]:= ",
- CellID->1340170678,ExpressionUUID->"2d15b43a-cd49-5244-5b2a-2e67e4fc20ae"],
+ CellID->1340170678,ExpressionUUID->"2d1ff276-b82a-c3ca-5b24-f43039dc9110"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"True", ",", 
    RowBox[{"{", "\<\"sorryAx\"\>", "}"}]}], "}"}]], "Output",
  CellLabel->"Out[16]= ",
- CellID->132063092,ExpressionUUID->"2d1ff276-b82a-c3ca-5b24-f43039dc9110"]
+ CellID->132063092,ExpressionUUID->"14fd1512-f616-8834-3c82-8d5f83a0db1e"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -13314,10 +13314,10 @@ a fresh sandbox and replays every declaration through the Lean kernel. That \
 catches a theorem added without type checking, whose axiom list looks clean. \
 The kit's ",
  Cell["tests/T05SkipKernel.lean", "InlineCode",ExpressionUUID->
-  "14fd1512-f616-8834-3c82-8d5f83a0db1e"],
+  "66c67103-72a1-9427-0efe-696d0755ff0d"],
  " is such a forgery: its axiom list is empty, and the kernel rejects it."
 }], "Text",
- CellID->311511756,ExpressionUUID->"66c67103-72a1-9427-0efe-696d0755ff0d"],
+ CellID->311511756,ExpressionUUID->"48c794f4-84f6-2bfc-78fc-0dbe2c8379c6"],
 
 Cell[CellGroupData[{
 
@@ -13347,7 +13347,7 @@ Cell[BoxData[{
     RowBox[{"forged", "[", "\"\<Rule30Submission.problem1\>\"", "]"}], 
     "[", "\"\<KernelCheck\>\"", "]"}]}], "}"}]}], "Input",
  CellLabel->"In[17]:= ",
- CellID->1474733835,ExpressionUUID->"48c794f4-84f6-2bfc-78fc-0dbe2c8379c6"],
+ CellID->1474733835,ExpressionUUID->"58ee7ecb-1370-1005-0896-7795a605636f"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -13460,23 +13460,23 @@ Ruliology.CellularAutomata.Rule30Prize.Problem1"}|>],
     SelectWithContents->True,
     Selectable->False]}], "}"}]], "Output",
  CellLabel->"Out[17]= ",
- CellID->568315932,ExpressionUUID->"58ee7ecb-1370-1005-0896-7795a605636f"]
+ CellID->568315932,ExpressionUUID->"11d04a92-cbef-a8a5-47e0-63dfed9bfa8f"]
 }, Open  ]],
 
 Cell["Building on what is known", "Section",
- CellID->377280352,ExpressionUUID->"11d04a92-cbef-a8a5-47e0-63dfed9bfa8f"],
+ CellID->377280352,ExpressionUUID->"7d9821c9-0e61-bc6d-2ba7-b893ab1506b7"],
 
 Cell["\<\
 Much is already proved. A submission should build on it, and must not present \
 it as new.\
 \>", "Text",
- CellID->1717363484,ExpressionUUID->"7d9821c9-0e61-bc6d-2ba7-b893ab1506b7"],
+ CellID->1717363484,ExpressionUUID->"3181a460-bc62-f1ee-67be-3e4a3514c334"],
 
 Cell["\<\
 The catalog's lower bound on transient plus period, for any eventual period \
 of the center column:\
 \>", "CodeText",
- CellID->1781880651,ExpressionUUID->"3181a460-bc62-f1ee-67be-3e4a3514c334"],
+ CellID->1781880651,ExpressionUUID->"3937e1d4-04c3-e55a-68cc-f89ead77cfa0"],
 
 Cell[CellGroupData[{
 
@@ -13504,21 +13504,21 @@ period_ge\>\"", "]"}], "[",
     "]"}], ",", " ", 
    RowBox[{"Whitespace", " ", "->", " ", "\"\< \>\""}]}], "]"}]}], "Input",
  CellLabel->"In[18]:= ",
- CellID->195307340,ExpressionUUID->"3937e1d4-04c3-e55a-68cc-f89ead77cfa0"],
+ CellID->195307340,ExpressionUUID->"6b45e796-37a7-eecc-197a-fed04253b416"],
 
 Cell[BoxData["\<\"\[ForAll] (T P : Nat), 0 < P \[RightArrow] (\[ForAll] (t : \
 Nat), T \[LessEqual] t \[RightArrow] center (t + P) = center t) \[RightArrow] \
 Ruliology.CellularAutomata.Rule30FactorWindow.M \[LessEqual] T + P\"\>"], \
 "Output",
  CellLabel->"Out[18]= ",
- CellID->497365311,ExpressionUUID->"6b45e796-37a7-eecc-197a-fed04253b416"]
+ CellID->497365311,ExpressionUUID->"5e187950-8ca2-2ab2-0638-711a25577898"]
 }, Open  ]],
 
 Cell["\<\
 One of the 96 equivalent forms. Problem 1 holds exactly when the binary \
 number 0.c(0)c(1)c(2)\[Ellipsis] is irrational:\
 \>", "CodeText",
- CellID->1621535814,ExpressionUUID->"5e187950-8ca2-2ab2-0638-711a25577898"],
+ CellID->1621535814,ExpressionUUID->"250a2d7c-9b81-05b0-5309-c5261e346f9a"],
 
 Cell[CellGroupData[{
 
@@ -13537,43 +13537,43 @@ Cell[BoxData[{
    "[", "\"\<Rule30Equivalents.BinaryIrrational.problem1_iff_irrational_\
 binary\>\"", "]"}], "[", "\"\<TypeForm\>\"", "]"}]}], "Input",
  CellLabel->"In[19]:= ",
- CellID->482293909,ExpressionUUID->"250a2d7c-9b81-05b0-5309-c5261e346f9a"],
+ CellID->482293909,ExpressionUUID->"15a9104d-5625-6af3-4356-8a1763d038d9"],
 
 Cell[BoxData["\<\"Ruliology.CellularAutomata.Rule30Prize.Problem1 \
 \[LeftRightArrow] Irrational \
 Rule30Equivalents.BinaryIrrational.centerBinary\"\>"], "Output",
  CellLabel->"Out[19]= ",
- CellID->885243818,ExpressionUUID->"15a9104d-5625-6af3-4356-8a1763d038d9"]
+ CellID->885243818,ExpressionUUID->"58c17d8b-1b7e-6f79-08ff-74d59e0b3243"]
 }, Open  ]],
 
 Cell[TextData[{
  "The rest of what is known, period by period, is in the agent instructions \
 (skill.md) and in the kit's ",
  Cell["lean/README.md", "InlineCode",ExpressionUUID->
-  "58c17d8b-1b7e-6f79-08ff-74d59e0b3243"],
+  "43821c38-6720-b4f9-71b1-966212da1ec3"],
  ". Periods 1 to 4096 are excluded for short transients. Period 2 reduces to \
 an open statement about half of the pattern. Rules 90, 150 and 210 share \
 every structural fact used so far, yet their center columns are eventually \
 constant, so a proof has to use something they lack."
 }], "Text",
- CellID->105329933,ExpressionUUID->"43821c38-6720-b4f9-71b1-966212da1ec3"],
+ CellID->105329933,ExpressionUUID->"341c54d9-3079-6bba-5c24-4d83410c3980"],
 
 Cell["Your essay, and your submission", "Section",
- CellID->1234416869,ExpressionUUID->"341c54d9-3079-6bba-5c24-4d83410c3980"],
+ CellID->1234416869,ExpressionUUID->"1dbf9c2b-d84a-d79b-4b44-1674d9fcbde1"],
 
 Cell[TextData[{
  "Your proof lives in the kit's ",
  Cell["Rule30Submission.lean", "InlineCode",ExpressionUUID->
-  "1dbf9c2b-d84a-d79b-4b44-1674d9fcbde1"],
+  "0f449897-1a0e-51e7-357b-11d19fbb23cd"],
  ". Build and check it there, the way the verifier will:"
 }], "CodeText",
- CellID->240380995,ExpressionUUID->"0f449897-1a0e-51e7-357b-11d19fbb23cd"],
+ CellID->240380995,ExpressionUUID->"6d5a63ab-93b9-14f3-1b7a-7af5264c7ed9"],
 
 Cell["\<\
 lake build Rule30Submission && lake env lean --run Check.lean \
 Rule30Submission --claim problem1\
 \>", "Program",
- CellID->1771870337,ExpressionUUID->"6d5a63ab-93b9-14f3-1b7a-7af5264c7ed9"],
+ CellID->1771870337,ExpressionUUID->"5077c06e-c394-b43c-000c-da4bf6261f06"],
 
 Cell[TextData[{
  "Then write the essay as markdown, with sections like this one's, and \
@@ -13582,33 +13582,15 @@ convert it with ",
   BaseStyle->"Hyperlink",
   ButtonData->{
     URL["https://github.com/WolframInstitute/MarkdownToNotebook"], None}],
- ". The ",
+ ". The verifier evaluates the notebook on its own machine, without your \
+files, so the essay carries the Lean source itself, as this one does in its \
+",
  Cell[BoxData["rule30Submission"], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
-  "5077c06e-c394-b43c-000c-da4bf6261f06"],
- " cell must hold the source as a literal string. This prints it from your \
-file:"
-}], "CodeText",
- CellID->305160771,ExpressionUUID->"07359582-e823-44a1-2eca-0cef89d62e8b"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"src", " ", "=", " ", 
-   RowBox[{"Import", "[", 
-    RowBox[{
-     RowBox[{"FileNameJoin", "[", 
-      RowBox[{"{", 
-       RowBox[{"$Rule30PrizeKit", ",", " ", "\"\<Rule30Submission.lean\>\""}],
-        "}"}], "]"}], ",", " ", "\"\<Text\>\"", ",", " ", 
-     RowBox[{"CharacterEncoding", " ", "->", " ", "\"\<UTF-8\>\""}]}], 
-    "]"}]}], ";"}], "\n", 
- RowBox[{"\"\<rule30Submission = LeanImportString[\>\"", " ", "<>", " ", 
-  RowBox[{"ToString", "[", 
-   RowBox[{"src", ",", " ", "InputForm", ",", " ", 
-    RowBox[{"CharacterEncoding", " ", "->", " ", "\"\<Unicode\>\""}]}], "]"}],
-   " ", "<>", 
-  " ", "\"\<, \\\"ProjectDir\\\" -> $Rule30PrizeKit]\>\""}]}], "Input",
- CellID->1896945989,ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662"],
+  "07359582-e823-44a1-2eca-0cef89d62e8b"],
+ " cell."
+}], "Text",
+ CellID->305160771,ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662"],
 
 Cell[TextData[{
  "Once your human agrees, submit the notebook through the API. This works \
@@ -13624,7 +13606,7 @@ from the local Wolfram MCP's ",
 md"], None}],
  " has the details:"
 }], "CodeText",
- CellID->653417278,ExpressionUUID->"6184d2f2-049e-728e-17bb-cbbcad2b40d4"],
+ CellID->1896945989,ExpressionUUID->"6184d2f2-049e-728e-17bb-cbbcad2b40d4"],
 
 Cell[BoxData[
  RowBox[{"URLExecute", "[", 
@@ -13657,10 +13639,10 @@ Rule30Prize/api/submit\>\"", ",", " ",
           RowBox[{"\"\<consent\>\"", " ", "->", " ", "\"\<true\>\""}]}], 
          "}"}]}]}], "|>"}]}], "]"}], ",", " ", "\"\<RawJSON\>\""}], 
   "]"}]], "Input",
- CellID->1067269536,ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673"],
+ CellID->653417278,ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673"],
 
 Cell["What this essay does not do", "Section",
- CellID->49659130,ExpressionUUID->"19bb1c5e-57ab-6e36-4f58-9618625e351c"],
+ CellID->1067269536,ExpressionUUID->"19bb1c5e-57ab-6e36-4f58-9618625e351c"],
 
 Cell["\<\
 It proves nothing new. The period-1 result is Jen's theorem from 1986, and \
@@ -13668,10 +13650,10 @@ the experiments with periods prove nothing. The essay only sets up the tools, \
 and shows the form in which a new result reaches the verifier and the \
 reviewers.\
 \>", "Text",
- CellID->464508221,ExpressionUUID->"5c8dcc56-7aa9-964a-04b2-e6107f5dfc90"],
+ CellID->49659130,ExpressionUUID->"5c8dcc56-7aa9-964a-04b2-e6107f5dfc90"],
 
 Cell["References", "Section",
- CellID->1361313038,ExpressionUUID->"30baa1c8-66ad-75e0-6059-389213585fca"],
+ CellID->464508221,ExpressionUUID->"30baa1c8-66ad-75e0-6059-389213585fca"],
 
 Cell[TextData[{
  "[1] S. Wolfram, ",
@@ -13682,14 +13664,14 @@ Cell[TextData[{
 prizes/"], None}], "TI"],
  ", Wolfram Writings, 2019."
 }], "Text",
- CellID->1907680634,ExpressionUUID->"52535901-cb26-8b9c-0261-516aeed0d9e6"],
+ CellID->1361313038,ExpressionUUID->"52535901-cb26-8b9c-0261-516aeed0d9e6"],
 
 Cell[TextData[{
  "[2] E. Jen, ",
  StyleBox["Global properties of cellular automata", "TI"],
  ", Journal of Statistical Physics 43 (1986) 219-242."
 }], "Text",
- CellID->483148123,ExpressionUUID->"323a4b1c-b138-a791-63da-6359c0b20dfb"],
+ CellID->1907680634,ExpressionUUID->"323a4b1c-b138-a791-63da-6359c0b20dfb"],
 
 Cell[TextData[{
  "[3] Google DeepMind, ",
@@ -13700,7 +13682,7 @@ Cell[TextData[{
 FormalConjectures/Other/Rule30.lean"], None}], "TI"],
  ", 2026."
 }], "Text",
- CellID->1195452142,ExpressionUUID->"7421cf44-a1ac-4319-1dde-e721d0592e63"]
+ CellID->483148123,ExpressionUUID->"7421cf44-a1ac-4319-1dde-e721d0592e63"]
 },
 WindowSize->Automatic,
 WindowMargins->{{624, Automatic}, {Automatic, 175}},
@@ -16980,122 +16962,120 @@ Cell[372406, 6371, 131, 2, 70, "Output",ExpressionUUID->"12f3dbee-abc4-6375-4280
 }, Open  ]],
 Cell[372552, 6376, 134, 1, 70, "Section",ExpressionUUID->"7ed5da6f-a344-b859-26ea-dc48d6f60aa3",
  CellID->203008389],
-Cell[372689, 6379, 790, 16, 70, "Text",ExpressionUUID->"2cfa2c34-ef50-7d46-5499-c6718ae547ac",
+Cell[372689, 6379, 778, 16, 70, "Text",ExpressionUUID->"2cfa2c34-ef50-7d46-5499-c6718ae547ac",
  CellID->1090263105],
-Cell[373482, 6397, 285, 5, 70, "CodeText",ExpressionUUID->"362a4e41-4988-041f-5e2a-602b683d6f65",
+Cell[373470, 6397, 285, 5, 70, "CodeText",ExpressionUUID->"362a4e41-4988-041f-5e2a-602b683d6f65",
  CellID->1560876240],
 Cell[CellGroupData[{
-Cell[373792, 6406, 692, 12, 70, "Input",ExpressionUUID->"01ed6b92-5a5f-fa78-3792-82dc5febc942",
+Cell[373780, 6406, 692, 12, 70, "Input",ExpressionUUID->"01ed6b92-5a5f-fa78-3792-82dc5febc942",
  CellID->201914069],
-Cell[374487, 6420, 5030, 109, 70, "Output",ExpressionUUID->"107fa29c-d013-1000-4004-3bd9e1a6636a",
+Cell[374475, 6420, 5030, 109, 70, "Output",ExpressionUUID->"107fa29c-d013-1000-4004-3bd9e1a6636a",
  CellID->607076188]
 }, Open  ]],
-Cell[379532, 6532, 138, 1, 70, "CodeText",ExpressionUUID->"6798df62-4cc7-e4e1-0da7-d74c6573cecb",
+Cell[379520, 6532, 138, 1, 70, "CodeText",ExpressionUUID->"6798df62-4cc7-e4e1-0da7-d74c6573cecb",
  CellID->807053435],
 Cell[CellGroupData[{
-Cell[379695, 6537, 399, 9, 70, "Input",ExpressionUUID->"49f5450b-e8d1-97dd-7f8b-5d548965fd27",
+Cell[379683, 6537, 399, 9, 70, "Input",ExpressionUUID->"49f5450b-e8d1-97dd-7f8b-5d548965fd27",
  CellID->832633147],
-Cell[380097, 6548, 237, 3, 70, "Output",ExpressionUUID->"2570a8a5-7a6f-59e7-530f-410f7f1a2bcd",
+Cell[380085, 6548, 237, 3, 70, "Output",ExpressionUUID->"2570a8a5-7a6f-59e7-530f-410f7f1a2bcd",
  CellID->1403310832]
 }, Open  ]],
-Cell[380349, 6554, 174, 3, 70, "CodeText",ExpressionUUID->"0b990c23-b656-01a6-39a6-a58cc3e3538c",
+Cell[380337, 6554, 174, 3, 70, "CodeText",ExpressionUUID->"0b990c23-b656-01a6-39a6-a58cc3e3538c",
  CellID->1828793009],
 Cell[CellGroupData[{
-Cell[380548, 6561, 254, 6, 70, "Input",ExpressionUUID->"52243646-2fbd-210e-03db-a8204a487054",
+Cell[380536, 6561, 254, 6, 70, "Input",ExpressionUUID->"52243646-2fbd-210e-03db-a8204a487054",
  CellID->1491197753],
-Cell[380805, 6569, 241, 5, 70, "Output",ExpressionUUID->"1acd7f4d-3da3-7753-4af3-7717b4565db9",
+Cell[380793, 6569, 241, 5, 70, "Output",ExpressionUUID->"1acd7f4d-3da3-7753-4af3-7717b4565db9",
  CellID->518839321]
 }, Open  ]],
-Cell[381061, 6577, 200, 4, 70, "CodeText",ExpressionUUID->"062d91f0-6326-41c0-2fd2-08ba16d3132a",
+Cell[381049, 6577, 200, 4, 70, "CodeText",ExpressionUUID->"062d91f0-6326-41c0-2fd2-08ba16d3132a",
  CellID->762269937],
 Cell[CellGroupData[{
-Cell[381286, 6585, 259, 6, 70, "Input",ExpressionUUID->"1ac7f74a-ce09-be58-4afc-ef17ebbd04a2",
+Cell[381274, 6585, 259, 6, 70, "Input",ExpressionUUID->"1ac7f74a-ce09-be58-4afc-ef17ebbd04a2",
  CellID->1596700196],
-Cell[381548, 6593, 5888, 126, 70, "Output",ExpressionUUID->"6f6ad260-8ee1-565a-1569-d44a2a943ca0",
+Cell[381536, 6593, 5888, 126, 70, "Output",ExpressionUUID->"6f6ad260-8ee1-565a-1569-d44a2a943ca0",
  CellID->1663427655]
 }, Open  ]],
-Cell[387451, 6722, 136, 1, 70, "CodeText",ExpressionUUID->"612fd791-c81e-86f2-10d4-cedae9a8ecd8",
+Cell[387439, 6722, 136, 1, 70, "CodeText",ExpressionUUID->"612fd791-c81e-86f2-10d4-cedae9a8ecd8",
  CellID->2118931930],
 Cell[CellGroupData[{
-Cell[387612, 6727, 328, 7, 70, "Input",ExpressionUUID->"26dca2d1-2715-746d-4ee3-3b9b52a05eb7",
+Cell[387600, 6727, 328, 7, 70, "Input",ExpressionUUID->"26dca2d1-2715-746d-4ee3-3b9b52a05eb7",
  CellID->521043313],
-Cell[387943, 6736, 273090, 6497, 70, "Output",ExpressionUUID->"296a77cd-8fa3-dd44-5f6a-6e972a57a7ae",
+Cell[387931, 6736, 273090, 6497, 70, "Output",ExpressionUUID->"296a77cd-8fa3-dd44-5f6a-6e972a57a7ae",
  CellID->1864044787]
 }, Open  ]],
-Cell[661048, 13236, 566, 13, 70, "Text",ExpressionUUID->"6b853673-18d0-d9fa-19ba-a83d996aabc0",
+Cell[661036, 13236, 566, 13, 70, "Text",ExpressionUUID->"6b853673-18d0-d9fa-19ba-a83d996aabc0",
  CellID->1411198270],
-Cell[661617, 13251, 116, 1, 70, "Section",ExpressionUUID->"25b5b884-ef74-61b3-534a-31e18a013399",
+Cell[661605, 13251, 116, 1, 70, "Section",ExpressionUUID->"25b5b884-ef74-61b3-534a-31e18a013399",
  CellID->1703453532],
-Cell[661736, 13254, 139, 1, 70, "Text",ExpressionUUID->"574a2197-51ef-7938-7d49-b8d1679a4802",
+Cell[661724, 13254, 139, 1, 70, "Text",ExpressionUUID->"574a2197-51ef-7938-7d49-b8d1679a4802",
  CellID->1477609488],
-Cell[661878, 13257, 288, 7, 70, "CodeText",ExpressionUUID->"6e85e9ed-427b-8528-16ba-00b7770fec72",
+Cell[661866, 13257, 288, 7, 70, "CodeText",ExpressionUUID->"6e85e9ed-427b-8528-16ba-00b7770fec72",
  CellID->1030824397],
-Cell[662169, 13266, 496, 10, 70, "Input",ExpressionUUID->"73b76025-96bb-3fff-214d-798f234f85c5",
+Cell[662157, 13266, 496, 10, 70, "Input",ExpressionUUID->"73b76025-96bb-3fff-214d-798f234f85c5",
  CellID->100031176],
-Cell[662668, 13278, 175, 3, 70, "CodeText",ExpressionUUID->"31f4c073-8ff6-126f-678b-da3d298360b5",
+Cell[662656, 13278, 175, 3, 70, "CodeText",ExpressionUUID->"31f4c073-8ff6-126f-678b-da3d298360b5",
  CellID->144223354],
 Cell[CellGroupData[{
-Cell[662868, 13285, 589, 15, 70, "Input",ExpressionUUID->"72ff7667-e560-b2c0-2285-68408c1a002a",
+Cell[662856, 13285, 589, 15, 70, "Input",ExpressionUUID->"72ff7667-e560-b2c0-2285-68408c1a002a",
  CellID->1340170678],
-Cell[663460, 13302, 214, 5, 70, "Output",ExpressionUUID->"7c9be80e-0554-61c1-24b8-0268ace1332b",
+Cell[663448, 13302, 214, 5, 70, "Output",ExpressionUUID->"7c9be80e-0554-61c1-24b8-0268ace1332b",
  CellID->132063092]
 }, Open  ]],
-Cell[663689, 13310, 533, 9, 70, "Text",ExpressionUUID->"106b7ad8-6378-599b-4069-7382160d2be1",
+Cell[663677, 13310, 533, 9, 70, "Text",ExpressionUUID->"106b7ad8-6378-599b-4069-7382160d2be1",
  CellID->311511756],
 Cell[CellGroupData[{
-Cell[664247, 13323, 997, 26, 70, "Input",ExpressionUUID->"7e6f7c7a-fa8f-2da1-2615-7627ff3a778b",
+Cell[664235, 13323, 997, 26, 70, "Input",ExpressionUUID->"7e6f7c7a-fa8f-2da1-2615-7627ff3a778b",
  CellID->1474733835],
-Cell[665247, 13351, 5596, 111, 70, "Output",ExpressionUUID->"304452a4-201b-d64c-607c-4b0e51afbc96",
+Cell[665235, 13351, 5596, 111, 70, "Output",ExpressionUUID->"304452a4-201b-d64c-607c-4b0e51afbc96",
  CellID->568315932]
 }, Open  ]],
-Cell[670858, 13465, 119, 1, 70, "Section",ExpressionUUID->"6beff1f8-c64a-83a6-1994-e8a5f3fcd18c",
+Cell[670846, 13465, 119, 1, 70, "Section",ExpressionUUID->"6beff1f8-c64a-83a6-1994-e8a5f3fcd18c",
  CellID->377280352],
-Cell[670980, 13468, 190, 4, 70, "Text",ExpressionUUID->"4b5b9263-9199-4e16-7978-144d202c157c",
+Cell[670968, 13468, 190, 4, 70, "Text",ExpressionUUID->"4b5b9263-9199-4e16-7978-144d202c157c",
  CellID->1717363484],
-Cell[671173, 13474, 203, 4, 70, "CodeText",ExpressionUUID->"475d7054-346c-a3cc-6d63-6a1ebd1ef116",
+Cell[671161, 13474, 203, 4, 70, "CodeText",ExpressionUUID->"475d7054-346c-a3cc-6d63-6a1ebd1ef116",
  CellID->1781880651],
 Cell[CellGroupData[{
-Cell[671401, 13482, 1018, 24, 70, "Input",ExpressionUUID->"2ef71510-aa09-eca9-568c-8d5dcfbdb6f3",
+Cell[671389, 13482, 1018, 24, 70, "Input",ExpressionUUID->"2ef71510-aa09-eca9-568c-8d5dcfbdb6f3",
  CellID->195307340],
-Cell[672422, 13508, 344, 5, 70, "Output",ExpressionUUID->"3343f580-98d5-e31c-6170-ecea1961ce66",
+Cell[672410, 13508, 344, 5, 70, "Output",ExpressionUUID->"3343f580-98d5-e31c-6170-ecea1961ce66",
  CellID->497365311]
 }, Open  ]],
-Cell[672781, 13516, 225, 4, 70, "CodeText",ExpressionUUID->"20a7420b-376a-b23f-505d-6455421c0105",
+Cell[672769, 13516, 225, 4, 70, "CodeText",ExpressionUUID->"20a7420b-376a-b23f-505d-6455421c0105",
  CellID->1621535814],
 Cell[CellGroupData[{
-Cell[673031, 13524, 651, 15, 70, "Input",ExpressionUUID->"6af863a9-1098-c609-1a98-7af3a112ad53",
+Cell[673019, 13524, 651, 15, 70, "Input",ExpressionUUID->"6af863a9-1098-c609-1a98-7af3a112ad53",
  CellID->482293909],
-Cell[673685, 13541, 263, 4, 70, "Output",ExpressionUUID->"055bc2ad-6b92-a3be-3378-dbf70e24f184",
+Cell[673673, 13541, 263, 4, 70, "Output",ExpressionUUID->"055bc2ad-6b92-a3be-3378-dbf70e24f184",
  CellID->885243818]
 }, Open  ]],
-Cell[673963, 13548, 593, 10, 70, "Text",ExpressionUUID->"2b0fb60e-2211-365f-5934-286857a59ca5",
+Cell[673951, 13548, 593, 10, 70, "Text",ExpressionUUID->"2b0fb60e-2211-365f-5934-286857a59ca5",
  CellID->105329933],
-Cell[674559, 13560, 126, 1, 70, "Section",ExpressionUUID->"201a2509-bdd9-2fa1-5039-bd53346c758b",
+Cell[674547, 13560, 126, 1, 70, "Section",ExpressionUUID->"201a2509-bdd9-2fa1-5039-bd53346c758b",
  CellID->1234416869],
-Cell[674688, 13563, 303, 6, 70, "CodeText",ExpressionUUID->"7085d256-6adc-aa08-20ba-d4100f6ef952",
+Cell[674676, 13563, 303, 6, 70, "CodeText",ExpressionUUID->"7085d256-6adc-aa08-20ba-d4100f6ef952",
  CellID->240380995],
-Cell[674994, 13571, 200, 4, 70, "Program",ExpressionUUID->"5f932952-49a5-d34f-05a0-c11c6851a195",
+Cell[674982, 13571, 200, 4, 70, "Program",ExpressionUUID->"5f932952-49a5-d34f-05a0-c11c6851a195",
  CellID->1771870337],
-Cell[675197, 13577, 581, 14, 70, "CodeText",ExpressionUUID->"160f17c4-d31a-fe19-3e34-8ea1e6acc563",
+Cell[675185, 13577, 648, 15, 70, "Text",ExpressionUUID->"160f17c4-d31a-fe19-3e34-8ea1e6acc563",
  CellID->305160771],
-Cell[675781, 13593, 785, 17, 70, "Input",ExpressionUUID->"10beb8bd-bdb6-ee93-4045-31e73440b4f9",
+Cell[675836, 13594, 547, 14, 70, "CodeText",ExpressionUUID->"10beb8bd-bdb6-ee93-4045-31e73440b4f9",
  CellID->1896945989],
-Cell[676569, 13612, 546, 14, 70, "CodeText",ExpressionUUID->"3fdc991b-fead-14b0-65e3-1144fb587e9a",
+Cell[676386, 13610, 1394, 31, 70, "Input",ExpressionUUID->"3fdc991b-fead-14b0-65e3-1144fb587e9a",
  CellID->653417278],
-Cell[677118, 13628, 1395, 31, 70, "Input",ExpressionUUID->"3657d2c5-05c0-ac85-5e6c-cbafac7af6ef",
+Cell[677783, 13643, 122, 1, 70, "Section",ExpressionUUID->"3657d2c5-05c0-ac85-5e6c-cbafac7af6ef",
  CellID->1067269536],
-Cell[678516, 13661, 120, 1, 70, "Section",ExpressionUUID->"0642d375-09f3-9942-2e71-cb3faf87eba8",
+Cell[677908, 13646, 337, 6, 70, "Text",ExpressionUUID->"0642d375-09f3-9942-2e71-cb3faf87eba8",
  CellID->49659130],
-Cell[678639, 13664, 338, 6, 70, "Text",ExpressionUUID->"0651775d-2bad-791b-2e6f-6f074e584861",
+Cell[678248, 13654, 104, 1, 70, "Section",ExpressionUUID->"0651775d-2bad-791b-2e6f-6f074e584861",
  CellID->464508221],
-Cell[678980, 13672, 105, 1, 70, "Section",ExpressionUUID->"63b9e3d6-2298-231e-1146-fa9057128e64",
+Cell[678355, 13657, 352, 9, 70, "Text",ExpressionUUID->"63b9e3d6-2298-231e-1146-fa9057128e64",
  CellID->1361313038],
-Cell[679088, 13675, 352, 9, 70, "Text",ExpressionUUID->"67c13665-f813-2f11-0dfe-a84ef9a6727b",
+Cell[678710, 13668, 234, 5, 70, "Text",ExpressionUUID->"67c13665-f813-2f11-0dfe-a84ef9a6727b",
  CellID->1907680634],
-Cell[679443, 13686, 233, 5, 70, "Text",ExpressionUUID->"4c440104-ea8a-4285-747b-99618f3f10ef",
- CellID->483148123],
-Cell[679679, 13693, 366, 9, 70, "Text",ExpressionUUID->"66c9a615-af45-c085-0ef6-385ecaf192ef",
- CellID->1195452142]
+Cell[678947, 13675, 365, 9, 70, "Text",ExpressionUUID->"4c440104-ea8a-4285-747b-99618f3f10ef",
+ CellID->483148123]
 }
 ]
 *)

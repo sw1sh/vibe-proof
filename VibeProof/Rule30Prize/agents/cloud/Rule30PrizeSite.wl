@@ -16,9 +16,9 @@
    The deployed APIs carry these definitions with them (CloudDeploy with IncludeDefinitions -> True)
    and run as the account that deployed them.
 
-   Nothing in an uploaded notebook is ever evaluated. The file is parsed into HoldComplete, and only
-   input cells whose boxes are plain RowBox/String trees are converted to expressions, again held.
-   The Lean source is the literal string in the cell `rule30Submission = LeanImportString[...]`. *)
+   The site never evaluates an uploaded notebook: it only checks that the file parses as one, held.
+   The verifier evaluates it in a sandbox of its own and reads the LeanEnvironment its
+   rule30Submission holds; the Lean source behind it comes back with the verifier's result. *)
 
 BeginPackage["Rule30PrizeSite`"]
 
@@ -30,7 +30,6 @@ $Rule30PrizeStatuses::usage = "$Rule30PrizeStatuses lists the statuses of a subm
 
 $Rule30PrizeReviewerDomains::usage = "$Rule30PrizeReviewerDomains lists the email domains of the Wolfram IDs that may read the submissions."
 
-Rule30PrizeNotebookSource::usage = "Rule30PrizeNotebookSource[file] reads a notebook without evaluating it and gives the Lean source of its rule30Submission = LeanImportString[\"...\", ...] cell, or a Failure."
 
 Rule30PrizeSubmit::usage = "Rule30PrizeSubmit[assoc] validates and stores a submission and gives an association with its id, status token and status, or a Failure."
 
@@ -49,6 +48,8 @@ Rule30PrizeQueueItem::usage = "Rule30PrizeQueueItem[id] gives submission id as t
 Rule30PrizeClaimCheck::usage = "Rule30PrizeClaimCheck[id] marks a waiting submission as being checked, and gives True if it did."
 
 $Rule30PrizeOnSubmit::usage = "$Rule30PrizeOnSubmit is None, or a function applied to the id of each new submission that waits for the verifier."
+
+Rule30PrizeProgress::usage = "Rule30PrizeProgress[id, detail] records what the verifier is doing on a submission it is checking."
 
 Rule30PrizeRecordCheck::usage = "Rule30PrizeRecordCheck[id, sha, result] records the verifier's result for submission id, whose Lean source has SHA-256 sha."
 
@@ -228,33 +229,9 @@ publishText[name_String, text_String, mime_String] := CloudDeploy[
     Permissions -> "Public"
 ]
 
-(* === reading a notebook without evaluating it === *)
+(* === checking that an upload is a notebook === *)
 
-SetAttributes[symbolNamed, HoldFirst]
-
-symbolNamed[s_Symbol, name_String] := SymbolName[Unevaluated[s]] === name
-
-symbolNamed[_, _] := False
-
-(* True when the held boxes are only RowBox, lists and strings, which evaluate to themselves. *)
-plainBoxesQ[held_HoldComplete] := FreeQ[held, e_ /; ! MatchQ[Unevaluated[e], _String | _List | _RowBox | _BoxData], {2, Infinity}, Heads -> False]
-
-(* The code of an input cell, held. Cells with any other boxes are skipped. *)
-heldCellCode[HoldComplete[s_String]] := Quiet @ ToExpression[s, InputForm, HoldComplete]
-
-heldCellCode[held : HoldComplete[BoxData[b_]]] := If[plainBoxesQ[held], Quiet @ ToExpression[b, StandardForm, HoldComplete], $Failed]
-
-heldCellCode[_] := $Failed
-
-(* `rule30Submission = LeanImportString["...", ...]` gives the string; any context, Set only. *)
-submissionStrings[code_HoldComplete] := Cases[
-    code,
-    HoldPattern[Set[lhs_Symbol, f_Symbol[src_String, ___]]] /; symbolNamed[lhs, "rule30Submission"] && symbolNamed[f, "LeanImportString"] :> src,
-    {0, Infinity}
-]
-
-submissionStrings[_] := {}
-
+(* The file parsed, held: nothing in it is evaluated here. *)
 heldNotebook[path_String] := Block[{text, held},
     text = Quiet @ ReadString[path];
     If[ ! StringQ[text], Return[failure["Unreadable", "The file could not be read."], Block]];
@@ -263,23 +240,6 @@ heldNotebook[path_String] := Block[{text, held},
     ];
     (* The comments around the Notebook expression in the file parse to Nulls. *)
     Replace[held, {HoldComplete[Null ..., nb_Notebook, Null ...] :> HoldComplete[nb], _ -> failure["NotNotebook", "The file is not a Wolfram notebook (.nb)."]}]
-]
-
-Rule30PrizeNotebookSource[File[path_String]] := Rule30PrizeNotebookSource[path]
-
-Rule30PrizeNotebookSource[path_String] := Block[{held, cells, sources},
-    held = heldNotebook[path];
-    If[FailureQ[held], Return[held, Block]];
-    cells = Cases[held, Cell[content_, "Input" | "Code", ___] :> HoldComplete[content], Infinity];
-    sources = Block[{$Context = "Rule30PrizeSite`Parsed`", $ContextPath = {"System`"}},
-        Catenate @ Map[submissionStrings @ heldCellCode[#]&, cells]
-    ];
-    Which[
-        sources === {}, failure["NoSource", "No input cell of the form rule30Submission = LeanImportString[\"...\", ...] with a literal string."],
-        Length[sources] > 1, failure["AmbiguousSource", "More than one cell assigns rule30Submission; keep exactly one."],
-        StringLength[First[sources]] == 0, failure["EmptySource", "The Lean source is empty."],
-        True, First[sources]
-    ]
 ]
 
 (* === validating a submission === *)
@@ -339,9 +299,8 @@ rateLimited[who_String, now_Integer] := Block[{mine, all},
 ]
 
 (* The theorem the verifier must find, and the state of the check, for new submissions. *)
-checkPlan[fields_Association, source_] := Block[{target = Lookup[$officialTargets, Key[{fields["problem"], fields["claim"]}], Null]},
+checkPlan[fields_Association] := Block[{target = Lookup[$officialTargets, Key[{fields["problem"], fields["claim"]}], Null]},
     Which[
-        FailureQ[source], {target, <|"state" -> "no-source", "detail" -> source["Message"]|>},
         target === Null && fields["headlines"] === {}, {target, <|"state" -> "no-target", "detail" -> "Problem 3 and partial results need at least one headline theorem."|>},
         True, {target, <|"state" -> "queued", "detail" -> "Waiting for the Lean verifier."|>}
     ]
@@ -359,7 +318,7 @@ fetchNotebook[url_String] /; StringMatchQ[url, RegularExpression["https://[^\\s\
 
 fetchNotebook[_] := failure["Notebook", "Attach the notebook (.nb) of your computational essay, or give notebookURL, an https URL of it."]
 
-Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, bytes, source, id, token, target, check, entry, files},
+Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, held, bytes, id, token, target, check, entry, files},
     fields = validFields[a];
     If[FailureQ[fields], Return[fields, Block]];
     now = nowUnix[];
@@ -368,19 +327,15 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, bytes, so
     path = Replace[notebookPath[a["notebook"]], $Failed :> fetchNotebook[a["notebookURL"]]];
     If[FailureQ[path], Return[path, Block]];
     If[FileByteCount[path] > $maxNotebookBytes, Return[failure["Notebook", "The notebook is larger than 30 MB."], Block]];
-    source = Rule30PrizeNotebookSource[path];
-    If[MatchQ[source, Failure["NotNotebook" | "Unreadable", _]], Return[source, Block]];
-    If[StringQ[source] && Length[utf8[source]] > $maxSourceBytes, source = failure["SourceTooLarge", "The Lean source is larger than 2 MB."]];
+    held = heldNotebook[path];
+    If[FailureQ[held], Return[held, Block]];
     bytes = ReadByteArray[path];
     id = newID[];
     token = newToken[];
-    {target, check} = checkPlan[fields, source];
+    {target, check} = checkPlan[fields];
     storeBytes[id, "essay.nb", bytes];
+    (* The Lean source arrives with the verifier's result. *)
     files = <|"notebook" -> endpointURL["api/file"] <> "?id=" <> id <> "&kind=notebook", "lean" -> Null|>;
-    If[ StringQ[source],
-        storeBytes[id, "Rule30Submission.lean", utf8[source]];
-        files["lean"] = endpointURL["api/file"] <> "?id=" <> id <> "&kind=lean"
-    ];
     entry = <|
         "id" -> id,
         "title" -> fields["title"],
@@ -403,8 +358,8 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, bytes, so
         "kit" -> $kitVersion,
         "notebookSHA256" -> sha256[bytes],
         "notebookBytes" -> Length[bytes],
-        "sourceSHA256" -> If[StringQ[source], sha256[source], Null],
-        "sourceBytes" -> If[StringQ[source], Length[utf8[source]], Null]
+        "sourceSHA256" -> Null,
+        "sourceBytes" -> Null
     |>;
     storeSetEntry[id, entry];
     storeSetPrivate[id, <|"email" -> fields["email"], "requester" -> requester[], "submittedUnix" -> now, "tokenSHA256" -> sha256[token]|>];
@@ -480,8 +435,8 @@ queueItem[e_Association] := <|
     "claim" -> e["claim"],
     "target" -> e["target"],
     "headlines" -> e["headlines"],
-    "sourceSHA256" -> e["sourceSHA256"],
-    "sourceBase64" -> BaseEncode @ Replace[storeReadBytes[e["id"], "Rule30Submission.lean"], Except[_ByteArray] -> ByteArray[{}]]
+    "notebookSHA256" -> e["notebookSHA256"],
+    "notebookBase64" -> BaseEncode @ Replace[storeReadBytes[e["id"], "essay.nb"], Except[_ByteArray] -> ByteArray[{}]]
 |>
 
 Rule30PrizeQueue[n_Integer : 10] := queueItem /@ Take[SortBy[Select[Values @ storeIndex[], waitingQ], #submittedUnix&], UpTo[n]]
@@ -492,6 +447,13 @@ Rule30PrizeClaimCheck[id_String] := Block[{e = storeEntry[id]},
     If[ ! AssociationQ[e] || ! waitingQ[e], Return[False, Block]];
     storeSetEntry[id, Join[e, <|"check" -> <|"state" -> "running", "detail" -> "The Lean verifier is checking it.", "startedUnix" -> nowUnix[]|>|>]];
     True
+]
+
+(* What the verifier is doing, shown as the check's detail while it runs. *)
+Rule30PrizeProgress[id_String, detail_String] := Block[{e = storeEntry[id]},
+    If[ AssociationQ[e] && e["check"]["state"] === "running",
+        storeSetEntry[id, Join[e, <|"check" -> Join[e["check"], <|"detail" -> detail, "progressUnix" -> nowUnix[]|>]|>]]
+    ];
 ]
 
 (* The verifier's JSON, cut down to what the page shows. *)
@@ -515,9 +477,17 @@ checkDetail[s_Association] := Which[
     True, "The check failed."
 ]
 
-Rule30PrizeRecordCheck[id_String, sha_String, result_Association] := Block[{e = storeEntry[id], s, passed, status},
+(* sha is the SHA-256 of the notebook the verifier evaluated. The result may carry the Lean source
+   behind its rule30Submission, which reviewers then read. *)
+Rule30PrizeRecordCheck[id_String, sha_String, result_Association] := Block[{e = storeEntry[id], s, passed, status, source},
     If[MissingQ[e], Return[failure["NoEntry", "No submission " <> id <> "."], Block]];
-    If[e["sourceSHA256"] =!= sha, Return[failure["Stale", "The source hash does not match this submission."], Block]];
+    If[e["notebookSHA256"] =!= sha, Return[failure["Stale", "The notebook hash does not match this submission."], Block]];
+    source = Replace[result["source"], {b_ByteArray :> b, t_String :> utf8[t], _ -> None}];
+    If[ ByteArrayQ[source] && Length[source] <= $maxSourceBytes,
+        storeBytes[id, "Rule30Submission.lean", source];
+        e = Join[e, <|"sourceSHA256" -> sha256[source], "sourceBytes" -> Length[source],
+            "files" -> Append[e["files"], "lean" -> endpointURL["api/file"] <> "?id=" <> id <> "&kind=lean"]|>]
+    ];
     s = checkSummary[result];
     passed = s["verdict"] === "pass";
     status = Which[
@@ -544,7 +514,7 @@ Rule30PrizeSetStatus[id_String, status_String, note_String : ""] := Block[{e = s
 
 Rule30PrizeRequeue[id_String] := Block[{e = storeEntry[id]},
     If[MissingQ[e], Return[failure["NoEntry", "No submission " <> id <> "."], Block]];
-    If[e["sourceSHA256"] === Null, Return[failure["NoSource", "The submission has no Lean source."], Block]];
+    If[e["notebookSHA256"] === Null, Return[failure["NoNotebook", "The submission has no notebook."], Block]];
     storeSetEntry[id, Join[e, <|"check" -> <|"state" -> "queued", "detail" -> "Waiting for the Lean verifier."|>|>]];
     Rule30PrizeEntry[id]
 ]
