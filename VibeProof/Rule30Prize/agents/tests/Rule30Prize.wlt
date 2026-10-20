@@ -264,3 +264,46 @@ VerificationTest[
     {True, {}},
     TestID -> "public-instructions-self-contained"
 ]
+
+(* === the reviewers' view of a notebook: nothing in it runs === *)
+
+viewOf[file_] := Block[{Rule30PrizeSite`Private`$rootURL = "https://example.org/Rule30Prize"},
+    Rule30PrizeSite`Private`viewNotebook["R30-TEST", Rule30PrizeSite`Private`heldNotebook[file]]
+]
+
+(* Each part tries to set a flag: when shown, when clicked, when evaluated, when parsed, or through its
+   stylesheet. *)
+hostileView = viewOf[rawFile["Notebook[{" <>
+    "Cell[BoxData[DynamicBox[ToBoxes[Global`pwnedDynamic = True]]], \"Output\"], " <>
+    "Cell[BoxData[ButtonBox[\"click\", ButtonFunction :> (Global`pwnedButton = True)]], \"Output\"], " <>
+    "Cell[TextData[{ButtonBox[\"link\", BaseStyle -> \"Hyperlink\", ButtonData -> {URL[\"javascript:alert(1)\"], None}]}], \"Text\"], " <>
+    "Cell[BoxData[RowBox[{\"1\", \"+\", \"1\"}]], \"Input\", CellEvaluationFunction -> (Global`pwnedEval = True&)], " <>
+    "Cell[Set[Global`pwnedRaw, True], \"Text\"], " <>
+    "Cell[\"\\!\\(\\*DynamicBox[ToBoxes[Global`pwnedString = True]]\\)\", \"Text\"], " <>
+    "Cell[BoxData[GraphicsBox[{RGBColor[1, 0, 0], DiskBox[{0, 0}]}]], \"Output\"]" <>
+    "}, NotebookDynamicExpression :> (Global`pwnedNotebook = True), " <>
+    "StyleDefinitions -> Notebook[{Cell[StyleData[\"Text\"], CellEventActions -> {\"KeyDown\" :> (Global`pwnedStyle = True)}]}]]"]]
+
+VerificationTest[
+    {Head[hostileView],
+     FreeQ[hostileView, DynamicBox | ButtonFunction | CellEvaluationFunction | NotebookDynamicExpression | CellEventActions | Set | StyleData],
+     FreeQ[hostileView, "javascript:alert(1)"],
+     FreeQ[hostileView, s_String /; StringContainsQ[s, "\!" | "\*"]],
+     Count[hostileView, _GraphicsBox, Infinity],
+     Lookup[Options[hostileView], {StyleDefinitions, Evaluatable}],
+     {ValueQ[Global`pwnedDynamic], ValueQ[Global`pwnedButton], ValueQ[Global`pwnedEval], ValueQ[Global`pwnedRaw], ValueQ[Global`pwnedString], ValueQ[Global`pwnedNotebook], ValueQ[Global`pwnedStyle]}},
+    {Notebook, True, True, True, 1, {"Default.nb", False}, {False, False, False, False, False, False, False}},
+    TestID -> "view-keeps-no-code"
+]
+
+VerificationTest[Count[viewOf[submissionNotebook[template]], Cell[_, "Input", ___], Infinity], 2, TestID -> "view-keeps-the-essay"]
+
+(* The Wolfram Cloud encodes a computed text/html body a second time: the page goes out as ASCII,
+   with the data's other characters escaped as JSON does. *)
+VerificationTest[
+    {Max[ToCharacterCode[Rule30PrizeSubmissionsPage[]]] < 128,
+     Rule30PrizeSite`Private`asciiJSON["{\"t\":\"a\[CenterDot]b \:2115 " <> FromCharacterCode[128512] <> "\"}"],
+     ImportString[Rule30PrizeSite`Private`asciiJSON["{\"t\":\"a\[CenterDot]b \:2115 " <> FromCharacterCode[128512] <> "\"}"], "RawJSON"]["t"] === "a\[CenterDot]b \:2115 " <> FromCharacterCode[128512]},
+    {True, "{\"t\":\"a\\u00b7b \\u2115 \\ud83d\\ude00\"}", True},
+    TestID -> "page-and-json-are-ascii"
+]

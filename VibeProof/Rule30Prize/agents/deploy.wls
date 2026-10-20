@@ -11,9 +11,9 @@
    - -instructions true (the default) also publishes the public pages: ROOT/ (the landing page,
      index.html), skill.md and HowToStart.nb (once notebooks/build.wls has built it). They link
      the kit, the repository WolframInstitute/Rule30PrizeKit (the submodule ../kit).
-   - -autoverify true (the default) makes the submission API start the verification of every new
-     submission in the cloud. That needs the Prime Intellect key and paclet in the cloud: run
-     verifier/store_prime_key.wls once. *)
+   - For every new submission, the submission API starts a cloud task that deploys a view of its
+     notebook for reviewers. With -autoverify true (the default) the task then verifies it. That
+     needs the Prime Intellect key and paclet in the cloud: run verifier/store_prime_key.wls once. *)
 
 $here = DirectoryName[$InputFileName]
 
@@ -34,9 +34,10 @@ publishedNotebook[file_String] := Replace[Import[file, "NB"], Notebook[cells_, o
 
 Print["Deploying as ", $WolframID, " under ", root]
 
-If[ option["autoverify", "true"] === "true",
+Rule30PrizeSite`$Rule30PrizeOnSubmit = If[ option["autoverify", "true"] === "true",
     Rule30PrizeCloudAccess[rootURL];
-    Rule30PrizeSite`$Rule30PrizeOnSubmit = Function[id, CloudSubmit[Rule30PrizeVerifier`Rule30PrizeVerifyID[id]]]
+    Function[id, CloudSubmit[Rule30PrizeSite`Rule30PrizeDeployView[id]; Rule30PrizeVerifier`Rule30PrizeVerifyID[id]]],
+    Function[id, CloudSubmit[Rule30PrizeSite`Rule30PrizeDeployView[id]]]
 ]
 
 urls = Rule30PrizeDeploy["Root" -> root, If[option["instructions", "true"] === "true", "SkillFile" -> FileNameJoin[{$here, "skill.md"}], Sequence @@ {}]]

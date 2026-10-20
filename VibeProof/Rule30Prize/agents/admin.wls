@@ -13,6 +13,8 @@
    - requeue ID                   send it back to the Lean verifier; verifier/verify.wls then checks it
    - verify ID                    check a waiting submission in the cloud, as the submission API does
                                   for a new one, and follow it until it has a result
+   - view ID ...                  deploy a view of each notebook for reviewers, without the parts
+                                  that run code (new submissions get one automatically)
    - hide ID ... [-note REASON]   hide submissions from the page
    - unhide ID                    show a hidden submission again
    - undeploy -root ROOT          delete a test deployment, whose ROOT starts with Rule30PrizeTest: its
@@ -85,6 +87,7 @@ ok = Replace[words, {
     {"status", id_, status_} :> show[Rule30PrizeSetStatus[id, status, note]],
     {"requeue", id_} :> show[Rule30PrizeRequeue[id]],
     {"verify", id_} :> verifyInCloud[id],
+    {"view", ids__} :> And @@ Map[show[Rule30PrizeDeployView[#]]&, {ids}],
     {"hide", ids__} :> And @@ Map[show[Rule30PrizeHide[#, If[note === "", "hidden by a maintainer", note]]]&, {ids}],
     {"unhide", id_} :> show[Rule30PrizeHide[id, False]],
     {"undeploy"} :> undeploy[root],

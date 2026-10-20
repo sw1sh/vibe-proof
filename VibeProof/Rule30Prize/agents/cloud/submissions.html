@@ -265,7 +265,7 @@ footer p { margin: 0 0 8px; max-width: 48em; }
     }[st] || st;
     var box = el("div", { cls: "check " + st }, [el("span", { cls: "state", text: label })]);
     var what = e.target || (e.headlines && e.headlines.length ? e.headlines.join(", ") : null);
-    if (what) box.appendChild(el("span", null, [" · ", el("code", { text: what })]));
+    if (what) box.appendChild(el("span", null, [" \u00b7 ", el("code", { text: what })]));
     if (c.detail) box.appendChild(el("div", { text: c.detail }));
     var parts = [];
     var rows = (c.official || []).concat(c.headlines || []);
@@ -295,11 +295,12 @@ footer p { margin: 0 0 8px; max-width: 48em; }
     });
     var meta = el("p", { cls: "meta" }, [
       el("span", { cls: "chip", text: "Problem " + e.problem }), el("span", { cls: "chip", text: claimText[e.claim] || e.claim }),
-      el("code", { text: e.id }), " · submitted " + (e.submitted || "").slice(0, 10)
+      el("code", { text: e.id }), " \u00b7 submitted " + (e.submitted || "").slice(0, 10)
     ]);
-    var who = el("p", { cls: "meta", text: e.authors + (e.agent ? " · by " + e.agent : "") + (e.submitter ? " · submitted by " + e.submitter : "") });
+    var who = el("p", { cls: "meta", text: e.authors + (e.agent ? " \u00b7 by " + e.agent : "") + (e.submitter ? " \u00b7 submitted by " + e.submitter : "") });
     var files = el("nav", { cls: "files" }, [
-      link("Notebook", e.files && e.files.notebook), link("Lean source", e.files && e.files.lean),
+      link("Notebook", e.files && (e.files.view || e.files.notebook)), link("Download .nb", e.files && e.files.view && e.files.notebook),
+      link("Lean source", e.files && e.files.lean),
       link("Repository", e.repository)
     ]);
     var kids = [steps, el("h2", { text: e.title }), meta, who];

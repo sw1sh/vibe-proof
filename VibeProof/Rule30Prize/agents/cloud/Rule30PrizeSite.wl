@@ -48,7 +48,9 @@ Rule30PrizeQueueItem::usage = "Rule30PrizeQueueItem[id] gives submission id as t
 
 Rule30PrizeClaimCheck::usage = "Rule30PrizeClaimCheck[id] marks a waiting submission as being checked, and gives True if it did."
 
-$Rule30PrizeOnSubmit::usage = "$Rule30PrizeOnSubmit is None, or a function applied to the id of each new submission that waits for the verifier."
+$Rule30PrizeOnSubmit::usage = "$Rule30PrizeOnSubmit is None, or a function applied to the id of each new submission."
+
+Rule30PrizeDeployView::usage = "Rule30PrizeDeployView[id] deploys a view of a submission's notebook for reviewers, without the parts that run code, and gives its address."
 
 Rule30PrizeProgress::usage = "Rule30PrizeProgress[id, detail] records what the verifier is doing on a submission it is checking."
 
@@ -124,7 +126,8 @@ $privateCE = None
 
 $rateCE = None
 
-$submissionsTemplate = Quiet @ Import[FileNameJoin[{DirectoryName[$InputFileName], "submissions.html"}], "Text", CharacterEncoding -> "UTF-8"]
+(* As UTF-8 bytes: deployed definitions carry strings outside ASCII garbled, and bytes intact. *)
+$submissionsTemplateBytes = Quiet @ ReadByteArray[FileNameJoin[{DirectoryName[$InputFileName], "submissions.html"}]]
 
 (* === small helpers === *)
 
@@ -154,6 +157,8 @@ submitterID[] := Replace[$RequesterWolframID, Except[_String] -> None]
 
 requesterAddress[] := Replace[$RequesterAddress, Except[_String] -> Null]
 
+newToken[] := IntegerString[RandomInteger[2^128 - 1], 16, 32]
+
 newID[] := "R30-" <> DateString[{"Year", "Month", "Day"}, TimeZone -> 0] <> "-" <> IntegerString[RandomInteger[16^6 - 1], 16, 6]
 
 (* Wolfram IDs at the reviewers' domain. A Wolfram ID is a verified email address. *)
@@ -162,7 +167,20 @@ reviewerQ[id_String] := AnyTrue[$Rule30PrizeReviewerDomains, StringEndsQ[ToLower
 reviewerQ[_] := False
 
 (* JSON that can sit inside a <script> element. *)
-scriptJSON[expr_] := StringReplace[ExportString[expr, "RawJSON", "Compact" -> True], {"</" -> "<\\/", "<!--" -> "<\\!--"}]
+(* JSON in ASCII, with \uXXXX escapes (UTF-16 surrogate pairs beyond the BMP): the Wolfram Cloud
+   encodes the body of a computed text/html response a second time, so the reviewers' page must be
+   ASCII, and the JSON responses are too. *)
+jsonEscape[c_String] := StringJoin @ Map[
+    If[# > 65535,
+        With[{u = # - 65536}, "\\u" <> IntegerString[55296 + BitShiftRight[u, 10], 16, 4] <> "\\u" <> IntegerString[56320 + BitAnd[u, 1023], 16, 4]],
+        "\\u" <> IntegerString[#, 16, 4]
+    ]&,
+    ToCharacterCode[c]
+]
+
+asciiJSON[s_String] := StringReplace[s, c : RegularExpression["[^\\x00-\\x7F]"] :> jsonEscape[c]]
+
+scriptJSON[expr_] := StringReplace[asciiJSON @ ExportString[expr, "RawJSON", "Compact" -> True], {"</" -> "<\\/", "<!--" -> "<\\!--"}]
 
 (* === storage: the cloud, or a local directory for tests === *)
 
@@ -243,6 +261,92 @@ heldNotebook[path_String] := Block[{text, held},
     ];
     (* The comments around the Notebook expression in the file parse to Nulls. *)
     Replace[held, {HoldComplete[Null ..., nb_Notebook, Null ...] :> HoldComplete[nb], _ -> failure["NotNotebook", "The file is not a Wolfram notebook (.nb)."]}]
+]
+
+(* === a view of a submitted notebook, for reviewers === *)
+
+(* A submitted notebook is untrusted: its dynamic content, buttons, links and initialization would
+   run in the session of whoever opens it. The view keeps what the notebook shows and drops what it
+   runs. It is built from the held expression, so nothing in the notebook is evaluated: every head
+   that is not a box, cell or graphics form becomes a note, code-running options go, links keep only
+   web addresses, strings lose embedded box code, and the view's cells cannot be evaluated. The
+   notebook's own stylesheet is replaced by the standard one: an embedded stylesheet carries code of
+   its own, such as event actions and compressed data that evaluates to arbitrary expressions. *)
+
+$viewNote = StyleBox["[removed from this view]", FontSlant -> "Italic", FontColor -> GrayLevel[0.5]]
+
+$viewHeadNames = Join[
+    Context[#] <> SymbolName[#]& /@ {Notebook, Cell, CellGroupData, BoxData, TextData, List, Rule, RuleDelayed, Association, URL,
+        Directive, RGBColor, GrayLevel, Hue, CMYKColor, LABColor, Opacity, Thickness, AbsoluteThickness, Dashing, AbsoluteDashing,
+        PointSize, AbsolutePointSize, EdgeForm, FaceForm, CapForm, JoinForm, Arrowheads, Offset, Scaled, ImageScaled,
+        Function, Slot, SlotSequence, TemplateSlot, TemplateSlotSequence, Part, Times, Plus, Power, Log, Exp, Rational, Complex,
+        FrontEndResource, Spacer},
+    {"FrontEnd`FileName"}
+]
+
+(* Boxes that hold controls or update themselves. *)
+$viewDeniedBoxNames = Context[#] <> SymbolName[#]& /@ {DynamicBox, DynamicModuleBox, DynamicWrapperBox, ActionMenuBox, AnimatorBox,
+    CheckboxBox, ColorSetterBox, InputFieldBox, ListPickerBox, LocatorPaneBox, OpenerBox, PopupMenuBox, ProgressIndicatorBox,
+    RadioButtonBox, SetterBox, Slider2DBox, SliderBox, TogglerBox}
+
+$viewCodeOptions = Alternatives[CellEvaluationFunction, CellDynamicExpression, CellProlog, CellEpilog, InitializationCell,
+    Initialization, Deinitialization, NotebookDynamicExpression, NotebookEventActions, CellEventActions, FrontEndEventActions,
+    ButtonFunction, DockedCells, DynamicModuleValues, UnsavedVariables, Evaluator, StyleDefinitions, TaggingRules]
+
+SetAttributes[{viewHeadQ, viewSymbolQ}, HoldAllComplete]
+
+viewHeadQ[h_Symbol] := With[{name = Context[Unevaluated[h]] <> SymbolName[Unevaluated[h]]},
+    MemberQ[$viewHeadNames, name] || StringStartsQ[name, "Charting`"] ||
+        (StringStartsQ[name, "System`"] && StringEndsQ[name, "Box"] && ! MemberQ[$viewDeniedBoxNames, name])
+]
+
+viewHeadQ[_] := False
+
+viewSymbolQ[s_Symbol] := MemberQ[{"System`", "FrontEnd`", "Charting`"}, Context[Unevaluated[s]]]
+
+(* Every replacement inserts a constant, a string or a symbol's name, never a part of the notebook to
+   be evaluated. *)
+viewHeld[held_HoldComplete] := Module[{h = held},
+    h = DeleteCases[h, (Rule | RuleDelayed)[$viewCodeOptions, _], Infinity];
+    h = Replace[h, URL[s_String /; ! StringMatchQ[s, ("https://" | "http://" | "mailto:") ~~ ___]] :> URL["about:blank"], {1, Infinity}];
+    h = Replace[h, _[___]?(Function[e, ! viewHeadQ @@ Head[Unevaluated[e], Hold], HoldAllComplete]) :> $viewNote, {1, Infinity}];
+    h = Replace[h, s_Symbol /; ! viewSymbolQ[s] :> SymbolName[Unevaluated[s]], {1, Infinity}];
+    Replace[h, s_String :> StringDelete[s, "\!" | "\*" | "\(" | "\)"], {1, Infinity}]
+]
+
+viewNotebook[id_String, held_HoldComplete] := Replace[viewHeld[held], {
+    HoldComplete[Notebook[cells_List, opts___]] :> Notebook[
+        Prepend[cells, Cell[TextData[{
+            "A view of submission " <> id <> " for reviewers. Its interactive content and anything that runs code are removed, and its cells cannot be evaluated. ",
+            ButtonBox["Download the original notebook", BaseStyle -> "Hyperlink", ButtonData -> {URL[endpointURL["api/file"] <> "?id=" <> id <> "&kind=notebook"], None}],
+            "."
+        }], "Text", Background -> RGBColor[1., 0.97, 0.88]]],
+        Sequence @@ FilterRules[{opts}, Except[Editable | Evaluatable | Saveable]],
+        Editable -> False, Evaluatable -> False, Saveable -> False, StyleDefinitions -> "Default.nb"
+    ],
+    _ -> $Failed
+}]
+
+(* Deployed at an address no one can guess, since Wolfram Cloud permissions cannot name the reviewers'
+   domains. The submission API starts this in the cloud for every new submission. *)
+Rule30PrizeDeployView[id_String] := Block[{e = storeEntry[id], bytes, file, held, nb, obj},
+    If[MissingQ[e], Return[failure["NoEntry", "No submission " <> id <> "."], Block]];
+    bytes = storeReadBytes[id, "essay.nb"];
+    If[ ! ByteArrayQ[bytes], Return[failure["NoNotebook", "The submission has no notebook."], Block]];
+    file = FileNameJoin[{$TemporaryDirectory, CreateUUID[] <> ".nb"}];
+    BinaryWrite[file, bytes];
+    Close[file];
+    held = heldNotebook[file];
+    Quiet @ DeleteFile[file];
+    If[FailureQ[held], Return[held, Block]];
+    nb = viewNotebook[id, held];
+    If[ ! MatchQ[nb, _Notebook], Return[failure["View", "The notebook could not be turned into a view."], Block]];
+    obj = CloudDeploy[nb, CloudObject[$rootURL <> "/view/" <> id <> "-" <> newToken[] <> ".nb"], Permissions -> {"Authenticated" -> {"Read"}}];
+    If[ ! MatchQ[obj, _CloudObject], Return[failure["View", "The view could not be deployed."], Block]];
+    e = storeEntry[id];
+    If[StringQ[e["files"]["view"]], Quiet @ DeleteObject[CloudObject[e["files"]["view"]]]];
+    storeSetEntry[id, Join[e, <|"files" -> Append[e["files"], "view" -> First[obj]]|>]];
+    First[obj]
 ]
 
 (* === validating a submission === *)
@@ -365,7 +469,7 @@ Rule30PrizeSubmit[a_Association] := Block[{who = submitterID[], path, fields, no
     storeSetEntry[id, entry];
     storeSetPrivate[id, <|"submitter" -> who, "address" -> requesterAddress[], "submittedUnix" -> now|>];
     (* Start the verification; a failure here must not lose the submission, which stays queued. *)
-    If[check["state"] === "queued" && $Rule30PrizeOnSubmit =!= None, Quiet @ Check[$Rule30PrizeOnSubmit[id], Null]];
+    If[$Rule30PrizeOnSubmit =!= None, Quiet @ Check[$Rule30PrizeOnSubmit[id], Null]];
     <|
         "ok" -> True,
         "id" -> id,
@@ -427,7 +531,7 @@ submissionsData[entries_List] := <|
     "entries" -> entries
 |>
 
-Rule30PrizeSubmissionsPage[] := StringReplace[$submissionsTemplate, "\"__RULE30_DATA__\"" -> scriptJSON[submissionsData[Rule30PrizeEntries[]]]]
+Rule30PrizeSubmissionsPage[] := StringReplace[ByteArrayToString[$submissionsTemplateBytes, "UTF-8"], "\"__RULE30_DATA__\"" -> scriptJSON[submissionsData[Rule30PrizeEntries[]]]]
 
 (* === the verifier's side === *)
 
@@ -538,7 +642,7 @@ Rule30PrizeContact[id_String] := storePrivate[id]
 
 (* === the deployed endpoints === *)
 
-jsonResponse[expr_, code_Integer : 200] := HTTPResponse[utf8 @ ExportString[expr, "RawJSON"], <|"StatusCode" -> code, "ContentType" -> "application/json; charset=utf-8"|>]
+jsonResponse[expr_, code_Integer : 200] := HTTPResponse[utf8 @ asciiJSON @ ExportString[expr, "RawJSON"], <|"StatusCode" -> code, "ContentType" -> "application/json; charset=utf-8"|>]
 
 failureJSON[f_Failure] := <|"ok" -> False, "error" -> f[[1]], "message" -> f["Message"]|>
 
