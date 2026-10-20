@@ -31,6 +31,13 @@ rawFile[text_String] := Block[{file = FileNameJoin[{$TemporaryDirectory, CreateU
     file
 ]
 
+(* Requests as the deployed API sees them: signed in with a Wolfram ID. *)
+agentID = "agent@example.org"
+
+submit[args___] := Block[{$RequesterWolframID = agentID}, Rule30PrizeSubmit[args]]
+
+statusAs[who_, args___] := Block[{$RequesterWolframID = who}, Rule30PrizeStatus[args]]
+
 fields[nb_, rest___Rule] := Join[
     <|"notebook" -> nb, "problem" -> 1, "claim" -> "partial", "title" -> "Period one", "authors" -> "A. Person; Claude",
       "agent" -> "Claude Code with Claude Opus 5.5", "headlines" -> "Rule30Submission.no_period_one", "consent" -> True|>,
@@ -41,48 +48,50 @@ fields[nb_, rest___Rule] := Join[
 
 Rule30PrizeSite`$Rule30PrizeStore = CreateDirectory[]
 
-good = Rule30PrizeSubmit[fields[submissionNotebook[template]]]
+good = submit[fields[submissionNotebook[template]]]
 
-VerificationTest[{good["ok"], good["status"], good["check"]["state"], good["target"], StringLength[good["token"]]}, {True, "Lean Unverified", "queued", Null, 32}, TestID -> "submit-partial"]
+VerificationTest[{good["ok"], good["status"], good["check"]["state"], good["target"], good["submitter"], KeyExistsQ[good, "token"]}, {True, "Lean Unverified", "queued", Null, agentID, False}, TestID -> "submit-partial"]
+
+VerificationTest[Rule30PrizeSubmit[fields[submissionNotebook[template]]][[1]], "WolframID", TestID -> "submit-needs-a-wolfram-id"]
 
 VerificationTest[
-    Rule30PrizeSubmit[fields[submissionNotebook[template], "consent" -> False]][[1]],
+    submit[fields[submissionNotebook[template], "consent" -> False]][[1]],
     "Consent",
     TestID -> "submit-needs-consent"
 ]
 
 VerificationTest[
-    Rule30PrizeSubmit[fields[submissionNotebook[template], "agent" -> ""]][[1]],
+    submit[fields[submissionNotebook[template], "agent" -> ""]][[1]],
     "Agent",
     TestID -> "submit-needs-agent"
 ]
 
 VerificationTest[
-    Rule30PrizeSubmit[fields[submissionNotebook[template], "headlines" -> "rm -rf /"]][[1]],
+    submit[fields[submissionNotebook[template], "headlines" -> "rm -rf /"]][[1]],
     "Headlines",
     TestID -> "submit-checks-headlines"
 ]
 
 VerificationTest[
-    Rule30PrizeSubmit[fields[submissionNotebook[template], "problem" -> "4"]][[1]],
+    submit[fields[submissionNotebook[template], "problem" -> "4"]][[1]],
     "Problem",
     TestID -> "submit-checks-problem"
 ]
 
-bad = Rule30PrizeSubmit[fields[submissionNotebook[sorrySource], "claim" -> "proof", "headlines" -> None, "title" -> "</script><script>alert(1)</script>"]]
+bad = submit[fields[submissionNotebook[sorrySource], "claim" -> "proof", "headlines" -> None, "title" -> "</script><script>alert(1)</script>"]]
 
 VerificationTest[{bad["ok"], bad["target"]}, {True, "Rule30Submission.problem1"}, TestID -> "submit-proof-claim"]
 
-VerificationTest[Rule30PrizeSubmit[fields[rawFile["this is not a notebook {"]]][[1]], "NotNotebook", TestID -> "submit-needs-a-notebook"]
+VerificationTest[submit[fields[rawFile["this is not a notebook {"]]][[1]], "NotNotebook", TestID -> "submit-needs-a-notebook"]
 
 (* The site reads no source: a notebook of prose waits for the verifier like any other. *)
-nosrc = Rule30PrizeSubmit[fields[rawFile["Notebook[{Cell[\"prose only\", \"Text\"]}]"], "title" -> "No Lean"]]
+nosrc = submit[fields[rawFile["Notebook[{Cell[\"prose only\", \"Text\"]}]"], "title" -> "No Lean"]]
 
 VerificationTest[nosrc["check"]["state"], "queued", TestID -> "submit-without-source"]
 
 (* Three submissions so far from this requester; with a limit of three an hour, the next is refused. *)
 VerificationTest[
-    Block[{Rule30PrizeSite`Private`$rateLimits = {{3600, 3}}}, Rule30PrizeSubmit[fields[submissionNotebook[template]]][[1]]],
+    Block[{Rule30PrizeSite`Private`$rateLimits = {{3600, 3}}}, submit[fields[submissionNotebook[template]]][[1]]],
     "RateLimit",
     TestID -> "submit-rate-limit"
 ]
@@ -96,7 +105,7 @@ VerificationTest[
 (* The deployed API starts each new verification through this hook. *)
 VerificationTest[
     Block[{Rule30PrizeSite`$Rule30PrizeOnSubmit = Function[id, hooked = id], hooked = None},
-        hookedSubmission = Rule30PrizeSubmit[fields[submissionNotebook[template], "title" -> "Hooked"]];
+        hookedSubmission = submit[fields[submissionNotebook[template], "title" -> "Hooked"]];
         {hooked === hookedSubmission["id"], hookedSubmission["check"]["state"]}
     ],
     {True, "queued"},
@@ -129,7 +138,7 @@ VerificationTest[
 (* An agent's fake proof of Problem 1: it does not import the kit and declares a Problem1 of its own
    (the kit's tests/T07Redefine.lean). *)
 redefined = Block[{Rule30PrizeSite`Private`$rateLimits = {}},
-    Rule30PrizeSubmit[fields[submissionNotebook[Import[FileNameJoin[{kit, "tests", "T07Redefine.lean"}], "Text", CharacterEncoding -> "UTF-8"]], "claim" -> "proof", "headlines" -> None]]
+    submit[fields[submissionNotebook[Import[FileNameJoin[{kit, "tests", "T07Redefine.lean"}], "Text", CharacterEncoding -> "UTF-8"]], "claim" -> "proof", "headlines" -> None]]
 ]
 
 verified = Rule30PrizeVerify["Method" -> "Local", "Kit" -> kit]
@@ -200,21 +209,29 @@ VerificationTest[
     TestID -> "admin-hide"
 ]
 
-VerificationTest[Lookup[Rule30PrizeContact[good["id"]], {"requester", "tokenSHA256"}], {"local", Missing["KeyAbsent", "tokenSHA256"]}, TestID -> "private-details-kept"]
+VerificationTest[Lookup[Rule30PrizeContact[good["id"]], {"submitter", "address"}], {agentID, Null}, TestID -> "private-details-kept"]
 
-(* === what an agent sees: its status, with its token === *)
+(* === what an agent sees: the status of its own submissions, by its Wolfram ID === *)
 
 VerificationTest[
-    KeyTake[Rule30PrizeStatus[good["id"], good["token"]], {"id", "status"}],
+    KeyTake[statusAs[agentID, good["id"]], {"id", "status"}],
     <|"id" -> good["id"], "status" -> "Human Verified"|>,
-    TestID -> "status-with-token"
+    TestID -> "status-of-own-submission"
 ]
 
-VerificationTest[Rule30PrizeStatus[bad["id"], bad["token"]]["check"]["state"], "failed", TestID -> "status-shows-failure"]
+VerificationTest[statusAs[agentID, bad["id"]]["check"]["state"], "failed", TestID -> "status-shows-failure"]
 
-VerificationTest[Rule30PrizeStatus[good["id"], bad["token"]][[1]], "NoEntry", TestID -> "status-needs-its-own-token"]
+VerificationTest[statusAs["other@example.org", good["id"]][[1]], "NoEntry", TestID -> "status-only-for-its-submitter"]
 
-VerificationTest[KeyExistsQ[Rule30PrizeStatus[good["id"], good["token"]], "review"], False, TestID -> "status-hides-review-notes"]
+VerificationTest[statusAs["reviewer@wolfram.com", good["id"]]["id"], good["id"], TestID -> "status-for-reviewers"]
+
+VerificationTest[
+    {SubsetQ[#id& /@ statusAs[agentID]["submissions"], {good["id"], bad["id"]}], statusAs["other@example.org"]["submissions"]},
+    {True, {}},
+    TestID -> "status-lists-own-submissions"
+]
+
+VerificationTest[KeyExistsQ[statusAs[agentID, good["id"]], "review"], False, TestID -> "status-hides-review-notes"]
 
 (* === the submissions page, for reviewers === *)
 
@@ -236,7 +253,7 @@ json = ImportString[ExportString[Rule30PrizeSite`Private`submissionsData[Rule30P
 
 VerificationTest[json["entries"][[All, "id"]], #id& /@ Rule30PrizeEntries[], TestID -> "json-matches-entries"]
 
-VerificationTest[FreeQ[json, "email" | "requester" | "tokenSHA256" | "token"], True, TestID -> "json-has-no-private-details"]
+VerificationTest[{FreeQ[json, "address" | "token" | "tokenSHA256"], MemberQ[json["entries"][[All, "submitter"]], agentID]}, {True, True}, TestID -> "json-has-no-private-details"]
 
 (* The public instructions are self-contained: they link the kit's repository, and name no other
    repository, no archive and none of the infrastructure behind the verifier. *)

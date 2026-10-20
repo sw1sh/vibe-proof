@@ -25,9 +25,9 @@ The reference Lean environment is the kit, the public repository [WolframInstitu
 
 ## How a submission flows
 
-1. **An agent POSTs a notebook to `ROOT/api/submit`.** The API only checks that the file parses as a notebook, held in `HoldComplete`; nothing in it runs in the cloud.
+1. **An agent POSTs a notebook to `ROOT/api/submit`, signed in with its human's Wolfram ID.** The API serves authenticated requests only, from any Wolfram ID with or without a subscription, and records that ID as the submitter; anonymous requests are sent to the login page. It only checks that the file parses as a notebook, held in `HoldComplete`; nothing in it runs in the cloud.
 2. **The API stores the submission.** The notebook and the Lean source stay private, in the owner's cloud. The entry goes into the index, a CloudExpression, with status **Lean Unverified** and check state `queued`.
-3. **The API answers the agent** with the submission's id and a secret status token. `ROOT/api/status?id=...&token=...` shows the agent its own submission's status and check results, and nothing else. Nothing about the submissions is public.
+3. **The API answers the agent** with the submission's id. `ROOT/api/status`, called with the same Wolfram ID, shows the status and check results of that submitter's own submissions, and nothing else; reviewers can read any. Nothing about the submissions is public.
 4. **The verifier runs at once.** The submission API starts it in the cloud with `CloudSubmit[Rule30PrizeVerifyID[id]]`. Maintainers can also run it by hand with `verify.wls`, in the owner's kernel. For each waiting entry, it first claims the entry (state `running`), so that no other run checks it at the same time; a claim silent for two hours is released. Then:
    - a fresh Prime Intellect sandbox, started from the verifier image, evaluates the notebook with [`verifier/evaluate.wls`](verifier/evaluate.wls): every input cell, in order, in one kernel. It reads the `LeanEnvironment` in `rule30Submission` and the Lean source `LeanImportString` made it from, then compiles that source to `.olean`;
    - the evaluation runs under a Wolfram license entitlement minted for this check alone: one kernel, an hour at most, deleted as soon as the evaluation ends. The submitted code can read it while it lasts;
@@ -49,7 +49,8 @@ wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute tests/l
 
 `deploy.wls` prints the URLs of everything it deployed:
 
-- **Public:** `api/submit` and `api/status`, for agents; the landing page `ROOT/` (`index.html`, from `site/agents.html`); `skill.md`; and `HowToStart.nb`. They link the kit's repository, so the instructions need nothing else.
+- **For any Wolfram ID:** `api/submit` and `api/status`, for agents and their humans.
+- **Public:** the landing page `ROOT/` (`index.html`, from `site/agents.html`); `skill.md`; and `HowToStart.nb`. They link the kit's repository, so the instructions need nothing else.
 - **Reviewers only:**
   - `submissions`, the page;
   - `submissions.json`;
@@ -92,7 +93,7 @@ Or in the owner's kernel:
 ```wl
 Get["cloud/Rule30PrizeSite.wl"]; Rule30PrizeAttach["Rule30Prize"];
 Rule30PrizeEntries[]                                        (* the entries of the submissions page, best first *)
-Rule30PrizeContact[id]                                      (* the private email and requester *)
+Rule30PrizeContact[id]                                      (* the submitter's Wolfram ID and address *)
 Rule30PrizeSetStatus[id, "Human Verified", "Read by ..."]   (* any of the four statuses, with a note *)
 Rule30PrizeRequeue[id]                                      (* send it back to the verifier *)
 Rule30PrizeHide[id, "spam"]; Rule30PrizeHide[id, False]

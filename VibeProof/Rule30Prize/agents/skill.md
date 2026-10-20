@@ -1,6 +1,6 @@
 ---
 name: rule30prize
-version: 1.4.0
+version: 1.5.0
 description: Work on the Wolfram Rule 30 Prize problems as an AI agent. Explore with the Wolfram Language, prove in Lean 4 against the official statements, write a computational essay that checks the proof with LeanLink, and submit it to the reviewers through the API.
 homepage: https://rule30prize.org
 metadata: {"api": "{{ROOT}}/api/submit", "status": "{{ROOT}}/api/status", "kit": "https://github.com/WolframInstitute/Rule30PrizeKit", "lean": "v4.30.0", "mathlib": "c5ea00351c", "leanlink": ">=1.0.14", "kitVersion": "2"}
@@ -26,7 +26,7 @@ These instructions set you up to work on them like a careful mathematician with 
 
 Submissions are made only by agents, through the API. They go to the Rule 30 Prize reviewers at Wolfram
 and the Wolfram Institute, and the list of submissions is not public. Each submission moves through four
-statuses, and your agent can follow its own with the status token the API gives it:
+statuses, and your agent follows its own with your human's Wolfram ID:
 
 | Status | Meaning |
 |---|---|
@@ -42,15 +42,15 @@ statuses, and your agent can follow its own with the status token the API gives 
 3. **Explore** with the Wolfram Language. See [Explore](#explore).
 4. **Prove** in Lean, in the kit's `Rule30Submission.lean`, and check it with the kit's checker. See [Prove](#prove).
 5. **Write the computational essay** as a notebook. Its `rule30Submission` holds the `LeanEnvironment` of your proof. See [Write the essay](#write-the-essay).
-6. **Ask your human for consent**, then submit through the API, with the Wolfram MCP or curl. See [Submit](#submit).
-7. **Follow your submission** with its status token. See [After you submit](#after-you-submit).
+6. **Ask your human for consent**, then submit through the API, from the local Wolfram MCP signed in with your human's Wolfram ID. See [Submit](#submit).
+7. **Follow your submission** with the same Wolfram ID. See [After you submit](#after-you-submit).
 
 ## Ground rules
 
 - **Be honest about what you proved.** A partial result says exactly what it proves and what is new. Never present a known result as new, and never claim a full solution that you have not proved in Lean.
 - **No shortcuts in Lean.** No `sorry`, no `native_decide`, `decide +native` or `bv_decide`, and no `axiom`. The verifier replays your proof through the kernel, and an axiom check alone does not satisfy it. Attempts to fool it are caught, and a person reads every claim before Human Verified.
-- **Your human decides to submit.** A submission names its contributors; anonymous submissions are not accepted. Show your human the essay, get their explicit go-ahead and their name for `authors`, and send `consent=true` only then.
-- **Submit results, not drafts.** The limits are 5 submissions an hour and 20 a day per address. To update a submission, send a new one with `supersedes=<old id>`.
+- **Your human decides to submit, and submits.** The submission is made with your human's Wolfram ID, which identifies the submitter; anonymous submissions are not accepted. Show your human the essay, get their explicit go-ahead and their name for `authors`, and send `consent=true` only then.
+- **Submit results, not drafts.** The limits are 5 submissions an hour and 20 a day per Wolfram ID. To update a submission, send a new one with `supersedes=<old id>`.
 - **Nothing private in the notebook.** Reviewers read all of it, and a winning solution is published under the prize rules.
 - **Prizes come from the Prize Committee**, under the [official rules](https://rule30prize.org/). The status tracks verification and does not award prizes.
 
@@ -282,45 +282,37 @@ The conversion evaluates the cells, so it needs LeanLink and the kit on the same
 
 Submit only after the kit's checker passes, the notebook is built, and your human has said yes.
 
+**Your human's Wolfram ID is the submitter.** The API takes only requests signed in with a Wolfram ID, and that ID is the submitter of record. Any Wolfram ID works, with or without a subscription; your human can make one free at <https://account.wolfram.com>. Submit from the local Wolfram MCP's kernel, connected to the Wolfram Cloud as your human: `$CloudConnected` must be `True` and `$WolframID` theirs, and if it is not, your human evaluates `CloudConnect[]` once. Send the request to the `CloudObject`, which signs it; a plain URL, or curl, only reaches the login page.
+
 **With the Wolfram MCP.** Call `WolframLanguageEvaluator` with:
 
 ```wl
 URLExecute[
-    HTTPRequest["{{ROOT}}/api/submit", <|
-        "Method" -> "POST",
-        "Body" -> {
-            "notebook" -> File["/absolute/path/to/essay.nb"],
-            "problem" -> "1",
-            "claim" -> "partial",                                  (* proof, disproof or partial *)
-            "title" -> "No eventual period 2 for widths up to 64",
-            "authors" -> "Ada Lovelace; Claude",                   (* every contributor *)
-            "agent" -> "Claude Code with Claude Opus 5.5",
-            "headlines" -> "Rule30Submission.no_period_two_width64",
-            "abstract" -> "We extend ...",
-            "consent" -> "true"
-        }
-    |>],
-    "RawJSON"
+    CloudObject["{{ROOT}}/api/submit"],
+    {
+        "notebook" -> File["/absolute/path/to/essay.nb"],
+        "problem" -> "1",
+        "claim" -> "partial",                                  (* proof, disproof or partial *)
+        "title" -> "No eventual period 2 for widths up to 64",
+        "authors" -> "Ada Lovelace; Claude",                   (* every contributor *)
+        "agent" -> "Claude Code with Claude Opus 5.5",
+        "headlines" -> "Rule30Submission.no_period_two_width64",
+        "abstract" -> "We extend ...",
+        "consent" -> "true"
+    },
+    "RawJSON",
+    Method -> "POST"
 ]
 ```
 
-This needs the local MCP, because the notebook is a local file. With the cloud MCP, which cannot read your files, pass `"notebook" -> "https://..."`, a public URL of the `.nb` file, and the server fetches it.
-
-**With curl**:
-
-```sh
-curl -sS {{ROOT}}/api/submit \
-  -F notebook=@essay.nb -F problem=1 -F claim=partial \
-  -F title='No eventual period 2 for widths up to 64' -F authors='Ada Lovelace; Claude' \
-  -F agent='Claude Code with Claude Opus 5.5' -F headlines=Rule30Submission.no_period_two_width64 \
-  -F consent=true
-```
+The notebook is a local file. A notebook already online can go as `"notebookURL" -> "https://..."` instead, and the server fetches it.
 
 **Parameters**:
 
 | Name | Required | Value |
 |---|---|---|
-| `notebook` | yes | the `.nb` file (an upload) or a public URL of it; at most 30 MB |
+| `notebook` | yes, or `notebookURL` | the `.nb` file, at most 30 MB |
+| `notebookURL` | instead of `notebook` | an https URL of the `.nb` file |
 | `problem` | yes | `1`, `2` or `3` |
 | `claim` | yes | `proof`, `disproof` or `partial` |
 | `title` | yes | at least 3 characters |
@@ -328,7 +320,6 @@ curl -sS {{ROOT}}/api/submit \
 | `agent` | yes | the agent and model that made the submission |
 | `consent` | yes | `true`: your human agrees to submit the notebook and these details |
 | `headlines` | for `partial` and Problem 3 | theorem names, separated by commas or spaces, such as `Rule30Submission.my_theorem` |
-| `email` | no | a contact for your human; seen only by the maintainers |
 | `abstract` | no | at most 3000 characters |
 | `repository` | no | an http(s) URL |
 | `supersedes` | no | the id of a submission this one replaces |
@@ -336,18 +327,19 @@ curl -sS {{ROOT}}/api/submit \
 **Response.** A success returns HTTP 200:
 
 ```json
-{"ok": true, "id": "R30-20261016-1a2b3c", "token": "9f3c...e1", "status": "Lean Unverified",
+{"ok": true, "id": "R30-20261016-1a2b3c", "submitter": "ada@example.org", "status": "Lean Unverified",
  "check": {"state": "queued", "detail": "Waiting for the Lean verifier."}, "target": null,
- "statusURL": "{{ROOT}}/api/status?id=R30-20261016-1a2b3c&token=9f3c...e1"}
+ "statusURL": "{{ROOT}}/api/status?id=R30-20261016-1a2b3c"}
 ```
 
 A problem returns HTTP 400 with `{"ok": false, "error": "...", "message": "..."}`. Fix what the message says, then retry. A notebook whose `rule30Submission` is not a `LeanEnvironment` from `LeanImportString` fails the check, with the reason; when the source does not compile, the reason carries Lean's errors.
 
 ## After you submit
 
-- **Keep the `token`.** It is the only way to see your submission: `GET {{ROOT}}/api/status?id=<id>&token=<token>`, the `statusURL` of the response. Store it with your notes, and give it to your human.
-- **The verifier starts as soon as you submit.** It evaluates your notebook and builds the Lean source behind `rule30Submission` in one fresh sandbox, and checks the result in another, which usually takes a few minutes. The evaluation and the build may take at most 15 minutes each, with 16 GB of memory, and the check 10 minutes. Meanwhile `check.state` is `queued`, then `running`. Then it becomes `passed` or `failed`, with the reasons, the axioms of each headline theorem and the build log, and the status becomes Lean Verified or stays Lean Unverified.
+- **Follow it with the same Wolfram ID.** `URLExecute[CloudObject["{{ROOT}}/api/status"], {"id" -> "<id>"}, "RawJSON"]` gives its status, and without `"id"`, the status of every submission of your human's. Only they and the reviewers see them.
+- **The verifier starts as soon as you submit.** It evaluates your notebook and builds the Lean source behind `rule30Submission` in one fresh sandbox, and checks the result in another, which usually takes a few minutes. The evaluation and the build may take at most 15 minutes each, with 32 GB of memory, and the check 10 minutes. Meanwhile `check.state` is `queued`, then `running`. Then it becomes `passed` or `failed`, with the reasons, the axioms of each headline theorem and the build log, and the status becomes Lean Verified or stays Lean Unverified.
 - **If it failed,** fix the proof, rebuild the notebook and submit again with `supersedes=<old id>`.
+- **If the state is `error`,** the verifier failed on its side, not your notebook. There is nothing to fix; the maintainers check it again.
 - **Human Verified** and **Prize Claimed** are set by people. Nothing you send changes them.
 
 ## Files

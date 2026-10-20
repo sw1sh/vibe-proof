@@ -2,10 +2,11 @@
 
 (* Rule30PrizeSite.wl - submissions to the Rule 30 Prize, in the Wolfram Cloud.
 
-   Agents submit through the API only; there is no form. Reviewers - Wolfram IDs at
-   $Rule30PrizeReviewerDomains - read the submissions page, its JSON and the files. Nothing is public
-   but the API and the instructions. An agent follows its own submission with the status token the
-   API gave it.
+   Agents submit through the API only; there is no form. The API serves authenticated requests only:
+   the Wolfram ID that makes the request is the submitter, and any Wolfram ID may submit, with or
+   without a subscription. A submitter reads the status of their own submissions through the same
+   identity. Reviewers - Wolfram IDs at $Rule30PrizeReviewerDomains - read the submissions page, its
+   JSON and the files. Nothing is public but the instructions.
 
    Load it locally to deploy, administer or test:
 
@@ -31,9 +32,9 @@ $Rule30PrizeStatuses::usage = "$Rule30PrizeStatuses lists the statuses of a subm
 $Rule30PrizeReviewerDomains::usage = "$Rule30PrizeReviewerDomains lists the email domains of the Wolfram IDs that may read the submissions."
 
 
-Rule30PrizeSubmit::usage = "Rule30PrizeSubmit[assoc] validates and stores a submission and gives an association with its id, status token and status, or a Failure."
+Rule30PrizeSubmit::usage = "Rule30PrizeSubmit[assoc] validates and stores a submission from the requesting Wolfram ID and gives an association with its id and status, or a Failure."
 
-Rule30PrizeStatus::usage = "Rule30PrizeStatus[id, token] gives the status of a submission to whoever holds its status token."
+Rule30PrizeStatus::usage = "Rule30PrizeStatus[id] gives the status of a submission to the Wolfram ID that submitted it, or to a reviewer. Rule30PrizeStatus[] gives the status of all of the requester's submissions."
 
 Rule30PrizeEntries::usage = "Rule30PrizeEntries[] gives the entries of the submissions page, best first."
 
@@ -147,11 +148,13 @@ nullIfEmpty[s_String] := If[s === "", Null, s]
 
 nullIfEmpty[_] := Null
 
-requester[] := Replace[$RequesterAddress, Except[_String] -> "local"]
+(* The submitter: the Wolfram ID that signed the request. The submission and status APIs are deployed
+   for authenticated requests only, so every call to them carries one. *)
+submitterID[] := Replace[$RequesterWolframID, Except[_String] -> None]
+
+requesterAddress[] := Replace[$RequesterAddress, Except[_String] -> Null]
 
 newID[] := "R30-" <> DateString[{"Year", "Month", "Day"}, TimeZone -> 0] <> "-" <> IntegerString[RandomInteger[16^6 - 1], 16, 6]
-
-newToken[] := IntegerString[RandomInteger[2^128 - 1], 16, 32]
 
 (* Wolfram IDs at the reviewers' domain. A Wolfram ID is a verified email address. *)
 reviewerQ[id_String] := AnyTrue[$Rule30PrizeReviewerDomains, StringEndsQ[ToLowerCase[StringTrim[id]], "@" <> ToLowerCase[#]]&]
@@ -249,14 +252,13 @@ headlineNames[s_String] := DeleteDuplicates @ StringSplit[s, RegularExpression["
 headlineNames[_] := {}
 
 (* The fields of a submission, cleaned; or a Failure naming the first problem. *)
-validFields[a_Association] := Block[{problem, claim, title, authors, agent, headlines, email, repository, supersedes},
+validFields[a_Association] := Block[{problem, claim, title, authors, agent, headlines, repository, supersedes},
     problem = Replace[a["problem"], {s_String /; StringMatchQ[StringTrim[s], DigitCharacter ..] :> FromDigits[StringTrim[s]], n_Integer :> n, _ -> None}];
     claim = ToLowerCase @ Replace[a["claim"], Except[_String] -> ""];
     title = cleanText[a["title"], 200];
     authors = cleanText[a["authors"], 300];
     agent = cleanText[a["agent"], 200];
     headlines = headlineNames[Replace[a["headlines"], Except[_String] -> ""]];
-    email = Replace[a["email"], {s_String :> StringTrim[s], _ -> ""}];
     repository = Replace[a["repository"], {URL[u_String] :> u, s_String :> StringTrim[s], _ -> ""}];
     supersedes = Replace[a["supersedes"], {s_String :> StringTrim[s], _ -> ""}];
     Which[
@@ -268,7 +270,6 @@ validFields[a_Association] := Block[{problem, claim, title, authors, agent, head
         ! TrueQ[a["consent"]], failure["Consent", "The submission needs consent=true: the human behind the agent agrees to submit it."],
         Length[headlines] > 20, failure["Headlines", "List at most 20 headline theorems."],
         ! AllTrue[headlines, StringMatchQ[#, $headlinePattern]&], failure["Headlines", "Headline theorems are full names in the Rule30Submission namespace, such as Rule30Submission.no_period_two."],
-        email =!= "" && ! StringMatchQ[email, RegularExpression["[^@\\s]+@[^@\\s]+\\.[^@\\s]+"]], failure["Email", "The email address is not valid."],
         repository =!= "" && ! StringMatchQ[repository, RegularExpression["https?://[^\\s\"<>]+"]], failure["Repository", "The repository must be an http(s) URL."],
         supersedes =!= "" && ! StringMatchQ[supersedes, $idPattern], failure["Supersedes", "Supersedes takes a submission id such as R30-20261016-1a2b3c."],
         True,
@@ -280,7 +281,6 @@ validFields[a_Association] := Block[{problem, claim, title, authors, agent, head
                 "agent" -> agent,
                 "abstract" -> cleanText[a["abstract"], 3000],
                 "headlines" -> headlines,
-                "email" -> email,
                 "repository" -> repository,
                 "supersedes" -> supersedes
             |>
@@ -301,7 +301,7 @@ rateLimited[who_String, now_Integer] := Block[{mine, all},
 (* The theorem the verifier must find, and the state of the check, for new submissions. *)
 checkPlan[fields_Association] := Block[{target = Lookup[$officialTargets, Key[{fields["problem"], fields["claim"]}], Null]},
     Which[
-        target === Null && fields["headlines"] === {}, {target, <|"state" -> "no-target", "detail" -> "Problem 3 and partial results need at least one headline theorem."|>},
+        target === Null && fields["headlines"] === {}, {target, <|"state" -> "no-target", "detail" -> "No headline theorem, so the verifier has nothing to check: reviewers read it as an essay."|>},
         True, {target, <|"state" -> "queued", "detail" -> "Waiting for the Lean verifier."|>}
     ]
 ]
@@ -318,11 +318,12 @@ fetchNotebook[url_String] /; StringMatchQ[url, RegularExpression["https://[^\\s\
 
 fetchNotebook[_] := failure["Notebook", "Attach the notebook (.nb) of your computational essay, or give notebookURL, an https URL of it."]
 
-Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, held, bytes, id, token, target, check, entry, files},
+Rule30PrizeSubmit[a_Association] := Block[{who = submitterID[], path, fields, now, limited, held, bytes, id, target, check, entry, files},
+    If[ ! StringQ[who], Return[failure["WolframID", "Submit with a Wolfram ID: call the API from a Wolfram Language kernel connected to the Wolfram Cloud (CloudConnect)."], Block]];
     fields = validFields[a];
     If[FailureQ[fields], Return[fields, Block]];
     now = nowUnix[];
-    limited = rateLimited[requester[], now];
+    limited = rateLimited[who, now];
     If[FailureQ[limited], Return[limited, Block]];
     path = Replace[notebookPath[a["notebook"]], $Failed :> fetchNotebook[a["notebookURL"]]];
     If[FailureQ[path], Return[path, Block]];
@@ -331,7 +332,6 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, held, byt
     If[FailureQ[held], Return[held, Block]];
     bytes = ReadByteArray[path];
     id = newID[];
-    token = newToken[];
     {target, check} = checkPlan[fields];
     storeBytes[id, "essay.nb", bytes];
     (* The Lean source arrives with the verifier's result. *)
@@ -348,6 +348,7 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, held, byt
         "supersedes" -> nullIfEmpty[fields["supersedes"]],
         "submitted" -> isoTime[now],
         "submittedUnix" -> now,
+        "submitter" -> who,
         "status" -> "Lean Unverified",
         "target" -> target,
         "headlines" -> fields["headlines"],
@@ -362,33 +363,41 @@ Rule30PrizeSubmit[a_Association] := Block[{path, fields, now, limited, held, byt
         "sourceBytes" -> Null
     |>;
     storeSetEntry[id, entry];
-    storeSetPrivate[id, <|"email" -> fields["email"], "requester" -> requester[], "submittedUnix" -> now, "tokenSHA256" -> sha256[token]|>];
+    storeSetPrivate[id, <|"submitter" -> who, "address" -> requesterAddress[], "submittedUnix" -> now|>];
     (* Start the verification; a failure here must not lose the submission, which stays queued. *)
     If[check["state"] === "queued" && $Rule30PrizeOnSubmit =!= None, Quiet @ Check[$Rule30PrizeOnSubmit[id], Null]];
     <|
         "ok" -> True,
         "id" -> id,
-        "token" -> token,
+        "submitter" -> who,
         "status" -> entry["status"],
         "check" -> check,
         "target" -> target,
-        "statusURL" -> endpointURL["api/status"] <> "?id=" <> id <> "&token=" <> token
+        "statusURL" -> endpointURL["api/status"] <> "?id=" <> id
     |>
 ]
 
-(* What the holder of the status token sees: the verdict and its reasons, nothing reviewers wrote. *)
-Rule30PrizeStatus[id_String, token_String] := Block[{e = storeEntry[id], p = storePrivate[id]},
-    If[ MissingQ[e] || MissingQ[p] || ! StringQ[p["tokenSHA256"]] || sha256[token] =!= p["tokenSHA256"],
-        Return[failure["NoEntry", "No submission with this id and token."], Block]
-    ];
-    <|
-        "id" -> id,
+(* What a submitter sees of their submission: the verdict and its reasons, nothing reviewers wrote. *)
+statusView[e_Association] := <|
+        "id" -> e["id"],
+        "title" -> e["title"],
         "status" -> e["status"],
         "submitted" -> e["submitted"],
         "target" -> e["target"],
         "headlines" -> e["headlines"],
         "check" -> KeyTake[e["check"], {"state", "detail", "verdict", "reasons", "verifiedTargets", "official", "headlines", "newAxioms", "lean", "kitCommit", "checkedAt", "log"}]
     |>
+
+Rule30PrizeStatus[id_String] := Block[{e = storeEntry[id], who = submitterID[]},
+    If[ MissingQ[e] || ! StringQ[who] || (who =!= e["submitter"] && ! reviewerQ[who]),
+        Return[failure["NoEntry", "No submission " <> id <> " from this Wolfram ID."], Block]
+    ];
+    statusView[e]
+]
+
+Rule30PrizeStatus[] := Block[{who = submitterID[]},
+    If[ ! StringQ[who], Return[failure["WolframID", "Ask with the Wolfram ID that submitted."], Block]];
+    <|"submitter" -> who, "submissions" -> statusView /@ ReverseSortBy[Select[Values @ storeIndex[], #["submitter"] === who&], #submittedUnix&]|>
 ]
 
 (* === the submissions page, for reviewers === *)
@@ -525,7 +534,7 @@ Rule30PrizeHide[id_String, reason : (_String | False)] := Block[{e = storeEntry[
     Rule30PrizeEntry[id]
 ]
 
-Rule30PrizeContact[id_String] := KeyDrop[storePrivate[id], "tokenSHA256"]
+Rule30PrizeContact[id_String] := storePrivate[id]
 
 (* === the deployed endpoints === *)
 
@@ -551,7 +560,6 @@ $apiFields = {
     "authors" -> <|"Interpreter" -> "String", "Help" -> "every contributor, people and agents"|>,
     "agent" -> <|"Interpreter" -> "String", "Help" -> "the agent and model that made the submission"|>,
     "consent" -> <|"Interpreter" -> "Boolean", "Help" -> "true: the human behind the agent agrees to submit the notebook and these details"|>,
-    "email" -> <|"Interpreter" -> "String", "Required" -> False, "Help" -> "a contact for the human; seen only by the maintainers"|>,
     "headlines" -> <|"Interpreter" -> "String", "Required" -> False, "Help" -> "theorem names, for partial results and Problem 3"|>,
     "abstract" -> <|"Interpreter" -> "String", "Required" -> False|>,
     "repository" -> <|"Interpreter" -> "String", "Required" -> False|>,
@@ -587,14 +595,20 @@ Rule30PrizeAttach[root_String : $Rule30PrizeRoot] := Block[{ce},
 
 $reviewerPermissions = {"Authenticated" -> {"Read", "Execute"}}
 
+(* The submission and status APIs: any signed-in Wolfram ID, with or without a subscription. The
+   code runs as the owner, on the owner's credits. *)
+$submitterPermissions = {"Authenticated" -> {"Read", "Execute"}}
+
 Options[Rule30PrizeDeploy] = {"SkillFile" -> None, "Root" -> Automatic}
 
 Rule30PrizeDeploy[opts : OptionsPattern[]] := Block[{attached, urls},
     attached = Rule30PrizeAttach[Replace[OptionValue["Root"], Automatic -> $Rule30PrizeRoot]];
     If[FailureQ[attached], Return[attached, Block]];
     urls = <|
-        "api/submit" -> CloudDeploy[APIFunction[$apiFields, Replace[Rule30PrizeSubmit[#], {r_Association :> jsonResponse[r], f_Failure :> jsonResponse[failureJSON[f], 400]}]&], CloudObject[$rootURL <> "/api/submit"], Permissions -> "Public"],
-        "api/status" -> CloudDeploy[APIFunction[{"id" -> "String", "token" -> "String"}, Replace[Rule30PrizeStatus[#id, #token], {r_Association :> jsonResponse[r], f_Failure :> jsonResponse[failureJSON[f], 404]}]&], CloudObject[$rootURL <> "/api/status"], Permissions -> "Public"],
+        "api/submit" -> CloudDeploy[APIFunction[$apiFields, Replace[Rule30PrizeSubmit[#], {r_Association :> jsonResponse[r], f_Failure :> jsonResponse[failureJSON[f], 400]}]&], CloudObject[$rootURL <> "/api/submit"], Permissions -> $submitterPermissions],
+        "api/status" -> CloudDeploy[APIFunction[{"id" -> <|"Interpreter" -> "String", "Required" -> False|>},
+            Replace[If[StringQ[Lookup[#, "id", None]] && #id =!= "", Rule30PrizeStatus[#id], Rule30PrizeStatus[]], {r_Association :> jsonResponse[r], f_Failure :> jsonResponse[failureJSON[f], 404]}]&],
+            CloudObject[$rootURL <> "/api/status"], Permissions -> $submitterPermissions],
         "submissions" -> CloudDeploy[Delayed[forReviewers[HTTPResponse[utf8 @ Rule30PrizeSubmissionsPage[], <|"ContentType" -> "text/html; charset=utf-8"|>]]], CloudObject[$rootURL <> "/submissions"], Permissions -> $reviewerPermissions],
         "submissions.json" -> CloudDeploy[Delayed[forReviewers[jsonResponse[submissionsData[Rule30PrizeEntries[]]]]], CloudObject[$rootURL <> "/submissions.json"], Permissions -> $reviewerPermissions],
         "api/file" -> CloudDeploy[APIFunction[{"id" -> "String", "kind" -> "String"}, forReviewers[fileResponse[#id, #kind]]&], CloudObject[$rootURL <> "/api/file"], Permissions -> $reviewerPermissions]

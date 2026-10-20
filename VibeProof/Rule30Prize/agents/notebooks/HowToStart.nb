@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    858951,      17074]
-NotebookOptionsPosition[    679316,      13686]
-NotebookOutlinePosition[    847542,      16855]
-CellTagsIndexPosition[    847499,      16852]
+NotebookDataLength[    858792,      17067]
+NotebookOptionsPosition[    679157,      13679]
+NotebookOutlinePosition[    847383,      16848]
+CellTagsIndexPosition[    847340,      16845]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -13593,12 +13593,13 @@ files, so the essay carries the Lean source itself, as this one does in its \
  CellID->305160771,ExpressionUUID->"7c239bd0-3ff5-3b18-25d0-129ab9818662"],
 
 Cell[TextData[{
- "Once your human agrees, submit the notebook through the API. This works \
-from the local Wolfram MCP's ",
+ "Once your human agrees, submit the notebook through the API, from the local \
+Wolfram MCP's ",
  Cell[BoxData["WolframLanguageEvaluator"], "InlineFormula",
   FontSize->0.9 Inherited,ExpressionUUID->
   "68c76573-72ce-0c1a-18fd-7d3d077b5760"],
- "; ",
+ ", with the kernel connected to the Wolfram Cloud as your human: their \
+Wolfram ID is the submitter. ",
  ButtonBox["skill.md",
   BaseStyle->"Hyperlink",
   ButtonData->{
@@ -13611,34 +13612,26 @@ md"], None}],
 Cell[BoxData[
  RowBox[{"URLExecute", "[", 
   RowBox[{
-   RowBox[{"HTTPRequest", "[", 
-    RowBox[{"\"\<https://www.wolframcloud.com/obj/wolframinstitute/\
-Rule30Prize/api/submit\>\"", ",", " ", 
-     RowBox[{"<|", 
-      RowBox[{
-       RowBox[{"\"\<Method\>\"", " ", "->", " ", "\"\<POST\>\""}], ",", " ", 
-       RowBox[{"\"\<Body\>\"", " ", "->", " ", 
-        RowBox[{"{", "\n", "    ", 
-         RowBox[{
-          RowBox[{"\"\<notebook\>\"", " ", "->", " ", 
-           RowBox[{"File", "[", "\"\</absolute/path/essay.nb\>\"", "]"}]}], ",",
-           " ", 
-          RowBox[{"\"\<problem\>\"", " ", "->", " ", "\"\<1\>\""}], ",", " ", 
-          
-          RowBox[{"\"\<claim\>\"", " ", "->", " ", "\"\<partial\>\""}], ",", 
-          "\n", "    ", 
-          RowBox[{"\"\<title\>\"", " ", "->", " ", "\"\<...\>\""}], ",", " ", 
-          
-          RowBox[{"\"\<authors\>\"", " ", "->", " ", "\"\<...\>\""}], ",", 
-          " ", 
-          RowBox[{"\"\<agent\>\"", " ", "->", " ", "\"\<...\>\""}], ",", " ", 
-          
-          
-          RowBox[{"\"\<headlines\>\"", " ", "->", 
-           " ", "\"\<Rule30Submission.my_theorem\>\""}], ",", " ", 
-          RowBox[{"\"\<consent\>\"", " ", "->", " ", "\"\<true\>\""}]}], 
-         "}"}]}]}], "|>"}]}], "]"}], ",", " ", "\"\<RawJSON\>\""}], 
-  "]"}]], "Input",
+   RowBox[{
+   "CloudObject", 
+    "[", "\"\<https://www.wolframcloud.com/obj/wolframinstitute/Rule30Prize/\
+api/submit\>\"", "]"}], ",", " ", 
+   RowBox[{"{", "\n", "    ", 
+    RowBox[{
+     RowBox[{"\"\<notebook\>\"", " ", "->", " ", 
+      RowBox[{"File", "[", "\"\</absolute/path/essay.nb\>\"", "]"}]}], ",", 
+     " ", 
+     RowBox[{"\"\<problem\>\"", " ", "->", " ", "\"\<1\>\""}], ",", " ", 
+     RowBox[{"\"\<claim\>\"", " ", "->", " ", "\"\<partial\>\""}], ",", "\n", 
+     "    ", 
+     RowBox[{"\"\<title\>\"", " ", "->", " ", "\"\<...\>\""}], ",", " ", 
+     RowBox[{"\"\<authors\>\"", " ", "->", " ", "\"\<...\>\""}], ",", " ", 
+     RowBox[{"\"\<agent\>\"", " ", "->", " ", "\"\<...\>\""}], ",", " ", 
+     RowBox[{"\"\<headlines\>\"", " ", "->", 
+      " ", "\"\<Rule30Submission.my_theorem\>\""}], ",", " ", 
+     RowBox[{"\"\<consent\>\"", " ", "->", " ", "\"\<true\>\""}]}], "}"}], ",",
+    " ", "\"\<RawJSON\>\"", ",", " ", 
+   RowBox[{"Method", " ", "->", " ", "\"\<POST\>\""}]}], "]"}]], "Input",
  CellID->653417278,ExpressionUUID->"4fd967ef-5008-0b29-75e7-7ec961bd5673"],
 
 Cell["What this essay does not do", "Section",
@@ -17060,21 +17053,21 @@ Cell[674982, 13571, 200, 4, 70, "Program",ExpressionUUID->"5f932952-49a5-d34f-05
  CellID->1771870337],
 Cell[675185, 13577, 648, 15, 70, "Text",ExpressionUUID->"160f17c4-d31a-fe19-3e34-8ea1e6acc563",
  CellID->305160771],
-Cell[675836, 13594, 547, 14, 70, "CodeText",ExpressionUUID->"10beb8bd-bdb6-ee93-4045-31e73440b4f9",
+Cell[675836, 13594, 635, 15, 70, "CodeText",ExpressionUUID->"10beb8bd-bdb6-ee93-4045-31e73440b4f9",
  CellID->1896945989],
-Cell[676386, 13610, 1394, 31, 70, "Input",ExpressionUUID->"3fdc991b-fead-14b0-65e3-1144fb587e9a",
+Cell[676474, 13611, 1147, 23, 70, "Input",ExpressionUUID->"3fdc991b-fead-14b0-65e3-1144fb587e9a",
  CellID->653417278],
-Cell[677783, 13643, 122, 1, 70, "Section",ExpressionUUID->"3657d2c5-05c0-ac85-5e6c-cbafac7af6ef",
+Cell[677624, 13636, 122, 1, 70, "Section",ExpressionUUID->"3657d2c5-05c0-ac85-5e6c-cbafac7af6ef",
  CellID->1067269536],
-Cell[677908, 13646, 337, 6, 70, "Text",ExpressionUUID->"0642d375-09f3-9942-2e71-cb3faf87eba8",
+Cell[677749, 13639, 337, 6, 70, "Text",ExpressionUUID->"0642d375-09f3-9942-2e71-cb3faf87eba8",
  CellID->49659130],
-Cell[678248, 13654, 104, 1, 70, "Section",ExpressionUUID->"0651775d-2bad-791b-2e6f-6f074e584861",
+Cell[678089, 13647, 104, 1, 70, "Section",ExpressionUUID->"0651775d-2bad-791b-2e6f-6f074e584861",
  CellID->464508221],
-Cell[678355, 13657, 352, 9, 70, "Text",ExpressionUUID->"63b9e3d6-2298-231e-1146-fa9057128e64",
+Cell[678196, 13650, 352, 9, 70, "Text",ExpressionUUID->"63b9e3d6-2298-231e-1146-fa9057128e64",
  CellID->1361313038],
-Cell[678710, 13668, 234, 5, 70, "Text",ExpressionUUID->"67c13665-f813-2f11-0dfe-a84ef9a6727b",
+Cell[678551, 13661, 234, 5, 70, "Text",ExpressionUUID->"67c13665-f813-2f11-0dfe-a84ef9a6727b",
  CellID->1907680634],
-Cell[678947, 13675, 365, 9, 70, "Text",ExpressionUUID->"4c440104-ea8a-4285-747b-99618f3f10ef",
+Cell[678788, 13668, 365, 9, 70, "Text",ExpressionUUID->"4c440104-ea8a-4285-747b-99618f3f10ef",
  CellID->483148123]
 }
 ]

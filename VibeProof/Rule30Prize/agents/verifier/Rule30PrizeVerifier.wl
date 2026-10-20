@@ -138,12 +138,18 @@ localKit[kit_String] := localKit[kit] = Block[{path = ExpandFileName[kit], leanP
     |>
 ]
 
-(* What evaluate.wls left: None when it found the source, or the failure to report. *)
+(* A process the kernel of the sandbox killed for want of memory. *)
+outOfMemoryQ[exit_, log_String] := MatchQ[exit, 137 | "137"] || StringContainsQ[log, "Killed"]
+
+(* What evaluate.wls left: None when it found the source, or the failure to report. The notebook is
+   blamed only on evidence: its own rule30Submission, or a published limit it exceeded. Anything else
+   is the verifier's error. *)
 evaluationFailure[exit_, result_, log_String] := Which[
-    MatchQ[exit, 124 | "124"], failed["fail", "evaluating the notebook timed out", lastChars[log]],
-    MatchQ[exit, "" | Null], failed["fail", "the evaluation of the notebook did not finish", lastChars[log]],
-    ! AssociationQ[result], failed["fail", "the notebook could not be evaluated", lastChars[log]],
-    ! TrueQ[result["ok"]], failed["fail", Replace[result["message"], Except[_String] -> "the notebook has no rule30Submission"], lastChars[log]],
+    MatchQ[exit, 124 | "124"], failed["fail", "evaluating the notebook took longer than its limit", lastChars[log]],
+    outOfMemoryQ[exit, log], failed["fail", "evaluating the notebook ran out of the sandbox's memory", lastChars[log]],
+    MatchQ[exit, "" | Null], failed["error", "the evaluation of the notebook did not finish", lastChars[log]],
+    AssociationQ[result] && ! TrueQ[result["ok"]], failed["fail", Replace[result["message"], Except[_String] -> "the notebook has no rule30Submission"], lastChars[log]],
+    ! AssociationQ[result], failed["error", "the verifier could not evaluate the notebook", lastChars[log]],
     True, None
 ]
 
@@ -172,7 +178,11 @@ checkLocal[notebook_ByteArray, cargs_List, kitPath_String, timeouts_Association]
     build = runCommand[{kit["Lean"], "-R", work, "-o", FileNameJoin[{work, "Rule30Submission.olean"}], file}, work, env, timeouts["Build"]];
     log = lastChars[build["StandardOutput"] <> build["StandardError"]];
     result = If[ build["ExitCode"] =!= 0,
-        failed["fail", If[build["ExitCode"] === 124, "the build timed out", "the Lean source does not compile"], log],
+        Which[
+            build["ExitCode"] === 124, failed["fail", "the build timed out", log],
+            outOfMemoryQ[build["ExitCode"], log], failed["fail", "the build ran out of memory", log],
+            True, failed["fail", "the Lean source does not compile", log]
+        ],
         check = runCommand[Join[{kit["Lean"], "--run", FileNameJoin[{kit["Path"], "Check.lean"}], "Rule30Submission"}, cargs], work, env, timeouts["Check"]];
         Replace[checkerResult[check["StandardOutput"]], {
             r_Association :> Append[r, "log" -> log],
@@ -348,8 +358,9 @@ buildRemote[so_, notebook_ByteArray, ent_, opts_Association] := withSandbox[so, 
         log = lastChars @ text @ gatewayDownload[so, sid, "/work/build.log"];
         Append[
             Which[
-                exit === "", failed["fail", "the build did not finish", log],
+                exit === "", failed["error", "the build did not finish", log],
                 exit === "124", failed["fail", "the build timed out", log],
+                outOfMemoryQ[exit, log], failed["fail", "the build ran out of the sandbox's memory", log],
                 exit =!= "0", failed["fail", "the Lean source does not compile", log],
                 True,
                     files = Select[StringSplit @ gatewayExecute[so, sid, "cd /work && ls Rule30Submission.olean*"]["StandardOutput"], StringMatchQ[#, "Rule30Submission.olean" ~~ ("" | ".server" | ".private")]&];
@@ -423,8 +434,8 @@ Options[Rule30PrizeCheckNotebook] = {
     "Method" -> "PrimeIntellect",
     "Kit" -> Automatic,
     "Image" :> $Rule30PrizeVerifierImage,
-    "CPUCores" -> 4,
-    "MemoryGB" -> 16,
+    "CPUCores" -> 8,
+    "MemoryGB" -> 32,
     "DiskGB" -> 40,
     "StartTimeout" -> 900,
     "TimeoutMinutes" -> 45,

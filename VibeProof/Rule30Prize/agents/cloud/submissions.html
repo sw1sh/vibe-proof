@@ -261,7 +261,7 @@ footer p { margin: 0 0 8px; max-width: 48em; }
     var c = e.check || {}, st = c.state || "queued";
     var label = {
       queued: "Waiting for the Lean verifier", running: "The Lean verifier is checking it", passed: "Lean check passed", failed: "Lean check failed",
-      error: "The verifier hit an error", "no-source": "No Lean source found", "no-target": "No headline theorem to check"
+      error: "The verifier hit an error", "no-source": "No Lean source found", "no-target": "An essay: no Lean claim to check"
     }[st] || st;
     var box = el("div", { cls: "check " + st }, [el("span", { cls: "state", text: label })]);
     var what = e.target || (e.headlines && e.headlines.length ? e.headlines.join(", ") : null);
@@ -297,7 +297,7 @@ footer p { margin: 0 0 8px; max-width: 48em; }
       el("span", { cls: "chip", text: "Problem " + e.problem }), el("span", { cls: "chip", text: claimText[e.claim] || e.claim }),
       el("code", { text: e.id }), " · submitted " + (e.submitted || "").slice(0, 10)
     ]);
-    var who = el("p", { cls: "meta", text: e.authors + (e.agent ? " · by " + e.agent : "") });
+    var who = el("p", { cls: "meta", text: e.authors + (e.agent ? " · by " + e.agent : "") + (e.submitter ? " · submitted by " + e.submitter : "") });
     var files = el("nav", { cls: "files" }, [
       link("Notebook", e.files && e.files.notebook), link("Lean source", e.files && e.files.lean),
       link("Repository", e.repository)
@@ -319,7 +319,7 @@ footer p { margin: 0 0 8px; max-width: 48em; }
       if (state.status !== "all" && e.status !== state.status) return false;
       if (!state.partial && e.claim === "partial") return false;
       if (state.q) {
-        var hay = [e.title, e.authors, e.agent, e.id, e.target].join(" ").toLowerCase();
+        var hay = [e.title, e.authors, e.agent, e.submitter, e.id, e.target].join(" ").toLowerCase();
         if (hay.indexOf(state.q) < 0) return false;
       }
       return true;

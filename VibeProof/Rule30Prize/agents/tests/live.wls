@@ -6,7 +6,8 @@
        wl -f ~/.claude/skills/wolfram-cloud-account/run-as.wls wolframinstitute tests/live.wls [-root Rule30Prize] [-submit true] [-fakes false] [-wait 600]
 
    - The public pages answer anonymous requests: ROOT/ (the landing page), skill.md and HowToStart.nb.
-   - The reviewers' page answers this account and sends anonymous requests to the login page.
+   - The reviewers' page answers this account, and it and the submission API send anonymous requests
+     to the login page. Submissions are made, and followed, as this account's Wolfram ID.
    - With -submit true (the default), it submits the kit's template as a partial result, the way
      skill.md tells agents to, and expects Lean Verified.
    - With -fakes true, it then sends what a cheating agent might: four fake proofs of Problem 1,
@@ -56,13 +57,16 @@ submission[title_String, source_String, fields_List] := Block[{file, response, s
         Cell[BoxData[MakeBoxes[Needs["Wolfram`LeanLink`"]; $Rule30PrizeKit = Environment["RULE30PRIZE_KIT"], StandardForm]], "Input"],
         With[{s = source}, Cell[BoxData[MakeBoxes[rule30Submission = LeanImportString[s, "ProjectDir" -> $Rule30PrizeKit], StandardForm]], "Input"]]
     }], "NB"];
+    (* Signed with this kernel's Wolfram ID, which becomes the submitter. *)
     response = Quiet @ URLExecute[
-        HTTPRequest[rootURL <> "/api/submit", <|"Method" -> "POST", "Body" -> Join[
+        CloudObject[rootURL <> "/api/submit"],
+        Join[
             {"notebook" -> File[file], "problem" -> "1", "title" -> "Live test: " <> title, "authors" -> "The Rule 30 Prize maintainers",
              "agent" -> "agents/tests/live.wls", "consent" -> "true"},
             fields
-        ]|>],
-        "RawJSON"
+        ],
+        "RawJSON",
+        Method -> "POST"
     ];
     DeleteFile[file];
     If[ ! AssociationQ[response] || ! TrueQ[response["ok"]],
@@ -71,7 +75,7 @@ submission[title_String, source_String, fields_List] := Block[{file, response, s
     Print["      ", title, ": ", response["id"]];
     While[AbsoluteTime[] - start < FromDigits[option["wait", "600"]] && ! MemberQ[{"passed", "failed", "error", "no-source", "no-target"}, state],
         Pause[15];
-        status = Quiet @ URLExecute[response["statusURL"], "RawJSON"];
+        status = Quiet @ URLExecute[CloudObject[rootURL <> "/api/status"], {"id" -> response["id"]}, "RawJSON"];
         If[ AssociationQ[status] && status["check"]["state"] =!= state,
             state = status["check"]["state"];
             Print["      ", Round[AbsoluteTime[] - start], " s: ", state]
@@ -110,6 +114,8 @@ Block[{r},
     check["HowToStart.nb", r["StatusCode"] === 200, r["StatusCode"]];
     r = anonymous[rootURL <> "/submissions", False];
     check["the submissions page sends anonymous requests to log in", MatchQ[r["StatusCode"], 301 | 302 | 303 | 401 | 403], r["StatusCode"]];
+    r = anonymous[rootURL <> "/api/submit", False];
+    check["the submission API sends anonymous requests to log in", MatchQ[r["StatusCode"], 301 | 302 | 303 | 401 | 403], r["StatusCode"]];
     r = URLRead[CloudObject[rootURL <> "/submissions"], {"StatusCode", "Body"}];
     check["the submissions page answers " <> ToString[$WolframID], r["StatusCode"] === 200, r["StatusCode"]]
 ]
