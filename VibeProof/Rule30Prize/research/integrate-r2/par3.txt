@@ -1,1 +1,0 @@
-Rule30ZeroBoundary: elapsed 3.4 s, rc=0

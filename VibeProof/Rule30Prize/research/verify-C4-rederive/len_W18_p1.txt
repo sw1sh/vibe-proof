@@ -1,3 +1,0 @@
-0 W=18 stab=42 colA=* colB=* A==B:yes -
-1 W=18 stab=65 colA=0 colB=0 A==B:yes CERTIFIED
-SUMMARY W=18 p=1 necklaces=2 certified=1

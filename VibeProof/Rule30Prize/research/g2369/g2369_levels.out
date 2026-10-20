@@ -1,9 +1,0 @@
-n=1  log2|G_n| = 1  log2|N_n| = 1  [G_n:N_n] = 1  order(P) = 1  AbInv(G_n) = {2}
-n=2  log2|G_n| = 3  log2|N_n| = 3  [G_n:N_n] = 1  order(P) = 2  AbInv(G_n) = {2, 2}
-n=3  log2|G_n| = 7  log2|N_n| = 6  [G_n:N_n] = 2  order(P) = 2  AbInv(G_n) = {2, 2, 2}
-n=4  log2|G_n| = 13  log2|N_n| = 12  [G_n:N_n] = 2  order(P) = 4  AbInv(G_n) = {2, 2, 2}
-n=5  log2|G_n| = 25  log2|N_n| = 23  [G_n:N_n] = 4  order(P) = 8  AbInv(G_n) = {2, 2, 4}
-n=6  log2|G_n| = 47  log2|N_n| = 45  [G_n:N_n] = 4  order(P) = 8  AbInv(G_n) = {2, 2, 4}
-n=7  log2|G_n| = 90  log2|N_n| = 88  [G_n:N_n] = 4  order(P) = 16  AbInv(G_n) = {2, 2, 4}
-n=8  log2|G_n| = 176  log2|N_n| = 174  [G_n:N_n] = 4  order(P) = 32  AbInv(G_n) = {2, 2, 4}
-n=9  log2|G_n| = 348  log2|N_n| = 345  [G_n:N_n] = 8  order(P) = 32  AbInv(G_n) = {2, 2, 8}

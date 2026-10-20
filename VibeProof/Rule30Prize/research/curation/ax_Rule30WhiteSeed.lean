@@ -1,6 +1,0 @@
-import Ruliology.CellularAutomata.Rule30WhiteSeed
-#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.cellW_succ
-#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_black_or_white
-#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.cell135_succ
-#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.center135_succ
-#print axioms Ruliology.CellularAutomata.Rule30WhiteSeed.problem1_30_or_135

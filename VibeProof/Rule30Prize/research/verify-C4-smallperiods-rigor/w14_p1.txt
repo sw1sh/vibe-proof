@@ -1,2 +1,0 @@
-0 stab=29 zdet=0 pat=*
-1 stab=48 zdet=1 pat=0

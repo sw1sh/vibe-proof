@@ -1,1 +1,0 @@
-a=62 d0=40 states=140408 chunk 3/16 (8776 states) nodes=89869471 deepest surviving depth=106 => all die by depth 107

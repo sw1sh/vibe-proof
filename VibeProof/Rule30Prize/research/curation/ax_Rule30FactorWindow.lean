@@ -1,5 +1,0 @@
-import Ruliology.CellularAutomata.Rule30FactorWindow
-#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.sorted_ok
-#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.cover_ok
-#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.win_inj
-#print axioms Ruliology.CellularAutomata.Rule30FactorWindow.transient_add_period_ge

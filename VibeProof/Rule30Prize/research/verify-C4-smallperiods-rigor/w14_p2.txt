@@ -1,1 +1,0 @@
-01 stab=42 zdet=0 pat=**

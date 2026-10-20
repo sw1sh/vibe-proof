@@ -1,6 +1,0 @@
-COMPARE: scratch constants 1557 (kinds [(ctor, 1),
- (def, 240),
- (thm, 1314),
- (rec, 1),
- (induct,
-  1)]); catalog constants in mapped modules 1557 in 28 modules; problems 0; extra 0; theorem proof-term diffs 0: []

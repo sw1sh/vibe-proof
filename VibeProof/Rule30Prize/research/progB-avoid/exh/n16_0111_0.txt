@@ -1,3 +1,0 @@
-[range 0..65536] w=0111 mode=2 n=16 cases=262144 certified-absorbed=65536 uncertified=0 max certified absorption time 528
-  certificate widths: b=16:49495 b=20:14959 b=24:1024 b=28:22 b=32:36
-  absorption time histogram (log2 bins): [0,1):7656 [3,7):4127 [7,15):6345 [15,31):12638 [31,63):16146 [63,127):12204 [127,255):5719 [255,511):694 [511,1023):7

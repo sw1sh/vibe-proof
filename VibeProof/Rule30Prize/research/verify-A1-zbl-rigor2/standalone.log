@@ -1,9 +1,0 @@
-'R30ZBL.no_period_two_of_Q01' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30ZBL.cell_eq_zrow' depends on axioms: [propext, Quot.sound]
-'R30ZBLCheck.no_period_dvd_two_of_Q01' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30ZBLCheck.not_ep12_of_Q01' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30ZBLCheck.cell_eq_zrow_int' depends on axioms: [propext, Quot.sound]
-'Ruliology.CellularAutomata.Rule30Prize.center_not_eventually_constant' depends on axioms: [propext,
- Classical.choice,
- Quot.sound]
-'R30ZBL.Q01_iff_Phi' depends on axioms: [propext, Quot.sound]

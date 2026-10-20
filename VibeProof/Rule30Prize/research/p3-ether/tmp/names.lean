@@ -1,9 +1,0 @@
-#check @Nat.mod_mod_of_dvd
-#check @Nat.mul_add_div
-#check @Nat.mul_add_mod
-#check @Nat.add_mul_div_right
-#check @Nat.add_mul_mod_self_right
-#check @List.contains_iff_mem
-#check @List.elem_iff
-#check @Nat.mod_add_mod
-#check @Nat.add_mod

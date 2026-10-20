@@ -1,2 +1,0 @@
-001 W=18 stab=70 cert=no col1=0** sizes=9276,9272,9287
-011 W=18 stab=137 cert=no col1=*** sizes=9830,9889,9896

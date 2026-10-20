@@ -1,7 +1,0 @@
-00001 W=14 stab=43 colA=***** colB=***** A==B:yes -
-00011 W=14 stab=44 colA=*1110 colB=*1110 A==B:yes -
-00101 W=14 stab=40 colA=***** colB=***** A==B:yes -
-00111 W=14 stab=46 colA=***** colB=***** A==B:yes -
-01011 W=14 stab=32 colA=***** colB=***** A==B:yes -
-01111 W=14 stab=40 colA=***** colB=***** A==B:yes -
-SUMMARY W=14 p=5 necklaces=6 certified=0

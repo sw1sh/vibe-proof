@@ -1,4 +1,0 @@
-rule 30^2 alternating densities, range r=5: rank_p=16 of 16 (cols 716) -> NO nontrivial law
-rule 30^2 alternating densities, range r=6: rank_p=32 of 32 (cols 732) -> NO nontrivial law
-rule 30^2 alternating densities, range r=7: rank_p=64 of 64 (cols 764) -> NO nontrivial law
-rule 30^2 alternating densities, range r=8: rank_p=128 of 128 (cols 828) -> NO nontrivial law

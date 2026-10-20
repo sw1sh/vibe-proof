@@ -1,3 +1,0 @@
-/Users/swish/.claude/jobs/b8cd2926/tmp/r30prize/verify-C5-rigor/NegControl.lean:14:2: error: Tactic `decide` proved that the proposition
-  ((allLists 6).all fun l => col1 (alt 4) l != [true, true, false, false]) = true
-is false

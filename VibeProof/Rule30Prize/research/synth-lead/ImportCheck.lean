@@ -1,8 +1,0 @@
-import Ruliology.CellularAutomata.Rule30PeriodTwo
-import Ruliology.CellularAutomata.Rule30StripCertificates
-open Ruliology.CellularAutomata
-#check @Rule30PeriodTwo.not_eventually_period_two_of_Q01
-#print Rule30PeriodTwo.Q01
-#print axioms Rule30PeriodTwo.not_eventually_period_two_of_Q01
-#check @Rule30StripCertificates.problem1_iff_no_word
-#print axioms Rule30StripCertificates.problem1_iff_no_word

@@ -1,3 +1,0 @@
-0001 W=14 stab=40 cert=no col1=**** sizes=1709,1723,1697,1713
-0011 W=14 stab=43 cert=no col1=**** sizes=1617,1626,1595,1594
-0111 W=14 stab=35 cert=no col1=**** sizes=2007,2013,2022,2008

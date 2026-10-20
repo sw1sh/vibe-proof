@@ -1,4 +1,0 @@
-p=9 necklaces=56
-real 0.16
-user 0.15
-sys 0.00

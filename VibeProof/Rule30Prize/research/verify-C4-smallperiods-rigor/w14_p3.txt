@@ -1,2 +1,0 @@
-001 stab=47 zdet=0 pat=0**
-011 stab=53 zdet=0 pat=***

@@ -1,9 +1,0 @@
-T0=3000 N=200000 phase=1 mode=1 samples=98000; ones density 0.2144; mismatch vs best 10000-wheel per window: 0.3054
-total ones 21007 over 98000 samples; 3n/14 = 21000.0; diff = 7.0
-window 14: ones - 3L/14 in [-1.00, 1.00]
-window 140: ones - 3L/14 in [-2.00, 2.00]
-window 1400: ones - 3L/14 in [-6.00, 6.00]
-window 14000: ones - 3L/14 in [-16.00, 13.00]
-window 56000: ones - 3L/14 in [-2.00, 24.00]
-prefix discrepancy range [-11.00, 21.79]
-p(8)=10 p(16)=23 p(32)=89 p(64)=691 p(96)=4039 p(128)=15989 p(192)=70686 p(256)=95378 p(384)=97617 p(512)=97489 p(768)=97233 p(1024)=96977 

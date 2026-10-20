@@ -1,5 +1,0 @@
-'R30Skel.skeleton_0011' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30Skel.skeleton_0011_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30Skel.column_m1_0111' depends on axioms: [propext, Quot.sound]
-'R30Skel.column_m1_0111' depends on axioms: [propext, Quot.sound]
-'R30Skel.skeleton_0011_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]

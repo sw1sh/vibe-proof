@@ -1,3 +1,0 @@
-'R30SmallPeriods.no_period_long_ones' depends on axioms: [propext, Classical.choice, Quot.sound]
-'R30SmallPeriods.effective_boundary' does not depend on any axioms
-'R30SmallPeriods.absorb' depends on axioms: [propext, Quot.sound]

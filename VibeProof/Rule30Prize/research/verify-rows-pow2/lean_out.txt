@@ -1,8 +1,0 @@
-'Ruliology.CellularAutomata.Rule30RightPeriods.per_iff_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.zero_gap_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.last_one' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.antiperiod' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.per_step' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.not_per_small' depends on axioms: [propext, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.per_mono_all' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Ruliology.CellularAutomata.Rule30RightPeriods.per_14' depends on axioms: [propext, Classical.choice, Quot.sound]

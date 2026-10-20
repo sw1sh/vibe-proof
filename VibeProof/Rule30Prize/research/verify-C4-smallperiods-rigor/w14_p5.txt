@@ -1,6 +1,0 @@
-00001 stab=43 zdet=0 pat=*****
-00101 stab=40 zdet=0 pat=*****
-00011 stab=44 zdet=0 pat=*1110
-01011 stab=32 zdet=0 pat=*****
-00111 stab=46 zdet=0 pat=*****
-01111 stab=40 zdet=0 pat=*****

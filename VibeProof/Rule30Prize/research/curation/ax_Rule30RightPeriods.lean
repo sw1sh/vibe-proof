@@ -1,2 +1,0 @@
-import Ruliology.CellularAutomata.Rule30RightPeriods
-#print axioms Ruliology.CellularAutomata.Rule30RightPeriods.row_restart

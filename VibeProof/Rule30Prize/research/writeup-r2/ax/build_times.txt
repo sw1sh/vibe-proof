@@ -1,8 +1,0 @@
-Rule30ZeroBoundary rc=1 1s
-Rule30ZeroBoundary rc=0 3s
-Rule30ZeroBoundaryBarriers rc=0 4s
-Rule30Ether rc=0 5s
-Rule30ZeroBoundarySmall rc=0 16s
-Rule30ZeroBoundaryStripe rc=0 18s
-Rule30PeriodTwoCoupled rc=0 0s
-Rule30PeriodFourSkeleton rc=0 3s

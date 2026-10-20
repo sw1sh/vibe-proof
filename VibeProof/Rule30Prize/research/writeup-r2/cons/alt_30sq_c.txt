@@ -1,2 +1,0 @@
-rule 30^2 alternating densities, range r=9: rank_p=256 of 256 (cols 1156) -> NO nontrivial law
-rule 30^2 alternating densities, range r=10: rank_p=499 of 512 (cols 1412) -> undecided/possible law

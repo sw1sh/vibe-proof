@@ -1,2 +1,0 @@
-'ZBLBarrier.no_local_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]
-'ZBLBarrier.finite_abstraction_has_lasso' depends on axioms: [propext, Classical.choice, Quot.sound]

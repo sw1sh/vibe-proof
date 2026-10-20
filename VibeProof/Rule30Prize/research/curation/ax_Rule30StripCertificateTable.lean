@@ -1,3 +1,0 @@
-import Ruliology.CellularAutomata.Rule30StripCertificateTable
-#print axioms Ruliology.CellularAutomata.Rule30StripCertificateTable.certTable_ok
-#print axioms Ruliology.CellularAutomata.Rule30StripCertificateTable.not_eventually_certTable

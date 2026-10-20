@@ -1,2 +1,0 @@
-'JointBarrier.no_joint_local_ranking' depends on axioms: [propext, Classical.choice, Quot.sound]
-'JointBarrier.c7_center' depends on axioms: [propext, Quot.sound]
